@@ -23,7 +23,7 @@ def p_in_poly(poly, point):
 
     return inside
 
-def getBlock(wedges, vertex_list, minor_factor=0.04, main_factor=0.08, max_area=5):
+def getBlock(wedges, vertex_list, minor_factor=0.04, main_factor=0.08, max_area=15):
 	'''Calculate block to be divided into lots, as well as street polygons'''
 	old_vertices = [vertex_list[wedge.b] for wedge in wedges]
 	old_poly = Polygon([v.coords for v in old_vertices])
@@ -73,8 +73,6 @@ def getBlock(wedges, vertex_list, minor_factor=0.04, main_factor=0.08, max_area=
 				last2 = these2[::-1]
 			else:
 				#New vertex not in polygon, return old polygon as street polygon
-				print "Error!" + str(new)
-				old_poly.poly_type="road"
 				return [old_poly]
 		else:
 			#Dead end: determine two new vertices by adding the two normals
@@ -90,7 +88,6 @@ def getBlock(wedges, vertex_list, minor_factor=0.04, main_factor=0.08, max_area=
 				last2 = [new2, b.coords]
 				
 			else:
-				print "Error!"
 				old_poly.poly_type="road"
 				return [old_poly]
 	street_vertices = last2 + [old_vertices[-1].coords,new_vertices[0]]

@@ -1,6 +1,7 @@
 from __future__ import division
 from Polygon import Edge, Polygon
 from getBlock import getBlock
+from split import split
 
 def divide(poly):
 	"""Divide polygon as many smaller polygons as possible"""
@@ -9,9 +10,9 @@ def divide(poly):
 	done = []
 	while current:
 		for x in current:
-			split = x.split()
-			if split:
-				nxt += split
+			parts = split(x)
+			if parts:
+				nxt += parts
 			else:
 				done.append(x)
 		current, nxt = nxt, []
@@ -39,7 +40,7 @@ if __name__=="__main__":
 	import construct_polygons as cp
 	polys, vertices = cp.main()
 	
-	lots = main(polys[:30], vertices)
+	lots = main(polys, vertices)
 	print "%s lots found" %(len(lots))
 	for p in lots:
 		pp.plot_poly(p)

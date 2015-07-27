@@ -17,3 +17,10 @@ def plot_poly(poly):
 		for edge in poly.edges:
 			plot_edge(edge, "r")
 			
+def plot_poly2(poly):
+	for edge in poly.edges:
+		if edge.bordering_road:
+			plot_edge(edge, 'k')
+		else:
+			plot_edge(edge, 'r')
+			
