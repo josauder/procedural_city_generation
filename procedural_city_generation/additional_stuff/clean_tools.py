@@ -49,4 +49,5 @@ def find_TODOS(checkpath):
 				print x
 	return 0
 
-find_TODOS(path)			
+
+clean_pyc_files(path)
