@@ -5,7 +5,7 @@ def plot_edge(edge, c):
 	
 	
 def plot_poly(poly):
-	if poly.is_block:
+	if poly.is_block or poly.is_lot:
 		for edge in poly.edges:
 			plot_edge(edge, "g")
 	elif poly.is_road:

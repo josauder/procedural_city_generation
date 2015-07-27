@@ -1,5 +1,13 @@
 from __future__ import division
 import numpy as np
+
+def is_convex(self):
+	for (edge1, edge2) in zip(self.edges, self.edges[1:] + [self.edges[0]]):
+		v = edge2.dir_vector - edge1.dir_vector
+		angle = np.arctan2(v[1],v[0])
+		if angle >= np.pi or (angle < 0 and angle + 2*np.pi >= np.pi):
+			return False
+	return True
 	
 class Edge(object):
 	
@@ -20,7 +28,7 @@ class Edge(object):
 		
 class Polygon(object):
 	
-	def __init__(self, in_list, is_block=False, is_road=False, is_minor_road=False):
+	def __init__(self, in_list, poly_type="vacant"):
 		"""Input may be numpy-arrays or Edge-objects"""
 
 		if isinstance(in_list[0], Edge):
@@ -30,7 +38,8 @@ class Polygon(object):
 			self.vertices = in_list
 			self.edges = [Edge(v1,v2) for v1,v2 in 
 							zip(in_list, in_list[1:]+[in_list[0]])]
-		self.is_block, self.is_road, self.is_minor_road = is_block, is_road, is_minor_road
+		self.is_convex = is_convex(self)
+		self.poly_type = poly_type
 				
 	def __repr__(self):
 		s = "Polygon: \n"
@@ -54,6 +63,7 @@ class Polygon(object):
 				
 	
 	def split(self, min_area=0.6, min_length=0.2, eps=10**-5):
+		return False#for testing purposes
 		"""Split polygon into two parts"""
 		sorted_edges = sorted(self.edges, key=lambda x: -x.length)
 		split_edge = sorted_edges[0]
@@ -84,11 +94,11 @@ class Polygon(object):
 					except np.linalg.LinAlgError:
 						pass
 					if intersects:
-						new_edges[switch].append(Edge(other[0], new_point, other.bordering_road))
-						new_edges[switch].append(Edge(new_point, split_point, False))
+						new_edges[switch].append(Edge(other[0], new_point, bordering_road=other.bordering_road))
+						new_edges[switch].append(Edge(new_point, split_point, bordering_road=False))
 						switch = not switch
-						new_edges[switch].append(Edge(split_point, new_point, False))
-						new_edges[switch].append(Edge(new_point, other[1], other.bordering_road))	
+						new_edges[switch].append(Edge(split_point, new_point, bordering_road=False))
+						new_edges[switch].append(Edge(new_point, other[1], bordering_road=other.bordering_road))	
 					else:
 						new_edges[switch].append(other)
 			
@@ -102,13 +112,13 @@ class Polygon(object):
 					else:
 						return False
 			else:
-				return Polygon(new_edges[0]), Polygon(new_edges[1])
+				return Polygon(new_edges[0], is_lot=True), Polygon(new_edges[1], is_lot=True)
 		return False
 			
 
 
 if __name__=="__main__":
-	from poly_plot import *
+	import poly_plot as pp
 	p = [np.array(x) for x in [[0,0],[0,1],[1,0.8],[1,0]]]
 	poly = Polygon(p)
 	p1,p2 = poly.split()
