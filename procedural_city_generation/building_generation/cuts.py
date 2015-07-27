@@ -22,6 +22,37 @@ def scalewalls(walls,factor,center):
 		newwalls.append([center+(coord-center)*factor for coord in wall])
 	return newwalls
 
+def randomcut(walls):
+	#TODO: Get numeric values in some sort of conf file
+	n=random.randint(0,100)	
+	a1=random.uniform(0,0.4)
+	a2=random.uniform(0,0.4)
+	s=random.randint(0,len(walls))
+	if len(walls=4):
+		if n>20:
+			if n<35:
+				return Ccut(walls,a1,a2,s)
+			elif n<47:
+				return Hcut(walls,a1,a2,s)
+			elif n<56:
+				return Xcut(walls,a1,a2,s)
+			elif n<68:
+				return Lcut(walls,a1,a2,s)
+			elif n<77:
+				return Tcut(walls,a1,a2,s)
+			elif n<82:
+				return KeineAhnungcut(walls,a1,a2,s)
+			elif n<87:
+				return KeineAhnung2cut(walls,a1,a2,s)
+			else:
+				return Ycut(walls,a1,a2,s)
+	else:
+		for i in range(len(walls)):
+			if random.randint(0,100)>50:
+				if n>40:
+					walls= Ccut(walls,a1,a2,i)
+	return walls
+	
 
 
 def scaletransform_vertex(coords,factor,center,p,fac2=None):
