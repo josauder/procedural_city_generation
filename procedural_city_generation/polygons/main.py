@@ -31,18 +31,16 @@ def main(vertex_list=None,plotbool=False):
 	
 	
 	#TODO: DISCUSS
-	from procedural_city_generation.polygons.petrasch_aufteilen import main as lennysmain
-	print len(vertex_list)
-	grund_list,grosseflaechen,strassenpoly=lennysmain(polylist,vertex_list)
-	if plotbool:
-		for g in grosseflaechen:
-			g.selfplot()
+	from procedural_city_generation.polygons.getLots import main as lennysmain
+	"%s vertices" %(len(vertex_list))
+	polygons=lennysmain(polylist[:2],vertex_list)
 	
 	print "Grundstuecke found"
 	if plotbool:
 		import matplotlib.pyplot as plt
-		for g in grund_list:
-			g.selfplot()
+		from poly_plot import plot_edge, plot_poly
+		for g in polygons:
+			plot_poly(g)
 		plt.show()
 		
 		

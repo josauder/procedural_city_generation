@@ -90,7 +90,7 @@ def main(vertex_list=None):
 	List of all Polygons which are too large to be Lots
 	Polygon representing the road-network'''
 	import sys
-	sys.path.append('/home/lenny/Documents/Stadtprojekt/procedural_city_generation')
+	sys.path.append('/home/lenny/Desktop/Stadtprojekt/Neu/stadt.git')
 	if vertex_list is None:
 		from procedural_city_generation.additional_stuff import jsontools
 		
