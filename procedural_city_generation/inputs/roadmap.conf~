@@ -1,0 +1,41 @@
+{
+"axiom":[[0,0],[1,0],[0,-2],[0,-3]],
+"minor_road_delay":80,
+"mindestabstand":0.6,
+"rule_image_name": "nicebild.png",
+"density_image_name": "abnehmend.png",
+"heightmap_name": "random",
+"bildaufloesung":10,
+"border": [35,35],
+"plot":0,
+"plotabstand":5,
+"savefig":1,
+
+
+"pSeed":40,
+"seedlMin":1.0,
+"seedlMax":1.0,
+"minor_roadpForward":5,
+"minor_roadpTurn":85,
+"minor_roadlMin":1.0,
+"minor_roadlMax":1.0,
+
+
+
+"organicpForward":100,
+"organicpTurn":7,
+"organiclMin":0.8,
+"organiclMax":1.6,
+
+"gridpForward":100,
+"gridpTurn":9,
+"gridlMin":1.0,
+"gridlMax":1.0,
+
+
+"radialpForward":100,
+"radialpTurn":7,
+"radiallMin":0.8,
+"radiallMax":1.6
+
+}
