@@ -1,5 +1,5 @@
 #path=procedural_city_generation.__file__
-path="/home/jonathan/procedural_city_generation"
+path="/home/lenny/Documents/Stadtprojekt/procedural_city_generation"
 def listfiles(checkpath):
 	import os
 	filelist=[]
@@ -49,5 +49,5 @@ def find_TODOS(checkpath):
 				print x
 	return 0
 
-
-clean_pyc_files(path)
+if __name__=="__main__":
+	clean_pyc_files(path)
