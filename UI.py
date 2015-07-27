@@ -1,8 +1,8 @@
 import procedural_city_generation
-import sys
+import sys,os
 import Tkinter
-
-sys.path.append(procedural_city_generation.__file__)
+path=os.path.dirname(procedural_city_generation.__file__)
+sys.path.append(path)
 
 
 
@@ -76,19 +76,21 @@ def confGUI(path , params):
 
 def roadmapconf():
 	from procedural_city_generation.roadmap.roadmap_params import params as roadmapparams
-	confGUI("/home/jonathan/procedural_city_generation/procedural_city_generation/inputs/roadmap.conf", roadmapparams)
+	confGUI(path+"/inputs/roadmap.conf", roadmapparams)
 
 def polygonconf():
 	from procedural_city_generation.polygons.polygons_params import params as polygonsparams
-	confGUI("/home/jonathan/procedural_city_generation/procedural_city_generation/inputs/polygons.conf", polygonsparams)
+	confGUI(path+"/inputs/polygons.conf", polygonsparams)
 
 def building_generationconf():
 	from procedural_city_generation.building_generation.building_generationparams_params import params as building_generationparams
-	confGUI("/home/jonathan/procedural_city_generation/procedural_city_generation/inputs/polygons.conf", building_generationparams)
+	#TODO
+	confGUI(path+"/inputs/polygons.conf", building_generationparams)
 
 def visualizationconf():
 	from procedural_city_generation.visualization_params import params as visualizationparams
-	confGUI("/home/jonathan/procedural_city_generation/procedural_city_generation/inputs/polygons.conf", visualizationparams)
+	#TODO
+	confGUI(path+"inputs/polygons.conf", visualizationparams)
 
 
 def GUI():

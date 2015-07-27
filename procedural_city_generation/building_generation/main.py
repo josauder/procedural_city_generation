@@ -6,7 +6,7 @@ from procedural_city_generation.building_generation.cuts import *
 from procedural_city_generation.building_generation.roofs import roof
 from procedural_city_generation.building_generation import surface
 from procedural_city_generation.building_generation import getBuildingHeight as gb
-from procedural_city_generation.building_generation.updateTextures import updateTextures
+from procedural_city_generation.building_generation.updateTextures import updateTextures, textureGetter
 
 #Poly:
 	#is_convex
@@ -17,25 +17,26 @@ from procedural_city_generation.building_generation.updateTextures import update
 house_height=0.15
 roadtex_name='Road01.jpg'
 
+
 def main(polylist):
 	
 	
 	textures=updateTextures()
 	roadtexture=[x for x in textures if x.name==roadtex_name][0]
+	texGetter=textureGetter(textures)
 	
-	
-	
+	buildings=[]
 	for poly in polylist:
 		
-		baseheight= surface.getSurfaceHeight(poly)
-		buildingheight= gb.getBuildingHeight(center)
 		
-		basetexture=None
 		if poly.road:
-			basetexture= roadtexture
-		else:
+			floortexture= roadtexture
 			
-		
+			
+		else:
+			buildingheight= gb.getBuildingHeight(center)
+			baseheight= surface.getSurfaceHeight(poly)
+			floortexture=texGetter.getTexture('Floor',buildingheight/100)
 		
 		
 		
