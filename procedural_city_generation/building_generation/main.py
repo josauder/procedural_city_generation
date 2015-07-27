@@ -42,7 +42,7 @@ def main(polylist):
 		else:
 			center=sum(poly.coords)/len(poly.coords)
 			buildingheight= gb.getBuildingHeight(center)
-			baseheight= surface.getSurfaceHeight(poly)
+			base_h_low,base_h_high= surface.getSurfaceHeight(poly)
 			floortexture=texGetter.getTexture('Floor',buildingheight/100)
 			polygons.append(Polygon(poly.coords,range(len(poly.coords)),floortexture, True)
 			
@@ -63,6 +63,7 @@ def main(polylist):
 			plan=verticalsplit(buildingheight)
 			
 			#Random, decides if ledges will be scaled nach aussen
+			#TODO: add constants to some sort of conf file
 			ledgefactor=1.0
 			if random.randint(0,100)>50:
 				ledgefactor+=random.uniform(0,0.1)
@@ -77,27 +78,69 @@ def main(polylist):
 			windows=getwindowcoords(walls)
 			
 			#Goes through the plan list
-			while len(plan)>0:
-				if plan[0]=='b' or plan[0]=='f':
+			#TODO: check with desktop version
+			for element in plan:
+				if element=='b' or element=='f':
 					
+					polygons.extend(scale([x+np.array([0,0,base_h_high+currentheight+floorheight/2]) for x in windows],1.01,grundrisscenter))
+					currentheight+=floorheight
 					
-					polygons.extend(scale([x+np.array([0,0,self.start_of_base_height+currentheight+self.floorheight/2]) for x in windows],1.01,self.grundrisscenter))
-					currentheight+=self.floorheight
+				elif element=='l':
 					
-				elif plan[0]=='l':
-					
-					currentheight+=self.floorheight/10.
+					currentheight+=floorheight/10.
 					if ledgefactor!=1:
-						polygons.append(flatebene(ledge,self.start_of_base_height+currentheight))
-						polygons.append(flatebene(ledge,self.start_of_base_height+currentheight-self.floorheight/10.))
-						polygons.extend(buildwalls(ledge,self.start_of_base_height+currentheight-self.floorheight/10., self.start_of_base_height+currentheight))			
-				elif plan[0]=='r':
+						polygons.append(flatebene(ledge,base_h_high+currentheight))
+						polygons.append(flatebene(ledge,base_h_high+currentheight-floorheight/10.))
+						polygons.extend(buildwalls(ledge,base_h_high+currentheight-floorheight/10., base_h_high+currentheight))			
+				elif element=='r':
 					if ledgefactor==1:
-						polygons.extend(dach(walls,scale(roofwalls,1.05,self.grundrisscenter),self.haus,self.start_of_base_height+currentheight)=
-						polys.extend(buildwalls(walls,self.start_of_fundament_height,(self.start_of_base_height+currentheight)))
+						polygons.extend(dach(walls,scale(roofwalls,1.05,grundrisscenter),haus,base_h_high+currentheight))
+						polygons.extend(buildwalls(walls,base_h_low,(base_h_high+currentheight)))
 	
+	
+	
+	
+	
+	#Merges Polygons with identical Texture into one
+	mergedpolys=np.zeros(len(textures))
+	for poly in polygons:
+		mergedpolys[poly.texture.index].append(poly)
+	
+	import bisect
+	from operator import itemgetter
+	from copy import copy
+	for polys in mergedpolys:
+		allverts=[]
+		for poly in polys:
+			for vert in poly:
+				if vert not in allverts:
+					allverts.append(vert)
+		
+		allverts.sort(key=itemgetter(0,1,2))
+		
+		allvertscopy=copy(allverts)
+		popindex
+		for i in range(len(allverts)):
+			if allvertscopy[i-popindex]==allvertscopy[i-1-popindex]:
+			
+				allverts.pop(i-popindex)
+				popindex+=1
+		print popindex
+		
+		
+		i=0
+		vertices=[]
+		faces=[]
+		
+		for poly in polys:
+			k=0
 			
 			
+			
+			
+			
+			i+=len(poly.coords)
+	
 			
 		
 	
