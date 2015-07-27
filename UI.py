@@ -1,7 +1,7 @@
 import procedural_city_generation
-import sys
+import sys,os
 import Tkinter
-path=procedural_city_generation.__file__
+path=os.path.dirname(procedural_city_generation.__file__)
 sys.path.append(path)
 
 
