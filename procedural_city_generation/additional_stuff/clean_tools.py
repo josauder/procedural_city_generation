@@ -50,4 +50,22 @@ def find_TODOS(checkpath):
 	return 0
 
 
-clean_pyc_files(path)
+def find_in_text(checkpath,tofind):
+	allfiles=find_readable_files(checkpath)
+	
+	for somefile in allfiles:
+		
+		with open(somefile,'r') as f:
+			s=f.readlines()
+		
+		todos=[]
+		for line in s:
+			if tofind in line:
+				todos.append(line.strip())
+		if len(todos)>0:
+			print "\n"+somefile
+			for x in todos:
+				print x
+	return 0
+
+find_in_text(path,"sys.path.append")
