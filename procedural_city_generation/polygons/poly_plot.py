@@ -5,10 +5,12 @@ def plot_edge(edge, c):
 	
 	
 def plot_poly(poly):
-	if poly.is_block or poly.is_lot:
+	t = poly.poly_type
+	
+	if t == "lot" or t=="block":
 		for edge in poly.edges:
 			plot_edge(edge, "g")
-	elif poly.is_road:
+	elif t == "road":
 		for edge in poly.edges:
 			plot_edge(edge, "k")
 	else:

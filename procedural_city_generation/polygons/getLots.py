@@ -17,12 +17,11 @@ def divide(poly):
 		current, nxt = nxt, []
 	return done
 	
-def main(wedge_poly_list, vertex_list, max_vertices=20, max_area=5):
+def main(wedge_poly_list, vertex_list):
 	properties = []
-	wedge_poly_list.remove(max(wedge_poly_list, key=len))
 	for wedge_poly in wedge_poly_list:
 		for poly in getBlock(wedge_poly, vertex_list):
-			if poly.is_block:
+			if poly.poly_type=="block":
 				properties += divide(poly)
 			else:
 				properties.append(poly)
@@ -40,7 +39,7 @@ if __name__=="__main__":
 	import construct_polygons as cp
 	polys, vertices = cp.main()
 	
-	lots = main(polys, vertices)
+	lots = main(polys[:30], vertices)
 	print "%s lots found" %(len(lots))
 	for p in lots:
 		pp.plot_poly(p)
