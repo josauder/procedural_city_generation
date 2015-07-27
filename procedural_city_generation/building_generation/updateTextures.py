@@ -8,7 +8,8 @@ class Texture(object):
 		self.name=name
 		self.scale=scale
 		self.index=index
-
+	def __repr__(self):
+		return self.name
 def updateTextures():
 	path=os.path.dirname(procedural_city_generation.__file__)
 	teximages=os.listdir(path+"/visualization/Textures/")

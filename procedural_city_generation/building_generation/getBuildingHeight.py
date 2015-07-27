@@ -24,9 +24,9 @@ def setupimage():
 	
 	import matplotlib.image as mpimg
 	
-	path=os.dirname(procedural_city_generation.__file__)
+	path=os.path.dirname(procedural_city_generation.__file__)
 	#TODO: make diffused an option
-	img= mpimg.imread(+"/temp/diffused.png")
+	img= mpimg.imread(path+"/temp/diffused.png")
 	
 	for i in range(100):
 		img= diffusion(img, 1)
@@ -35,7 +35,7 @@ def setupimage():
 	return img
 	
 
-img
+img=setupimage()
 
 
 def getBuildingheight(polygon,rahmen):

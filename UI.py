@@ -54,7 +54,10 @@ def confGUI(path , params):
 	def done():
 		new_s=dict([])
 		for i in range(len(params)):
-			new_s[params[i].name]=entryfields[i].get()
+			try:
+				new_s[params[i].name]=eval(entryfields[i].get())
+			except:
+				new_s[params[i].name]=entryfields[i].get()
 		with open(path,'w') as f:
 			f.write(json.dumps(new_s))
 		confwindow.destroy()

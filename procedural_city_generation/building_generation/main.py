@@ -15,24 +15,26 @@ from procedural_city_generation.building_generation.updateTextures import update
 
 #define
 house_height=0.15
-roadtexture='Road01.jpeg'
+roadtex_name='Road01.jpg'
 
 def main(polylist):
 	
 	
 	textures=updateTextures()
+	roadtexture=[x for x in textures if x.name==roadtex_name][0]
+	
+	
 	
 	for poly in polylist:
 		
 		baseheight= surface.getSurfaceHeight(poly)
 		buildingheight= gb.getBuildingHeight(center)
 		
-		
 		basetexture=None
 		if poly.road:
-			basetexture= "ROADTEXTURE"
+			basetexture= roadtexture
 		else:
-			pass
+			
 		
 		
 		
@@ -62,3 +64,5 @@ def main(polylist):
 #	if plotbool:
 #		plt.show()
 	
+if __name__ == '__main__':
+	main([])
