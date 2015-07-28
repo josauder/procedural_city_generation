@@ -125,23 +125,19 @@ def main(polylist):
 			
 				allverts.pop(i-popindex)
 				popindex+=1
-		print popindex
+		print popindex + " duplicates in list of all vertices were removed"
 		
 		
-		i=0
-		vertices=[]
+		
 		faces=[]
+		def search(x):
+			return allverts.index(x)
 		
 		for poly in polys:
-			k=0
-			
-			
-			
-			
-			
-			i+=len(poly.coords)
-	
-			
+			face=[search(x) for x in poly.coords]
+			faces.append(face)
+		
+		
 		
 	
 if __name__ == '__main__':

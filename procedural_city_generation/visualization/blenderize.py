@@ -117,7 +117,12 @@ def fromstring(inputstring):
 			createbuilding(inputstring[i],True)
 def main():
 	import os
-	
+	bpy.context.scene.render.engine="CYCLES"
+	a=bpy.context.scene.objects.get("CUBE")
+	bpy.context.scene.objects.unlink(a)
+	bpy.data.lamps["Lamp"].type="SUN"
+
+
 	with open(os.getcwd()+"/../Strassennetz/PythonVersion/Heightmaps/inuse.txt") as f:
 		inuse=f.read()
 	
@@ -176,4 +181,5 @@ def main():
 
 if __name__ == '__main__':
 	main()
+
 
