@@ -18,7 +18,7 @@ def divide(poly):
 		current, nxt = nxt, []
 	return done
 	
-def main(wedge_poly_list, vertex_list):
+def getLots(wedge_poly_list, vertex_list):
 	properties = []
 	for wedge_poly in wedge_poly_list:
 		for poly in getBlock(wedge_poly, vertex_list):
@@ -41,7 +41,7 @@ if __name__=="__main__":
 	import construct_polygons as cp
 	polys, vertices = cp.main()
 	
-	lots = main(polys[:20], vertices)
+	lots = getLots(polys[:20], vertices)
 	print "%s lots found" %(len(lots))
 	for p in lots:
 		pp.plot_poly(p)
