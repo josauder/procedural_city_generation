@@ -36,11 +36,12 @@ if __name__=="__main__":
 	import numpy as np
 	import poly_plot as pp
 	from getBlock import getBlock
+	from getFoundation import getFoundation
 	
 	import construct_polygons as cp
 	polys, vertices = cp.main()
 	
-	lots = main(polys, vertices)
+	lots = main(polys[:20], vertices)
 	print "%s lots found" %(len(lots))
 	for p in lots:
 		pp.plot_poly(p)

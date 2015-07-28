@@ -1,6 +1,6 @@
 from Polygon import *
 
-def split(self, min_area=0.6, min_length=0.4, eps=10**-5):
+def split(self, min_area=0.6, min_length=0.5, eps=10**-5):
 		"""Split polygon into two parts"""
 		if self.area < min_area:
 			#Polygon is too small
