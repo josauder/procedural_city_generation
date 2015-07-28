@@ -23,7 +23,7 @@ def p_in_poly(poly, point):
 
     return inside
 
-def getBlock(wedges, vertex_list, minor_factor=0.04, main_factor=0.08, max_area=40):
+def getBlock(wedges, vertex_list, minor_factor=0.04, main_factor=0.08, max_area=15):
 	'''Calculate block to be divided into lots, as well as street polygons'''
 	old_vertices = [vertex_list[wedge.b] for wedge in wedges]
 	old_poly = Polygon([v.coords for v in old_vertices])
@@ -61,8 +61,6 @@ def getBlock(wedges, vertex_list, minor_factor=0.04, main_factor=0.08, max_area=
 				intersection = np.linalg.solve(np.array(((v1),(v2))).T,(b.coords+n2)-(b.coords+n1))
 			except np.linalg.LinAlgError:
 				raise Exception(str(v1)+", "+str(v2),"angle: "+str(wedges[i-1].alpha))
-			if not intersection[0]:
-				raise Exception("WTF")
 			new = b.coords + n1 + intersection[0]*v1
 			#Check if new vertex is in old polygon
 			if p_in_poly(old_poly.edges, new):
@@ -71,12 +69,10 @@ def getBlock(wedges, vertex_list, minor_factor=0.04, main_factor=0.08, max_area=
 				these2 = [b.coords, new]
 				if last2:
 					street_vertices = last2 + these2
-					polylist.append(Polygon(street_vertices, is_road=True))
+					polylist.append(Polygon(street_vertices, poly_type="road"))
 				last2 = these2[::-1]
 			else:
 				#New vertex not in polygon, return old polygon as street polygon
-				print "Error!" + str(new)
-				old_poly.is_road = True
 				return [old_poly]
 		else:
 			#Dead end: determine two new vertices by adding the two normals
@@ -86,22 +82,22 @@ def getBlock(wedges, vertex_list, minor_factor=0.04, main_factor=0.08, max_area=
 				new_vertices += [new1, new2]
 				if last2:
 					street_vertices = last2 + [b.coords, new1]
-					polylist.append(Polygon(street_vertices, is_road=True))
+					polylist.append(Polygon(street_vertices, poly_type="road"))
 					street_vertices = [b.coords, new2, new1]
-					polylist.append(Polygon(street_vertices, is_road=True))
+					polylist.append(Polygon(street_vertices, poly_type="road"))
 				last2 = [new2, b.coords]
 				
 			else:
-				print "Error!"
-				old_poly.is_road = True
+				old_poly.poly_type="road"
 				return [old_poly]
 	street_vertices = last2 + [old_vertices[-1].coords,new_vertices[0]]
-	polylist.append(Polygon(street_vertices, is_road=True))
+	polylist.append(Polygon(street_vertices, poly_type="road"))
 	
 				
 	#All new vertices are in old polygon: append block polygon
-	block_poly = Polygon(new_vertices)	
-	block_poly.is_block = block_poly.area() < max_area
+	block_poly = Polygon(new_vertices)
+	if block_poly.area < max_area:
+		block_poly.poly_type="block"
 	polylist.append(block_poly)
 	return polylist
 	

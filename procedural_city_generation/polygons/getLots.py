@@ -1,6 +1,7 @@
 from __future__ import division
 from Polygon import Edge, Polygon
 from getBlock import getBlock
+from split import split
 
 def divide(poly):
 	"""Divide polygon as many smaller polygons as possible"""
@@ -9,20 +10,19 @@ def divide(poly):
 	done = []
 	while current:
 		for x in current:
-			split = x.split()
-			if split:
-				nxt += split
+			parts = split(x)
+			if parts:
+				nxt += parts
 			else:
 				done.append(x)
 		current, nxt = nxt, []
 	return done
 	
-def main(wedge_poly_list, vertex_list, max_vertices=20, max_area=5):
+def main(wedge_poly_list, vertex_list):
 	properties = []
-	wedge_poly_list.remove(max(wedge_poly_list, key=len))
 	for wedge_poly in wedge_poly_list:
 		for poly in getBlock(wedge_poly, vertex_list):
-			if poly.is_block:
+			if poly.poly_type=="block":
 				properties += divide(poly)
 			else:
 				properties.append(poly)
