@@ -2,6 +2,10 @@
 __pycache__/
 *.py[cod]
 
+# Geany
+*.bat
+
+
 # C extensions
 *.so
 
