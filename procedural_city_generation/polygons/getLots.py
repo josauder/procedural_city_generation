@@ -41,7 +41,7 @@ if __name__=="__main__":
 	import construct_polygons as cp
 	polys, vertices = cp.main()
 	
-	lots = getLots(polys[:20], vertices)
+	lots = getLots(polys, vertices)
 	print "%s lots found" %(len(lots))
 	for p in lots:
 		pp.plot_poly(p)
