@@ -1,7 +1,9 @@
 from Polygon import *
 
+
 def split_poly(poly, min_area=0.6, min_length=0.5, eps=10**-5):
 		"""Split polygon into two parts"""
+		
 		if poly.area < min_area:
 			#Polygon is too small
 			return False
@@ -70,6 +72,7 @@ def split_poly(poly, min_area=0.6, min_length=0.5, eps=10**-5):
 			return False
 			
 if __name__=="__main__":
+
 	import matplotlib.pyplot as plt
 	p = [np.array(x) for x in [[0,0],[0,1],[1,0.8],[1,0]]]
 	p = Polygon(p)

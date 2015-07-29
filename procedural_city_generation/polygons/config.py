@@ -1,7 +1,9 @@
 from __future__ import division
-
+import sys
+from parent_path import parent_path
+sys.path.append(parent_path(depth=3))
 class Variables:
-	'''Singleton-Object which is created upon parsing of roadmap.json'''
+	'''Singleton-Object'''
 	
 	class __Variables:
 		def __init__(self,tupel=None):
@@ -24,6 +26,7 @@ def config():
 	'''Makes all necessary setups in order to run the polygon-generator'''
 	import json
 	from collections import namedtuple
+	import os
 	import procedural_city_generation
 	
 	path=os.path.dirname(procedural_city_generation.__file__)
@@ -33,11 +36,12 @@ def config():
 	except:
 		raise Exception("Bla")
 	variables=json.loads(variables_string,object_hook= lambda d: namedtuple('X',d.keys())(*d.values()))
+	variables=Variables(variables)
 	return variables
 	
-print config()
 
-if __name__=="__main__"
+if __name__=="__main__":
+	print config()
 
 	
 	

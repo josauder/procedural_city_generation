@@ -22,7 +22,7 @@ def getLots(wedge_poly_list, vertex_list):
 	properties = []
 	for wedge_poly in wedge_poly_list:
 		for poly in getBlock(wedge_poly, vertex_list):
-			if poly.poly_type=="block":
+			if poly.poly_type=="lot":
 				properties += divide(poly)
 			else:
 				properties.append(poly)
@@ -46,4 +46,5 @@ if __name__=="__main__":
 	lots = getLots(polys, vertices)
 	print "%s lots found" %(len(lots))
 	for p in lots:
-		print p.poly_type
+		p.selfplot()
+	plt.show()
