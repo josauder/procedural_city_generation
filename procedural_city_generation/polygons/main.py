@@ -36,6 +36,7 @@ def main(vertex_list=None,plotbool=False):
 	polygons=getLots(polylist,vertex_list)
 	
 	print "Lots found"
+	
 	if plotbool:
 		print "Plotting..."
 		import matplotlib.pyplot as plt
@@ -43,8 +44,11 @@ def main(vertex_list=None,plotbool=False):
 		for g in polygons:
 			plot_poly(g)
 		plt.show()
-		
-		
+	
+	import pickle
+	with open(os.path.dirname(procedural_city_generation.__file__)+"/outputs/polygons.txt", "w") as f:
+		s = pickle.dumps(polygons)
+		f.write(s)
 	return 0
 
 if __name__ == '__main__':

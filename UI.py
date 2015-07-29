@@ -12,7 +12,7 @@ def roadmap():
 
 def polygons():
 	from procedural_city_generation.polygons import main as polygon_main
-	polygon_main.main(None,True)
+	polygon_main.main(None,False)
 
 def building_generation():
 	from procedural_city_generation.building_generation import main as building_generation_main
