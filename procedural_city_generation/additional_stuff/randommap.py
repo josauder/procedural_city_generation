@@ -134,17 +134,12 @@ def main(border,path):
 	triangles=np.sort(delaunay(indices).simplices)
 	
 	
+	points*=np.array([0.1,0.1,10])
+	points-=np.array([-rows/2,-cols/2,0])
+		
+	import pickle
 	
-	savestr=""
-	for p in points:
-	
-		savestr+=str(p[0]/10-rows/2)+" "+str(p[1]/10-cols/2)+" "+str(p[2]*10)+"\n"
-	savestr+="_\n"
-	for t in triangles:
-		savestr+=str(t[0])+" "+str(t[1])+" "+str(t[2])+"\n"
-#	import matplotlib.pyplot as plt
-#	plt.imshow(array,cmap='gray')
 	with open(path+"/temp/randommap.txt","w") as f:
-		f.write(savestr)
+		f.write(pickle.dumps([points.tolist(),triangles.tolist()]))
 	print "New random heightmap generated. If you wish to use an existing one, change the corresponding variable heightmap_name in roadmap.conf"
 	return 0

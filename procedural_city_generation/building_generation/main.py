@@ -1,10 +1,9 @@
 from __future__ import division
-import sys
+import sys,os
 import numpy as np
 
-path="/home/jonathan/procedural_city_generation/"
-sys.path.append(path)
 import procedural_city_generation
+path=os.path.dirname(procedural_city_generation.__file__)
 from procedural_city_generation.building_generation.cuts import *
 from procedural_city_generation.building_generation.roofs import roof
 from procedural_city_generation.building_generation import surface
@@ -22,7 +21,9 @@ roadtex_name='Road01.jpg'
 
 
 def main(polylist):
-	
+	with open(path+"/temp/border.txt",'r') as f:
+		border=[eval(x) for x in "".join(f.read().split(" "))]
+	print border
 	
 	textures=updateTextures()
 	texGetter=textureGetter(textures)
@@ -35,22 +36,24 @@ def main(polylist):
 		
 		
 		#Builds the floor. If the Polygon is not a building, there is obviously no need for walls/windows/roofs
-		if poly.polytype is "minor_road" :
+		if poly.poly_type == "road" :
 			floortexture= roadtexture
-			polygons.append(Polygon(poly.coords,range(len(poly.coords)),floortexture, True))
-		elif poly.is_lot:
+			polygons.append(Polygon(poly.vertices,range(len(poly.vertices)),floortexture, True))
+			
+		elif poly.poly_type == "vacant":
 			floortexture=  texGetter.getTexture('Floor',0)
-			polygons.append(Polygon(poly.coords,range(len(poly.coords)),floortexture, True))
-		else:
-			center=sum(poly.coords)/len(poly.coords)
+			polygons.append(Polygon(poly.vertices,range(len(poly.vertices)),floortexture, True))
+			
+		elif poly.poly_type == "lot":
+			center=sum(poly.vertices)/len(poly.vertices)
 			buildingheight= gb.getBuildingHeight(center)
 			base_h_low,base_h_high= surface.getSurfaceHeight(poly)
 			floortexture=texGetter.getTexture('Floor',buildingheight/100)
-			polygons.append(Polygon(poly.coords,range(len(poly.coords)),floortexture, True))
+			polygons.append(Polygon(poly.vertices,range(len(poly.vertices)),floortexture, True))
 			
 			
 			#Need to sort out data structure make it 3D and stuff
-			poly.coords=[x * np.array([1,1,0]) for x in poly.coords]
+			poly.vertices=[x * np.array([1,1,0]) for x in poly.vertices]
 			
 			
 			#Scales and Translates floor
@@ -101,7 +104,8 @@ def main(polylist):
 					if ledgefactor==1:
 						polygons.extend(dach(walls,scale(roofwalls,1.05,grundrisscenter),haus,base_h_high+currentheight))
 						polygons.extend(buildwalls(walls,base_h_low,(base_h_high+currentheight)))
-	
+		else:
+			print "FKfkf"
 	
 	
 	
@@ -144,7 +148,7 @@ def main(polylist):
 			return allverts.index(x)
 		
 		for poly in polys:
-			face=[search(x) for x in poly.coords]
+			face=[search(x) for x in poly.vertices]
 			faces.append(face)
 		
 		

@@ -117,39 +117,34 @@ def fromstring(inputstring):
 			createbuilding(inputstring[i],True)
 def main():
 	import os
+	import pickle
+	
+	path=os.getcwd()+"/procedural_city_generation"
+	
+	with open(path+"/temp/heightmap_in_use.txt",'r') as f:
+		filename=f.read()
+	with open(path+"/temp/"+filename,'r') as f:
+		points, triangles = pickle.loads(f.read().encode('utf-8'))
+	
+	
 	import bpy
 	bpy.context.scene.render.engine="CYCLES"
-	a=bpy.context.scene.objects.get("CUBE")
-	bpy.context.scene.objects.unlink(a)
+	try:
+		startup_cube=bpy.context.scene.objects.get("CUBE")
+		bpy.context.scene.objects.unlink(startup_cube)
+	except:
+		pass
+	
 	bpy.data.lamps["Lamp"].type="SUN"
-
-
-	with open(os.getcwd()+"/../Strassennetz/PythonVersion/Heightmaps/inuse.txt") as f:
-		inuse=f.read()
 	
-	
-	with open(os.getcwd()+"/../Strassennetz/PythonVersion/Heightmaps/"+inuse, "r" ) as f:
-		inputstring=f.read()
-	
-	coordstring, triangstring=inputstring.split("_\n")
-	coords=[]
-	for line in [x for x in coordstring.split("\n") if x is not ""]:
-		coords.append([float(x) for x in line.split(" ") if x is not ""])
-	
-	triangs=[]
-	for line in [x for x in triangstring.split("\n") if x is not ""]:
-		triangs.append([int(x) for x in line.split() if x is not ""])
-		
-	
-	import bpy
 	me=bpy.data.meshes.new('mesh')
 	ob=bpy.data.objects.new('mesh',me)
-	me.from_pydata(coords,[], triangs)
+	me.from_pydata(points,[], triangles)
 	me.update(calc_edges=True)
 	bpy.context.scene.objects.link(ob)
 	
 	
-	
+	'''
 	with open(os.getcwd()+"/../Polygone/rahmen.txt",'r') as f:
 		rahmen=f.read()
 	rahmen=[float(x) for x in rahmen.split(" ") if x is not '']
@@ -173,7 +168,7 @@ def main():
 	
 	
 	return 0
-
+	'''
 if __name__ == '__main__':
 	main()
 

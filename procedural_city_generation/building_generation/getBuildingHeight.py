@@ -38,7 +38,7 @@ def setupimage():
 img=setupimage()
 
 
-def getBuildingheight(polygon,rahmen):
+def getBuildingHeight(polygon,rahmen):
 	#TODO: Export numbers to some sort of constant-singleton
 	center=sum(polygon)/len(polygon)
 	

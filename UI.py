@@ -12,20 +12,22 @@ def roadmap():
 
 def polygons():
 	from procedural_city_generation.polygons import main as polygon_main
-	polygon_main.main(None,False)
+	polygon_main.main(None,True)
 
 def building_generation():
 	from procedural_city_generation.building_generation import main as building_generation_main
 	
 	import pickle
 	with open(path+"/outputs/polygons.txt",'r') as f:
-		polygons=pickle.loads(f.read)
+		polygons=pickle.loads(f.read())
 	
-	building_generation_main(polygons)
+	building_generation_main.main(polygons)
 	
 
 def visualization():
-	pass
+	
+	
+	os.system("blender --python "+path+"/visualization/blenderize.py")
 
 def confGUI(path , params):
 	import json

@@ -260,24 +260,29 @@ def buildwalls(walls,bottom,top, texture):
 			np.array([wall[i+1][0],wall[i+1][1],top]),
 			np.array([wall[i+1][0],wall[i+1][1],bottom])])
 		
-	return [Polygon(x,range(len(x),texture) for x in returnpolys]
+	return [Polygon(x,range(len(x)),texture) for x in returnpolys]
 
 
-def getwindowcoords(self,walls):
+def place_windows_on_floor(self,walls,texture):
 	windows=[]
 	for wall in walls:
 		for i in range(len(wall)-1):
+			
+			#TODO remove
+			if i>0:
+				print "/cuts.py line 271, index=",i
+				
 			v=wall[i]-wall[i+1]
 			l=np.linalg.norm(v)
 			n=int(l//(self.windowwidth+self.windowdist))
 			if n>0:
-				windows.extend(placewindow(n,wall[i+1],v,l,self.windowwidth,self.windowheight))
+				windows.extend(place_window_on_wall(n,wall[i+1],v,l,self.windowwidth,self.windowheight))
 				
 			elif l//self.windowwidth>0:
-				windows.extend(placewindow(1,wall[i+1],v,l,self.windowwidth,self.windowheight))
-	return windows
+				windows.extend(place_window_on_wall(1,wall[i+1],v,l,self.windowwidth,self.windowheight))
+	return [Polygon(x,range(len(x)),texture) for x in windows]
 
-def placewindow(n,p,v,l,width,height):
+def place_windows_on_wall(n,p,v,l,width,height):
 	vnorm=v/l
 	h=np.array([0,0,height])
 	windows=[]

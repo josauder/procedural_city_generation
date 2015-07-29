@@ -33,8 +33,8 @@ def setup_heightmap(variables,path):
 		
 		
 	#If a txt has already been written for the input in the image, OR if the input was a .txt to begin with, simply load that txt
-	if (name[0:-3]+"txt" in os.listdir(path+"/inputs/heightmaps/")) and (dimensions==str(variables.border[0])+" "+str(variables.border[1])):
-			return 0
+	if (name[0:-3]+"txt" in os.listdir(path+"/temp/")) and (dimensions==str(variables.border[0])+" "+str(variables.border[1])):
+		return 0
 	
 	#If the given image has no .txt yet, write the corresponding.txt
 	
@@ -44,7 +44,7 @@ def setup_heightmap(variables,path):
 	
 	
 	#TODO: set these numbers to some file where they can be edited easier
-	rsize = img.resize(((variablen.rahmen[1]+20)*10,(variablen.rahmen[0]+20)*10))
+	rsize = img.resize(((variables.border[1]+20)*10,(variables.border[0]+20)*10))
 	array = np.asarray(rsize) 
 	from copy import copy
 	array=copy(array)
@@ -69,25 +69,18 @@ def setup_heightmap(variables,path):
 	indices	=	np.vstack(np.unravel_index(np.arange(array.shape[0]*array.shape[1]),array.shape)).T
 	points= np.column_stack((indices,array[indices[:,0],indices[:,1]]))
 	
+	
 	triangles=np.sort(delaunay(indices).simplices)
 	print "Processed image being saved as ", name
 	
-	#Save heightmap as txt
-	name=name[0:-3]+"txt"
-	savestr=""
-	
-	
-	
 	#TODO: set thse numbers to some file where they can be edited easier
-	for p in points:
-		savestr+=str(p[0]/10-(variables.border[1]+20)/2)+" "+str(p[1]/10-(variables.border[0]+20)/2)+" "+str(p[2])+"\n"
+	points*=[0.1,0.1,1]
+	points-=np.array([ (variables.border[1]+20)/2,(variables.border[0]+20)/2,0])
+	points=points.tolist()
 	
+	import pickle
+	name=name[:-3]+"txt"
+	with open(path+"/temp/"+name,"w") as f:
+		f.write(pickle.dumps([points,triangles.tolist()]))
 	
-	#TODO: Document how heightmap is being saved somewhere
-	savestr+="_\n"
-	
-	for t in triangles:
-		savestr+=str(t[0])+" "+str(t[1])+" "+str(t[2])+"\n"
-	with open(path+"/inputs/heightmaps/"+name,"w") as f:
-		f.write(savestr)
 	return 0
