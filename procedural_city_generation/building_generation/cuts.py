@@ -1,4 +1,6 @@
+
 from __future__ import division
+import random
 import numpy as np
 from copy import copy
 import procedural_city_generation
@@ -32,7 +34,7 @@ def randomcut(walls):
 	a1=random.uniform(0,0.4)
 	a2=random.uniform(0,0.4)
 	s=random.randint(0,len(walls))
-	if len(walls=4):
+	if len(walls)==4:
 		if n>20:
 			if n<35:
 				return Ccut(walls,a1,a2,s)

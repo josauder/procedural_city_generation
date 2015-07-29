@@ -1,5 +1,6 @@
 import numpy as np
-from Polygon import Polygon, Edge
+
+from procedural_city_generation.polygons.Polygon import Polygon, Edge
 
 def getFoundation(poly, grid_width=0.01, eps=10**-8):
 	

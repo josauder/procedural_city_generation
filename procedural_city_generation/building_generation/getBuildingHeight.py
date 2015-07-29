@@ -35,15 +35,19 @@ def setupimage():
 	return img
 	
 
+print "Population density image is being set up"
 img=setupimage()
+import os
+path=os.path.dirname(procedural_city_generation.__file__)
+with open(path+"/temp/border.txt",'r') as f:
+	border=[eval(x) for x in f.read().split(" ") if x is not '']
+print "Population density image setup is finished"
 
-
-def getBuildingHeight(polygon,rahmen):
-	#TODO: Export numbers to some sort of constant-singleton
-	center=sum(polygon)/len(polygon)
+def getBuildingHeight(center):
+	#TODO: Export numbers to some sort of constant-singleton)
 	
-	x = (center[0]+rahmen[0])/(rahmen[0]*2)
-	y = (center[1]+rahmen[1])/(rahmen[1]*2)
+	x = (center[0]+border[0])/(border[0]*2)
+	y = (center[1]+border[1])/(border[1]*2)
 	
 	height= img[img.shape[0]-y*img.shape[0]][x*img.shape[1]][0]
 	if height<0.4:

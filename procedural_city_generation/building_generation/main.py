@@ -9,6 +9,7 @@ from procedural_city_generation.building_generation.roofs import roof
 from procedural_city_generation.building_generation import surface
 from procedural_city_generation.building_generation import getBuildingHeight as gb
 from procedural_city_generation.building_generation.updateTextures import updateTextures, textureGetter
+from procedural_city_generation.building_generation.getFoundation import getFoundation
 
 #Poly:
 	#is_convex
@@ -21,9 +22,7 @@ roadtex_name='Road01.jpg'
 
 
 def main(polylist):
-	with open(path+"/temp/border.txt",'r') as f:
-		border=[eval(x) for x in "".join(f.read().split(" "))]
-	print border
+
 	
 	textures=updateTextures()
 	texGetter=textureGetter(textures)
@@ -38,29 +37,44 @@ def main(polylist):
 		#Builds the floor. If the Polygon is not a building, there is obviously no need for walls/windows/roofs
 		if poly.poly_type == "road" :
 			floortexture= roadtexture
-			polygons.append(Polygon(poly.vertices,range(len(poly.vertices)),floortexture, True))
+			
+			polygons.append(Polygon([np.array([x[0],x[1],0]) for x in poly.vertices],
+			range(len(poly.vertices)),
+			floortexture, True))
 			
 		elif poly.poly_type == "vacant":
 			floortexture=  texGetter.getTexture('Floor',0)
-			polygons.append(Polygon(poly.vertices,range(len(poly.vertices)),floortexture, True))
+			
+			polygons.append(Polygon([np.array([x[0],x[1],0]) for x in poly.vertices],
+			range(len(poly.vertices)),
+			floortexture, True))
 			
 		elif poly.poly_type == "lot":
 			center=sum(poly.vertices)/len(poly.vertices)
+			
 			buildingheight= gb.getBuildingHeight(center)
-			base_h_low,base_h_high= surface.getSurfaceHeight(poly)
+			
+			base_h_low,base_h_high= surface.getSurfaceHeight(poly.vertices)
+			
+			polygons.append(Polygon([np.array([x[0],x[1],0]) for x in poly.vertices],
+			range(len(poly.vertices)),
+			floortexture, True))
+			
 			floortexture=texGetter.getTexture('Floor',buildingheight/100)
-			polygons.append(Polygon(poly.vertices,range(len(poly.vertices)),floortexture, True))
-			
-			
-			#Need to sort out data structure make it 3D and stuff
-			poly.vertices=[x * np.array([1,1,0]) for x in poly.vertices]
 			
 			
 			#Scales and Translates floor
 			if poly.is_convex:
-				walls=lennystransform(poly.edges)
+				poly=getFoundation(poly)
 			else:
-				walls=find_largest_rect(poly.edges)
+				poly=getFoundation(poly)
+				
+			
+			
+			#Need to sort out data structure make it 3D and stuff
+			
+			poly.vertices=[np.array([x[0],x[1],0]) for x in poly.vertices]
+			walls=[[poly.vertices[i-1],poly.vertices[i]] for i in range(len(poly.vertices))]
 			
 			#Creates floorplan
 			walls=randomcut(walls)
@@ -105,7 +119,7 @@ def main(polylist):
 						polygons.extend(dach(walls,scale(roofwalls,1.05,grundrisscenter),haus,base_h_high+currentheight))
 						polygons.extend(buildwalls(walls,base_h_low,(base_h_high+currentheight)))
 		else:
-			print "FKfkf"
+			print "Polygon.poly_type not understood"
 	
 	
 	

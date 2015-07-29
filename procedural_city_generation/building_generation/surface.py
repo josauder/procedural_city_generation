@@ -2,7 +2,7 @@ import numpy as np
 import procedural_city_generation
 import os
 
-print "Surface is being set up for getting of BuildingHeight"
+print "Surface is being set up for getting of getSurfaceHeight"
 path=os.path.dirname(procedural_city_generation.__file__)
 
 with open(path+"/temp/heightmap_in_use.txt", "r") as f:
