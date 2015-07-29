@@ -33,10 +33,11 @@ def main(vertex_list=None,plotbool=False):
 	#TODO: DISCUSS
 	from procedural_city_generation.polygons.getLots import getLots as getLots
 	"%s vertices" %(len(vertex_list))
-	polygons=getLots(polylist[:2],vertex_list)
+	polygons=getLots(polylist,vertex_list)
 	
-	print "Grundstuecke found"
+	print "Lots found"
 	if plotbool:
+		print "Plotting..."
 		import matplotlib.pyplot as plt
 		from plot_poly import plot_edge, plot_poly
 		for g in polygons:
