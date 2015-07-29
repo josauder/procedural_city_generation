@@ -68,4 +68,4 @@ def find_in_text(checkpath,tofind):
 				print x
 	return 0
 
-find_in_text(path,"sys.path.append")
+clean_pyc_files(path)

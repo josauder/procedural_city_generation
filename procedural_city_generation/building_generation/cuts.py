@@ -10,12 +10,14 @@ def normale(arr):
 		n=np.array([arr[1],-arr[0],0])
 		return n
 
-def scale(coords,factor,center):
-	
-	center=center+(np.array(coords)-center)*factor
+def scale(coords,factor):
+	center=sum(coords)/len(coords)
+	coords=center+(np.array(coords)-center)*factor
 	return list(center)
 
-def scalewalls(walls,factor,center):
+def scalewalls(walls,factor):
+	center=sum(np.array(walls)[::,1])/len(walls)	
+	
 	walls=copy(walls)
 	newwalls=[]
 	for wall in walls:

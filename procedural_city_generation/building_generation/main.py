@@ -27,25 +27,30 @@ def main(polylist):
 	textures=updateTextures()
 	texGetter=textureGetter(textures)
 	roadtexture=texGetter.getTexture('Road',50)
-	print roadtexture
 	
 	polygons=[]
 	for poly in polylist:
 		
+		
+		
+		
 		#Builds the floor. If the Polygon is not a building, there is obviously no need for walls/windows/roofs
 		if poly.polytype is "minor_road" :
 			floortexture= roadtexture
-			polygons.append(Polygon(poly.coords,range(len(poly.coords)),floortexture, True)
+			polygons.append(Polygon(poly.coords,range(len(poly.coords)),floortexture, True))
 		elif poly.is_lot:
 			floortexture=  texGetter.getTexture('Floor',0)
-			polygons.append(Polygon(poly.coords,range(len(poly.coords)),floortexture, True)
+			polygons.append(Polygon(poly.coords,range(len(poly.coords)),floortexture, True))
 		else:
 			center=sum(poly.coords)/len(poly.coords)
 			buildingheight= gb.getBuildingHeight(center)
 			base_h_low,base_h_high= surface.getSurfaceHeight(poly)
 			floortexture=texGetter.getTexture('Floor',buildingheight/100)
-			polygons.append(Polygon(poly.coords,range(len(poly.coords)),floortexture, True)
+			polygons.append(Polygon(poly.coords,range(len(poly.coords)),floortexture, True))
 			
+			
+			#Need to sort out data structure make it 3D and stuff
+			poly.coords=[x * np.array([1,1,0]) for x in poly.coords]
 			
 			
 			#Scales and Translates floor
@@ -101,25 +106,32 @@ def main(polylist):
 	
 	
 	
-	#Merges Polygons with identical Texture into one
-	mergedpolys=np.zeros(len(textures))
+	#Groups Polygons with identical Texture 
+	poly_group_by_texture=np.zeros(len(textures))
 	for poly in polygons:
 		mergedpolys[poly.texture.index].append(poly)
 	
-	import bisect
-	from operator import itemgetter
-	from copy import copy
-	for polys in mergedpolys:
+	
+	mergedpolys=[]
+	#For each group of polygons with an identical Texture
+	for polys in poly_group_by_texture:
+		
+		#For each polygon in that group
 		allverts=[]
 		for poly in polys:
+			#For each vertex in that polygon
 			for vert in poly:
-				if vert not in allverts:
-					allverts.append(vert)
+				
+				#Add to list of all vertices
+				allverts.append(vert)
 		
+		
+		#Sorts all Vertices
 		allverts.sort(key=itemgetter(0,1,2))
-		
 		allvertscopy=copy(allverts)
-		popindex
+		
+		#Removes 
+		popindex=0
 		for i in range(len(allverts)):
 			if allvertscopy[i-popindex]==allvertscopy[i-1-popindex]:
 			
@@ -138,6 +150,7 @@ def main(polylist):
 			faces.append(face)
 		
 		
+	
 		
 	
 if __name__ == '__main__':

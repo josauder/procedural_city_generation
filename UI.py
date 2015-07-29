@@ -15,7 +15,14 @@ def polygons():
 	polygon_main.main(None,True)
 
 def building_generation():
-	pass
+	from procedural_city_generation.building_generation import main as building_generation_main
+	
+	import pickle
+	with open(path+"/outputs/polygons.txt",'r') as f:
+		polygons=pickle.loads(f.read)
+	
+	building_generation_main(polygons)
+	
 
 def visualization():
 	pass
@@ -86,6 +93,9 @@ def building_generationconf():
 	from procedural_city_generation.building_generation.building_generationparams_params import params as building_generationparams
 	#TODO
 	confGUI(path+"/inputs/polygons.conf", building_generationparams)
+	
+	
+	
 
 def visualizationconf():
 	from procedural_city_generation.visualization_params import params as visualizationparams
