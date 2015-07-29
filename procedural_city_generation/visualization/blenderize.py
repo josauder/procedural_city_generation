@@ -117,6 +117,7 @@ def fromstring(inputstring):
 			createbuilding(inputstring[i],True)
 def main():
 	import os
+	import bpy
 	bpy.context.scene.render.engine="CYCLES"
 	a=bpy.context.scene.objects.get("CUBE")
 	bpy.context.scene.objects.unlink(a)
@@ -170,12 +171,6 @@ def main():
 
 	print (time.time()-a)
 	
-	
-#	for i in range(10):
-#		bpy.context.scene.camera.location.z+=1
-#		bpy.context.scene.frame_set(i)
-#		bpy.context.scene.render.filepath = "/home/jonathan/Desktop/" + str(i).zfill(4)
-#		bpy.ops.render.render(write_still=True)    
 	
 	return 0
 

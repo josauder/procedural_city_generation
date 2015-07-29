@@ -4,7 +4,7 @@ import numpy as np
 
 path="/home/jonathan/procedural_city_generation/"
 sys.path.append(path)
-
+import procedural_city_generation
 from procedural_city_generation.building_generation.cuts import *
 from procedural_city_generation.building_generation.roofs import roof
 from procedural_city_generation.building_generation import surface
@@ -114,6 +114,7 @@ def main(polylist):
 	
 	mergedpolys=[]
 	#For each group of polygons with an identical Texture
+	ind=0
 	for polys in poly_group_by_texture:
 		
 		#For each polygon in that group
@@ -125,16 +126,13 @@ def main(polylist):
 				#Add to list of all vertices
 				allverts.append(vert)
 		
-		
 		#Sorts all Vertices
 		allverts.sort(key=itemgetter(0,1,2))
-		allvertscopy=copy(allverts)
 		
-		#Removes 
+		#Removes all duplicates
 		popindex=0
 		for i in range(len(allverts)):
-			if allvertscopy[i-popindex]==allvertscopy[i-1-popindex]:
-			
+			if np.allclose(allverts[i-popindex],allverts[i-1-popindex]):
 				allverts.pop(i-popindex)
 				popindex+=1
 		print popindex + " duplicates in list of all vertices were removed"
@@ -150,8 +148,17 @@ def main(polylist):
 			faces.append(face)
 		
 		
+		mergedpolys.append(Polygon(allverts,faces,textures[ind]))
+		ind+=1
 	
-		
+	
+	
+	import pickle,os
+	with open(os.path.dirname(procedural_city_generation.__file)+"/outputs/buildings.txt",'w') as f:
+		f.write(pickle.dumps(mergedpolys))
+	
+	
+	
 	
 if __name__ == '__main__':
 	main([])

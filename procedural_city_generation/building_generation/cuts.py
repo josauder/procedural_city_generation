@@ -1,6 +1,8 @@
 from __future__ import division
 import numpy as np
 from copy import copy
+import procedural_city_generation
+from procedural_city_generation.building_generation.Polygon import Polygon
 
 def normale(arr):
 	if arr.size==2:
@@ -237,3 +239,52 @@ def Xcut(walls,abstand1,abstand2,side):
 def Ocut(coords,dist):
 	'''Innenhof'''
 	return coords
+
+
+
+def flatebene(walls,height,texture,shrinkwrap=False):
+	poly=[]
+	for wall in walls:
+		poly.extend([np.array([wall[x+1][0],wall[x+1][1],height]) for x in range(len(wall)-1)])
+	
+	return Polygon(poly,range(len(poly)),texture,shrinkwrap)
+
+
+def buildwalls(walls,bottom,top, texture):
+	returnpolys=[]
+	
+	for wall in walls:
+		for i in range(len(wall)-1):
+			returnpolys.append([np.array([wall[i][0],wall[i][1],bottom]),
+			np.array([wall[i][0],wall[i][1],top]),
+			np.array([wall[i+1][0],wall[i+1][1],top]),
+			np.array([wall[i+1][0],wall[i+1][1],bottom])])
+		
+	return [Polygon(x,range(len(x),texture) for x in returnpolys]
+
+
+def getwindowcoords(self,walls):
+	windows=[]
+	for wall in walls:
+		for i in range(len(wall)-1):
+			v=wall[i]-wall[i+1]
+			l=np.linalg.norm(v)
+			n=int(l//(self.windowwidth+self.windowdist))
+			if n>0:
+				windows.extend(placewindow(n,wall[i+1],v,l,self.windowwidth,self.windowheight))
+				
+			elif l//self.windowwidth>0:
+				windows.extend(placewindow(1,wall[i+1],v,l,self.windowwidth,self.windowheight))
+	return windows
+
+def placewindow(n,p,v,l,width,height):
+	vnorm=v/l
+	h=np.array([0,0,height])
+	windows=[]
+	for i in range(n):
+		base=p+(i+1)/(n+1)*v
+		base=np.array([base[0],base[1],0])
+		windows.append([base-(width*vnorm)/2-h/2,base -(width*vnorm)/2+h/2, base+width*vnorm/2+h/2, base+width*vnorm/2-h/2])
+	return windows
+
+
