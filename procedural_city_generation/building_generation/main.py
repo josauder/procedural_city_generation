@@ -60,8 +60,18 @@ def main(polylist):
 			range(len(poly.vertices)),
 			floortexture, True))
 			
-			floortexture=texGetter.getTexture('Floor',buildingheight/100)
-			
+			floorheight=np.random.uniform(0.03,0.04)
+			floortexture=texGetter.getTexture('Floor',buildingheight/100.)
+			windowtexture=texGetter.getTexture('Window',buildingheight/100.)
+			walltexture=texGetter.getTexture('Wall',buildingheight/100.)
+			rooftexture=texGetter.getTexture('Roof',buildingheight/100.)
+			windowwidth=random.uniform(0.01,0.02)
+			if buildingheight<0.15: # haus:
+				windowheight=random.uniform(0.015, floorheight)
+				windowdist=random.uniform(0.015, windowwidth+0.01)
+			else:
+				windowheight=random.uniform(0.015,0.02)
+				windowdist=random.uniform(0, windowwidth+0.05)
 			
 			#Scales and Translates floor
 			if poly.is_convex:
@@ -75,14 +85,13 @@ def main(polylist):
 			
 			poly.vertices=[np.array([x[0],x[1],0]) for x in poly.vertices]
 			walls=[[poly.vertices[i-1],poly.vertices[i]] for i in range(len(poly.vertices))]
-			
+			print walls
 			#Creates floorplan
 			walls=randomcut(walls)
 			
 			#Floor-height is found and the Building is vertically split.
 			#TODO: Constants in some sort of conf file
-			floorheight=np.random.uniform(0.03,0.04)
-			plan=verticalsplit(buildingheight)
+			plan=verticalsplit(buildingheight,floorheight)
 			
 			#Random, decides if ledges will be scaled nach aussen
 			#TODO: add constants to some sort of conf file
@@ -91,33 +100,33 @@ def main(polylist):
 				ledgefactor+=random.uniform(0,0.1)
 			
 			#Scales the walls to the outside
-			ledge=scalewalls(walls,ledgefactor,center)
+			ledge=scalewalls(walls,ledgefactor)
 			
 			#Keeps track of height where we are currently building
 			currentheight=0
 			
 			#Get a list of windows for each floor
-			windows=getwindowcoords(walls)
+			windows=get_window_coords(walls,windowtexture,windowwidth,windowheight,windowdist)
 			
 			#Goes through the plan list
 			#TODO: check with desktop version
 			for element in plan:
 				if element=='b' or element=='f':
-					
-					polygons.extend(scale([x+np.array([0,0,base_h_high+currentheight+floorheight/2]) for x in windows],1.01,grundrisscenter))
+					window_coords=scale([x+np.array([0,0,base_h_high+currentheight+floorheight/2]) for x in windows],1.01,grundrisscenter)
+					polygons.extend(Polygon(window,range(len(window)),windowtexture) for window in windows)
 					currentheight+=floorheight
 					
 				elif element=='l':
 					
 					currentheight+=floorheight/10.
 					if ledgefactor!=1:
-						polygons.append(flatebene(ledge,base_h_high+currentheight))
-						polygons.append(flatebene(ledge,base_h_high+currentheight-floorheight/10.))
-						polygons.extend(buildwalls(ledge,base_h_high+currentheight-floorheight/10., base_h_high+currentheight))			
+						polygons.append(flatebene(ledge,base_h_high+currentheight,rooftexture))
+						polygons.append(flatebene(ledge,base_h_high+currentheight-floorheight/10.),rooftexture)
+						polygons.extend(buildwalls(ledge,base_h_high+currentheight-floorheight/10., base_h_high+currentheight,rooftexture))			
 				elif element=='r':
 					if ledgefactor==1:
-						polygons.extend(dach(walls,scale(roofwalls,1.05,grundrisscenter),haus,base_h_high+currentheight))
-						polygons.extend(buildwalls(walls,base_h_low,(base_h_high+currentheight)))
+						polygons.extend(dach(walls,scale(roofwalls,1.05,grundrisscenter),haus,base_h_high+currentheight,rooftexture))
+						polygons.extend(buildwalls(walls,base_h_low,(base_h_high+currentheight),walltexture))
 		else:
 			print "Polygon.poly_type not understood"
 	

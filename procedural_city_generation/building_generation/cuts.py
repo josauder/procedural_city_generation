@@ -19,7 +19,8 @@ def scale(coords,factor):
 	coords=center+(np.array(coords)-center)*factor
 	return list(center)
 
-def scalewalls(walls,factor):
+def scalewalls(walls,factor,center=None):
+	
 	center=sum(np.array(walls)[::,1])/len(walls)	
 	
 	walls=copy(walls)
@@ -33,7 +34,7 @@ def randomcut(walls):
 	n=random.randint(0,100)	
 	a1=random.uniform(0,0.4)
 	a2=random.uniform(0,0.4)
-	s=random.randint(0,len(walls))
+	s=random.randint(0,len(walls)-1)
 	if len(walls)==4:
 		if n>20:
 			if n<35:
@@ -265,7 +266,7 @@ def buildwalls(walls,bottom,top, texture):
 	return [Polygon(x,range(len(x)),texture) for x in returnpolys]
 
 
-def place_windows_on_floor(self,walls,texture):
+def get_window_coords(walls,windowwidth, windowheight, windowdist):
 	windows=[]
 	for wall in walls:
 		for i in range(len(wall)-1):
@@ -276,13 +277,13 @@ def place_windows_on_floor(self,walls,texture):
 				
 			v=wall[i]-wall[i+1]
 			l=np.linalg.norm(v)
-			n=int(l//(self.windowwidth+self.windowdist))
+			n=int(l//( windowwidth+ windowdist))
 			if n>0:
-				windows.extend(place_window_on_wall(n,wall[i+1],v,l,self.windowwidth,self.windowheight))
+				windows.extend(place_window_on_wall(n,wall[i+1],v,l, windowwidth, windowheight))
 				
-			elif l//self.windowwidth>0:
-				windows.extend(place_window_on_wall(1,wall[i+1],v,l,self.windowwidth,self.windowheight))
-	return [Polygon(x,range(len(x)),texture) for x in windows]
+			elif l// windowwidth>0:
+				windows.extend(place_window_on_wall(1,wall[i+1],v,l, windowwidth, windowheight))
+	return windows
 
 def place_windows_on_wall(n,p,v,l,width,height):
 	vnorm=v/l
@@ -293,5 +294,57 @@ def place_windows_on_wall(n,p,v,l,width,height):
 		base=np.array([base[0],base[1],0])
 		windows.append([base-(width*vnorm)/2-h/2,base -(width*vnorm)/2+h/2, base+width*vnorm/2+h/2, base+width*vnorm/2-h/2])
 	return windows
+	
+	
+def verticalsplit(height,floorheight):
+	'''Splits the Building vertically and returns a list of chars where:
+	l=ledge
+	f=floor
+	b=base (Erdgeschoss)
+	r=roof
+	'''
+	#List of chars to be returned
+	returnlist=['b']
+	
+	#Finds maximum number of floors which fit in. -1 because the first floor is the base
+	nfloors=int(height//floorheight)-1
+	
+	#Finds maximum amount of ledges
+	rest=height%floorheight
+	nledges=int(rest//(floorheight/10.))
+	
+	#If there is at least 1 ledge, create it after the basement
+	if nledges>0:
+		nledges-=1
+		returnlist.append('l')
+	
+	#If there is 1 ledge left, create it at the very top and return returnlist.
+	if nledges==1:
+		nledges-=1
+		for i in range(nfloors):
+			returnlist.append('f')
+		returnlist.append('l')
+		returnlist.append('r')
+		return returnlist
+	
+	#Finds how many floors per ledge are to be created
+	factor=np.inf
+	if nledges>0:
+		factor=int(nfloors//nledges)
+	last=True
+	
+	i=0
+	while nfloors>=0:
+		returnlist.append('f')
+		nfloors-=1
+		i+=1
+		#If index is multiple of factor, add a ledge
+		if factor>0 and i%factor==0 and factor<3:
+			returnlist.append('l')
+	if returnlist[-1]!='l':
+		returnlist.append('l')
+	returnlist.append('r')
+	return returnlist
+	
 
 

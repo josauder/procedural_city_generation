@@ -129,11 +129,8 @@ def main():
 	
 	import bpy
 	bpy.context.scene.render.engine="CYCLES"
-	try:
-		startup_cube=bpy.context.scene.objects.get("CUBE")
-		bpy.context.scene.objects.unlink(startup_cube)
-	except:
-		pass
+	startup_cube=bpy.context.scene.objects.get("CUBE")
+	bpy.context.scene.objects.unlink(startup_cube)
 	
 	bpy.data.lamps["Lamp"].type="SUN"
 	
