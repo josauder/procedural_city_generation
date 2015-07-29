@@ -32,9 +32,11 @@ def getLots(wedge_poly_list, vertex_list):
 	
 	
 if __name__=="__main__":
+	import sys
+	from parent_path import parent_path
+	sys.path.append(parent_path(depth=3))
 	import matplotlib.pyplot as plt
 	import numpy as np
-	import plot_poly as pp
 	from getBlock import getBlock
 	from getFoundation import getFoundation
 	
@@ -44,8 +46,4 @@ if __name__=="__main__":
 	lots = getLots(polys, vertices)
 	print "%s lots found" %(len(lots))
 	for p in lots:
-		pp.plot_poly(p)
-		
-		
-		
-	plt.show()
+		print p.poly_type

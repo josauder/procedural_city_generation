@@ -40,9 +40,8 @@ def main(vertex_list=None,plotbool=False):
 	if plotbool:
 		print "Plotting..."
 		import matplotlib.pyplot as plt
-		from plot_poly import plot_edge, plot_poly
 		for g in polygons:
-			plot_poly(g)
+			g.selfplot()
 		plt.show()
 	
 	import pickle
@@ -52,6 +51,9 @@ def main(vertex_list=None,plotbool=False):
 	return 0
 
 if __name__ == '__main__':
+	from parent_path import parent_path
+	import sys
+	sys.path.append(parent_path(depth=3))
 	main(None,True)
 
 

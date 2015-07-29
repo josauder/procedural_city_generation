@@ -1,12 +1,12 @@
 from Polygon import *
 
-def split_poly(self, min_area=0.6, min_length=0.5, eps=10**-5):
+def split_poly(poly, min_area=0.6, min_length=0.5, eps=10**-5):
 		"""Split polygon into two parts"""
-		if self.area < min_area:
+		if poly.area < min_area:
 			#Polygon is too small
 			return False
 			
-		for split_edge in sorted(self.edges, key=lambda x: -x.length):
+		for split_edge in sorted(poly.edges, key=lambda x: -x.length):
 			if split_edge.length < min_length:
 				#Edge is too small for splitting
 				return False
@@ -26,7 +26,7 @@ def split_poly(self, min_area=0.6, min_length=0.5, eps=10**-5):
 			
 			total_cuts = 0
 			
-			for other in self.edges:
+			for other in poly.edges:
 				if other is split_edge:
 					#Append two parts of split edge
 					new_edges[switch].append(Edge(split_edge[0], split_point, split_edge.bordering_road))
@@ -71,5 +71,8 @@ def split_poly(self, min_area=0.6, min_length=0.5, eps=10**-5):
 			
 if __name__=="__main__":
 	import matplotlib.pyplot as plt
-	import poly_plot as pp
 	p = [np.array(x) for x in [[0,0],[0,1],[1,0.8],[1,0]]]
+	p = Polygon(p)
+	split_poly(p)
+	p.selfplot()
+	plt.show()

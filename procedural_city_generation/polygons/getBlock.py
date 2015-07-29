@@ -95,18 +95,16 @@ def getBlock(wedges, vertex_list, minor_factor=0.04, main_factor=0.08, max_area=
 	#All new vertices are in old polygon: append block polygon
 	block_poly = Polygon(new_vertices)
 	if block_poly.area < max_area:
-		block_poly.poly_type="block"
+		block_poly.poly_type="lot"
 	polylist.append(block_poly)
 	return polylist
 	
 if __name__=="__main__":
 	import matplotlib.pyplot as plt
-	import plot_poly as pp
 	import construct_polygons as cp
 	polys, vertices = cp.main()
 	for p in getBlock(polys[1], vertices):
-		print p
-		pp.plot_poly(p)
+		p.selfplot()
 	plt.show()
 	
 	
