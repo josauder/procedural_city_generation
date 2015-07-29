@@ -1,7 +1,7 @@
 from __future__ import division
 from Polygon import Edge, Polygon
 from getBlock import getBlock
-from split import split
+from split_poly import split_poly
 
 def divide(poly):
 	"""Divide polygon as many smaller polygons as possible"""
@@ -10,7 +10,7 @@ def divide(poly):
 	done = []
 	while current:
 		for x in current:
-			parts = split(x)
+			parts = split_poly(x)
 			if parts:
 				nxt += parts
 			else:
@@ -34,7 +34,7 @@ def getLots(wedge_poly_list, vertex_list):
 if __name__=="__main__":
 	import matplotlib.pyplot as plt
 	import numpy as np
-	import poly_plot as pp
+	import plot_poly as pp
 	from getBlock import getBlock
 	from getFoundation import getFoundation
 	

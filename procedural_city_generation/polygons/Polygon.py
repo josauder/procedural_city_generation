@@ -59,9 +59,9 @@ class Polygon(object):
 
 
 if __name__=="__main__":
-	import poly_plot as pp
+	import plot_poly as pp
+	import matplotlib.pyplot as plt
 	p = [np.array(x) for x in [[0,0],[0,1],[1,0.8],[1,0]]]
 	poly = Polygon(p)
-	p1,p2 = poly.split()
-	p1.selfplot(); p2.selfplot()
+	pp.plot_poly(poly)
 	plt.show()

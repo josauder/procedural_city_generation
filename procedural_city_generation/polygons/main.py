@@ -31,14 +31,14 @@ def main(vertex_list=None,plotbool=False):
 	
 	
 	#TODO: DISCUSS
-	from procedural_city_generation.polygons.getLots import main as lennysmain
+	from procedural_city_generation.polygons.getLots import getLots as getLots
 	"%s vertices" %(len(vertex_list))
-	polygons=lennysmain(polylist[:2],vertex_list)
+	polygons=getLots(polylist[:2],vertex_list)
 	
 	print "Grundstuecke found"
 	if plotbool:
 		import matplotlib.pyplot as plt
-		from poly_plot import plot_edge, plot_poly
+		from plot_poly import plot_edge, plot_poly
 		for g in polygons:
 			plot_poly(g)
 		plt.show()

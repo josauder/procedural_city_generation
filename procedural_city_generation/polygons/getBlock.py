@@ -1,8 +1,6 @@
 from __future__ import division
 import numpy as np
 from Polygon import Edge, Polygon
-import matplotlib.pyplot as plt
-import poly_plot as pp
 
 def p_in_poly(poly, point):
     x,y = point
@@ -102,6 +100,8 @@ def getBlock(wedges, vertex_list, minor_factor=0.04, main_factor=0.08, max_area=
 	return polylist
 	
 if __name__=="__main__":
+	import matplotlib.pyplot as plt
+	import plot_poly as pp
 	import construct_polygons as cp
 	polys, vertices = cp.main()
 	for p in getBlock(polys[1], vertices):
