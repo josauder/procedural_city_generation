@@ -9,8 +9,11 @@ __pycache__/
 # C extensions
 *.so
 
-# Outputs - can be many MB in size
+# Outputs and temp - can be many MB in size
 /procedural_city_generation/outputs/*.txt
+/procedural_city_generation/temp/*.txt
+/procedural_city_generation/temp/*.png
+
 
 # Distribution / packaging
 .Python
