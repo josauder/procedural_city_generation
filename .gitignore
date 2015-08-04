@@ -9,6 +9,9 @@ __pycache__/
 # C extensions
 *.so
 
+# Outputs - can be many MB in size
+/procedural_city_generation/outputs/*.txt
+
 # Distribution / packaging
 .Python
 env/
