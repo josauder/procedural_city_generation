@@ -67,5 +67,3 @@ def find_in_text(checkpath,tofind):
 			for x in todos:
 				print x
 	return 0
-
-clean_pyc_files(path)

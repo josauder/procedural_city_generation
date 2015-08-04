@@ -52,8 +52,8 @@ def getWedges(vertex_list):
 
 
 
-def getPolygons(vertex_list):
-	'''Finds all closed Polygons. The algorithm starts with Wedge A-B-C and looks for Wedge B-C-X1, C-X1-X2... A polygon is found when Xn==A'''
+def getPolygon2Ds(vertex_list):
+	'''Finds all closed Polygon2Ds. The algorithm starts with Wedge A-B-C and looks for Wedge B-C-X1, C-X1-X2... A polygon is found when Xn==A'''
 	wedgeliste=getWedges(vertex_list)
 	
 	from bisect import bisect_left as search
@@ -85,10 +85,10 @@ def getPolygons(vertex_list):
 
 def main(vertex_list=None):
 	'''Input: list of vertices representing the Roadmap
-	Output: List of all Polygons representing Lots,
-	List of all Polygons representing Blocks
-	List of all Polygons which are too large to be Lots
-	Polygon representing the road-network'''
+	Output: List of all Polygon2Ds representing Lots,
+	List of all Polygon2Ds representing Blocks
+	List of all Polygon2Ds which are too large to be Lots
+	Polygon2D representing the road-network'''
 	import sys
 	sys.path.append('/home/lenny/Documents/Stadtprojekt/procedural_city_generation')
 	if vertex_list is None:
@@ -105,10 +105,10 @@ def main(vertex_list=None):
 		border=f.read()
 	border=[int(x) for x in border.split(" ") if x is not '']
 	
-	print "Extracting Polygons"
+	print "Extracting Polygon2Ds"
 	from procedural_city_generation.polygons import construct_polygons
-	polylist=construct_polygons.getPolygons(vertex_list)	
-	print "Polygons extracted"
+	polylist=construct_polygons.getPolygon2Ds(vertex_list)	
+	print "Polygon2Ds extracted"
 	return polylist, vertex_list
 
 if __name__ =='__main__':

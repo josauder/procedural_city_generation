@@ -4,31 +4,36 @@ import Tkinter
 path=os.path.dirname(procedural_city_generation.__file__)
 sys.path.append(path)
 
-
+donemessage="\n-----------------------------------------------------------\n\t\tDone, waiting for command\n-----------------------------------------------------------"
 
 def roadmap():
 	from procedural_city_generation.roadmap import main as roadmap_main
 	roadmap_main.main()
-
+	print donemessage
+	
 def polygons():
 	from procedural_city_generation.polygons import main as polygon_main
 	polygon_main.main(None,False)
-
+	
+	print donemessage
+	
 def building_generation():
 	from procedural_city_generation.building_generation import main as building_generation_main
-	
+
 	import pickle
 	with open(path+"/outputs/polygons.txt",'r') as f:
 		polygons=pickle.loads(f.read())
 	
 	building_generation_main.main(polygons)
 	
-
+	print donemessage
+	
 def visualization():
 	
 	
 	os.system("blender --python "+path+"/visualization/blenderize.py")
-
+	print donemessage
+	
 def confGUI(path , params):
 	import json
 	
@@ -55,10 +60,12 @@ def confGUI(path , params):
 		
 		i+=1
 	
+	
 	def restore_default():
 		for i in range(len(params)):
 			entryfields[i].delete(0,1000)
 			entryfields[i].insert(0,params[i].default)
+	
 	
 	def done():
 		new_s=dict([])
@@ -92,9 +99,8 @@ def polygonconf():
 	confGUI(path+"/inputs/polygons.conf", polygonsparams)
 
 def building_generationconf():
-	from procedural_city_generation.building_generation.building_generationparams_params import params as building_generationparams
-	#TODO
-	confGUI(path+"/inputs/polygons.conf", building_generationparams)
+	from procedural_city_generation.building_generation.building_generation_params import params as building_generationparams
+	confGUI(path+"/inputs/building_generation.conf", building_generationparams)
 	
 	
 	
@@ -131,12 +137,6 @@ def GUI():
 	polygon_button.grid(row=4, column=0 ,sticky='EW')
 	roadmap_button=Tkinter.Button(window, text = 'Options', command = visualizationconf)
 	roadmap_button.grid(row=4, column=1, sticky='EW')
-
-	
-	
-#	filename=askopenfilename()
-#	print filename
-	
 	
 	window.mainloop()
 

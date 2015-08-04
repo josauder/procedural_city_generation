@@ -5,25 +5,39 @@ import numpy as np
 import procedural_city_generation
 path=os.path.dirname(procedural_city_generation.__file__)
 from procedural_city_generation.building_generation.cuts import *
+from procedural_city_generation.building_generation.building_tools import *
 from procedural_city_generation.building_generation.roofs import roof
-from procedural_city_generation.building_generation import surface
-from procedural_city_generation.building_generation import getBuildingHeight as gb
+from procedural_city_generation.building_generation.Surface import Surface
+from procedural_city_generation.building_generation.BuildingHeight import BuildingHeight
 from procedural_city_generation.building_generation.updateTextures import updateTextures, textureGetter
 from procedural_city_generation.building_generation.getFoundation import getFoundation
+from procedural_city_generation.building_generation.merge_polygons import merge_polygons
+from procedural_city_generation.additional_stuff.Singleton import Singleton
+from copy import copy
 
-#Poly:
-	#is_convex
-	#is_Lot
-	#is_Road
-
-#define
-house_height=0.15
-roadtex_name='Road01.jpg'
-
+singleton=Singleton("building_generation")
 
 def main(polylist):
-
+	""" Accepts a list of procedural_city_generation.polygons.Polygon objects and ... #TODO
 	
+	Parameters
+	----------
+	- polylist\t:\tList<procedural_city_generation.polygons.Polygon>
+	"""
+	
+	
+	#TODO: Discuss with lenny how we get the largest polygon out.
+	maxl=0
+	index=0
+	for i in range(len(polylist)):
+		if len(polylist[i].vertices)>maxl and polylist[i].poly_type== 'vacant':
+			index=i
+			maxl=len(polylist[i].vertices)
+	polylist.pop(index)
+	
+	
+	gb=BuildingHeight()
+	surface=Surface()
 	textures=updateTextures()
 	texGetter=textureGetter(textures)
 	roadtexture=texGetter.getTexture('Road',50)
@@ -31,61 +45,61 @@ def main(polylist):
 	polygons=[]
 	for poly in polylist:
 		
-		
-		
-		
-		#Builds the floor. If the Polygon is not a building, there is obviously no need for walls/windows/roofs
+		#Determines the floortexture. If the Polygon3D is not a building, there is obviously no need for walls/windows/roofs
 		if poly.poly_type == "road" :
 			floortexture= roadtexture
-			
-			polygons.append(Polygon([np.array([x[0],x[1],0]) for x in poly.vertices],
-			range(len(poly.vertices)),
-			floortexture, True))
-			
 		elif poly.poly_type == "vacant":
 			floortexture=  texGetter.getTexture('Floor',0)
-			
-			polygons.append(Polygon([np.array([x[0],x[1],0]) for x in poly.vertices],
-			range(len(poly.vertices)),
-			floortexture, True))
-			
 		elif poly.poly_type == "lot":
+			#If poly is a building, get all other necessary textures and numerical values
 			center=sum(poly.vertices)/len(poly.vertices)
-			
 			buildingheight= gb.getBuildingHeight(center)
+			
+			floortexture=texGetter.getTexture('Floor',buildingheight)
+			windowtexture=texGetter.getTexture('Window',buildingheight)
+			walltexture=texGetter.getTexture('Wall',buildingheight)
+			rooftexture=texGetter.getTexture('Roof',buildingheight)
+			
+			floorheight=np.random.uniform(singleton.floorheight_min,singleton.floorheight_max)
+			windowwidth=random.uniform(singleton.windowwidth_min,singleton.windowwidth_max)
+			
+			
+			housebool=True if buildingheight<singleton.house_height else False
+			
+			if housebool:
+				windowheight=random.uniform(singleton.windowheight_min,singleton.windowheight_max_house)
+				windowdist=random.uniform(0, windowwidth+singleton.windowdist_max_house)
+			else:
+				windowheight_max= singleton.windowheight_max_house if singleton.windowheight_max_house != 0 else floorheight
+				windowheight=random.uniform(singleton.windowheight_min, windowheight_max)
+				windowdist=random.uniform(singleton.windowdist_min_not_house, windowwidth+singleton.windowdist_max_not_house)
+			
 			
 			base_h_low,base_h_high= surface.getSurfaceHeight(poly.vertices)
 			
-			polygons.append(Polygon([np.array([x[0],x[1],0]) for x in poly.vertices],
-			range(len(poly.vertices)),
-			floortexture, True))
+			#TODO: Fix after lennys fix
 			
-			floorheight=np.random.uniform(0.03,0.04)
-			floortexture=texGetter.getTexture('Floor',buildingheight/100.)
-			windowtexture=texGetter.getTexture('Window',buildingheight/100.)
-			walltexture=texGetter.getTexture('Wall',buildingheight/100.)
-			rooftexture=texGetter.getTexture('Roof',buildingheight/100.)
-			windowwidth=random.uniform(0.01,0.02)
-			if buildingheight<0.15: # haus:
-				windowheight=random.uniform(0.015, floorheight)
-				windowdist=random.uniform(0.015, windowwidth+0.01)
-			else:
-				windowheight=random.uniform(0.015,0.02)
-				windowdist=random.uniform(0, windowwidth+0.05)
-			
+			#Issue: /polygons/getFoundation returns False
+			p2=copy(poly)
 			#Scales and Translates floor
 			if poly.is_convex:
-				poly=getFoundation(poly)
+				vertices=[np.array([x[0],x[1],0]) for x in getFoundation(poly).vertices]
+				walls=[[vertices[i-1],vertices[i]] for i in range(len(vertices))]
 			else:
-				poly=getFoundation(poly)
-				
-			
+				vertices=[np.array([x[0],x[1],0]) for x in getFoundation(poly).vertices]
+				walls=[[vertices[i-1],vertices[i]] for i in range(len(vertices))]			
 			
 			#Need to sort out data structure make it 3D and stuff
 			
-			poly.vertices=[np.array([x[0],x[1],0]) for x in poly.vertices]
-			walls=[[poly.vertices[i-1],poly.vertices[i]] for i in range(len(poly.vertices))]
-			print walls
+			
+			#TODO: make abhaengig von height
+			if housebool:
+				walls=scalewalls(walls, random.uniform(singleton.scalefactor_min_house,singleton.scalefactor_max_house))
+			else:
+				walls=scalewalls(walls, random.uniform(singleton.scalefactor_min_not_house,singleton.scalefactor_max_not_house))
+			
+			roofwalls=copy(walls)
+			
 			#Creates floorplan
 			walls=randomcut(walls)
 			
@@ -94,10 +108,9 @@ def main(polylist):
 			plan=verticalsplit(buildingheight,floorheight)
 			
 			#Random, decides if ledges will be scaled nach aussen
-			#TODO: add constants to some sort of conf file
 			ledgefactor=1.0
-			if random.randint(0,100)>50:
-				ledgefactor+=random.uniform(0,0.1)
+			if random.randint(0,100)>singleton.prob_ledge:
+				ledgefactor=random.uniform(singleton.ledgefactor_min,singleton.ledgefactor_max)
 			
 			#Scales the walls to the outside
 			ledge=scalewalls(walls,ledgefactor)
@@ -106,14 +119,13 @@ def main(polylist):
 			currentheight=0
 			
 			#Get a list of windows for each floor
-			windows=get_window_coords(walls,windowtexture,windowwidth,windowheight,windowdist)
+			windows=get_window_coords(scalewalls(walls,1.01),windowwidth,windowheight,windowdist)
 			
 			#Goes through the plan list
-			#TODO: check with desktop version
 			for element in plan:
 				if element=='b' or element=='f':
-					window_coords=scale([x+np.array([0,0,base_h_high+currentheight+floorheight/2]) for x in windows],1.01,grundrisscenter)
-					polygons.extend(Polygon(window,range(len(window)),windowtexture) for window in windows)
+					currentwindows=windows+np.array([0,0,base_h_high+currentheight+floorheight/2])
+					polygons.extend(Polygon3D(window,range(len(window)),windowtexture) for window in currentwindows)
 					currentheight+=floorheight
 					
 				elif element=='l':
@@ -121,71 +133,20 @@ def main(polylist):
 					currentheight+=floorheight/10.
 					if ledgefactor!=1:
 						polygons.append(flatebene(ledge,base_h_high+currentheight,rooftexture))
-						polygons.append(flatebene(ledge,base_h_high+currentheight-floorheight/10.),rooftexture)
+						polygons.append(flatebene(ledge,base_h_high+currentheight-floorheight/10.,rooftexture))
 						polygons.extend(buildwalls(ledge,base_h_high+currentheight-floorheight/10., base_h_high+currentheight,rooftexture))			
 				elif element=='r':
 					if ledgefactor==1:
-						polygons.extend(dach(walls,scale(roofwalls,1.05,grundrisscenter),haus,base_h_high+currentheight,rooftexture))
-						polygons.extend(buildwalls(walls,base_h_low,(base_h_high+currentheight),walltexture))
+						polygons.extend(roof(walls,roofwalls,base_h_high+currentheight,housebool,rooftexture,texGetter.getTexture("Roof",buildingheight)))
+					
+					polygons.extend(buildwalls(walls,base_h_low,(base_h_high+currentheight),walltexture))
 		else:
-			print "Polygon.poly_type not understood"
+			print "Polygon3D.poly_type not understood"
+			
+		#Builds the floor Polygon
+		polygons.append(Polygon3D([np.array([x[0],x[1],0]) for x in poly.vertices],
+			range(len(poly.vertices)),
+			floortexture))
 	
-	
-	
-	
-	#Groups Polygons with identical Texture 
-	poly_group_by_texture=np.zeros(len(textures))
-	for poly in polygons:
-		mergedpolys[poly.texture.index].append(poly)
-	
-	
-	mergedpolys=[]
-	#For each group of polygons with an identical Texture
-	ind=0
-	for polys in poly_group_by_texture:
-		
-		#For each polygon in that group
-		allverts=[]
-		for poly in polys:
-			#For each vertex in that polygon
-			for vert in poly:
-				
-				#Add to list of all vertices
-				allverts.append(vert)
-		
-		#Sorts all Vertices
-		allverts.sort(key=itemgetter(0,1,2))
-		
-		#Removes all duplicates
-		popindex=0
-		for i in range(len(allverts)):
-			if np.allclose(allverts[i-popindex],allverts[i-1-popindex]):
-				allverts.pop(i-popindex)
-				popindex+=1
-		print popindex + " duplicates in list of all vertices were removed"
-		
-		
-		
-		faces=[]
-		def search(x):
-			return allverts.index(x)
-		
-		for poly in polys:
-			face=[search(x) for x in poly.vertices]
-			faces.append(face)
-		
-		
-		mergedpolys.append(Polygon(allverts,faces,textures[ind]))
-		ind+=1
-	
-	
-	
-	import pickle,os
-	with open(os.path.dirname(procedural_city_generation.__file)+"/outputs/buildings.txt",'w') as f:
-		f.write(pickle.dumps(mergedpolys))
-	
-	
-	
-	
-if __name__ == '__main__':
-	main([])
+	mergedpolys=merge_polygons(polygons,textures)
+	return 0

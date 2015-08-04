@@ -11,10 +11,13 @@ def input_image_setup(img_name, img2_name):
 	img = mpimg.imread(img_name)
 	img2 = mpimg.imread(img2_name)
 	
-	#IF PNG and not JPG, get numerical values right
-	if img_name[len(img_name)-2]=='n':
-		img*=255
-	if img2_name[len(img2_name)-2]=='n':
-		img2*=255
-	plt.imsave(os.path.dirname(procedural_city_generation.__file__)+"/temp/diffused.png",img)
+	import matplotlib.pyplot as plt
+	path=os.path.dirname(procedural_city_generation.__file__)
+	plt.imsave(path+"/temp/diffused.png",img2,cmap='gray')
+	with open(path+"/temp/isdiffused.txt",'w') as f:
+		f.write("False")
+	
+	
+	img*=255
+	img2*=255
 	return img, img2

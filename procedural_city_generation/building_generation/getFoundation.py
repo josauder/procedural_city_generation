@@ -1,6 +1,6 @@
 import numpy as np
 
-from procedural_city_generation.polygons.Polygon import Polygon, Edge
+from procedural_city_generation.polygons.Polygon2D import Polygon2D, Edge
 
 def getFoundation(poly, grid_width=0.01, eps=10**-8):
 	
@@ -57,8 +57,9 @@ def getFoundation(poly, grid_width=0.01, eps=10**-8):
 		p3 = p2 + rect_height * rect_base.n
 		p4 = p1 + rect_height * rect_base.n
 		
-		return Polygon([p1,p2,p3,p4])
+		return Polygon2D([p1,p2,p3,p4])
 	else:
+		#TODO: assign issue to lenny ... why return false
 		return False
 		
 	

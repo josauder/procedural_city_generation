@@ -12,7 +12,7 @@ def baumstamm(radius, texture, koords, height):
 		np.array([sin((x)/6.*pi), cos((x)/6.*pi), height]), np.array([sin((x)/6.*pi), cos((x)/6.*pi), 0])]
 		verts= list(np.array(verts)+koords)
 		faces=range(len(verts))
-		L.append(Polygon(verts, faces, texture))
+		L.append(Polygon3D(verts, faces, texture))
 	return L
 	
 

@@ -44,6 +44,7 @@ def setup_heightmap(variables,path):
 	
 	
 	#TODO: set these numbers to some file where they can be edited easier
+
 	rsize = img.resize(((variables.border[1]+20)*10,(variables.border[0]+20)*10))
 	array = np.asarray(rsize) 
 	from copy import copy

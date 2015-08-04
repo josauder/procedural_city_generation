@@ -3,17 +3,18 @@ from __future__ import division
 import numpy as np
 import numpy.linalg as la
 import matplotlib.pyplot as plt
-from cuts import scale, scaletransform_vertex
 
+from procedural_city_generation.building_generation.cuts import *
+from procedural_city_generation.building_generation.building_tools import *
+from procedural_city_generation.building_generation.Polygon3D import Polygon3D
+from procedural_city_generation.additional_stuff.Singleton import Singleton
+singleton=Singleton("building_generation")
 
-import random
-#class Kante(object):
-#	def __init__(self, p1, p2):
-#		self.p1=p1
-#		self.p2=p2
-#		self.laenge= abs(p1-p2)
-def roof(walls,roofwalls,haus,height):
-	h=np.random.uniform(0.04,0.08)
+def roof(walls,roofwalls,height,housebool,texture1,texture2=None):
+	
+	#TODO: add to some kind of config object
+	h=np.random.uniform(singleton.roofheight_min,singleton.roofheight_max)
+	
 	coords=[]
 	for wall in roofwalls:
 		for i in range(len(wall)-1):
@@ -22,14 +23,10 @@ def roof(walls,roofwalls,haus,height):
 			
 	kanten=[[coords[i-1],coords[i]] for i in range(len(coords))]
 
-	if haus and len(coords)==4:
-		return hausroof(kanten,h)
+	if len(coords)==4 and housebool:
+		return hausroof(kanten,h,texture1)
 	else:
-		return kastenroof(roofwalls,kanten,coords,height,height+h)
-
-
-
-
+		return kastenroof(walls,roofwalls,kanten,coords,height,height+h,texture1,texture2)
 
 def isleft(kante,point):
 	return ((kante[1][0]-kante[0][0])*(point[1]-kante[0][1]) - (point[0]-kante[0][0]) * (kante[1][1]-kante[0][1]))
@@ -50,7 +47,7 @@ def pinpoly(kanten,point):
 	return False
 
 
-def hausroof(kanten, h):
+def hausroof(kanten, h, texture):
 	if np.linalg.norm(kanten[0][1]-kanten[0][0])<np.linalg.norm(kanten[1][1]-kanten[1][0]):
 	#kanten[0].laenge<kanten[1].laenge:
 		p1=(kanten[0][1]+kanten[0][0])/2+np.array([0,0,h])
@@ -66,36 +63,22 @@ def hausroof(kanten, h):
 		f4=[kanten[2], [kanten[2][1], p2], [p2,p1], [p1, kanten[2][0]]]	
 		f1=[kanten[1], [kanten[1][1], p1], [p1, kanten[1][0]]]
 		f2=[kanten[3], [kanten[3][1], p2], [p2, kanten[1][0]]]
-	return [[x[0] for x in f1],[x[0] for x in f2],[x[0] for x in f3], [x[0] for x in f4]]
-		
+	l=[[x[0] for x in f1],[x[0] for x in f2],[x[0] for x in f3], [x[0] for x in f4]]
+	return [Polygon3D(x,range(len(x)),texture) for x in l]
 
-def kastenroof(walls,kanten,coords,height,h):
-	
-	from buildinggenerator import buildwalls,flatebene
+def kastenroof(walls,roofwalls,kanten,coords,height,h,texture1,texture2=None):
+	if texture2 is None:
+		texture2=texture1
+		
+		
 	kasten=scaletransform_vertex(coords,np.random.uniform(0.5,0.15),sum(coords)/len(coords),random.randint(0,2))
 	for k in kasten:
 		if not pinpoly(kanten,k):
-			return [flatebene(walls,height)]
-			
-	r=buildwalls([[kasten[i-1],kasten[i]] for i in range(len(kasten))],height,h)
-	r.append([x+np.array([0,0,h-height]) for x in kasten])
+			return [flatebene(walls,height,texture1)]
+	r=buildwalls([[kasten[i-1],kasten[i]] for i in range(len(kasten))],height,h,texture2)
+	r.append(Polygon3D([x+np.array([0,0,h-height]) for x in kasten],range(len(kasten)),texture2))
 	
-	r.append(flatebene(walls,height))
+	r.append(flatebene(walls,height,texture1))
 	return r
 
-#def kasten(Liste, Hoehe):
-#	Flaechen=[]
-#	Flaechen.append([Kante(x.p1+np.array([0,0,Höhe]), x.p2+np.array([0,0,Hoehe])) for x in Liste])
-#	for kante in Liste:
-#		Flaechen.append( [kante, Kante(kante.p2, kante.p2+np.array([0,0,Hoehe])),
-#		Kante(kante.p2+np.array([0,0,Hoehe]), kante.p1+np.array([0,0,Hoehe])),
-#		Kante(kante.p1+np.array([0,0,Hoehe]), kante.p1)])
-#	return Flaechen
-#p1= np.array([0,0,0])
-#p2= np.array([1,0,0])
-#p3= np.array([1,1,0])
-#p4= np.array([0,1,0])
 
-
-#test=[ [p1,p2], [p2,p3], [p3,p4], [p4,p1] ]
-#print roof1(test, 5.2)

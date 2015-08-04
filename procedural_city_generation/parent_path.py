@@ -1,10 +1,10 @@
 import os
 
 def parent_path(depth=1):
-	"""
+	'''
 	Return path to directory which is depth
 	levels above
-	"""
+	'''
 	path = os.path.abspath(__file__)
 	n = 0
 	for i in xrange(1,len(path)+1):

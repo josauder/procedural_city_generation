@@ -1,11 +1,11 @@
-from Polygon import *
+from Polygon2D import *
 
 
-def split_poly(poly, min_area=0.6, min_length=0.5, eps=10**-5):
+def split_poly(poly, min_area=0.3, min_length=0.2, eps=10**-5):
 		"""Split polygon into two parts"""
 		
 		if poly.area < min_area:
-			#Polygon is too small
+			#Polygon2D is too small
 			return False
 			
 		for split_edge in sorted(poly.edges, key=lambda x: -x.length):
@@ -66,7 +66,7 @@ def split_poly(poly, min_area=0.6, min_length=0.5, eps=10**-5):
 					if all(not edge.bordering_road for edge in edge_set):
 						break
 				else:
-					return Polygon(new_edges[0], poly_type="lot"), Polygon(new_edges[1], poly_type="lot")
+					return Polygon2D(new_edges[0], poly_type="lot"), Polygon2D(new_edges[1], poly_type="lot")
 		else:
 			#Not possible to split polygon
 			return False
@@ -75,7 +75,7 @@ if __name__=="__main__":
 
 	import matplotlib.pyplot as plt
 	p = [np.array(x) for x in [[0,0],[0,1],[1,0.8],[1,0]]]
-	p = Polygon(p)
+	p = Polygon2D(p)
 	split_poly(p)
 	p.selfplot()
 	plt.show()

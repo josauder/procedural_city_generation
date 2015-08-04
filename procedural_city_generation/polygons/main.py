@@ -4,10 +4,10 @@ import numpy as np
 
 def main(vertex_list=None,plotbool=False):
 	'''Input: list of vertices representing the Roadmap
-	Output: List of all Polygons representing Lots,
-	List of all Polygons representing Blocks
-	List of all Polygons which are too large to be Lots
-	Polygon representing the road-network'''
+	Output: List of all Polygon2Ds representing Lots,
+	List of all Polygon2Ds representing Blocks
+	List of all Polygon2Ds which are too large to be Lots
+	Polygon2D representing the road-network'''
 	if vertex_list is None:
 		from procedural_city_generation.additional_stuff import jsontools
 		
@@ -22,10 +22,14 @@ def main(vertex_list=None,plotbool=False):
 		border=f.read()
 	border=[int(x) for x in border.split(" ") if x is not '']
 	
-	print "Extracting Polygons"
+	print "Extracting Polygon2Ds"
 	from procedural_city_generation.polygons import construct_polygons
-	polylist=construct_polygons.getPolygons(vertex_list)	
-	print "Polygons extracted"
+	polylist=construct_polygons.getPolygon2Ds(vertex_list)	
+	
+
+	
+	
+	print "Polygon2Ds extracted"
 	
 	
 	
@@ -43,6 +47,7 @@ def main(vertex_list=None,plotbool=False):
 		for g in polygons:
 			g.selfplot()
 		plt.show()
+		
 	
 	import pickle
 	with open(os.path.dirname(procedural_city_generation.__file__)+"/outputs/polygons.txt", "w") as f:

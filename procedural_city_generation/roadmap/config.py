@@ -101,7 +101,6 @@ def config():
 	
 	config_functions.setup_heightmap(variables,path)
 	
-	
 	with open(path+"/temp/border.txt",'w') as f:
 		f.write(str(variables.border[0])+" "+str(variables.border[1]))
 	
