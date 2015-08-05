@@ -78,18 +78,13 @@ def main(polylist):
 			base_h_low,base_h_high= surface.getSurfaceHeight(poly.vertices)
 			
 			#TODO: Fix after lennys fix
-			
-			#Issue: /polygons/getFoundation returns False
-			p2=copy(poly)
 			#Scales and Translates floor
 			if poly.is_convex:
-				vertices=[np.array([x[0],x[1],0]) for x in getFoundation(poly).vertices]
-				walls=[[vertices[i-1],vertices[i]] for i in range(len(vertices))]
+				walls_ob = Walls(poly)
+
 			else:
-				vertices=[np.array([x[0],x[1],0]) for x in getFoundation(poly).vertices]
-				walls=[[vertices[i-1],vertices[i]] for i in range(len(vertices))]			
+				walls_ob = Walls(poly)
 			
-			#Need to sort out data structure make it 3D and stuff
 			
 			
 			#TODO: make abhaengig von height
@@ -116,7 +111,7 @@ def main(polylist):
 			ledge=scalewalls(walls,ledgefactor)
 			
 			#Keeps track of height where we are currently building
-			currentheight=0
+			currentheight=base_h_high
 			
 			#Get a list of windows for each floor
 			windows=get_window_coords(scalewalls(walls,1.01),windowwidth,windowheight,windowdist)
@@ -124,7 +119,7 @@ def main(polylist):
 			#Goes through the plan list
 			for element in plan:
 				if element=='b' or element=='f':
-					currentwindows=windows+np.array([0,0,base_h_high+currentheight+floorheight/2])
+					currentwindows=windows+np.array([0,0,currentheight+floorheight/2])
 					polygons.extend(Polygon3D(window,range(len(window)),windowtexture) for window in currentwindows)
 					currentheight+=floorheight
 					
@@ -132,14 +127,14 @@ def main(polylist):
 					
 					currentheight+=floorheight/10.
 					if ledgefactor!=1:
-						polygons.append(flatebene(ledge,base_h_high+currentheight,rooftexture))
-						polygons.append(flatebene(ledge,base_h_high+currentheight-floorheight/10.,rooftexture))
-						polygons.extend(buildwalls(ledge,base_h_high+currentheight-floorheight/10., base_h_high+currentheight,rooftexture))			
+						polygons.append(flatebene(ledge,currentheight,rooftexture))
+						polygons.append(flatebene(ledge,currentheight-floorheight/10.,rooftexture))
+						polygons.extend(buildwalls(ledge,currentheight-floorheight/10., currentheight,rooftexture))			
 				elif element=='r':
 					if ledgefactor==1:
-						polygons.extend(roof(walls,roofwalls,base_h_high+currentheight,housebool,rooftexture,texGetter.getTexture("Roof",buildingheight)))
+						polygons.extend(roof(walls,roofwalls,currentheight,housebool,rooftexture,texGetter.getTexture("Roof",buildingheight)))
 					
-					polygons.extend(buildwalls(walls,base_h_low,(base_h_high+currentheight),walltexture))
+					polygons.extend(buildwalls(walls,base_h_low,currentheight,walltexture))
 		else:
 			print "Polygon3D.poly_type not understood"
 			

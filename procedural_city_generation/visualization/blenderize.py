@@ -1,6 +1,9 @@
 
 	
 import bpy, os
+
+
+
 def createtexture(name,scale,texturetype='REPEAT'):
 	#TODO: sticky textures 's'
 	if isinstance(scale,str):

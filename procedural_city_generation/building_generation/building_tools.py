@@ -1,5 +1,3 @@
-
-
 from __future__ import division
 import random
 import numpy as np
@@ -7,50 +5,162 @@ from copy import copy
 import procedural_city_generation
 from procedural_city_generation.building_generation.Polygon3D import Polygon3D
 
+def walls_from_poly(poly):
+	"""Creates a wall object from a Polygon3D Object by converting 
+	Poly.vertices from 2D-Arrays to 3D, np.array([x,y])->np.array([x,y,0])
+	
+	Parameters
+	----------
+	- poly : procedural_city_generation.building_generation.Polygon3D object
+	
+	Returns
+	----------
+	- procedural_city_generation.building_generation.Walls object
+	
+	"""
+	l=len(poly.vertices)
+	return Walls(np.hstack((np.array(poly.vertices),[[0]]*l)),l)
 
-def scale(coords,factor,center=None):
-	if center == None:
-		center=sum(coords)/len(coords)
-	coords=center+(np.array(coords)-center)*factor
-	return list(center)
 
-def scalewalls(walls,factor,center=None):
-	
-	#TODO: Fix
-	center=sum([x[0] for x in walls])/len(walls)	
-	
-	walls=copy(walls)
-	newwalls=[]
-	for wall in walls:
-		newwalls.append([center+(coord-center)*factor for coord in wall])
-	return newwalls
-	
-
-def flatebene(walls,height,texture):
-	h=np.array([0,0,height])
-	
-	poly=[]
-	for wall in walls:
-		for i in range(len(wall)-1):
-			poly.append(wall[i]+h)
+class Walls(object):
 		
-	return Polygon3D(poly,range(len(poly)),texture)
+	def __init__(self,verts,l):
+		self.vertices=verts
+		self.l=l
+		
+		self.center=sum(self.originalcenter)/self.l
+		self.walls=np.array([self.originalvertices[[i,i-1]] for i in range(self.l)])
+		
+
+
+def scale(walls,factor):
+	"""Scales a walls object by a factor
+	Parameters
+	----------
+	- walls  :  procedural_city_generation.building_generation.Walls object
+	- factor :  number to be scaled to. E.g. 2 doubles the size, 0.5 halves the size
+	
+	Returns
+	----------
+	- procedural_city_generation.building_generation.Walls object
+	"""
+	return Walls(walls.center+(walls.vertices-center)*factor)
+
+
+def flat_polygon(walls,height,texture):
+	"""Creates a flat Polygon with the shape of the walls at the given height
+	Parameters
+	----------
+	- walls  :  procedural_city_generation.building_generation.Walls object
+	- height : z coordinate of the polygon to be created
+	- texture : procedural_city_generation.building_generation.Texture object
+	Returns
+	----------
+	- procedural_city_generation.building_generation.Polygon3D object
+
+	"""
+	return Polygon3D(walls.vertices+np.array([0,0,height]),range(walls.l),texture)
 
 
 def buildwalls(walls,bottom,top, texture):
-	returnpolys=[]
+	"""Creates one walls Polygon object with shared vertices in the shape of the walls object
+	Parameters
+	----------
+	- walls  :  procedural_city_generation.building_generation.Walls object
+	- bottom : float,z coordinate of the bottom of the walls
+	- top : float,z coordinate of the top of the walls
+	- texture : procedural_city_generation.building_generation.Texture object
+	Returns
+	----------
+	- procedural_city_generation.building_generation.Polygon3D object
 	
-	for wall in walls:
-		for i in range(len(wall)-1):
-			returnpolys.append([np.array([wall[i][0],wall[i][1],bottom]),
-			np.array([wall[i][0],wall[i][1],top]),
-			np.array([wall[i+1][0],wall[i+1][1],top]),
-			np.array([wall[i+1][0],wall[i+1][1],bottom])])
+	Example
+	----------
+	>>>w=Walls([[0,0,0],[0,1,0],[1,1,0]],3)
+	>>>p= buildwalls(  w , 1, 2, some_tex)
+	>>>p.verts
+	[[0,0,1],[0,1,1],[1,1,1],[0,0,2],[0,1,2],[1,1,2]]
+	>>>p.faces
+	[[1,0,3,4], [2,1,4,5], [2,0,3,5]]
+	
+	"""
+	verts=np.concatenate((walls.vertices+np.array([0,0,bottom]),walls.vertices+np.array([0,0,top])))
+	faces=[[i+1,i,i+walls.l,i+1+walls.l] for i in range(walls.l)-1]
+	faces.append([walls.l-1,0,walls.l,2*walls.l-1])
+	return Polygon3D(verts,faces,texture)
+
+
+def buildledge(walls,bottom,top,texture):
+	"""Creates one ledge Polygon object with shared vertices in the shape of the walls object
+	Parameters
+	----------
+	- walls  :  procedural_city_generation.building_generation.Walls object
+	- bottom : float,z coordinate of the bottom of the walls
+	- top : float,z coordinate of the top of the walls
+	- texture : procedural_city_generation.building_generation.Texture object
+	Returns
+	----------
+	- procedural_city_generation.building_generation.Polygon3D object
+	
+	Example
+	----------
+	>>>w=Walls([[0,0,0],[0,1,0],[1,1,0]],3)
+	>>>p= buildlege(  w , 1, 2, some_tex)
+	>>>p.verts
+	[[0,0,1],[0,1,1],[1,1,1],[0,0,2],[0,1,2],[1,1,2]]
+	>>>p.faces
+	[[1,0,3,4], [2,1,4,5], [2,0,3,5],[0,1,2],[3,4,5]]
+	"""
+	verts=np.concatenate((walls.vertices+np.array([0,0,bottom]),walls.vertices+np.array([0,0,top])))
+	faces=[[i+1,i,i+walls.l,i+1+walls.l] for i in range(walls.l)-1]
+	faces.extend([walls.l-1,0,walls.l,2*walls.l-1], range(walls.l), range(walls.l,2*walls.l))
+	return Polygon3D(verts,faces,texture)
+
+
+def get_window_coords(walls,list_of_currentheights,floorheight, windowwidth, windowheight, windowdist):
+	'''
+	verts=np.array([])
+	faces=[]
+	for wall in walls.walls:
+		l=np.linalg.norm(np.diff(wall)
 		
-	return [Polygon3D(x,range(len(x)),texture) for x in returnpolys]
-
-
-def get_window_coords(walls,windowwidth, windowheight, windowdist):
+		
+		n=l//(windowwidth+windowdist)
+		if n>0:
+			v=wall[1]-wall[0]
+			vn=v/np.linalg.norm(v)
+			
+			h=np.array([0,0,windowheight])
+			
+			
+			#Creates a stencil, which, when added to the center point of
+			# a window, is a numpy array with shape 4 describing the 
+			#window's coordinates
+			stencil=np.array([
+							(-windowwidth*vn)-h,
+							(windowwidth*vn)-h,
+							(windowwidth*vn)+h,
+							(-winddowwith*vn)+h
+							])
+			stencilarray=np.array([stencil+np.array([0,0,curr_h]) for curr_h in list_of_currentheights])
+			
+			for i in range(n):
+				center_of_window=wall[0]+(i/(n+1))*v
+				np.concatenate(verts,stencilarray+center_of_window)
+				
+				
+				
+				
+		elif l/windowwidth>=1:
+			
+			np.array(		[(-windowwidth*vn)-h,
+							(windowwidth*vn)-h,
+							(windowwidth*vn)+h,
+							(-winddowwith*vn)+h
+							])
+			#TODO
+	'''
+	
 	windows=[]
 	for wall in walls:
 		for i in range(len(wall)-1):

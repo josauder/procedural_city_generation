@@ -10,9 +10,18 @@ from procedural_city_generation.building_generation.Polygon3D import Polygon3D
 from procedural_city_generation.additional_stuff.Singleton import Singleton
 singleton=Singleton("building_generation")
 
-def roof(walls,roofwalls,height,housebool,texture1,texture2=None):
+def roof(walls,roofwalls,currentheight,housebool,texture,texture2=None):
+	'''Builds a roof on top of a house, depending on housetype
+	Parameters
+	----------
+	- walls  :  
+	- roofwalls   :  
+	- currentheight   :
+	- housebool  :  
+	- texture
 	
-	#TODO: add to some kind of config object
+	'''
+	
 	h=np.random.uniform(singleton.roofheight_min,singleton.roofheight_max)
 	
 	coords=[]
@@ -24,9 +33,9 @@ def roof(walls,roofwalls,height,housebool,texture1,texture2=None):
 	kanten=[[coords[i-1],coords[i]] for i in range(len(coords))]
 
 	if len(coords)==4 and housebool:
-		return hausroof(kanten,h,texture1)
+		return hausroof(kanten,h,texture)
 	else:
-		return kastenroof(walls,roofwalls,kanten,coords,height,height+h,texture1,texture2)
+		return kastenroof(walls,roofwalls,kanten,coords,height,height+h,texture,texture2)
 
 def isleft(kante,point):
 	return ((kante[1][0]-kante[0][0])*(point[1]-kante[0][1]) - (point[0]-kante[0][0]) * (kante[1][1]-kante[0][1]))
@@ -66,19 +75,19 @@ def hausroof(kanten, h, texture):
 	l=[[x[0] for x in f1],[x[0] for x in f2],[x[0] for x in f3], [x[0] for x in f4]]
 	return [Polygon3D(x,range(len(x)),texture) for x in l]
 
-def kastenroof(walls,roofwalls,kanten,coords,height,h,texture1,texture2=None):
+def kastenroof(walls,roofwalls,kanten,coords,height,h,texture,texture2=None):
 	if texture2 is None:
-		texture2=texture1
+		texture2=texture
 		
 		
 	kasten=scaletransform_vertex(coords,np.random.uniform(0.5,0.15),sum(coords)/len(coords),random.randint(0,2))
 	for k in kasten:
 		if not pinpoly(kanten,k):
-			return [flatebene(walls,height,texture1)]
+			return [flatebene(walls,height,texture)]
 	r=buildwalls([[kasten[i-1],kasten[i]] for i in range(len(kasten))],height,h,texture2)
 	r.append(Polygon3D([x+np.array([0,0,h-height]) for x in kasten],range(len(kasten)),texture2))
 	
-	r.append(flatebene(walls,height,texture1))
+	r.append(flatebene(walls,height,texture))
 	return r
 
 
