@@ -12,7 +12,10 @@ __pycache__/
 
 # Outputs and temp - can be many MB in size
 /procedural_city_generation/outputs/*.txt
+/procedural_city_generation/outputs/*.json
+/procedural_city_generation/outputs/*.png
 /procedural_city_generation/temp/*.txt
+/procedural_city_generation/temp/*.json
 /procedural_city_generation/temp/*.png
 
 
