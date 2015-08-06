@@ -118,20 +118,42 @@ def buildledge(walls,bottom,top,texture):
 
 
 def get_window_coords(walls,list_of_currentheights,floorheight, windowwidth, windowheight, windowdist):
-	'''
-	verts=np.array([])
-	faces=[]
+	"""
+	Creates a Polygon3D Object containing the coordinates to all windows of a building
+	
+	Parameters
+	----------
+	- walls  :  procedural_city_generation.building_generation.Walls Object
+	- list_of_currentheights  :  list<float> which has one entry for each z-coordinate of a row of windows to be created. T
+	                             This always means the 'bottom' of each floor.
+	- floorheight  :  floorheight of the building, used to calculate center of each floor where windows are to be built
+	- windowwidth : width of each window
+	- windowheight : height of each window
+	- windowdist : distance between two windows if more than one window fits on the wall
+	
+	Returns:
+	--------
+	- procedural_city_generation.building_generation.Polygon3D object with shared vertices
+	"""
+	
+	nc=len(list_of_currentheights)
+	
+	#Start off as empty list
+	verts=[]
+	nfaces=0
+	
 	for wall in walls.walls:
-		l=np.linalg.norm(np.diff(wall)
 		
+		#l = Length of wall
+		l=np.linalg.norm(np.diff(wall))
 		
-		n=l//(windowwidth+windowdist)
-		if n>0:
+		# If at least one window fits into the wall:
+		if l>windowwidth:
+			
+			
 			v=wall[1]-wall[0]
 			vn=v/np.linalg.norm(v)
-			
-			h=np.array([0,0,windowheight])
-			
+			h=np.array([0,0,windowheight+floorheight/2])
 			
 			#Creates a stencil, which, when added to the center point of
 			# a window, is a numpy array with shape 4 describing the 
@@ -142,41 +164,28 @@ def get_window_coords(walls,list_of_currentheights,floorheight, windowwidth, win
 							(windowwidth*vn)+h,
 							(-winddowwith*vn)+h
 							])
+			
+			#Stencil for each currentheight in list_of_currentheights
 			stencilarray=np.array([stencil+np.array([0,0,curr_h]) for curr_h in list_of_currentheights])
 			
-			for i in range(n):
-				center_of_window=wall[0]+(i/(n+1))*v
-				np.concatenate(verts,stencilarray+center_of_window)
-				
-				
-				
-				
-		elif l/windowwidth>=1:
-			
-			np.array(		[(-windowwidth*vn)-h,
-							(windowwidth*vn)-h,
-							(windowwidth*vn)+h,
-							(-winddowwith*vn)+h
-							])
-			#TODO
-	'''
-	
-	windows=[]
-	for wall in walls:
-		for i in range(len(wall)-1):
-			
-			#TODO comment, fix, and understand this function
-
-			v=wall[i]-wall[i+1]
-			l=np.linalg.norm(v)
-			n=int(l//( windowwidth+ windowdist))
+			#If at least one window plus the distance between two windows fits on this wall
+			n=l//(windowwidth+windowdist)
 			if n>0:
-				windows.extend(place_windows_on_wall(n,wall[i+1],v,l, windowwidth, windowheight))
-				
-			elif l// windowwidth>0:
-				windows.extend(place_windows_on_wall(1,wall[i+1],v,l, windowwidth, windowheight))
-	return windows
-
+				#Then, build a window for the amount of windows that fit on this wall
+				nfaces+=n*nc
+				for i in range(n):
+					center_of_window=wall[0]+(i/(n+1))*v
+					verts.extend(stencilarray+center_of_window)
+			
+			#Else build one window in the center of the wall
+			else: 
+				nfaces+=nc
+				verts.extend(stencilarray+wall[0]+(0.5*v))
+	
+	
+	faces=[range(x,x+4) for x in xrange(nfaces)]
+	return Polygon3D(verts,faces,texture)
+	
 def place_windows_on_wall(n,p,v,l,width,height):
 	vnorm=v/l
 	h=np.array([0,0,height])
