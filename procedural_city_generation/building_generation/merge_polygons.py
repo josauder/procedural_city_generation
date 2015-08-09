@@ -95,6 +95,6 @@ class Merger(object):
 		>>>m.faces
 		[(0,1,2),(3,4,5)]
 		"""
-		self.allfaces.append([x+self.n for x in poly.faces])
+		self.allfaces.extend([[x+self.n for x in face] for face in poly.faces])
 		self.n+=len(poly.verts)
 		self.allverts.extend(poly.verts)

@@ -108,8 +108,10 @@ def main():
 		polygons=pickle.loads(f.read().encode('utf-8'))
 	
 	for poly in polygons:
-		faces, verts, texname, texscale, shrinkwrap= poly
-		createbuilding(faces,verts,texname,texscale,shrinkwrap)
+		verts,faces, texname, texscale, shrinkwrap= poly
+		print(texname)
+		print("f",len(faces),"v",len(verts))
+		createbuilding(verts,faces,texname,texscale,shrinkwrap)
 		
 		
 		
