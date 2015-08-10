@@ -53,7 +53,7 @@ def merge_polygons(polygons,textures):
 			[M.merge(poly) for poly in polys]
 			
 			#TODO: Fix Scale!
-			savelist=[[x.tolist() for x in M.allverts],M.allfaces,textures[ind].name,textures[ind].scale*100,textures[ind].shrinkwrap]
+			savelist=[[x.tolist() for x in M.allverts],M.allfaces,textures[ind].name,textures[ind].scale*30,textures[ind].shrinkwrap]
 			mergedpolys.append(savelist)
 		ind+=1
 	

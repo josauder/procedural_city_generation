@@ -69,7 +69,7 @@ def main(polylist):
 				windowheight=random.uniform(singleton.windowheight_min,singleton.windowheight_max_house)
 				windowdist=random.uniform(0, windowwidth+singleton.windowdist_max_house)
 			else:
-				windowheight_max= singleton.windowheight_max_house if singleton.windowheight_max_house != 0 else floorheight
+				windowheight_max= singleton.windowheight_max_not_house if singleton.windowheight_max_not_house != 0 else floorheight
 				windowheight=random.uniform(singleton.windowheight_min, windowheight_max)
 				windowdist=random.uniform(singleton.windowdist_min_not_house, windowwidth+singleton.windowdist_max_not_house)
 			
@@ -102,7 +102,7 @@ def main(polylist):
 			
 			#Random, decides if ledges will be scaled nach aussen
 			ledgefactor=1.0
-			if random.randint(0,100)>singleton.prob_ledge:
+			if random.uniform(0,1)>singleton.prob_ledge:
 				ledgefactor=random.uniform(singleton.ledgefactor_min,singleton.ledgefactor_max)
 			
 			#Scales the walls to the outside
@@ -120,14 +120,14 @@ def main(polylist):
 			for element in plan:
 				if element=='b' or element=='f':
 					
+					list_of_currentheights.append(currentheight)
 					
 					currentheight+=floorheight
-					list_of_currentheights.append(currentheight)
 					
 				elif element=='l':
 					
 					if ledgefactor!=1:
-						polygons.append(buildledge(walls,currentheight,currentheight+floorheight/10,rooftexture))
+						polygons.append(buildledge(ledge,currentheight,currentheight+floorheight/10,rooftexture))
 						
 					currentheight+=floorheight/10.
 				elif element=='r':
@@ -135,6 +135,7 @@ def main(polylist):
 	#					polygons.extend(roof(walls,roofwalls,currentheight,housebool,rooftexture,texGetter.getTexture("Roof",buildingheight)))
 					
 					polygons.append(buildwalls(walls,base_h_low,currentheight,walltexture))
+					
 			polygons.append(get_windows(windows,list_of_currentheights,floorheight, windowwidth,windowheight,windowdist,windowtexture))
 		else:
 			print "Polygon3D.poly_type not understood"

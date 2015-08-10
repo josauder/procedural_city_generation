@@ -155,16 +155,16 @@ def get_windows(walls,list_of_currentheights,floorheight, windowwidth, windowhei
 			
 			v=wall[1]-wall[0]
 			vn=v/np.linalg.norm(v)
-			h=np.array([0,0,windowheight+floorheight/2])
+			h=np.array([0,0,windowheight/2+floorheight/2])
 			
 			#Creates a stencil, which, when added to the center point of
 			# a window, is a numpy array with shape 4 describing the 
 			#window's coordinates
 			stencil=np.array([
-							(-windowwidth*vn)-h,
-							(windowwidth*vn)-h,
-							(windowwidth*vn)+h,
-							(-windowwidth*vn)+h
+							(-windowwidth/2*vn)-h,
+							(windowwidth/2*vn)-h,
+							(windowwidth/2*vn)+h,
+							(-windowwidth/2*vn)+h
 							])
 			
 			#Stencil for each currentheight in list_of_currentheights
@@ -178,29 +178,20 @@ def get_windows(walls,list_of_currentheights,floorheight, windowwidth, windowhei
 			if n>0:
 				#Then, build a window for the amount of windows that fit on this wall
 				nfaces+=n*nc
-				for i in range(n):
-					center_of_window=wall[0]+(i/(n+1))*v
+				for i in range(n):					
+					center_of_window=wall[0]+((i+1)/(n+1))*v
 					
 					verts.extend(np.reshape(stencilarray+center_of_window,(nc*4,3)))
-			
+
 			#Else build one window in the center of the wall
 			elif l/windowwidth>1: 
 				
 				nfaces+=nc
-				verts.extend(np.reshape(stencilarray+(wall[0]+(0.5*v)),(nc*4*3) ))
+				
+				verts.extend(np.reshape(stencilarray+(wall[0]+(0.5*v)),(nc*4,3) ))
 	
 	#Each window has 4 vertices.
-	
 	faces=[range(4*x,4*x+4) for x in xrange(nfaces)]
-	
-	try:
-		print np.array(verts).shape
-	except:
-		print "fcuck"
-		print [str(x)+"\n" for x in verts[0:10]]
-		print len(verts)
-		print [[x,verts.index(x)] for x in verts if x.shape!=(3,)]
-		raw_input()
 		
 	return Polygon3D(verts,faces,texture)
 	

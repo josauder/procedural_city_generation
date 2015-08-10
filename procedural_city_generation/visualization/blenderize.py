@@ -7,7 +7,7 @@ import bpy, os
 def createtexture(name,scale,texturetype='REPEAT'):
 	#TODO: sticky textures 's'
 	if isinstance(scale,str):
-		scale=1000
+		scale=60
 	
 	
 	mat=bpy.data.materials.new(name)
@@ -109,8 +109,6 @@ def main():
 	
 	for poly in polygons:
 		verts,faces, texname, texscale, shrinkwrap= poly
-		print(texname)
-		print("f",len(faces),"v",len(verts))
 		createbuilding(verts,faces,texname,texscale,shrinkwrap)
 		
 		

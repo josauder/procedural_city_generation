@@ -22,40 +22,30 @@ def roof(walls,roofwalls,currentheight,housebool,texture,texture2=None):
 	
 	'''
 	
-	h=np.random.uniform(singleton.roofheight_min,singleton.roofheight_max)
-	
-	coords=[]
-	for wall in roofwalls:
-		for i in range(len(wall)-1):
-			coords.append(wall[i]+np.array([0,0,height]))
-			
-			
-	kanten=[[coords[i-1],coords[i]] for i in range(len(coords))]
+	roofheight=np.random.uniform(singleton.roofheight_min,singleton.roofheight_max)
 
-	if len(coords)==4 and housebool:
-		return hausroof(kanten,h,texture)
+	if roofwalls.l==4 and housebool:
+		return hausroof(walls,currentheight, roofheight,texture)
+		
 	else:
 		return kastenroof(walls,roofwalls,kanten,coords,height,height+h,texture,texture2)
 
-def isleft(kante,point):
-	return ((kante[1][0]-kante[0][0])*(point[1]-kante[0][1]) - (point[0]-kante[0][0]) * (kante[1][1]-kante[0][1]))
+"""
+TODO
+def hausroof(walls, currentheight,roofheight, texture):
+	centerindex=0 if np.diff(walls.walls[0],axis=1)<np.diff(walls.walls[1],axis=1) else 1
 	
-def pinpoly(kanten,point):
-	counter=0
+	h_low=np.array([0,0,currentheight])
+	h_high=h+np.array([0,0,roofheight])
 	
-	for kante in kanten:
-		if kante[0][1] <= point[1]:
-			if kante[1][1] > point[1]:
-				if isleft(kante,point) >0:
-					counter+=1
-			elif kante[1][1] <= point[1]:
-				if isleft(kante,point) <0:
-					counter-=1
-	if counter!=0:
-		return True
-	return False
-
-
+	c1,c2=sum(walls.walls[0+centerindex]/2),sum(walls.walls[2+centerindex]/2)
+	
+	verts=[x for x in walls.vertices]+[c1,c2]
+"""	
+	
+	
+	
+	
 def hausroof(kanten, h, texture):
 	if np.linalg.norm(kanten[0][1]-kanten[0][0])<np.linalg.norm(kanten[1][1]-kanten[1][0]):
 	#kanten[0].laenge<kanten[1].laenge:
@@ -91,3 +81,23 @@ def kastenroof(walls,roofwalls,kanten,coords,height,h,texture,texture2=None):
 	return r
 
 
+
+
+
+def isleft(kante,point):
+	return ((kante[1][0]-kante[0][0])*(point[1]-kante[0][1]) - (point[0]-kante[0][0]) * (kante[1][1]-kante[0][1]))
+	
+def pinpoly(kanten,point):
+	counter=0
+	
+	for kante in kanten:
+		if kante[0][1] <= point[1]:
+			if kante[1][1] > point[1]:
+				if isleft(kante,point) >0:
+					counter+=1
+			elif kante[1][1] <= point[1]:
+				if isleft(kante,point) <0:
+					counter-=1
+	if counter!=0:
+		return True
+	return False
