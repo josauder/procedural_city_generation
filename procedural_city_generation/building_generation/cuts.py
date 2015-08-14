@@ -5,14 +5,11 @@ import numpy as np
 from copy import copy
 import procedural_city_generation
 from procedural_city_generation.building_generation.Polygon3D import Polygon3D
+from procedural_city_generation.building_generation.building_tools import *
 
 def normale(arr):
-	if arr.size==2:
-		n= np.array([arr[1],-arr[0]])
-		return n
-	else:
-		n=np.array([arr[1],-arr[0],0])
-		return n
+	return np.array([-arr[1],arr[0],0])
+
 
 
 
@@ -21,7 +18,8 @@ def randomcut(walls):
 	n=random.randint(0,100)	
 	a1=random.uniform(0,0.4)
 	a2=random.uniform(0,0.4)
-	s=0
+	s=random.randint(0,walls.l-1)
+	return Hcut(walls,a1,a2,s)
 	#TODO: Fix
 #	s=random.randint(0,len(walls)-1)
 	if len(walls)==4:
@@ -32,16 +30,16 @@ def randomcut(walls):
 				return Hcut(walls,a1,a2,s)
 			elif n<56:
 				return Xcut(walls,a1,a2,s)
-			elif n<68:
-				return Lcut(walls,a1,a2,s)
-			elif n<77:
-				return Tcut(walls,a1,a2,s)
-			elif n<82:
-				return KeineAhnungcut(walls,a1,a2,s)
-			elif n<87:
-				return KeineAhnung2cut(walls,a1,a2,s)
-			else:
-				return Ycut(walls,a1,a2,s)
+#			elif n<68:
+#				return Lcut(walls,a1,a2,s)
+#			elif n<77:
+#				return Tcut(walls,a1,a2,s)
+#			elif n<82:
+#				return KeineAhnungcut(walls,a1,a2,s)
+#			elif n<87:
+#				return KeineAhnung2cut(walls,a1,a2,s)
+#			else:
+#				return Ycut(walls,a1,a2,s)
 	else:
 		for i in range(len(walls)):
 			if random.randint(0,100)>50:
@@ -135,25 +133,18 @@ def Lcut(walls,abstand1,abstand2,side):
 	
 def Ccut(walls,abstand1,abstand2,side):
 	'''Ccut from one side'''
-	wall=walls[side]
+	if abstand2<abstand1:
+		abstand1,abstand2=abstand2,abstand1
+	a=walls.vertices[side]
+	v=walls.vertices[side-1]-a
+	n=normale(v)
+	a1=a+abstand2*v
+	b1=a+(1-abstand2)*v
+	a2=a1+abstand1*n
+	b2=b1+abstand1*n
 	
-	if len(wall)==2:
-		if abstand2<abstand1:
-			abstand1,abstand2=abstand2,abstand1
-		a=wall[0]
-		v=wall[1]-a
-		n=normale(v)
-		a1=a+abstand2*v
-		b1=a+(1-abstand2)*v
-		a2=a1+abstand1*n
-		b2=b1+abstand1*n
-		
-		walls[side]=[wall[0],a1,a2,b2,b1,wall[1]]
-	
-#	print "\n\n\n\n\n\n\n"
-#	for wall in walls:
-#		print [[round(x[0],2),round(x[1],2)] for x in wall]
-	return walls
+	return Walls(np.insert(walls.vertices,side,np.array([b1,b2,a2,a1]),axis=0),walls.l+4)
+
 	
 def Tcut(walls,abstand1,abstand2,side):
 	'''Lcut from two sides'''
@@ -180,8 +171,8 @@ def Ycut(walls,abstand1,abstand2,side):
 
 def Hcut(walls,abstand1,abstand2,side):
 	'''Ccut from both sides'''
-	walls=Ccut(walls,abstand1,abstand2/2,side)
-	walls=Ccut(walls,abstand1,abstand2/2,side+2)	
+	walls=Ccut(walls,abstand1,abstand2/2,side-2)
+	walls=Ccut(walls,abstand1,abstand2/2,side)	
 	return walls
 	
 def Xcut(walls,abstand1,abstand2,side):

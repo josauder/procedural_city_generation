@@ -11,86 +11,88 @@ from procedural_city_generation.additional_stuff.Singleton import Singleton
 singleton=Singleton("building_generation")
 
 def roof(walls,roofwalls,currentheight,housebool,texture,texture2=None):
-	'''Builds a roof on top of a house, depending on housetype
+	"""Builds a roof on top of a house, depending on housetype
 	Parameters
 	----------
-	- walls  :  
-	- roofwalls   :  
+	TODO
+	- walls  :  procedural_city_generation.building_generation.Walls object with cuts
+	- roofwalls   :  procedural_city_generation.building_generation.Walls object without cuts
 	- currentheight   :
 	- housebool  :  
 	- texture
 	
-	'''
+	"""
 	
 	roofheight=np.random.uniform(singleton.roofheight_min,singleton.roofheight_max)
 
 	if roofwalls.l==4 and housebool:
-		return hausroof(walls,currentheight, roofheight,texture)
-		
+		return houseroof(roofwalls,currentheight, roofheight,texture)
 	else:
-		return kastenroof(walls,roofwalls,kanten,coords,height,height+h,texture,texture2)
+		return kastenroof(walls,currentheight,texture,texture2)
 
-"""
-TODO
-def hausroof(walls, currentheight,roofheight, texture):
-	centerindex=0 if np.diff(walls.walls[0],axis=1)<np.diff(walls.walls[1],axis=1) else 1
+
+def houseroof(walls, currentheight,roofheight, texture):
+	"""Creates a "classic" roof with two triangles and two rectangles. 
+	Used only for houses and assumes that the house has 4 sides.
+	
+	Parameters
+	-----------
+	- walls : procedural_city_generation.building_generation.Walls object
+	- currentheight : height of the top of the building
+	- roofheight : height of the roof itself
+	- texture : procedural_city_generation.building_generation.Texture object
+	
+	Returns
+	-----------
+	- procedural_city_generation.building_generation.Polygon3D object
+	
+	"""
+	#Differentiation: the shorter of the first two walls is to be cut in half
+	if not np.linalg.norm(np.diff(walls.walls[0],axis=0))<np.linalg.norm(np.diff(walls.walls[1],axis=0)):
+		walls=Walls(np.roll(walls.vertices,1,axis=0),walls.l)
 	
 	h_low=np.array([0,0,currentheight])
-	h_high=h+np.array([0,0,roofheight])
+	h_high=h_low+np.array([0,0,roofheight])
 	
-	c1,c2=sum(walls.walls[0+centerindex]/2),sum(walls.walls[2+centerindex]/2)
+	#The gable coordinates
+	c1,c2=sum(walls.walls[0]/2),sum(walls.walls[2]/2)
 	
-	verts=[x for x in walls.vertices]+[c1,c2]
-"""	
+	#Verts are the vertices of the wall and the vertices of the gable
+	verts=[x+h_low for x in walls.vertices]+[c1+h_high,c2+h_high]
+	
+	#Faces are two rectangles and two triangles
+	faces=[(0,1,5,4),(3,2,5,4),(0,3,4),(1,2,5)]
+	return Polygon3D(verts,faces,texture)
 	
 	
-	
-	
-def hausroof(kanten, h, texture):
-	if np.linalg.norm(kanten[0][1]-kanten[0][0])<np.linalg.norm(kanten[1][1]-kanten[1][0]):
-	#kanten[0].laenge<kanten[1].laenge:
-		p1=(kanten[0][1]+kanten[0][0])/2+np.array([0,0,h])
-		p2=(kanten[2][1]+kanten[2][0])/2+np.array([0,0,h])
-		f1=[kanten[0], [kanten[0][1], p1], [p1, kanten[0][0]]]
-		f2=[kanten[2], [kanten[2][1], p2], [p2, kanten[2][0]]]
-		f3=[kanten[1], [kanten[1][1], p2], [p2, p1], [p1, kanten[1][0]]]
-		f4=[kanten[3], [kanten[3][1], p1], [p1, p2], [p2, kanten[3][0]]]
-	else:
-		p1=(kanten[1][1]+kanten[1][0])/2+np.array([0,0,h])
-		p2=(kanten[3][1]+kanten[3][0])/2+np.array([0,0,h])
-		f3=[kanten[0], [kanten[0][1], p1], [p1,p2], [p2, kanten[0][0]]]
-		f4=[kanten[2], [kanten[2][1], p2], [p2,p1], [p1, kanten[2][0]]]	
-		f1=[kanten[1], [kanten[1][1], p1], [p1, kanten[1][0]]]
-		f2=[kanten[3], [kanten[3][1], p2], [p2, kanten[1][0]]]
-	l=[[x[0] for x in f1],[x[0] for x in f2],[x[0] for x in f3], [x[0] for x in f4]]
-	return [Polygon3D(x,range(len(x)),texture) for x in l]
-
-def kastenroof(walls,roofwalls,kanten,coords,height,h,texture,texture2=None):
-	if texture2 is None:
-		texture2=texture
-		
-		
-	kasten=scaletransform_vertex(coords,np.random.uniform(0.5,0.15),sum(coords)/len(coords),random.randint(0,2))
-	for k in kasten:
-		if not pinpoly(kanten,k):
-			return [flatebene(walls,height,texture)]
-	r=buildwalls([[kasten[i-1],kasten[i]] for i in range(len(kasten))],height,h,texture2)
-	r.append(Polygon3D([x+np.array([0,0,h-height]) for x in kasten],range(len(kasten)),texture2))
-	
-	r.append(flatebene(walls,height,texture))
-	return r
+def kastenroof(walls,currentheight,texture,texture2=None):
+	#TODO
+	return Polygon3D(walls.vertices+np.array([0,0,currentheight]),[range(walls.l)],texture)
 
 
 
 
 
-def isleft(kante,point):
+def isleft(walls,point):
 	return ((kante[1][0]-kante[0][0])*(point[1]-kante[0][1]) - (point[0]-kante[0][0]) * (kante[1][1]-kante[0][1]))
 	
-def pinpoly(kanten,point):
+def p_in_poly(kanten,point):
+	"""
+	Returns True if a point is in a "walls" polygon
+	
+	Parameters
+	----------
+	- walls  :  procedural_city_generation.building_generation.walls object
+	- point : np.ndarray with shape (3,)
+	
+	Returns
+	----------
+	- boolean : true if point in polygon, else false
+	"""
 	counter=0
 	
-	for kante in kanten:
+	#TODO
+	for wall in walls.walls:
 		if kante[0][1] <= point[1]:
 			if kante[1][1] > point[1]:
 				if isleft(kante,point) >0:

@@ -94,7 +94,7 @@ def main(polylist):
 			roofwalls=copy(walls)
 			
 			#Creates floorplan
-	#		walls=randomcut(walls)
+			walls=randomcut(walls)
 			
 			#Floor-height is found and the Building is vertically split.
 			#TODO: Constants in some sort of conf file
@@ -131,8 +131,9 @@ def main(polylist):
 						
 					currentheight+=floorheight/10.
 				elif element=='r':
-	#				if ledgefactor==1:
-	#					polygons.extend(roof(walls,roofwalls,currentheight,housebool,rooftexture,texGetter.getTexture("Roof",buildingheight)))
+	
+					if ledgefactor==1:
+						polygons.append(roof(walls,roofwalls,currentheight,housebool,rooftexture,texGetter.getTexture("Roof",buildingheight)))
 					
 					polygons.append(buildwalls(walls,base_h_low,currentheight,walltexture))
 					

@@ -155,7 +155,7 @@ def get_windows(walls,list_of_currentheights,floorheight, windowwidth, windowhei
 			
 			v=wall[1]-wall[0]
 			vn=v/np.linalg.norm(v)
-			h=np.array([0,0,windowheight/2+floorheight/2])
+			h=np.array([0,0,windowheight/2])
 			
 			#Creates a stencil, which, when added to the center point of
 			# a window, is a numpy array with shape 4 describing the 
@@ -168,7 +168,7 @@ def get_windows(walls,list_of_currentheights,floorheight, windowwidth, windowhei
 							])
 			
 			#Stencil for each currentheight in list_of_currentheights
-			stencilarray=np.array([stencil+np.array([0,0,curr_h]) for curr_h in list_of_currentheights])
+			stencilarray=np.array([stencil+np.array([0,0,curr_h+floorheight/2]) for curr_h in list_of_currentheights])
 			
 			#If at least one window plus the distance between two windows fits on this wall
 			n=int(l/(windowwidth+windowdist))
