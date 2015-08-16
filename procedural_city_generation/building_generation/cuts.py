@@ -19,7 +19,7 @@ def randomcut(walls):
 	a1=random.uniform(0,0.4)
 	a2=random.uniform(0,0.4)
 	s=random.randint(0,walls.l-1)
-	return Hcut(walls,a1,a2,s)
+	return Lcut(walls,a1,a2,s)
 	#TODO: Fix
 #	s=random.randint(0,len(walls)-1)
 	if len(walls)==4:
@@ -98,38 +98,17 @@ def KeineAhnung2cut(walls,abstand1,abstand2,side):
 	return walls
 	
 
-def KeineAhnungcut(walls,abstand1,abstand2,side):
-	'''Lcut from two opposing sides'''
-	walls=copy(walls)
-	wall1=walls[side-1]
-	wall2=walls[side]
-	
-	a=wall2[0]
-	v1=wall1[0]-a
-	v2=wall2[1]-a
-	walls[side-1]=[wall1[0] , a+v1*abstand1 , a+v2*abstand2+v1*abstand1]
-	
-	walls[side]=[a+v2*abstand2+v1*abstand1 , a+v2*abstand2 , wall2[1]]
-	walls[side+1]=[wall2[1],wall2[1]+v1*abstand1,wall2[1]+v1*abstand1-v2*abstand2]
-	walls[side+2]=[wall2[1]+v1*abstand1-v2*abstand2,wall2[1]+v1-abstand2*v2,wall1[0]]
-	
-	return walls	
-	
-	
 def Lcut(walls,abstand1,abstand2,side):
-	'''Cuts rectangle into L shape'''
-	walls=copy(walls)
-	wall1=walls[side-1]
-	wall2=walls[side]
+	'''Lcut from two opposing sides'''
 	
-	a=wall2[0]
-	v1=wall1[0]-a
-	v2=wall2[1]-a
-	walls[side-1]=[wall1[0],a+v1*abstand1,a+v2*abstand2+v1*abstand1]
-	walls[side]=[a+v2*abstand2+v1*abstand1,a+v2*abstand2,wall2[1]]
+	verts=walls.vertices
+	v1=(verts[side-2]-verts[side-1])*abstand1
+	v2=(verts[side]-verts[side-1])*abstand2
+	verts=np.insert(verts,side,np.array([verts[side-1]+v1+v2,verts[side-1]+v2]),axis=0)
+	verts[side-1]+=v1
+	return Walls(verts,walls.l+2)
 	
 	
-	return walls
 	
 def Ccut(walls,abstand1,abstand2,side):
 	'''Ccut from one side'''
@@ -171,16 +150,36 @@ def Ycut(walls,abstand1,abstand2,side):
 
 def Hcut(walls,abstand1,abstand2,side):
 	'''Ccut from both sides'''
-	walls=Ccut(walls,abstand1,abstand2/2,side-2)
-	walls=Ccut(walls,abstand1,abstand2/2,side)	
+	walls=Ccut(walls,abstand1,abstand2/2,side)
+	walls=Ccut(walls,abstand1,abstand2/2,side-2)	
 	return walls
 	
+def Ccut2(walls,abstand1,abstand2,side):
+	'''Ccut from one side sides and ccut on each of those sides'''
+	walls=Ccut(walls,abstand1,abstand2/2,side)
+	walls=Ccut(walls,abstand1,abstand2/2,side+4)
+	walls=Ccut(walls,abstand1,abstand2/2,side)	
+	return walls
+
+
+def Hcut2(walls,abstand1,abstand2,side):
+	
+	'''Ccut from one side sides and ccut on each of those sides'''
+	side=side%2
+	walls=Ccut(walls,abstand1,abstand2/2,side)
+	walls=Ccut(walls,abstand1,abstand2/2,side+4)
+	walls=Ccut(walls,abstand1,abstand2/2,side)
+	walls=Ccut(walls,abstand1,abstand2/2,side+14)
+	walls=Ccut(walls,abstand1,abstand2/2,side+18)
+	walls=Ccut(walls,abstand1,abstand2/2,side+14)	
+	return walls
+
 def Xcut(walls,abstand1,abstand2,side):
 	'''Hcut from 2 sides == Ccut from 4 sides'''
 	walls=Ccut(walls,abstand1,abstand2/4,0)
-	walls=Ccut(walls,abstand1,abstand2/4,1)	
-	walls=Ccut(walls,abstand1,abstand2/4,2)
-	walls=Ccut(walls,abstand1,abstand2/4,3)	
+	walls=Ccut(walls,abstand1,abstand2/4,5)	
+	walls=Ccut(walls,abstand1,abstand2/4,10)
+	walls=Ccut(walls,abstand1,abstand2/4,15)	
 
 	return walls
 
