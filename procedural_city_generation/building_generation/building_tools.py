@@ -5,21 +5,21 @@ from copy import copy
 import procedural_city_generation
 from procedural_city_generation.building_generation.Polygon3D import Polygon3D
 
-def walls_from_poly(poly):
+def walls_from_poly(poly2d):
 	"""Creates a wall object from a Polygon3D Object by converting 
 	Poly.vertices from 2D-Arrays to 3D, np.array([x,y])->np.array([x,y,0])
 	
 	Parameters
 	----------
-	- poly : procedural_city_generation.building_generation.Polygon3D object
+	- poly2d : procedural_city_generation.polygons.Polygon2D object
 	
 	Returns
 	----------
 	- procedural_city_generation.building_generation.Walls object
 	
 	"""
-	l=len(poly.vertices)
-	return Walls(np.hstack((np.array(poly.vertices),[[0]]*l)),l)
+	l=len(poly2d.vertices)
+	return Walls(np.hstack((np.array(poly2d.vertices),[[0]]*l)),l)
 
 
 class Walls(object):
@@ -27,10 +27,16 @@ class Walls(object):
 	def __init__(self,verts,l):
 		self.vertices=verts
 		self.l=l
-		
 		self.center=sum(self.vertices)/self.l
-		self.walls=np.array([self.vertices[[i,i-1]] for i in range(self.l)])
+		self.walls=None
 		
+	def getWalls(self):
+		"""
+		Lazily evaluated walls as numpy array with shape (self.l,2,3)
+		"""
+		if self.walls  is None:
+			self.walls= np.array([self.vertices[[i,i-1]] for i in range(self.l)])
+		return self.walls
 
 
 def scale(walls,factor):
@@ -144,7 +150,7 @@ def get_windows(walls,list_of_currentheights,floorheight, windowwidth, windowhei
 	#Counts number of faces
 	nfaces=0
 	
-	for wall in walls.walls:
+	for wall in walls.getWalls():
 		
 		#l = Length of wall
 		l=np.linalg.norm(np.diff(wall,axis=0))
@@ -192,7 +198,6 @@ def get_windows(walls,list_of_currentheights,floorheight, windowwidth, windowhei
 	
 	#Each window has 4 vertices.
 	faces=[range(4*x,4*x+4) for x in xrange(nfaces)]
-		
 	return Polygon3D(verts,faces,texture)
 	
 	
@@ -256,42 +261,26 @@ def verticalsplit(buildingheight,floorheight):
 	returnlist.append('r')
 	return returnlist
 	
-
-
-
-def scaletransform_vertex(coords,factor,center,p,fac2=None):
-	'''To be applied only to Buildings with 4 Sides, before adding any cuts'''
-	#TODO: Broken as fk
-	if len(coords)>4:
-		return scale(coords,factor,center)
-	coords=copy(coords)
-	
-	newcoords=[]
-	v_transform=None
-	for i in range(len(coords)):
-		v=(coords[i]-center)
-		if i==p:
-			v_transform=v*(1-factor)
-		newcoords.append(center+factor*v)
-	
-	if fac2 is None:
-		fac2=np.random.uniform(0,1)
-	return [x+fac2*v_transform for x in newcoords]
 	
 	
-def scalewallstransform_vertex(walls,factor,center,p,fac2=None):
-	'''To be applied only to Buildings with 4 Sides, before adding any cuts'''
-	#TODO: ven brokener than fk
-	walls=copy(walls)
-	newwalls=[]
-	v_transform=None
-	for i in range(len(walls)):
-		v=(walls[i][0]-center)
-		if i==p:
-			v_transform=v*(1-factor)
-		newwalls.append([center+factor*v])
+def scaletransform(walls,scalefactor,transformfactor=None,side=None):
+	""" Scales and transforms a procedural_city_generation.building_generation.Walls object
 	
-	if fac2 is None:
-		fac2=np.random.uniform(0,1)
+	Parameters
+	----------
+	- walls :  procedural_city_generation.building_generation.walls object
+	- scalefactor : the factor to which the walls object is scaled down to
+	- transformfactor (optional): the factor to which the scaled down object will be moved
+	to one of the vertices, i.e. 1 means all the way to the vertex, 
+	0 means the object will stay centered 
+	- side (optional) : the vertex to which the object is transformed towards
 	
-	return [x+fac2*v_transform for x in newwalls]
+	Returns
+	----------
+	- procedural_city_generation.building_generation.walls object
+	"""
+	newwalls=scale(walls,scalefactor)
+	side=side if side else random.randint(0,walls.l-1)
+	transformfactor=transformfactor if transformfactor else random.uniform(0,1)
+	v_rest=(newwalls.vertices[side]-walls.vertices[side])*transformfactor
+	return Walls(newwalls.vertices+v_rest,walls.l)

@@ -76,7 +76,7 @@ def main(polylist):
 			
 			base_h_low,base_h_high= surface.getSurfaceHeight(poly.vertices)
 			
-			#TODO: Fix after lennys fix
+			#TODO: Fix after lennys fix, 
 			#Scales and Translates floor
 			if poly.is_convex:
 				walls = walls_from_poly(poly)
@@ -87,14 +87,24 @@ def main(polylist):
 			
 			#TODO: make abhaengig von height
 			if housebool:
-				walls=scale(walls, random.uniform(singleton.scalefactor_min_house,singleton.scalefactor_max_house))
+				factor=random.uniform(singleton.scalefactor_min_house,singleton.scalefactor_max_house)
+				if not poly.is_convex:
+					walls=scaletransform(walls,factor)
+				
+				else:
+					walls=scale(walls, factor)
 			else:
-				walls=scale(walls, random.uniform(singleton.scalefactor_min_not_house,singleton.scalefactor_max_not_house))
-			
+				factor=random.uniform(singleton.scalefactor_min_not_house,singleton.scalefactor_max_not_house)
+				if not poly.is_convex:
+					walls=scaletransform(walls, factor)
+				
+				else:
+					walls=scale(walls,factor)
+					
 			roofwalls=copy(walls)
 			
 			#Creates floorplan
-			walls=randomcut(walls)
+			walls=randomcut(walls,housebool)
 			
 			#Floor-height is found and the Building is vertically split.
 			#TODO: Constants in some sort of conf file
@@ -133,7 +143,7 @@ def main(polylist):
 				elif element=='r':
 	
 					if ledgefactor==1:
-						polygons.append(roof(walls,roofwalls,currentheight,housebool,rooftexture,texGetter.getTexture("Roof",buildingheight)))
+						polygons.extend(roof(walls,roofwalls,currentheight,housebool,rooftexture,texGetter.getTexture("Roof",buildingheight)))
 					
 					polygons.append(buildwalls(walls,base_h_low,currentheight,walltexture))
 					

@@ -67,9 +67,9 @@ class BuildingHeight(object):
 		y = (center[1]+self.border[1])/(self.border[1]*2)
 		
 		height= self.img[self.img.shape[0]-y*self.img.shape[0]][x*self.img.shape[1]][0]
-		if 0<height<0.4:
+		if 0<height<0.45:
 			height=min(0.035+np.random.uniform(0,1)*np.random.uniform(0,height-0.1),0.6)
-		elif 0.4<height:
+		elif 0.45<height:
 			if height>0.70 and np.random.uniform(0,1)<0.2:
 				height*=np.random.uniform(1.3,2.6)
 			else:
