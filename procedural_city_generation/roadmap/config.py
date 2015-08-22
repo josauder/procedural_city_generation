@@ -29,7 +29,6 @@ class Variables:
 class Global_Lists:
 	class __Global_Lists:
 		def __init__(self):
-
 			self.vertex_list=[]
 			self.vertex_queue=[]
 
@@ -46,17 +45,27 @@ class Global_Lists:
 
 
 def config():
-	'''Makes all necessary setups in order to run the roadmap-generator'''
+	"""
+	Starts the program up with all necessary things. Reads the inputs,
+	creates the Singleton objects properly, sets up the heightmap for later,
+	makes sure all Vertices in the axiom have the correct neighbor. Could
+	need a rework in which the Singletons are unified and not broken as they
+	are now.
+	
+	Returns
+	-------
+	variables : Variables object
+		Singleton with all numeric values which are not to be changed at runtime
+	Global_Lists : Global_Lists object
+		Singleton with the Global Lists which will be altered at runtime
+	"""
 	import json
 	from collections import namedtuple
 	import os
 	
-	#TOOD: Check Path
-	#path=os.getcwd().replace("/roadmap","")
 	import procedural_city_generation
 	path=os.path.dirname(procedural_city_generation.__file__)
 	#Reads roadmap.conf and creates a namedtuple from the json-file format
-	#TODO: switch from JSON format to something more useful which can include comments so the inputs are explained to the user
 	try:
 		with open(path+"/inputs/roadmap.conf",'r') as f:
 			variables_string=f.read()
@@ -82,8 +91,7 @@ def config():
 	variables=Variables(variables)
 	
 	from Vertex import Vertex
-	#Erstellt Vertex-Objekte aus Koordinaten der Axiome
-	#TODO:translate vertex to vertices
+	#Creates Vertex objects from coordinates
 	variables.axiom=[Vertex(np.array([float(x[0]),float(x[1])])) for x in variables.axiom]
 	
 	#Finds the longest possible length of a connection between to vertices
@@ -95,7 +103,6 @@ def config():
 	variables.img,variables.img2=config_functions.input_image_setup(path+"/inputs/rule_pictures/"+variables.rule_image_name, path+"/inputs/density_pictures/"+variables.density_image_name)
 	
 	
-	#TODO:saubermachen
 	variables.zentrum=config_functions.find_radial_centers(variables)
 	variables.zentrum= [np.array([variables.border[0]*((x[1]/variables.img.shape[1])-0.5)*2,variables.border[1]*(((variables.img.shape[0]-x[0])/variables.img.shape[0])-0.5)*2]) for x in variables.zentrum]
 	
@@ -105,17 +112,22 @@ def config():
 		f.write(str(variables.border[0])+" "+str(variables.border[1]))
 	
 	
-	#Erstelt Global_Lists-Objekt mit Dynamischer Vertex- und Wegliste
+	
 	from copy import copy
 	global_lists=Global_Lists()
 	global_lists.vertex_list=copy(variables.axiom)
 	global_lists.vertex_queue=[]
 	global_lists.coordsliste=[x.coords for x in global_lists.vertex_list]
 	
-	#Setzt die Nachbarn im Axiom richtig
-	#TODO:translate
-	def setNachbarn(vertex):
-		'''Setzt für jeden vertex im Axiom den richtigen Nachbarn'''
+	
+	def setNeighbours(vertex):
+		""" Correctly Sets up the neighbors for a vertex
+		
+		Parameters
+		----------
+		vertex : vertex Object
+		"""
+		
 		d=np.inf
 		neighbour=None
 		for v in variables.axiom:
@@ -127,7 +139,7 @@ def config():
 		vertex.neighbours=[neighbour]
 	
 	for k in variables.axiom:
-		setNachbarn(k)
+		setNeighbours(k)
 		
 	from scipy.spatial import cKDTree
 	global_lists.tree=cKDTree(global_lists.coordsliste, leafsize=160)

@@ -10,10 +10,10 @@ def merge_polygons(polygons,textures):
 	
 	Parameters
 	-----------
-	- polygons\t:\tlist<procedural_city_generation.polygons.Polygon2D> 
-	\t\t\tList of 2D polygons to be built on
-	- textures\t:\tlist<procedural_city_generation.building_generation.Texture>
-	\t\t\tList of textures in use
+	polygons : list<procedural_city_generation.polygons.Polygon3D> 
+		List of 3D polygons to be built in blender
+	textures : list<procedural_city_generation.building_generation.Texture>
+		List of textures in use
 	"""
 	print "Merging Polygon3Ds"
 	
@@ -77,9 +77,13 @@ class Merger(object):
 		"""merges polygons with same Texture
 		Parameters
 		----------
-		- poly\t:\tprocedural_city_generation.building_generation.Polygon3D Object to be merged to this Merger
+		poly : procedural_city_generation.building_generation.Polygon3D Object 
+			Polygon object to be merged to this Merger
 		
-		Example:
+		
+		Example
+		-------
+		::
 		>>>anotherPoly.verts
 		[(0,0,0),(0,1,0),(1,1,0)]
 		>>>anotherPoly.faces

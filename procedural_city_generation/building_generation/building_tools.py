@@ -6,16 +6,17 @@ import procedural_city_generation
 from procedural_city_generation.building_generation.Polygon3D import Polygon3D
 
 def walls_from_poly(poly2d):
-	"""Creates a wall object from a Polygon3D Object by converting 
+	"""
+	Creates a wall object from a Polygon3D Object by converting 
 	Poly.vertices from 2D-Arrays to 3D, np.array([x,y])->np.array([x,y,0])
 	
 	Parameters
 	----------
-	- poly2d : procedural_city_generation.polygons.Polygon2D object
+	poly2d : procedural_city_generation.polygons.Polygon2D object
 	
 	Returns
-	----------
-	- procedural_city_generation.building_generation.Walls object
+	-------
+	walls : procedural_city_generation.building_generation.Walls object
 	
 	"""
 	l=len(poly2d.vertices)
@@ -23,8 +24,17 @@ def walls_from_poly(poly2d):
 
 
 class Walls(object):
-		
+	"""
+	Walls object which has vertices saved as numpy arrays
+	"""
 	def __init__(self,verts,l):
+		"""
+		Parameters
+		----------
+		verts: numpy.ndarray(l,3)
+		l: int
+			shape[0] of verts
+		"""
 		self.vertices=verts
 		self.l=l
 		self.center=sum(self.vertices)/self.l
@@ -33,6 +43,10 @@ class Walls(object):
 	def getWalls(self):
 		"""
 		Lazily evaluated walls as numpy array with shape (self.l,2,3)
+		
+		Returns
+		-------
+		np.ndarray(l,3,2)
 		"""
 		if self.walls  is None:
 			self.walls= np.array([self.vertices[[i,i-1]] for i in range(self.l)])
@@ -40,29 +54,36 @@ class Walls(object):
 
 
 def scale(walls,factor):
-	"""Scales a walls object by a factor
+	"""
+	Scales a walls object by a factor
+	
 	Parameters
 	----------
-	- walls  :  procedural_city_generation.building_generation.Walls object
-	- factor :  number to be scaled to. E.g. 2 doubles the size, 0.5 halves the size
+	walls  :  procedural_city_generation.building_generation.Walls object
+	factor :  float
+		Number to be scaled to. E.g. 2 doubles the size, 0.5 halves the size
 	
 	Returns
-	----------
-	- procedural_city_generation.building_generation.Walls object
+	-------
+	walls : procedural_city_generation.building_generation.Walls object
 	"""
 	return Walls(walls.center+(walls.vertices-walls.center)*factor,walls.l)
 
 
 def flat_polygon(walls,height,texture):
-	"""Creates a flat Polygon with the shape of the walls at the given height
+	"""
+	Creates a flat Polygon with the shape of the walls at the given height
+	
 	Parameters
 	----------
-	- walls  :  procedural_city_generation.building_generation.Walls object
-	- height : z coordinate of the polygon to be created
-	- texture : procedural_city_generation.building_generation.Texture object
+	walls : procedural_city_generation.building_generation.Walls object
+	height : float
+		Z coordinate of the polygon to be created
+	texture : procedural_city_generation.building_generation.Texture object
+	
 	Returns
-	----------
-	- procedural_city_generation.building_generation.Polygon3D object
+	-------
+	procedural_city_generation.building_generation.Polygon3D object
 
 	"""
 	return Polygon3D(walls.vertices+np.array([0,0,height]),[range(walls.l)],texture)
@@ -70,18 +91,22 @@ def flat_polygon(walls,height,texture):
 
 def buildwalls(walls,bottom,top, texture):
 	"""Creates one walls Polygon object with shared vertices in the shape of the walls object
+	
 	Parameters
 	----------
-	- walls  :  procedural_city_generation.building_generation.Walls object
-	- bottom : float,z coordinate of the bottom of the walls
-	- top : float,z coordinate of the top of the walls
-	- texture : procedural_city_generation.building_generation.Texture object
+	walls  :  procedural_city_generation.building_generation.Walls object
+	bottom : float
+		Z coordinate of the bottom of the walls
+	top : float
+		Z coordinate of the top of the walls
+	texture : procedural_city_generation.building_generation.Texture object
+	
 	Returns
-	----------
-	- procedural_city_generation.building_generation.Polygon3D object
+	-------
+	procedural_city_generation.building_generation.Polygon3D object
 	
 	Example
-	----------
+	-------
 	>>>w=Walls([[0,0,0],[0,1,0],[1,1,0]],3)
 	>>>p= buildwalls(  w , 1, 2, some_tex)
 	>>>p.verts
@@ -97,16 +122,21 @@ def buildwalls(walls,bottom,top, texture):
 
 
 def buildledge(walls,bottom,top,texture):
-	"""Creates one ledge Polygon object with shared vertices in the shape of the walls object
+	"""
+	Creates one ledge Polygon object with shared vertices in the shape of the walls object
+	
 	Parameters
 	----------
-	- walls  :  procedural_city_generation.building_generation.Walls object
-	- bottom : float,z coordinate of the bottom of the walls
-	- top : float,z coordinate of the top of the walls
-	- texture : procedural_city_generation.building_generation.Texture object
+	walls  :  procedural_city_generation.building_generation.Walls object
+	bottom : float
+			z coordinate of the bottom of the walls
+	top : float
+			z coordinate of the top of the walls
+	texture : procedural_city_generation.building_generation.Texture object
+	
 	Returns
-	----------
-	- procedural_city_generation.building_generation.Polygon3D object
+	-------
+	procedural_city_generation.building_generation.Polygon3D object
 	
 	Example
 	----------
@@ -129,17 +159,22 @@ def get_windows(walls,list_of_currentheights,floorheight, windowwidth, windowhei
 	
 	Parameters
 	----------
-	- walls  :  procedural_city_generation.building_generation.Walls Object
-	- list_of_currentheights  :  list<float> which has one entry for each z-coordinate of a row of windows to be created. T
-	                             This always means the 'bottom' of each floor.
-	- floorheight  :  floorheight of the building, used to calculate center of each floor where windows are to be built
-	- windowwidth : width of each window
-	- windowheight : height of each window
-	- windowdist : distance between two windows if more than one window fits on the wall
+	walls  : procedural_city_generation.building_generation.Walls Object
+	list_of_currentheights : list<float> 
+		Which has one entry for each z-coordinate of a row of windows to be created.
+		This always means the 'bottom' of each floor.
+	floorheight  :  float
+		Floorheight of the building, used to calculate center of each floor where windows are to be built
+	windowwidth : float
+		Width of each window
+	windowheight : float
+		Height of each window
+	windowdist : float
+		Distance between two windows if more than one window fits on the wall
 	
 	Returns:
 	--------
-	- procedural_city_generation.building_generation.Polygon3D object with shared vertices
+	procedural_city_generation.building_generation.Polygon3D object with shared vertices
 	"""
 	
 	nc=len(list_of_currentheights)
@@ -202,21 +237,25 @@ def get_windows(walls,list_of_currentheights,floorheight, windowwidth, windowhei
 	
 	
 def verticalsplit(buildingheight,floorheight):
-	'''Splits the Building vertically:
+	"""
+	Splits the Building vertically.
 	
 	Parameters
 	----------
-	- buildingheight  :  height of the building
-	- floorheight  :  height of each floor
+	buildingheight  : float
+		Height of the building
+	floorheight  :  float
+		Height of each floor
 	
 	Returns
-	----------
-	- list<char>  :  Each character stands for one "building element" where: 
+	-------
+	list<char>
+		Each character stands for one "building element" where: 
 		l=ledge
 		f=floor
 		b=base (Erdgeschoss)
 		r=roof
-	'''
+	"""
 	
 	#List of chars to be returned. Starts with base
 	returnlist=['b']
@@ -264,20 +303,24 @@ def verticalsplit(buildingheight,floorheight):
 	
 	
 def scaletransform(walls,scalefactor,transformfactor=None,side=None):
-	""" Scales and transforms a procedural_city_generation.building_generation.Walls object
+	""" 
+	Scales and transforms a procedural_city_generation.building_generation.Walls object
 	
 	Parameters
 	----------
-	- walls :  procedural_city_generation.building_generation.walls object
-	- scalefactor : the factor to which the walls object is scaled down to
-	- transformfactor (optional): the factor to which the scaled down object will be moved
-	to one of the vertices, i.e. 1 means all the way to the vertex, 
-	0 means the object will stay centered 
-	- side (optional) : the vertex to which the object is transformed towards
+	walls :  procedural_city_generation.building_generation.walls object
+	scalefactor : float
+		The factor to which the walls object is scaled down to
+	transformfactor (optional) : float
+		The factor to which the scaled down object will be moved
+		to one of the vertices, i.e. 1 means all the way to the vertex, 
+		0 means the object will stay centered 
+	side (optional) : int
+		The vertex to which the object is transformed towards
 	
 	Returns
-	----------
-	- procedural_city_generation.building_generation.walls object
+	-------
+	procedural_city_generation.building_generation.walls object
 	"""
 	newwalls=scale(walls,scalefactor)
 	side=side if side else random.randint(0,walls.l-1)

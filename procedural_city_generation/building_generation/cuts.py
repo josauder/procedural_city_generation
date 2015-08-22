@@ -1,3 +1,7 @@
+"""
+Created on 2015.08.17
+@author: Jonathan Sauder - jsauder@campus.tu-berlin.de
+"""
 
 from __future__ import division
 import random
@@ -15,26 +19,24 @@ def randomcut(walls,housebool):
 	"""
 	Chooses a Cut for the creation of the floorplan from all available cuts. 
 	Every cut functions by adding/replacing values in the numpy array of
-	the walls' vertices. The elementary cuts are:
-	==================================================
-	- Ccut: 
-		------------	==>		----+	+----
-									|	|
-									+---+
-									
-	==================================================
-	- Lcut:	
-		--------+		==>		----+	
-				|					|	
-				|					+---+
-				|						|
-				
+	the walls' vertices. There are two main cuts. 
 	All other cuts are a combination of these two cuts.
-	
+	The elementary cuts are::
+		Ccut
+		------------        ----+   +----	
+		               ==>      |   |		
+		                        +---+		
+		Lcut
+		--------+           ----+		
+		        |     ==>       |		
+		        |               +---+	
+		        |                   |	
+		
 	Parameters
 	----------
 	- walls : procedural_city_generation.building_generation.walls object
-	- housebool : boolean value showing if a building is a house or not
+	- housebool : boolean 
+		Value showing if a building is a house or not
 	
 	Returns
 	----------
@@ -86,24 +88,28 @@ def randomcut(walls,housebool):
 	
 def Zcut(walls,dist1,dist2,side):
 	"""
-	- Zcut: 
-		+-----------+				+-------+
-		|			|				|		|
-		|			|	==>		+---+		|
-		|			|			|		+---+
-		|			|			|		|
-		+-----------+			+-------+
+	Cuts a four-sided walls object as follows:
+	:: 
+	    +-----------+               +-------+
+	    |           |               |       |
+	    |           |   ==>     +---+       |
+	    |           |           |       +---+
+	    |           |           |       |
+	    +-----------+           +-------+
 	
 	Parameters
 	----------
-	- walls : procedural_city_generation.building_generation.walls object
-	- dist1 : float determining the length of one of the two vectors of the cut
-	- dist2 : float determining the length of one of the two vectors of the cut
-	- side  : the pair of sides of the building which will be cut
+	walls : procedural_city_generation.building_generation.walls object
+	dist1 : float 
+		Determines the length of one of the two vectors of the cut
+	dist2 : float
+		Determines the length of one of the two vectors of the cut
+	side  : int
+		The pair of sides of the building which will be cut
 	
 	Returns
-	----------
-	- procedural_city_generation.building_generation.walls object
+	-------
+	procedural_city_generation.building_generation.walls object
 	"""
 	side=(side%2)+2
 	v2=(walls.vertices[side]-walls.vertices[side-1])*dist2
@@ -117,24 +123,28 @@ def Zcut(walls,dist1,dist2,side):
 
 def Lcut(walls,dist1,dist2,side,v1=None,v2=None):
 	"""
-	- Lcut: 
-		+-----------+			+-----------+
-		|			|			|			|
-		|			|	==>		|			|
-		|			|			|		+---+
-		|			|			|		|
-		+-----------+			+-------+
+	Cuts a four-sided walls object as follows:
+	::  
+	    +-----------+           +-----------+
+	    |           |           |           |
+	    |           |   ==>     |           |
+	    |           |           |       +---+
+	    |           |           |       |
+	    +-----------+           +-------+
 	
 	Parameters
 	----------
-	- walls : procedural_city_generation.building_generation.walls object
-	- dist1 : float determining the length of one of the two vectors of the cut
-	- dist2 : float determining the length of one of the two vectors of the cut
-	- side  : the pair of sides of the building which will be cut
+	walls : procedural_city_generation.building_generation.walls object
+	dist1 : float 
+		Determines the length of one of the two vectors of the cut
+	dist2 : float 
+		Determines the length of one of the two vectors of the cut
+	side  : int
+		The pair of sides of the building which will be cut
 	
 	Returns
-	----------
-	- procedural_city_generation.building_generation.walls object
+	-------
+	procedural_city_generation.building_generation.walls object
 	"""
 	verts=walls.vertices
 	v1=v1 if (v1 is not None) else (verts[side-2]-verts[side-1])*dist1
@@ -147,24 +157,28 @@ def Lcut(walls,dist1,dist2,side,v1=None,v2=None):
 	
 def Ccut(walls,dist1,dist2,side):
 	"""
-	- Ccut: 
-		+-----------+			+---+	+---+
-		|			|			|	|	|	|
-		|			|	==>		|	+---+	|
-		|			|			|			|
-		|			|			|			|
-		+-----------+			+-----------+
-	
+	Cuts a four-sided walls-object as follows:
+	::
+		+-----------+           +---+   +---+
+		|           |           |   |   |   |
+		|           |   ==>     |   +---+   |
+		|           |           |           |
+		|           |           |           |
+		+-----------+           +-----------+
+		
 	Parameters
 	----------
-	- walls : procedural_city_generation.building_generation.walls object
-	- dist1 : float determining the length of one of the two vectors of the cut
-	- dist2 : float determining the length of one of the two vectors of the cut
-	- side  : the pair of sides of the building which will be cut
+	walls : procedural_city_generation.building_generation.walls object
+	dist1 : float 
+		Determines the length of one of the two vectors of the cut
+	dist2 : float 
+		Determines the length of one of the two vectors of the cut
+	side  : int
+		The pair of sides of the building which will be cut
 	
 	Returns
-	----------
-	- procedural_city_generation.building_generation.walls object
+	-------
+	procedural_city_generation.building_generation.walls object
 	"""
 	if dist2<dist1:
 		dist1,dist2=dist2,dist1
@@ -181,24 +195,28 @@ def Ccut(walls,dist1,dist2,side):
 	
 def Tcut(walls,dist1,dist2,side):
 	"""
-	- Tcut: 
-		+-----------+				+-- +
-		|			|				|	|
-		|			|	==>		+---+	+---+
-		|			|			|			|
-		|			|			|			|
-		+-----------+			+-----------+
+	Cuts a four-sided walls object as follows:
+	:: 
+	    +-----------+               +---+
+	    |           |               |   |
+	    |           |   ==>     +---+   +---+
+	    |           |           |           |
+	    |           |           |           |
+	    +-----------+           +-----------+
 	
 	Parameters
 	----------
-	- walls : procedural_city_generation.building_generation.walls object
-	- dist1 : float determining the length of one of the two vectors of the cut
-	- dist2 : float determining the length of one of the two vectors of the cut
-	- side  : the pair of sides of the building which will be cut
+	walls : procedural_city_generation.building_generation.walls object
+	dist1 : float 
+		Determines the length of one of the two vectors of the cut
+	dist2 : 
+		float Determines the length of one of the two vectors of the cut
+	side  : int
+		The pair of sides of the building which will be cut
 	
 	Returns
-	----------
-	- procedural_city_generation.building_generation.walls object
+	-------
+	procedural_city_generation.building_generation.walls object
 	"""
 	side=(side%2)+2
 	v2=(walls.vertices[side]-walls.vertices[side-1])
@@ -209,56 +227,67 @@ def Tcut(walls,dist1,dist2,side):
 	
 def Ycut(walls,dist1,dist2,side):
 	"""
-	- Ycut: 
-		+-----------+				+-- +
-		|			|				|	|
-		|			|	==>		+---+	+---+
-		|			|			|			|
-		|			|			|	+---+	|
-		+-----------+			+---+	+---+
+	Cuts a four-sided walls object as follows:
+	:: 
+	    +-----------+               +---+
+	    |           |               |   |
+	    |           |   ==>     +---+   +---+
+	    |           |           |           |
+	    |           |           |   +---+   |
+	    +-----------+           +---+   +---+
 	
 	Parameters
 	----------
-	- walls : procedural_city_generation.building_generation.walls object
-	- dist1 : float determining the length of one of the two vectors of the cut
-	- dist2 : float determining the length of one of the two vectors of the cut
-	- side  : the pair of sides of the building which will be cut
+	walls : procedural_city_generation.building_generation.walls object
+	dist1 : float 
+		Determines the length of one of the two vectors of the cut
+	dist2 : float 
+		Determines the length of one of the two vectors of the cut
+	side  : int
+		The pair of sides of the building which will be cut
 	
 	Returns
-	----------
-	- procedural_city_generation.building_generation.walls object
+	-------
+	procedural_city_generation.building_generation.walls object
 	"""
 	walls=Tcut(walls,dist1/2,dist2/2,side)
 	walls=Ccut(walls,dist1/2,dist2/2,side-3)
 	return walls
 
 def Hcut(walls,dist1,dist2,side):
-	"""
-	- Hcut: 
-		+-----------+			+---+	+---+
-		|			|			|	+---+	|
-		|			|	==>		|			|
-		|			|			|			|
-		|			|			|	+---+	|
-		+-----------+			+---+	+---+
+	"""	
+	Cuts a four-sided walls object as follows:
+	:: 
+	    +-----------+           +---+   +---+
+	    |           |           |   |   |   |
+	    |           |   ==>     |   +---+   |
+	    |           |           |   +---+   |
+	    |           |           |   |   |   |
+	    +-----------+           +---+   +---+
 	
 	Parameters
 	----------
-	- walls : procedural_city_generation.building_generation.walls object
-	- dist1 : float determining the length of one of the two vectors of the cut
-	- dist2 : float determining the length of one of the two vectors of the cut
-	- side  : the pair of sides of the building which will be cut
+	walls : procedural_city_generation.building_generation.walls object
+	dist1 : float 
+		Determines the length of one of the two vectors of the cut
+	dist2 : float 
+		Determines the length of one of the two vectors of the cut
+	side  : int
+		The pair of sides of the building which will be cut
 	
 	Returns
-	----------
-	- procedural_city_generation.building_generation.walls object
+	-------
+	procedural_city_generation.building_generation.walls object
 	"""
+	
 	walls=Ccut(walls,dist1,dist2/2,side)
 	walls=Ccut(walls,dist1,dist2/2,side-2)	
 	return walls
 	
 def Ccut2(walls,dist1,dist2,side):
-	'''Ccut from one side sides and ccut on each of those sides'''
+	""" 
+	A (n=2) recursive Ccut
+	"""
 	walls=Ccut(walls,dist1,dist2/2,side)
 	walls=Ccut(walls,dist1,dist2/2,side+4)
 	walls=Ccut(walls,dist1,dist2/2,side)	
@@ -266,7 +295,10 @@ def Ccut2(walls,dist1,dist2,side):
 
 
 def Hcut2(walls,dist1,dist2,side):
-	'''Ccut from one side sides and ccut on each of those sides'''
+	""" 
+	A (n=2) recursive Hcut
+	"""
+
 	side=side%2
 	walls=Ccut(walls,dist1,dist2/2,side)
 	walls=Ccut(walls,dist1,dist2/2,side+4)
@@ -278,24 +310,28 @@ def Hcut2(walls,dist1,dist2,side):
 
 def Xcut(walls,dist1,dist2,side):
 	"""
-	- Xcut: 
-		+-----------+			+---+	+---+
-		|			|			|	+---+	|
-		|			|	==>		+-+		  +-+
-		|			|			+-+		  +-+
-		|			|			|	+---+	|
-		+-----------+			+---+	+---+
+	Cuts a four-sided walls object as follows:
+	:: 
+		+-----------+           +---+   +---+
+		|           |           |   +---+   |
+		|           |   ==>     +-+       +-+
+		|           |           +-+       +-+
+		|           |           |   +---+   |
+		+-----------+           +---+   +---+
 	
 	Parameters
 	----------
-	- walls : procedural_city_generation.building_generation.walls object
-	- dist1 : float determining the length of one of the two vectors of the cut
-	- dist2 : float determining the length of one of the two vectors of the cut
-	- side  : the pair of sides of the building which will be cut
+	walls : procedural_city_generation.building_generation.walls object
+	dist1 : float 
+		Determines the length of one of the two vectors of the cut
+	dist2 : float 
+		Determines the length of one of the two vectors of the cut
+	side  : int
+		The pair of sides of the building which will be cut
 	
 	Returns
-	----------
-	- procedural_city_generation.building_generation.walls object
+	-------
+	procedural_city_generation.building_generation.walls object
 	"""
 	walls=Ccut(walls,dist1,dist2/4,0)
 	walls=Ccut(walls,dist1,dist2/4,5)	

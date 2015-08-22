@@ -1,41 +1,42 @@
 # -*- coding: utf-8 -*-
 from __future__ import division
-if __name__ == '__main__':
-	import main
-	main.main()
-
 from procedural_city_generation.roadmap.getSuggestion import getSuggestion
 from procedural_city_generation.roadmap.check import check
 from config import Global_Lists, Variables
 
-Global_Lists = Global_Lists()
-variables = Variables()
+try:
+	#In try-except because sphinx fails to document otherwise
+	Global_Lists = Global_Lists()
+	variables = Variables()
+except:
+	pass
 
 
 def iteration(front):
+	"""
+	Gets Called in the mainloop.
+	Manages the front and newfront and the queue
 	
-	'''Wird in einer Schleife aufgerufen'''
-	neufront=[]
+	Parameters
+	----------
+	front : list<Vertex>
+	
+	Returns
+	-------
+	newfront : list<Vertex>
+	
+	"""
+	newfront=[]
 	
 	for vertex in front:
 		for suggested_vertex in getSuggestion(vertex):
+			newfront=check(suggested_vertex,vertex,newfront)
 			
-			neufront=check(suggested_vertex,vertex,neufront)
-			
-	#Erhöht Indizes von allen Elementen in der Warteliste um 1
+	#Increments index of each element in queue
 	Global_Lists.vertex_queue=[[x[0],x[1]+1] for x in Global_Lists.vertex_queue]
 	
+	#Finds elements in queue which are to be added into the newfront
 	while Global_Lists.vertex_queue!=[] and Global_Lists.vertex_queue[0][1]>=variables.minor_road_delay:
-		neufront.append(Global_Lists.vertex_queue.pop(0)[0])
+		newfront.append(Global_Lists.vertex_queue.pop(0)[0])
 	
-	return neufront
-
-
-
-
-
-
-
-
-
-
+	return newfront

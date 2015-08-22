@@ -12,15 +12,26 @@ singleton=Singleton("building_generation")
 
 def roof(walls,roofwalls,currentheight,housebool,texture,texture2=None):
 	"""Builds a roof on top of a house, depending on housetype
+	
 	Parameters
 	----------
-	TODO
-	- walls  :  procedural_city_generation.building_generation.Walls object with cuts
-	- roofwalls   :  procedural_city_generation.building_generation.Walls object without cuts
-	- currentheight   :
-	- housebool  :  
-	- texture
+	walls  :  procedural_city_generation.building_generation.Walls object 
+		Walls object with cuts
+	roofwalls   :  procedural_city_generation.building_generation.Walls object 
+		Walls object prior to cuts
+	currentheight : float
+		Current height, Z coordinate of the base of the roof-Polygon
+	housebool : boolean
+		Decides if the building is a house or not.
+	texture : procedural_citY_generation.building_generation.Texture object
+		Texture of the roof
+	texture2 (optional) : procedural_citY_generation.building_generation.Texture object
+		Texture of other elements (such as a box in boxroof) on the roof.
+		If not specified, will default to texture
 	
+	Returns
+	-------
+	procedural_city_generation.building_generation.Polygon3D object
 	"""
 	
 	roofheight=np.random.uniform(singleton.roofheight_min,singleton.roofheight_max)
@@ -37,15 +48,16 @@ def houseroof(walls, currentheight,roofheight, texture):
 	
 	Parameters
 	-----------
-	- walls : procedural_city_generation.building_generation.Walls object
-	- currentheight : height of the top of the building
-	- roofheight : height of the roof itself
-	- texture : procedural_city_generation.building_generation.Texture object
+	walls : procedural_city_generation.building_generation.Walls object
+	currentheight : float
+		Current height, Z coordinate of the base of the roof
+	roofheight : float
+		Height of the roof itself
+	texture : procedural_city_generation.building_generation.Texture object
 	
 	Returns
-	-----------
-	- list<procedural_city_generation.building_generation.Polygon3D object>
-	
+	-------
+	list<procedural_city_generation.building_generation.Polygon3D object>
 	"""
 	#Differentiation: the shorter of the first two walls is to be cut in half
 	if not np.linalg.norm(np.diff(walls.getWalls()[0],axis=0))<np.linalg.norm(np.diff(walls.getWalls()[1],axis=0)):
@@ -71,13 +83,18 @@ def kastenroof(walls,roofwalls,currentheight,roofheight, texture,texture2=None):
 	
 	Parameters
 	-----------
-	- walls : procedural_city_generation.building_generation.Walls object
-	- roofwalls : procedural_city_generation.building_generation.Walls object prior to cuts
-	- currentheight : height of the top of the building
-	- roofheight : height of the roof itself
-	- texture : procedural_city_generation.building_generation.Texture object
-	- texture2 (optional): procedural_city_generation.building_generation.Texture object
-	
+	walls : procedural_city_generation.building_generation.Walls object
+		Walls object after cuts
+	roofwalls : procedural_city_generation.building_generation.Walls object 
+		Walls object prior to cuts
+	currentheight : float
+		Current height, Z coordinate of the base of the roof
+	roofheight : float
+		Height of the roof itself
+	texture : procedural_city_generation.building_generation.Texture object
+	texture2 (optional): procedural_city_generation.building_generation.Texture object
+		Will default to texture if not specified
+		
 	Returns
 	-----------
 	- list<procedural_city_generation.building_generation.Polygon3D object>
@@ -115,32 +132,34 @@ def kastenroof(walls,roofwalls,currentheight,roofheight, texture,texture2=None):
 
 def isleft(wall,point):
 	"""Helper function for p_in_poly
-	Taken from: http://geomalgorithms.com/a03-_inclusion.html, all credits to Dan Sunday
+	Taken from: http://geomalgorithms.com/a03-_inclusion.html, all credits to Dan Sunday.
+	
 	
 	Paramaters
 	----------
-	- wall : numpy-array with shape 3,2
-	- point : numpy-array with shape 3,1
+	wall : numpy-array with shape 3,2
+	point : numpy-array with shape 3,1
 	
 	Returns
-	----------
-	- float
+	-------
+	float
 	"""
 	return ((wall[1][0]-wall[0][0])*(point[1]-wall[0][1]) - (point[0]-wall[0][0]) * (wall[1][1]-wall[0][1]))
 	
 def p_in_poly(walls,point):
 	"""
-	Returns True if a point is in a "walls" polygon
-	Taken from: http://geomalgorithms.com/a03-_inclusion.html, all credits to Dan Sunday
+	Returns True if a point is in a "walls" polygon, eles False
+	Taken from: http://geomalgorithms.com/a03-_inclusion.html, all credits to Dan Sunday.
+	
 	
 	Parameters
 	----------
-	- walls  :  procedural_city_generation.building_generation.walls object
-	- point : np.ndarray with shape (3,)
+	walls  :  procedural_city_generation.building_generation.walls object
+	point : np.ndarray with shape (3,)
 	
 	Returns
 	----------
-	- boolean : true if point in polygon, else false
+	boolean
 	"""
 	counter=0
 	

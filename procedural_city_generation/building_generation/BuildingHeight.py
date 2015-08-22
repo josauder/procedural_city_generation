@@ -6,7 +6,9 @@ import procedural_city_generation
 
 
 class BuildingHeight(object):
-	
+	"""
+	Manages and distributes building-heights for buildings 
+	"""
 	def __init__(self):
 		
 		print "Population density image is being set up"
@@ -19,6 +21,19 @@ class BuildingHeight(object):
 	
 	
 	def diffusion(self,arr, d):
+		""" Simulates diffusion. Taken from Stackoverflow user [aizquier]
+		(https://stackoverflow.com/questions/8102781/efficiently-doing-diffusion-on-a-2d-map-in-python)
+		
+		Parameters
+		----------
+		arr : np.ndarray(m,n)
+			Array representing the grayscale image to be diffused
+		d : float
+		
+		Returns
+		-------
+		np.ndarray(m,n)
+		"""
 		contrib = (arr * d)
 		w = contrib / 8.0
 		r = arr - contrib
@@ -35,11 +50,24 @@ class BuildingHeight(object):
 
 
 	def setupimage(self,path):
+		"""
+		Sets up the image for the building height data
+		As of now, always takes a diffused version of the population density image
 		
+		Parameters
+		----------
+		path : String
+			Path to the population density image
+		
+		Returns
+		-------
+		img : np.ndarray(m,n,3)
+		
+		"""
 		import matplotlib.image as mpimg
 		
 		#TODO: make diffused an option, add constants to config file
-		#TODO: FIX
+		#TODO: FIX. When fixed, change docstring
 		img= mpimg.imread(path+"/temp/diffused.png")
 		with open(path+"/temp/isdiffused.txt",'r') as f:
 			diffused_bool=f.read()
@@ -61,6 +89,19 @@ class BuildingHeight(object):
 		
 		
 	def getBuildingHeight(self,center):
+		"""
+		Gets buildingheight for a building 
+		
+		Parameters
+		----------
+		center : numpy.ndarray(2,1)
+			xy-coordinates of the center of the building to get buildingheight for
+		
+		Returns
+		-------
+		float
+		
+		"""
 		#TODO: Export numbers to some sort of constant-singleton)
 		
 		x = (center[0]+self.border[0])/(self.border[0]*2)

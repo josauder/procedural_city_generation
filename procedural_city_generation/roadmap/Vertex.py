@@ -2,7 +2,7 @@ import matplotlib.pyplot as plt
 from config import Variables
 plotbool=False
 try:
-	
+	#TODO: Fix structure
 	#Try except cause otherwise jsontools wont work because it tries to initialize variables
 	if Variables().plot==1:
 		plotbool=True
@@ -38,7 +38,6 @@ class Vertex(object):
 			other.neighbours.append(self)
 
 		if plotbool:
-#		if True:
 			col='black'
 			width=3
 			if self.minor_road or other.minor_road:

@@ -5,13 +5,19 @@ import json
 
 class Texture(object):
 	"""Texture Object
+	
 	Parameters
 	----------
-	- name\t:\tFull name of image of texture
-	- scale\t:\tHow many times the texture is to be scaled down. The larger the number the smaller the texture
-	- minP\t:\tMinimum int between 0 and 100 so this texture is considered
-	- maxP\t:\tMaximum int between 0 and 100 so this texture is considered
-	- shrinkwrap\t:\t boolean describing whether Polygon3Ds with this texture will be projected onto surface.
+	name : String
+		Full name of image of texture
+	scale : float
+		How many times the texture is to be scaled down. The larger the number the smaller the texture
+	minP : float
+		Minimum int between 0 and 100 so this texture is considered
+	maxP : float
+		Maximum int between 0 and 100 so this texture is considered
+	shrinkwrap (optional): boolean 
+		Describes whether Polygon3Ds with this texture will be projected onto surface.
 	"""
 	def __init__(self,name,scale,minP,maxP,shrinkwrap=False ,index=0):
 		
@@ -29,14 +35,15 @@ def updateTextures():
 	
 	Parameters
 	----------
-	- None
+	None
 	
 	Returns
-	----------
-	- list<procedural_city_generation.building_generation.Texture>
+	-------
+	List<procedural_city_generation.building_generation.Texture>
 	
 	Example
-	----------
+	--------
+	::
 	>>>updateTextures()
 	["Tex_Roof03.jpeg","Tex_Grass01.jpg","Tex_Road01.png"]	
 	"""
@@ -62,9 +69,11 @@ def updateTextures():
 
 class textureGetter(object):
 	"""Gets initiated with a list of textures, used for chosing a random texture for a specific buildingHeight
+	
 	Parameters
 	----------
-	- textures : list of procedural_city_generation.visualization.texture objects"""
+	textures : list of procedural_city_generation.visualization.texture objects
+	"""
 	
 	def __init__(self, textures):
 		self.textures=textures
@@ -74,15 +83,18 @@ class textureGetter(object):
 		
 		Parameters
 		----------
-		- name \t:\tSubstring which has to be included in returned texture
-		- p\t:\tInteger between 1 and 100, 100fold of the buildingheight in meters.
+		name : String
+			Substring which has to be included in returned texture
+		p : int
+			Integer between 1 and 100, 100fold of the buildingheight in meters.
 		
 		Returns
-		----------
-		- procedural_city_generation.building_generation.Texture object
+		-------
+		procedural_city_generation.building_generation.Texture object
 		
 		Example
-		----------
+		-------
+		::
 		>>>textureGetter.getTexture("Roof",40)
 		Tex_Roof03.jpeg
 		"""

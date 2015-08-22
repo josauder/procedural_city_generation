@@ -4,10 +4,15 @@ import random
 
 from procedural_city_generation.roadmap.Vertex import Vertex
 from procedural_city_generation.additional_stuff.rotate import rotate
-
 from procedural_city_generation.roadmap.config import Variables, Global_Lists
-variables,Global_Lists=Variables(),Global_Lists()
 
+try:
+	#In try-except because sphinx fails to document otherwise
+	Global_Lists = Global_Lists()
+	variables = Variables()
+except:
+	pass
+	
 def seed(vertex,b):
 	
 	pSeed=variables.pSeed

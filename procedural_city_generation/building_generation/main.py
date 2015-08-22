@@ -17,11 +17,15 @@ from copy import copy
 singleton=Singleton("building_generation")
 
 def main(polylist):
-	""" Accepts a list of procedural_city_generation.polygons.Polygon objects and ... #TODO
+	""" Accepts a list of procedural_city_generation.polygons.Polygon2D objects
+	and constructs buildings on top of these. The buildings consist of Polygon3D objects,
+	which are saved to /outputs/polygons.txt. See merger module for more details.
 	
 	Parameters
 	----------
-	- polylist\t:\tList<procedural_city_generation.polygons.Polygon>
+	polylist : List<procedural_city_generation.polygons.Polygon2D>
+	
+	
 	"""
 	
 	

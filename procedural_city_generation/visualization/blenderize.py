@@ -1,7 +1,8 @@
 
-	
-import bpy, os
-
+try:	
+	import bpy, os
+except:
+	pass
 
 
 def createtexture(name,scale,texturetype='REPEAT'):
@@ -56,10 +57,6 @@ def createbuilding(verts,faces,texname,texscale,shrinkwrap):
 		subsurf.subdivision_type="SIMPLE"
 		subsurf.levels=6
 		subsurf.render_levels=4
-#	else:
-#		subsurf.levels=6
-#		subsurf.render_levels=6
-	
 	
 		ob.modifiers.new("Shrinkwrap", type='SHRINKWRAP')
 		wrap=ob.modifiers['Shrinkwrap']
@@ -70,10 +67,6 @@ def createbuilding(verts,faces,texname,texscale,shrinkwrap):
 		wrap.offset=0.03
 
 	bpy.context.scene.objects.link(ob)
-#	allmeshes.append(ob)
-	
-	
-	
 	
 def main():
 	
@@ -81,9 +74,6 @@ def main():
 	
 	path=os.getcwd()+"/procedural_city_generation"
 	
-#	import sys
-#	sys.path.append(os.getcwd())
-#	import procedural_city_generation.visualization
 	with open(path+"/temp/heightmap_in_use.txt",'r') as f:
 		filename=f.read()
 	with open(path+"/temp/"+filename,'r') as f:
@@ -111,9 +101,5 @@ def main():
 		verts,faces, texname, texscale, shrinkwrap= poly
 		createbuilding(verts,faces,texname,texscale,shrinkwrap)
 		
-		
-		
 if __name__ == '__main__':
 	main()
-
-
