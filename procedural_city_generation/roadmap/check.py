@@ -3,15 +3,9 @@ from __future__ import division
 from Vertex import Vertex
 
 import numpy as np
-from config import Global_Lists, Variables
 from scipy.spatial import cKDTree
-
-try:
-	#In try-except because sphinx fails to document otherwise
-	Global_Lists = Global_Lists()
-	variables = Variables()
-except:
-	pass
+from procedural_city_generation.additional_stuff.Singleton import Singleton
+singleton=Singleton("roadmap")
 
 def check(suggested_vertex, neighbour, newfront):
 	"""
@@ -48,16 +42,16 @@ def check(suggested_vertex, neighbour, newfront):
 	newfront : list<Vertex>
 	"""
 	#Checks if Neighborbar is in Bounds
-	if (abs(suggested_vertex.coords[0])>variables.border[0]-variables.maxLength) or (abs(suggested_vertex.coords[1])>variables.border[1]-variables.maxLength):
+	if (abs(suggested_vertex.coords[0])>singleton.border[0]-singleton.maxLength) or (abs(suggested_vertex.coords[1])>singleton.border[1]-singleton.maxLength):
 		return newfront
 	
 	#Finds all nearby Vertex and their distances
-	distances,nearvertex=Global_Lists.tree.query(suggested_vertex.coords,10,distance_upper_bound=variables.maxLength)
-	l=len(Global_Lists.vertex_list)
-	nearvertex=[Global_Lists.vertex_list[x] for x in nearvertex if x<l ]
+	distances,nearvertex=singleton.global_lists.tree.query(suggested_vertex.coords,10,distance_upper_bound=singleton.maxLength)
+	l=len(singleton.global_lists.vertex_list)
+	nearvertex=[singleton.global_lists.vertex_list[x] for x in nearvertex if x<l ]
 	
 	#Distances[0] is the distance to the nearest Vertex, nearve:
-	if distances[0]<variables.mindestabstand:
+	if distances[0]<singleton.mindestabstand:
 		
 		#If the nearest Vertex is not a neighbor
 		if nearvertex[0] not in neighbour.neighbours:
@@ -79,9 +73,9 @@ def check(suggested_vertex, neighbour, newfront):
 				solvertex[1].neighbours.remove(solvertex[0])
 				solvertex[0].neighbours.remove(solvertex[1])
 				newk=Vertex(neighbour.coords+bestsol*(nearvertex[0].coords-neighbour.coords))
-				Global_Lists.vertex_list.append(newk)
-				Global_Lists.coordsliste.append(newk.coords)
-				Global_Lists.tree=cKDTree(Global_Lists.coordsliste,leafsize=160)
+				singleton.global_lists.vertex_list.append(newk)
+				singleton.global_lists.coordsliste.append(newk.coords)
+				singleton.global_lists.tree=cKDTree(singleton.global_lists.coordsliste,leafsize=160)
 				neighbour.connection(newk)
 				solvertex[1].connection(newk)
 				solvertex[0].connection(newk)
@@ -109,9 +103,9 @@ def check(suggested_vertex, neighbour, newfront):
 		solvertex[0].neighbours.remove(solvertex[1])
 
 		newk=Vertex(neighbour.coords+bestsol*(suggested_vertex.coords-neighbour.coords))
-		Global_Lists.vertex_list.append(newk)
-		Global_Lists.coordsliste.append(newk.coords)
-		Global_Lists.tree=cKDTree(Global_Lists.coordsliste,leafsize=160)
+		singleton.global_lists.vertex_list.append(newk)
+		singleton.global_lists.coordsliste.append(newk.coords)
+		singleton.global_lists.tree=cKDTree(singleton.global_lists.coordsliste,leafsize=160)
 		neighbour.connection(newk)
 		solvertex[1].connection(newk)
 		solvertex[0].connection(newk)
@@ -120,10 +114,10 @@ def check(suggested_vertex, neighbour, newfront):
 	#If the Vertex is clear to go, add him and return newfront.
 	
 	suggested_vertex.connection(neighbour)
-	neufront.append(suggested_vertex)
-	Global_Lists.vertex_list.append(suggested_vertex)
-	Global_Lists.coordsliste.append(suggested_vertex.coords)
-	Global_Lists.tree=cKDTree(Global_Lists.coordsliste,leafsize=160)
+	newfront.append(suggested_vertex)
+	singleton.global_lists.vertex_list.append(suggested_vertex)
+	singleton.global_lists.coordsliste.append(suggested_vertex.coords)
+	singleton.global_lists.tree=cKDTree(singleton.global_lists.coordsliste,leafsize=160)
 	return newfront
 	
 def get_intersection(a,ab,c,cd):

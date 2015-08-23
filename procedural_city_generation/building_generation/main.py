@@ -161,4 +161,5 @@ def main(polylist):
 			floortexture))
 	
 	mergedpolys=merge_polygons(polygons,textures)
+	singleton.kill()
 	return 0

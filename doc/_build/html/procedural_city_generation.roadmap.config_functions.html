@@ -53,7 +53,7 @@
 <span id="procedural-city-generation-roadmap-config-functions-find-radial-centers-module"></span><h2>procedural_city_generation.roadmap.config_functions.find_radial_centers module<a class="headerlink" href="#module-procedural_city_generation.roadmap.config_functions.find_radial_centers" title="Permalink to this headline">¶</a></h2>
 <dl class="function">
 <dt id="procedural_city_generation.roadmap.config_functions.find_radial_centers.find_radial_centers">
-<code class="descclassname">procedural_city_generation.roadmap.config_functions.find_radial_centers.</code><code class="descname">find_radial_centers</code><span class="sig-paren">(</span><em>variables</em><span class="sig-paren">)</span><a class="headerlink" href="#procedural_city_generation.roadmap.config_functions.find_radial_centers.find_radial_centers" title="Permalink to this definition">¶</a></dt>
+<code class="descclassname">procedural_city_generation.roadmap.config_functions.find_radial_centers.</code><code class="descname">find_radial_centers</code><span class="sig-paren">(</span><em>singleton</em><span class="sig-paren">)</span><a class="headerlink" href="#procedural_city_generation.roadmap.config_functions.find_radial_centers.find_radial_centers" title="Permalink to this definition">¶</a></dt>
 <dd><p>Intended to find areas where the rule-image is blue and return the center of such areas</p>
 </dd></dl>
 
@@ -73,7 +73,7 @@ Pixel ein Zentrum definiert.</p>
 <span id="procedural-city-generation-roadmap-config-functions-setup-heightmap-module"></span><h2>procedural_city_generation.roadmap.config_functions.setup_heightmap module<a class="headerlink" href="#module-procedural_city_generation.roadmap.config_functions.setup_heightmap" title="Permalink to this headline">¶</a></h2>
 <dl class="function">
 <dt id="procedural_city_generation.roadmap.config_functions.setup_heightmap.setup_heightmap">
-<code class="descclassname">procedural_city_generation.roadmap.config_functions.setup_heightmap.</code><code class="descname">setup_heightmap</code><span class="sig-paren">(</span><em>variables</em>, <em>path</em><span class="sig-paren">)</span><a class="headerlink" href="#procedural_city_generation.roadmap.config_functions.setup_heightmap.setup_heightmap" title="Permalink to this definition">¶</a></dt>
+<code class="descclassname">procedural_city_generation.roadmap.config_functions.setup_heightmap.</code><code class="descname">setup_heightmap</code><span class="sig-paren">(</span><em>singleton</em>, <em>path</em><span class="sig-paren">)</span><a class="headerlink" href="#procedural_city_generation.roadmap.config_functions.setup_heightmap.setup_heightmap" title="Permalink to this definition">¶</a></dt>
 <dd><p>Sets up the heightmap image from roadmap.conf entry heightmap_name, writes ./Heightmaps/inuse.txt so other functions know which heightmap to load
 possible inputs:
 random: generates a new random map with randommap.py
@@ -85,31 +85,6 @@ insert_name.txt</p>
 </div>
 <div class="section" id="module-procedural_city_generation.roadmap.config_functions">
 <span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-procedural_city_generation.roadmap.config_functions" title="Permalink to this headline">¶</a></h2>
-<dl class="function">
-<dt id="procedural_city_generation.roadmap.config_functions.find_radial_centers">
-<code class="descclassname">procedural_city_generation.roadmap.config_functions.</code><code class="descname">find_radial_centers</code><span class="sig-paren">(</span><em>variables</em><span class="sig-paren">)</span><a class="headerlink" href="#procedural_city_generation.roadmap.config_functions.find_radial_centers" title="Permalink to this definition">¶</a></dt>
-<dd><p>Intended to find areas where the rule-image is blue and return the center of such areas</p>
-</dd></dl>
-
-<dl class="function">
-<dt id="procedural_city_generation.roadmap.config_functions.input_image_setup">
-<code class="descclassname">procedural_city_generation.roadmap.config_functions.</code><code class="descname">input_image_setup</code><span class="sig-paren">(</span><em>img_name</em>, <em>img2_name</em><span class="sig-paren">)</span><a class="headerlink" href="#procedural_city_generation.roadmap.config_functions.input_image_setup" title="Permalink to this definition">¶</a></dt>
-<dd><p>Nimmt ein Bild als input, erstellt eine &#8220;Regel-Karte&#8221;. Bei der Bild-
-erstellung bedenken: Rot = Gitter, Gruen = Verzweigt, Blau = Radial, wobei ein schwarzer
-Pixel ein Zentrum definiert.</p>
-</dd></dl>
-
-<dl class="function">
-<dt id="procedural_city_generation.roadmap.config_functions.setup_heightmap">
-<code class="descclassname">procedural_city_generation.roadmap.config_functions.</code><code class="descname">setup_heightmap</code><span class="sig-paren">(</span><em>variables</em>, <em>path</em><span class="sig-paren">)</span><a class="headerlink" href="#procedural_city_generation.roadmap.config_functions.setup_heightmap" title="Permalink to this definition">¶</a></dt>
-<dd><p>Sets up the heightmap image from roadmap.conf entry heightmap_name, writes ./Heightmaps/inuse.txt so other functions know which heightmap to load
-possible inputs:
-random: generates a new random map with randommap.py
-insert_name
-insert_name.png
-insert_name.txt</p>
-</dd></dl>
-
 </div>
 </div>
 

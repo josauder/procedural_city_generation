@@ -20,9 +20,6 @@ def randommap(rows,cols):
 		'''Gives a number a random value within a given tolerance'''
 		return x+0.002+(np.random.uniform(-0.005,+0.005))
 		
-
-
-
 	def fillarray(x,y):
 		'''Fills row:x col:y of the array to be filled out'''
 		

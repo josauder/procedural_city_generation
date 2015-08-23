@@ -1,6 +1,6 @@
 import numpy as np
 import os
-def setup_heightmap(variables,path):		
+def setup_heightmap(singleton,path):		
 	'''Sets up the heightmap image from roadmap.conf entry heightmap_name, writes ./Heightmaps/inuse.txt so other functions know which heightmap to load
 	possible inputs:
 	random: generates a new random map with randommap.py
@@ -10,14 +10,14 @@ def setup_heightmap(variables,path):
 	'''
 	
 	#TODO make inputs more flexible
-	name=variables.heightmap_name
+	name=singleton.heightmap_name
 	
 	#if conf.txt entry is "random", then /stadt/Polygone/randommap.py will be called to create a new random map in the correct size
 	if name=="random":
 		print "New random heightmap is being created with randommap.py"
 		#Writes correct inuse.txt
 		from procedural_city_generation.additional_stuff import randommap
-		randommap.main(variables.border,path)
+		randommap.main(singleton.border,path)
 		
 		with open(path+"/temp/heightmap_in_use.txt",'w') as f:
 			f.write("randommap.txt")
@@ -33,7 +33,7 @@ def setup_heightmap(variables,path):
 		
 		
 	#If a txt has already been written for the input in the image, OR if the input was a .txt to begin with, simply load that txt
-	if (name[0:-3]+"txt" in os.listdir(path+"/temp/")) and (dimensions==str(variables.border[0])+" "+str(variables.border[1])):
+	if (name[0:-3]+"txt" in os.listdir(path+"/temp/")) and (dimensions==str(singleton.border[0])+" "+str(singleton.border[1])):
 		return 0
 	
 	#If the given image has no .txt yet, write the corresponding.txt
@@ -45,7 +45,7 @@ def setup_heightmap(variables,path):
 	
 	#TODO: set these numbers to some file where they can be edited easier
 
-	rsize = img.resize(((variables.border[1]+20)*10,(variables.border[0]+20)*10))
+	rsize = img.resize(((singleton.border[1]+20)*10,(singleton.border[0]+20)*10))
 	array = np.asarray(rsize) 
 	from copy import copy
 	array=copy(array)
@@ -76,7 +76,7 @@ def setup_heightmap(variables,path):
 	
 	#TODO: set thse numbers to some file where they can be edited easier
 	points*=[0.1,0.1,1]
-	points-=np.array([ (variables.border[1]+20)/2,(variables.border[0]+20)/2,0])
+	points-=np.array([ (singleton.border[1]+20)/2,(singleton.border[0]+20)/2,0])
 	points=points.tolist()
 	
 	import pickle

@@ -4,22 +4,17 @@ import random
 
 from procedural_city_generation.roadmap.Vertex import Vertex
 from procedural_city_generation.additional_stuff.rotate import rotate
-from procedural_city_generation.roadmap.config import Variables, Global_Lists
+from procedural_city_generation.additional_stuff.Singleton import Singleton
 
-try:
-	#In try-except because sphinx fails to document otherwise
-	Global_Lists = Global_Lists()
-	variables = Variables()
-except:
-	pass
+singleton=Singleton("roadmap")
 
 def minor_road(vertex,b):
 	
 	#Sammelt Numerische Werte aus Variables-Objekt
-	pForward=variables.minor_roadpForward
-	pTurn=variables.minor_roadpTurn
-	lMin=variables.minor_roadlMin
-	lMax=variables.minor_roadlMax
+	pForward=singleton.minor_roadpForward
+	pTurn=singleton.minor_roadpTurn
+	lMin=singleton.minor_roadlMin
+	lMax=singleton.minor_roadlMax
 	
 	
 	suggested_vertices=[]

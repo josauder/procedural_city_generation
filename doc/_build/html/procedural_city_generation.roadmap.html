@@ -80,13 +80,59 @@
 <dt id="procedural_city_generation.roadmap.Vertex.Vertex">
 <em class="property">class </em><code class="descclassname">procedural_city_generation.roadmap.Vertex.</code><code class="descname">Vertex</code><span class="sig-paren">(</span><em>coords</em><span class="sig-paren">)</span><a class="headerlink" href="#procedural_city_generation.roadmap.Vertex.Vertex" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">object</span></code></p>
+<p>Vertex (name after mathematical graph-theory) object used in roadmap submodule.
+Has the following attributes:
+- coords : numpy.ndarray(2,)</p>
+<blockquote>
+<div>XY-Coordinates of this Vertex</div></blockquote>
+<ul>
+<li><dl class="first docutils">
+<dt>neighbours <span class="classifier-delimiter">:</span> <span class="classifier">list&lt;procedural_city_generation.roadmap.Vertex&gt;</span></dt>
+<dd><p class="first last">List of all Vertices that this Vertex is currectly connected to (has a road to)</p>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>minor_road <span class="classifier-delimiter">:</span> <span class="classifier">boolean</span></dt>
+<dd><p class="first last">Describes whether this road is a minor road</p>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>seed <span class="classifier-delimiter">:</span> <span class="classifier">boolean</span></dt>
+<dd><p class="first last">Describes whether this (major) road is a seed</p>
+</dd>
+</dl>
+</li>
+</ul>
 <p class="rubric">Methods</p>
 <dl class="method">
 <dt id="procedural_city_generation.roadmap.Vertex.Vertex.connection">
 <code class="descname">connection</code><span class="sig-paren">(</span><em>other</em><span class="sig-paren">)</span><a class="headerlink" href="#procedural_city_generation.roadmap.Vertex.Vertex.connection" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<dd><p>Manages connections so that no Vertex has two connections to 
+the same other Vertex. Also responsible for plotting this Vertex
+in matplotlib if the &#8220;plot&#8221; parameter in /inputs/roadmap.conf
+is set to True.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>other</strong> : procedural_city_generation.roadmap.Vertex object</p>
+<blockquote class="last">
+<div><p>The vertex that this vertex is goint to be connected to.</p>
+</div></blockquote>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
 
 </dd></dl>
+
+<dl class="function">
+<dt id="procedural_city_generation.roadmap.Vertex.set_plotbool">
+<code class="descclassname">procedural_city_generation.roadmap.Vertex.</code><code class="descname">set_plotbool</code><span class="sig-paren">(</span><em>singletonbool</em><span class="sig-paren">)</span><a class="headerlink" href="#procedural_city_generation.roadmap.Vertex.set_plotbool" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
 
 </div>
 <div class="section" id="module-procedural_city_generation.roadmap.check">
@@ -188,35 +234,7 @@ If it does not exist (lines are parrallel), returns np.array([np.inf,np.inf])</p
 <dl class="class">
 <dt id="procedural_city_generation.roadmap.config.Global_Lists">
 <em class="property">class </em><code class="descclassname">procedural_city_generation.roadmap.config.</code><code class="descname">Global_Lists</code><a class="headerlink" href="#procedural_city_generation.roadmap.config.Global_Lists" title="Permalink to this definition">¶</a></dt>
-<dd><dl class="attribute">
-<dt id="procedural_city_generation.roadmap.config.Global_Lists.instance">
-<code class="descname">instance</code><em class="property"> = &lt;procedural_city_generation.roadmap.config.__Global_Lists instance&gt;</em><a class="headerlink" href="#procedural_city_generation.roadmap.config.Global_Lists.instance" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
-
-</dd></dl>
-
-<dl class="class">
-<dt id="procedural_city_generation.roadmap.config.Variables">
-<em class="property">class </em><code class="descclassname">procedural_city_generation.roadmap.config.</code><code class="descname">Variables</code><span class="sig-paren">(</span><em>tupel=None</em><span class="sig-paren">)</span><a class="headerlink" href="#procedural_city_generation.roadmap.config.Variables" title="Permalink to this definition">¶</a></dt>
-<dd><p>Singleton-Object which is created upon parsing of roadmap.json</p>
-<p class="rubric">Attributes</p>
-<table border="1" class="docutils">
-<colgroup>
-<col width="44%" />
-<col width="56%" />
-</colgroup>
-<tbody valign="top">
-<tr class="row-odd"><td>instance</td>
-<td>&nbsp;</td>
-</tr>
-</tbody>
-</table>
-<dl class="attribute">
-<dt id="procedural_city_generation.roadmap.config.Variables.instance">
-<code class="descname">instance</code><em class="property"> = None</em><a class="headerlink" href="#procedural_city_generation.roadmap.config.Variables.instance" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-</dd></dl>
 
 <dl class="function">
 <dt id="procedural_city_generation.roadmap.config.config">
@@ -234,7 +252,7 @@ are now.</p>
 <blockquote>
 <div><p>Singleton with all numeric values which are not to be changed at runtime</p>
 </div></blockquote>
-<p><strong>Global_Lists</strong> : Global_Lists object</p>
+<p><strong>singleton.global_lists</strong> : singleton.global_lists object</p>
 <blockquote class="last">
 <div><p>Singleton with the Global Lists which will be altered at runtime</p>
 </div></blockquote>
@@ -321,6 +339,12 @@ Manages the front and newfront and the queue</p>
 </div>
 <div class="section" id="module-procedural_city_generation.roadmap.roadmap_params">
 <span id="procedural-city-generation-roadmap-roadmap-params-module"></span><h2>procedural_city_generation.roadmap.roadmap_params module<a class="headerlink" href="#module-procedural_city_generation.roadmap.roadmap_params" title="Permalink to this headline">¶</a></h2>
+<p>Module which contains all input parameters for this sudmodule, along with:
+- The default (recommmended) value from the developers
+- A short description of what the parameter changes
+- All values that the parameter accepts without causing this program to break.</p>
+<p>This information can also be viewed when calling the GUI and clicking the &#8220;options&#8221;
+button for that specific module.</p>
 </div>
 <div class="section" id="module-procedural_city_generation.roadmap">
 <span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-procedural_city_generation.roadmap" title="Permalink to this headline">¶</a></h2>

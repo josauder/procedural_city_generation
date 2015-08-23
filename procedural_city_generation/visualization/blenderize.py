@@ -6,9 +6,23 @@ except:
 
 
 def createtexture(name,scale,texturetype='REPEAT'):
+	"""
+	Creates a Blender Texture Object. Only Tested with Cycles Engine.
+	
+	Parameters
+	----------
+	name : String
+		Name of this Texture
+	scale : int
+		How many times this Texture is to be scaled down. This Parameter still needs work.
+		In the future, when 0 is passed, it is supposed to scale a Texture exactly on each polygon,
+		meant to be useful e.g. when creating windows.
+	texturetype : String (optional)
+		currently unused
+	"""
 	#TODO: sticky textures 's'
-	if isinstance(scale,str):
-		scale=60
+	if scale==0:
+		scale=40
 	
 	
 	mat=bpy.data.materials.new(name)
@@ -33,18 +47,48 @@ def createtexture(name,scale,texturetype='REPEAT'):
 	return mat
 
 def createmesh(verts,faces,texture):
+	"""
+	Creates a Blender mesh from a list of vertices and faces while assigning a texture object
+	
+	Parameters
+	----------
+	verts : iterable<iterable<float(shape(3,))>> 
+		Iterable of 3D-Coordinates of vertices
+	faces : iterable<iterable<int>>
+		Iterable of Iterables of the indices of the verts which make up each face
+	texture : Blender texture object
+	"""
 	me=bpy.data.meshes.new('mesh')
 	ob=bpy.data.objects.new('mesh',me)
 	me.from_pydata(verts,[], faces)
 	me.update(calc_edges=True)
 	me.materials.append(texture)
-
 	return ob
 	
 
 
 
-def createbuilding(verts,faces,texname,texscale,shrinkwrap):
+def createobject(verts,faces,texname,texscale,shrinkwrap):
+	"""
+	Creates a Blender object for each mesh. Each mesh is (after the
+	building_generation submodule) a list of all vertices and faces which share
+	the same texture (in order to make blender start up in reasonable time).
+	Shrinkwrapped textures will be blender-shrinkwrapped (projected on to)
+	the surface mesh. 
+	
+	Parameters
+	----------
+	verts : iterable<iterable<float(shape(3,))>> 
+		Iterable of 3D-Coordinates of vertices
+	faces : iterable<iterable<int>>
+		Iterable of Iterables of the indices of the verts which make up each face
+	texturename : String
+		Must be identical with the name of the image in /visualization/Textures
+	shrinkwrap: boolean
+		If true, then this mesh will be triangulated and then shrinkwrapped. 
+		It makes sense to have this	attribute set as true for Roads and Floortypes.
+	
+	"""
 	tex=createtexture(texname,texscale)
 	ob=createmesh(verts,faces,tex)
 	
@@ -67,9 +111,33 @@ def createbuilding(verts,faces,texname,texscale,shrinkwrap):
 		wrap.offset=0.03
 
 	bpy.context.scene.objects.link(ob)
-	
+
+def setupscenery():
+	"""
+	Sets up the lighting and render engine.
+	In the future could provide options like "time of day","weather",
+	"renderengine".
+	"""
+	bpy.context.scene.render.engine="CYCLES"
+	try:
+		startup_cube=bpy.context.scene.objects.get("Cube")
+		bpy.context.scene.objects.unlink(startup_cube)
+	except:
+		pass
+		
+	bpy.data.lamps["Lamp"].type="SUN"
+
+
 def main():
+	"""
+	Intended to run in Blender. This means that this script must be written
+	in Python 3 conformity. Works by reading and unpickling /outputs/buildings.txt
+	and /outputs/<correct-heightmap-name>.txt and creating Blender Polygons for each of these.
 	
+	Run from console (from parent direcotry) with
+	``blender --python /procedural_city_generation/visualization/blenderize.py``
+	
+	"""
 	import pickle
 	
 	path=os.getcwd()+"/procedural_city_generation"
@@ -79,14 +147,7 @@ def main():
 	with open(path+"/temp/"+filename,'r') as f:
 		points, triangles = pickle.loads(f.read().encode('utf-8'))
 	
-	bpy.context.scene.render.engine="CYCLES"
-	try:
-		startup_cube=bpy.context.scene.objects.get("Cube")
-		bpy.context.scene.objects.unlink(startup_cube)
-	except:
-		pass
-		
-	bpy.data.lamps["Lamp"].type="SUN"
+	setupscenery()
 	
 	me=bpy.data.meshes.new('mesh')
 	ob=bpy.data.objects.new('mesh',me)
@@ -99,7 +160,7 @@ def main():
 	
 	for poly in polygons:
 		verts,faces, texname, texscale, shrinkwrap= poly
-		createbuilding(verts,faces,texname,texscale,shrinkwrap)
+		createobject(verts,faces,texname,texscale,shrinkwrap)
 		
 if __name__ == '__main__':
 	main()

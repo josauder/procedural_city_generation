@@ -1,6 +1,15 @@
+"""
+Module which contains all input parameters for this sudmodule, along with:
+- The default (recommmended) value from the developers
+- A short description of what the parameter changes
+- All values that the parameter accepts without causing this program to break.
+
+This information can also be viewed when calling the GUI and clicking the "options"
+button for that specific module.
+
+"""
 from procedural_city_generation.additional_stuff.Param import Param
 params=[
-
 Param("axiom", [[0,0],[1,0],[0,-2],[0,-3]], "Initial Vertices with which the program starts", "List of 2D-Coordinates"),
 Param("minor_road_delay",80, "How many iterations a seed waits until minor roads start growing from it", "integer"),
 Param("mindestabstand",0.6, "Minimal distance a suggested Vertex has to be away from all existing vertices", "float"),

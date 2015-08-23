@@ -3,22 +3,18 @@ import numpy as np
 import random
 from procedural_city_generation.roadmap.Vertex import Vertex
 from procedural_city_generation.additional_stuff.rotate import rotate
-from procedural_city_generation.roadmap.config import Variables, Global_Lists
+from procedural_city_generation.additional_stuff.Singleton import Singleton
 
-try:
-	#In try-except because sphinx fails to document otherwise
-	Global_Lists = Global_Lists()
-	variables = Variables()
-except:
-	pass
+
+singleton=Singleton("roadmap")
 
 def grid(vertex,b):
 	
 	#Sammelt Numerische Werte aus Variables-Objekt
-	pForward=variables.gridpForward
-	pTurn=variables.gridpTurn
-	lMin=variables.gridlMin
-	lMax=variables.gridlMax
+	pForward=singleton.gridpForward
+	pTurn=singleton.gridpTurn
+	lMin=singleton.gridlMin
+	lMax=singleton.gridlMax
 	
 	
 	suggested_vertices=[]	
@@ -62,7 +58,7 @@ def grid(vertex,b):
 	#Seed!
 	if not weiter:
 		vertex.seed=True
-		Global_Lists.vertex_queue.append([vertex, 0])
+		singleton.global_lists.vertex_queue.append([vertex, 0])
 	
 	return suggested_vertices
 

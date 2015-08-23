@@ -5,26 +5,21 @@ import math
 
 from procedural_city_generation.roadmap.Vertex import Vertex
 from procedural_city_generation.additional_stuff.rotate import rotate
-from procedural_city_generation.roadmap.config import Variables, Global_Lists
 
-try:
-	#In try-except because sphinx fails to document otherwise
-	Global_Lists = Global_Lists()
-	variables = Variables()
-except:
-	pass
+from procedural_city_generation.additional_stuff.Singleton import Singleton
 
-def radial(zentrum,vertex,b):
+singleton=Singleton("roadmap")
 
+def radial(center,vertex,b):
 	
 	#Sammelt Numerische Werte aus Variables-Objekt
-	pForward=variables.radialpForward
-	pTurn=variables.radialpTurn
-	lMin=variables.radiallMin
-	lMax=variables.radiallMax
+	pForward=singleton.radialpForward
+	pTurn=singleton.radialpTurn
+	lMin=singleton.radiallMin
+	lMax=singleton.radiallMax
 	
 	#Berechnet Radialvector und Vektor des letzten Weges zu diesem Punkt
-	radialvector=vertex.coords-zentrum
+	radialvector=vertex.coords-center
 	previous_vector=np.array(vertex.coords-vertex.neighbours[len(vertex.neighbours)-1].coords)
 	previous_vector=previous_vector/np.linalg.norm(previous_vector)
 	
@@ -32,7 +27,7 @@ def radial(zentrum,vertex,b):
 	weiter=False
 	
 	#Berechnet, ob der Vektor eher Radial oder Tangential verlaeuft
-	alpha=fallunterscheidung(previous_vector,radialvector)
+	alpha=case_differentiation(previous_vector,radialvector)
 	previous_vector=rotate(alpha,previous_vector)
 	
 	
@@ -63,13 +58,26 @@ def radial(zentrum,vertex,b):
 	#Seed!
 	if not weiter:
 		vertex.seed=True
-		Global_Lists.vertex_queue.append([vertex, 0])
+		singleton.global_lists.vertex_queue.append([vertex, 0])
 
 	
 	return suggested_vertices
 
-def fallunterscheidung(v1,v2):
-	'''Entscheided ob v1 eher Radial oder eher Tangential verlaeuft'''
+def case_differentiation(v1,v2):
+	"""
+	Finds out if the angle between two vectors is closest to 0,90,180,270 degrees.
+	Returns the angle in degrees to which the first vector has to be rotated 
+	in order to be either parrallel or perpendicular to the second vector.
+	
+	Parameters
+	----------
+	v1 : np.ndarray(2,)
+	v2 : np.ndarray(2,)
+	
+	Returns
+	-------
+	float
+	"""
 	
 	alpha1=math.atan2(v1[1],v1[0])
 	alpha2=math.atan2(v2[1], v2[0])

@@ -6,18 +6,17 @@ def main():
 	from procedural_city_generation.roadmap.config import config
 	from copy import copy
 	
+	singleton=config()
 	
-	variables,Global_Lists=config()
-	
-	front=copy(Global_Lists.vertex_list)
+	front=copy(singleton.global_lists.vertex_list)
 	front.pop(0)
 	front.pop()
-	vertex_queue = copy(Global_Lists.vertex_queue)
+	vertex_queue = copy(singleton.global_lists.vertex_queue)
 	from iteration import iteration
-	variables.iterationszaehler=0
+	singleton.iterationszaehler=0
 	
 	
-	if variables.plot==1:
+	if singleton.plot==1:
 		
 		import matplotlib.pyplot as plt
 		import matplotlib
@@ -27,26 +26,28 @@ def main():
 		ax=plt.subplot(111)
 		
 		fig.canvas.draw()
-		ax.set_xlim((-variables.border[0],variables.border[0]))
-		ax.set_ylim((-variables.border[1],variables.border[1]))
+		ax.set_xlim((-singleton.border[0],singleton.border[0]))
+		ax.set_ylim((-singleton.border[1],singleton.border[1]))
 	i=0
-	while (front!=[] or Global_Lists.vertex_queue	!=[]):
+	while (front!=[] or singleton.global_lists.vertex_queue	!=[]):
 		
 		i+=1
 		front=iteration(front)
 		
-		if variables.plot==1:
-			if i%variables.plotabstand==0:	
+		if singleton.plot==1:
+			if i%singleton.plotabstand==0:	
 				plt.pause(0.001)
 				fig.canvas.blit(ax.bbox)
 				fig.canvas.flush_events()
-			variables.iterationszaehler=0
+			singleton.iterationszaehler=0
 	from procedural_city_generation.additional_stuff.jsontools import save_vertexlist
 	
 	
 	print "Roadmap is complete"
-	save_vertexlist(Global_Lists.vertex_list,"output",variables.savefig)
-	return Global_Lists.vertex_list
+	save_vertexlist(singleton.global_lists.vertex_list,"output",singleton.savefig)
+	singleton.kill()
+	return 0
+	#return singleton.global_lists.vertex_list
 	
 	
 if __name__ == '__main__':

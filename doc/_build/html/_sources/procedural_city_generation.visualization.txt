@@ -12,14 +12,6 @@ procedural_city_generation.visualization.blenderize module
     :undoc-members:
     :show-inheritance:
 
-procedural_city_generation.visualization.createsurface module
-----------------------------------------------------------------------------------------
-
-.. automodule:: procedural_city_generation.visualization.createsurface
-    :members:
-    :undoc-members:
-    :show-inheritance:
-
 
 Module contents
 ---------------

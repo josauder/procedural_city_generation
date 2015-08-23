@@ -5,22 +5,18 @@ import random
 
 from procedural_city_generation.roadmap.Vertex import Vertex
 from procedural_city_generation.additional_stuff.rotate import rotate
-from procedural_city_generation.roadmap.config import Variables, Global_Lists
 
-try:
-	#In try-except because sphinx fails to document otherwise
-	Global_Lists = Global_Lists()
-	variables = Variables()
-except:
-	pass
+from procedural_city_generation.additional_stuff.Singleton import Singleton
+
+singleton=Singleton("roadmap")
 
 def organic(vertex,b):
 	
 	#Sammelt Numerische Werte aus Variables-Objekt
-	pForward=variables.organicpForward
-	pTurn=variables.organicpTurn
-	lMin=variables.organiclMin
-	lMax=variables.organiclMax
+	pForward=singleton.organicpForward
+	pTurn=singleton.organicpTurn
+	lMin=singleton.organiclMin
+	lMax=singleton.organiclMax
 	
 	
 	suggested_vertices=[]
@@ -57,6 +53,6 @@ def organic(vertex,b):
 	#Seed!
 	if not weiter:
 		vertex.seed=True
-		Global_Lists.vertex_queue.append([vertex, 0])
+		singleton.global_lists.vertex_queue.append([vertex, 0])
 	
 	return suggested_vertices
