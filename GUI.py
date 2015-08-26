@@ -2,6 +2,7 @@ import procedural_city_generation
 import sys,os
 import Tkinter
 from UI import *
+import json
 
 class confGUI:
 	def __init__(self,modulename):
@@ -12,7 +13,6 @@ class confGUI:
 		parammodule=__import__("procedural_city_generation."+self.modulename+"."+self.modulename+"_params",globals(),locals(),["params"])
 		params=parammodule.params
 		path="./procedural_city_generation/inputs/"+self.modulename+".conf"
-		import json
 		with open(path,'r') as f:
 			s=json.loads(f.read())
 			
@@ -34,7 +34,6 @@ class confGUI:
 			entry.grid(row=i,column=2,pady=2)
 			
 			i+=1
-		
 		
 		def restore_default():
 			for i in range(len(params)):
@@ -59,8 +58,11 @@ class confGUI:
 		done_button.grid(row=i,column=2)
 		confwindow.mainloop()
 
-def callapi(modulename):
-	pass
+class Callapi:
+	def __init__(self, modulename):
+		self.modulename=modulename
+	def call(self):
+		main(["",self.modulename,"run"])
 	
 class StdoutRedirector:
 	"""
@@ -110,7 +112,7 @@ class GUI:
 		self.window.mainloop()
 	
 	def add_executable_button(self,buttontext,modulename):
-		button=Tkinter.Button(self.window, text = buttontext, command = callapi(modulename))
+		button=Tkinter.Button(self.window, text = buttontext, command = Callapi(modulename).call)
 		button.grid(row=len(self.buttons), column=0, sticky='EW')
 		option_button=Tkinter.Button(self.window, text = 'Options', command = confGUI(modulename).call)
 		option_button.grid(row=len(self.buttons), column=1, sticky='EW')

@@ -22,19 +22,42 @@ def building_generation():
 def visualization():
 	os.system("blender --python "+path+"/visualization/blenderize.py")
 
-def main():
-	"""
-	Thisdoc
+def main(args):
 	"""
 	
-	if len(sys.argv)==1:
+	Welcome to procedural_city_generation, a module for procedurally generating a 3D model of a city in Blender with python.
+	
+	A call to this module from the command line should follow this format::
+	
+		python UI.py <submodule-name> <options>
+	
+	<submodule-name> is either "roadmap","polygons","building_generation,"visualization".
+	<options> is either "run" or "configure"
+	"""
+	
+	if len(args)==1:
 		print main.__doc__
 		return 0
-	if "options" in sys.argv[2]:
-		os.system("nano ./procedural_city_generation/inputs/"+sys.argv[1]+".conf")
-	elif "run" in sys.argv[2]:
-		eval(sys.argv[1])()
+	if "configure" in args[2]:
+		if not args[3]:
+			os.system("nano ./procedural_city_generation/inputs/"+args[1]+".conf")
+		elif args[3] and args[4]:
+			import json
+			with open("./procedural_city_generation/inputs/"+args[1]+".conf",'r') as f:
+				wb=json.loads(f.read())
+			i=0
+			while args[i+3] and args[i+4] :
+				try:
+					wb[args[3+i]]=args[4+i]
+					i+=2
+				except:
+					print "Either ",args[3+i], "is not a configurable parameter for ",args[1]
+					break
+			with open("./procedural_city_generation/inputs/"+args[1]+".conf",'w') as f:
+				f.write(json.dumps(wb))
+	elif "run" in args[2]:
+		eval(args[1])()
 		print donemessage
 			
 if __name__=='__main__':
-	main()
+	main(sys.argv)
