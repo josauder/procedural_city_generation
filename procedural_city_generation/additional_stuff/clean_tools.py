@@ -66,4 +66,18 @@ def find_in_text(path,tofind="TODO"):
 			for x in todos:
 				print "Line: ",x[0]," \"",x[1],"\""
 	return 0
-find_in_text(path_to_source,"TODO")
+
+def add_license_text(files):
+	with open(os.path.dirname(path_to_source)+"/licenceheader.txt",'r') as f:
+		licencetext=f.read()
+	
+	for fi in files:
+		with open(fi,'r') as f:
+			content=f.read()
+		if not licencetext in content:
+			content=licencetext+content
+		with open(fi,'w') as f:
+			f.write(content)
+	return 0
+
+add_license_text(["/home/jonathan/Desktop/test.py"])

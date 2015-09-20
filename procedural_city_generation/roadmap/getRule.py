@@ -38,7 +38,7 @@ def getRule(vertex):
 		
 		#If the rule is radial, find the closest radial center
 		if intrule == 2:
-			z=singleton.zentrum[np.argmin(np.linalg.norm(vertex.coords-singleton.zentrum,axis=1))]
+			z=singleton.center[np.argmin(np.linalg.norm(vertex.coords-singleton.center,axis=1))]
 		return (intrule,z,population_density)
 	else:
 		return (3, None,population_density)

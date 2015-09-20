@@ -87,8 +87,13 @@ class StdoutRedirector:
 		out : String
 			Text to be printed
 		"""
-		self.label_obj.config(text=self.label_obj.cget('text')+out)
+		oldtext=self.label_obj.cget('text')
+		l= len(repr(oldtext).split("\n"))
+		if l>10:
+			oldtext="".join(oldtext[l-10:])
+		self.label_obj.config(text=oldtext+out)
 		self.label_obj.update()
+		
 	def clear(self):
 		self.label_obj.config(text='')
 		self.label_obj.update()
@@ -97,6 +102,8 @@ class GUI:
 	
 	def __init__(self):
 		self.window=Tkinter.Tk(className=" Procedural City Generation")
+		self.window.minsize(width=600, height = 600)
+		self.window.maxsize(width=600, height= 600)
 		self.buttons=[]
 		
 		self.add_executable_button("Create a Roadmap","roadmap")

@@ -39,25 +39,38 @@ def main(args):
 		print main.__doc__
 		return 0
 	if "configure" in args[2]:
-		if not args[3]:
+		if len(args)==3:
 			os.system("nano ./procedural_city_generation/inputs/"+args[1]+".conf")
+			sys.exit(0)
+		
 		elif args[3] and args[4]:
 			import json
 			with open("./procedural_city_generation/inputs/"+args[1]+".conf",'r') as f:
 				wb=json.loads(f.read())
 			i=0
-			while args[i+3] and args[i+4] :
+			while True:
 				try:
+					
+					old=wb[args[3+i]]
 					wb[args[3+i]]=args[4+i]
+					print args[3+i], " was changed from ",old," to ",args[4+i]
 					i+=2
+					if len(args)-1<i+4:
+						return 0
+					
 				except:
+					print i, len(args)
 					print "Either ",args[3+i], "is not a configurable parameter for ",args[1]
-					break
+					return 0
+					
 			with open("./procedural_city_generation/inputs/"+args[1]+".conf",'w') as f:
 				f.write(json.dumps(wb))
+			print main.__doc__
+			return 0
 	elif "run" in args[2]:
 		eval(args[1])()
 		print donemessage
 			
 if __name__=='__main__':
+	print sys.argv
 	main(sys.argv)

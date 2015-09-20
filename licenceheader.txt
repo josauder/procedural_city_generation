@@ -1,0 +1,5 @@
+#!/usr/bin/env python
+# Author: Jonathan Sauder, j.sauder@campus.tu-berlin.de
+# Copyright 2015, Mathesis (Jonathan Sauder, Kemal Rose, Lenny Leass)
+# License: MPL2.0, see /procedural_city_generation/LICENCE
+
