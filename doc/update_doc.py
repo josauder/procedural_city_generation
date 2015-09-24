@@ -23,10 +23,24 @@ def main():
 			with open(x2,'w') as f:
 				f.write(filecontent)
 	
-	os.system("make html")
-	os.chdir("./_build/html")
-	print "Updating of documentation done, you should be able to view the documentation in your browser at the address 'localhost:8080'"
-	os.system("python -m SimpleHTTPServer 8080")
+	script=[
+	"make html",
+	"mkdir temp",
+	"cp ../.git temp",
+	"cp ../.gitignore temp",
+	"cd temp",
+	"git checkout gh-pages",
+	"rm -R *",
+	"cp -R ../_build/html/* .",
+	"git add --all",
+	"git commit -m \" updated gh-pages with update_doc.py\"",
+	"git push",
+	"cd ..",
+	"rm -R temp",
+	]
+	
+	for command in script:
+		os.system(commant)
 	
 	return 0
 

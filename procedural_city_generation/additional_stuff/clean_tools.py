@@ -78,7 +78,7 @@ def add_license_text(files):
 			lower=content.find("<info>")
 			upper=content.find("</info>")+7
 			
-			content= content[:lower]+licencetext[2:]+content[upper:]
+			content= content[:lower]+licencetext[2:-1]+content[upper:]
 			
 		elif "<info>" in content or "</info>" in content:
 			print "Error, ", fi ," was ommitted from adding licensing header, check if <info> or </info> tag are falsely placed"
