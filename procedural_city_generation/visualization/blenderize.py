@@ -107,7 +107,7 @@ def createobject(verts,faces,texname,texscale,shrinkwrap):
 		wrap.wrap_method='PROJECT'
 		wrap.use_negative_direction=True
 		wrap.use_project_z=True
-		wrap.target=bpy.context.scene.objects['mesh']
+		wrap.target=bpy.context.scene.objects['Floormesh']
 		wrap.offset=0.03
 
 	bpy.context.scene.objects.link(ob)
@@ -149,18 +149,28 @@ def main():
 	
 	setupscenery()
 	
-	me=bpy.data.meshes.new('mesh')
-	ob=bpy.data.objects.new('mesh',me)
+	me=bpy.data.meshes.new('Floormesh')
+	ob=bpy.data.objects.new('Floormesh',me)
 	me.from_pydata(points,[], triangles)
 	me.update(calc_edges=True)
+	
+	#TODO: Not flexible code.
+	me.materials.append(createtexture("Floor01.jpeg",100,True))
+
 	bpy.context.scene.objects.link(ob)
+	
+	
 	
 	with open(path+"/outputs/buildings.txt",'r') as f:
 		polygons=pickle.loads(f.read().encode('utf-8'))
 	
+	
+	floor_has_texture=False
 	for poly in polygons:
 		verts,faces, texname, texscale, shrinkwrap= poly
 		createobject(verts,faces,texname,texscale,shrinkwrap)
 		
+		
+	
 if __name__ == '__main__':
 	main()

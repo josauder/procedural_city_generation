@@ -9,7 +9,6 @@ class confGUI:
 		self.modulename=modulename
 	
 	def call(self):
-		print "procedural_city_generation."+self.modulename+"."+self.modulename+"_params"
 		parammodule=__import__("procedural_city_generation."+self.modulename+"."+self.modulename+"_params",globals(),locals(),["params"])
 		params=parammodule.params
 		path="./procedural_city_generation/inputs/"+self.modulename+".conf"
@@ -87,12 +86,13 @@ class StdoutRedirector:
 		out : String
 			Text to be printed
 		"""
-		oldtext=self.label_obj.cget('text')
-		l= len(repr(oldtext).split("\n"))
-		if l>10:
-			oldtext="".join(oldtext[l-10:])
-		self.label_obj.config(text=oldtext+out)
+		if not out.endswith("\n"):
+			out += "\n"
+		self.label_obj.config(state="normal")
+		self.label_obj.insert(Tkinter.END,out)
 		self.label_obj.update()
+		self.label_obj.see("end")
+		self.label_obj.config(state="disabled")
 		
 	def clear(self):
 		self.label_obj.config(text='')
@@ -102,8 +102,8 @@ class GUI:
 	
 	def __init__(self):
 		self.window=Tkinter.Tk(className=" Procedural City Generation")
-		self.window.minsize(width=600, height = 600)
-		self.window.maxsize(width=600, height= 600)
+		self.window.minsize(width=650, height = 500)
+		self.window.maxsize(width=650, height= 500)
 		self.buttons=[]
 		
 		self.add_executable_button("Create a Roadmap","roadmap")
@@ -111,9 +111,12 @@ class GUI:
 		self.add_executable_button("Generate 3D Data","building_generation")
 		self.add_executable_button("Visualize in Blender","visualization")
 		
-		out_text=Tkinter.Label(self.window, borderwidth = 5, text = "Some Text")
-		out_text.grid(row=5,sticky='EW')
-		sys.stdout=StdoutRedirector(out_text)
+		self.out_text=Tkinter.Text(self.window, borderwidth = 5, relief="flat", bg="black", fg="white",state="disabled")
+		self.out_text.grid(row=5,sticky='EW')
+		self.out_text_scrollbar=Tkinter.Scrollbar(self.window, command=self.out_text.yview)
+		self.out_text_scrollbar.grid(row=5, column=1, sticky="NSW")
+		self.out_text.config(yscrollcommand=self.out_text_scrollbar.set)
+		sys.stdout=StdoutRedirector(self.out_text)
 		self.buttons=[]
 		
 		self.window.mainloop()
@@ -124,8 +127,6 @@ class GUI:
 		option_button=Tkinter.Button(self.window, text = 'Options', command = confGUI(modulename).call)
 		option_button.grid(row=len(self.buttons), column=1, sticky='EW')
 		self.buttons.append(button)
-
-	
 
 
 if __name__ == '__main__':

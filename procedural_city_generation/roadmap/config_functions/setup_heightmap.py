@@ -54,9 +54,8 @@ def setup_heightmap(singleton,path):
 	#If image is a jpeg, all values have to be divided by 255
 	array=array[::,:,0]/255.
 	
-	print "You have selected a heightmap which has no .txt file yet, OR the given .txt file has the wrong dimensions. \n Please enter the difference between max-height and min-height"
-	h=float(raw_input(">>>h="))
-	print "You have entered",h, "as height"
+	print "You have selected a heightmap which has no .txt file yet, OR the given .txt file has the wrong dimensions. The parameter heightDif will be used to describe the height difference between the lowest and the highest points on the map."
+	h=singleton.heightDif
 	print "Processing image"
 	
 	

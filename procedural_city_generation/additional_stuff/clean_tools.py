@@ -74,8 +74,17 @@ def add_license_text(files):
 	for fi in files:
 		with open(fi,'r') as f:
 			content=f.read()
-		if not licencetext in content:
-			content=licencetext+content
+		if "<info>" in content and "</info>" in content:
+			lower=content.find("<info>")
+			upper=content.find("</info>")+7
+			
+			content= content[:lower]+licencetext[2:]+content[upper:]
+			
+		elif "<info>" in content or "</info>" in content:
+			print "Error, ", fi ," was ommitted from adding licensing header, check if <info> or </info> tag are falsely placed"
+		else:
+			content=licencetext + "\n" + content
+			
 		with open(fi,'w') as f:
 			f.write(content)
 	return 0

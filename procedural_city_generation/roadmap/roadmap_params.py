@@ -39,4 +39,5 @@ Param("gridlMax", 1.0, "Maxium length of a grid road", "float"),
 Param("radialpForward",100, "Probability that a radial road will continue straight in the next iteration", "integer between 0 and 100"),
 Param("radialpTurn",7, "Probability that a radial road will turn in the next iteration", "integer between 0 and 100"),
 Param("radiallMin",0.8, "Minimum length of a radial road", "float"),
-Param("radiallMax", 1.6, "Maxium length of a radial road", "float")]
+Param("radiallMax", 1.6, "Maxium length of a radial road", "float"),
+Param("heightDif", 2, "Difference between the highest and the lowest point if a previously unknown heightmap is used", "float")]

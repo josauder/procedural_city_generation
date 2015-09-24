@@ -1,6 +1,6 @@
 import sys,os
 import procedural_city_generation
-donemessage="\n-----------------------------------------------------------\n\t\tDone, waiting for command\n-----------------------------------------------------------"
+donemessage="\n-------------------------------------------------------------------------------\n\t\t\t  Done, waiting for command\n-------------------------------------------------------------------------------"
 path=os.path.dirname(procedural_city_generation.__file__)
 sys.path.append(path)
 
