@@ -46,14 +46,14 @@ Many of the terms used here become obvious when you see them in action. Let's st
 
 **The Growth-Rule Image:**
 
-.. figure::  images/growth-rule.png
+.. figure::  images/growth_rule.png
    :align:   center
 
 This image describes which growth rule will be used in which area. Blue means that the radial rule will be used, Red means that the grid rule will be used, and Green means that the natural rule will be used. We will discuss the rules in detail later.
 
 **The Population-Density Image:**
 
-.. figure::  images/population-density.png
+.. figure::  images/population_density.png
    :align:   center
 
 This image describes the probabilities that vertices will be connected at all. The lighter, the more probable it is, that an edge will be built. 
