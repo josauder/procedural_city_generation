@@ -95,8 +95,58 @@ immutable numeric values to avoid confusion/difficult-to-trace-bugs.</p>
 </dd></dl>
 
 </div>
-<div class="section" id="procedural-city-generation-additional-stuff-clean-tools-module">
-<h2>procedural_city_generation.additional_stuff.clean_tools module<a class="headerlink" href="#procedural-city-generation-additional-stuff-clean-tools-module" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="module-procedural_city_generation.additional_stuff.clean_tools">
+<span id="procedural-city-generation-additional-stuff-clean-tools-module"></span><h2>procedural_city_generation.additional_stuff.clean_tools module<a class="headerlink" href="#module-procedural_city_generation.additional_stuff.clean_tools" title="Permalink to this headline">¶</a></h2>
+<dl class="function">
+<dt id="procedural_city_generation.additional_stuff.clean_tools.add_license_text">
+<code class="descclassname">procedural_city_generation.additional_stuff.clean_tools.</code><code class="descname">add_license_text</code><span class="sig-paren">(</span><em>files</em><span class="sig-paren">)</span><a class="headerlink" href="#procedural_city_generation.additional_stuff.clean_tools.add_license_text" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="procedural_city_generation.additional_stuff.clean_tools.clean_pyc_files">
+<code class="descclassname">procedural_city_generation.additional_stuff.clean_tools.</code><code class="descname">clean_pyc_files</code><span class="sig-paren">(</span><em>path</em><span class="sig-paren">)</span><a class="headerlink" href="#procedural_city_generation.additional_stuff.clean_tools.clean_pyc_files" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="procedural_city_generation.additional_stuff.clean_tools.find_imports">
+<code class="descclassname">procedural_city_generation.additional_stuff.clean_tools.</code><code class="descname">find_imports</code><span class="sig-paren">(</span><em>path</em><span class="sig-paren">)</span><a class="headerlink" href="#procedural_city_generation.additional_stuff.clean_tools.find_imports" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="procedural_city_generation.additional_stuff.clean_tools.find_in_text">
+<code class="descclassname">procedural_city_generation.additional_stuff.clean_tools.</code><code class="descname">find_in_text</code><span class="sig-paren">(</span><em>path</em>, <em>tofind='TODO'</em><span class="sig-paren">)</span><a class="headerlink" href="#procedural_city_generation.additional_stuff.clean_tools.find_in_text" title="Permalink to this definition">¶</a></dt>
+<dd><p>Searches the entire source code in the path for tofind.
+Useful for finding TODOS or missing translations. Like grep, 
+nobody knows why this function was built. Prints filename, line number
+and line for each occurence.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>path</strong> : String</p>
+<blockquote>
+<div><p>path in which all files are searched for tofind</p>
+</div></blockquote>
+<p><strong>tofind</strong> : String</p>
+<blockquote class="last">
+<div><p>String which is supposed to be found in source.</p>
+</div></blockquote>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="procedural_city_generation.additional_stuff.clean_tools.find_readable_files">
+<code class="descclassname">procedural_city_generation.additional_stuff.clean_tools.</code><code class="descname">find_readable_files</code><span class="sig-paren">(</span><em>path, suffixes=['.py', '.conf']</em><span class="sig-paren">)</span><a class="headerlink" href="#procedural_city_generation.additional_stuff.clean_tools.find_readable_files" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="procedural_city_generation.additional_stuff.clean_tools.listfiles">
+<code class="descclassname">procedural_city_generation.additional_stuff.clean_tools.</code><code class="descname">listfiles</code><span class="sig-paren">(</span><em>path</em><span class="sig-paren">)</span><a class="headerlink" href="#procedural_city_generation.additional_stuff.clean_tools.listfiles" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
 </div>
 <div class="section" id="module-procedural_city_generation.additional_stuff.jsontools">
 <span id="procedural-city-generation-additional-stuff-jsontools-module"></span><h2>procedural_city_generation.additional_stuff.jsontools module<a class="headerlink" href="#module-procedural_city_generation.additional_stuff.jsontools" title="Permalink to this headline">¶</a></h2>
@@ -186,7 +236,7 @@ immutable numeric values to avoid confusion/difficult-to-trace-bugs.</p>
 <li><a class="reference internal" href="#submodules">Submodules</a></li>
 <li><a class="reference internal" href="#module-procedural_city_generation.additional_stuff.Param">procedural_city_generation.additional_stuff.Param module</a></li>
 <li><a class="reference internal" href="#module-procedural_city_generation.additional_stuff.Singleton">procedural_city_generation.additional_stuff.Singleton module</a></li>
-<li><a class="reference internal" href="#procedural-city-generation-additional-stuff-clean-tools-module">procedural_city_generation.additional_stuff.clean_tools module</a></li>
+<li><a class="reference internal" href="#module-procedural_city_generation.additional_stuff.clean_tools">procedural_city_generation.additional_stuff.clean_tools module</a></li>
 <li><a class="reference internal" href="#module-procedural_city_generation.additional_stuff.jsontools">procedural_city_generation.additional_stuff.jsontools module</a></li>
 <li><a class="reference internal" href="#module-procedural_city_generation.additional_stuff.randommap">procedural_city_generation.additional_stuff.randommap module</a></li>
 <li><a class="reference internal" href="#module-procedural_city_generation.additional_stuff.readimages">procedural_city_generation.additional_stuff.readimages module</a></li>

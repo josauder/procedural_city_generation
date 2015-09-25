@@ -62,6 +62,7 @@ with:</p>
 <ul class="simple">
 <li>numpy</li>
 <li>scipy</li>
+<li>matplotlib</li>
 <li>Blender 2.69</li>
 </ul>
 <p>To start the program with the GUI:</p>
@@ -69,12 +70,41 @@ with:</p>
 python GUI
 </pre></div>
 </div>
+<p>If everything worked so far, the GUI should open up and look like this:</p>
+<div class="figure align-center">
+<img alt="images/GUI.jpg" src="images/GUI.jpg" />
+</div>
 </div>
 <div class="section" id="overview-of-the-structure">
 <h2>Overview of the structure<a class="headerlink" href="#overview-of-the-structure" title="Permalink to this headline">¶</a></h2>
 <div class="section" id="roadmap-creation">
 <h3>Roadmap Creation<a class="headerlink" href="#roadmap-creation" title="Permalink to this headline">¶</a></h3>
-<p>This is some text describing how we create Roadmaps</p>
+<p>We refer to &#8220;road segments&#8221; as edges and the two ends of an edge as a vertex.
+We create roadmaps by starting with an axiom (a list of Vertices) and defining a set of rules by which new Vertices are added and connected to existing one to form Edges.
+Many of the terms used here become obvious when you see them in action. Let&#8217;s start by showing the most important inputs:</p>
+<p><strong>The Growth-Rule Image:</strong></p>
+<div class="figure align-center">
+<img alt="images/growth-rule.png" src="images/growth-rule.png" />
+</div>
+<p>This image describes which growth rule will be used in which area. Blue means that the radial rule will be used, Red means that the grid rule will be used, and Green means that the natural rule will be used. We will discuss the rules in detail later.</p>
+<p><strong>The Population-Density Image:</strong></p>
+<div class="figure align-center">
+<img alt="images/population-density.png" src="images/population-density.png" />
+</div>
+<p>This image describes the probabilities that vertices will be connected at all. The lighter, the more probable it is, that an edge will be built.</p>
+<p><strong>The output</strong></p>
+<div class="figure align-center">
+<img alt="_images/roadmap.png" src="_images/roadmap.png" />
+</div>
+<p>This is what the finished roadmap for a relatively small city looks like. As you see there are main roads and minor roads. The correlation between the input and the output is also very clear in this example.</p>
+<p><strong>Correlation between input and output</strong></p>
+<div class="figure align-left">
+<img alt="_images/result.png" src="_images/result.png" />
+</div>
+<div class="figure align-right">
+<img alt="_images/result2.png" src="_images/result2.png" />
+</div>
+<p>It should now have become clearer as to what the growth rules and the population density actually describe.</p>
 </div>
 <div class="section" id="polygon-extraction-and-subdivision">
 <h3>Polygon extraction and subdivision<a class="headerlink" href="#polygon-extraction-and-subdivision" title="Permalink to this headline">¶</a></h3>
