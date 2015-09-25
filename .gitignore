@@ -21,7 +21,7 @@ __pycache__/
 /procedural_city_generation/temp/*.txt
 /procedural_city_generation/temp/*.json
 /procedural_city_generation/temp/*.png
-
+/procedural_city_generation/inputs/*.txt
 
 # Distribution / packaging
 .Python
