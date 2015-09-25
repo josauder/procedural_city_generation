@@ -89,4 +89,17 @@ def add_license_text(files):
 			f.write(content)
 	return 0
 
-add_license_text(["/home/jonathan/Desktop/test.py"])
+def find_imports(path):
+	all_imports=[]
+	for f in find_readable_files(path):
+		with open(f,'r') as g:
+			s=g.readlines()
+		all_imports.extend([x for x in s if "import " in x and "procedural_city_generation" not in x])
+	
+	new_all_imports=set([])
+	for imp in all_imports:
+		imp=imp.split(" as ")[0]
+		imp=imp.replace("import","").replace("from","").replace("\t","").replace("\n","").replace("\r","")
+		imp=".".join([x for x in imp.split(" ") if x is not ""])
+		new_all_imports.add(imp)
+	print new_all_imports

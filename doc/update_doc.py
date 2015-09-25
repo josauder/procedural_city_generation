@@ -25,22 +25,24 @@ def main():
 	
 	script=[
 	"make html",
-	"mkdir temp",
-	"cp ../.git temp",
-	"cp ../.gitignore temp",
-	"cd temp",
-	"git checkout gh-pages",
-	"rm -R *",
-	"cp -R ../_build/html/* .",
-	"git add --all",
-	"git commit -m \" updated gh-pages with update_doc.py\"",
-	"git push",
-	"cd ..",
-	"rm -R temp",
-	]
-	
+	"rm -R procedural_city_generation",
+	"git clone https://github.com/josauder/procedural_city_generation.git --branch gh-pages",
+	"sudo rm -R ./procedural_city_generation/_static",
+	"sudo rm -R ./procedural_city_generation/_sources",
+	"sudo rm -R ./procedural_city_generation/*.py",
+	"mv _build/html/* procedural_city_generation"]
 	for command in script:
-		os.system(commant)
+		os.system(command)
+	os.chdir("procedural_city_generation")
+	os.system("touch .nojekyll")
+	os.system("git add --all")
+	os.system("git commit -m \" Automatic Doc Update\" ")
+	os.system("git push")
+	os.chdir("..")
+	os.system("sudo rm -R procedural_city_generation")
+	
+	
+	
 	
 	return 0
 

@@ -27,10 +27,11 @@ def setup_heightmap(singleton,path):
 	#Writes correct inuse.txt
 	with open(path+"/temp/heightmap_in_use.txt",'w') as f:
 		f.write(name[0:-3]+"txt")
-	
-	with open(path+"/temp/border.txt",'r') as f:
-		dimensions=f.read()
-		
+	try:
+		with open(path+"/temp/border.txt",'r') as f:
+			dimensions=f.read()
+	except IOError:
+		dimensions=None
 		
 	#If a txt has already been written for the input in the image, OR if the input was a .txt to begin with, simply load that txt
 	if (name[0:-3]+"txt" in os.listdir(path+"/temp/")) and (dimensions==str(singleton.border[0])+" "+str(singleton.border[1])):

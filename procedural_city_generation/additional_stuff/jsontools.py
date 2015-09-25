@@ -51,8 +51,12 @@ def reconstruct(path=None):
 		path=os.path.dirname(procedural_city_generation.__file__)+"/outputs/output.json"
 		
 	import json
-	with open(path,'r') as d:
-		data=d.read()
+	try:
+		with open(path,'r') as d:
+			data=d.read()
+	except IOError:
+		print "Input could not be located. Try to run the previous program in the chain first."
+		return 0
 	data=json.loads(data)
 	
 	from procedural_city_generation.roadmap.Vertex import Vertex

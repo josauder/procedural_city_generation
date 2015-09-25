@@ -15,9 +15,14 @@ def polygons():
 def building_generation():
 	from procedural_city_generation.building_generation import main as building_generation_main
 	import pickle
-	with open(path+"/outputs/polygons.txt",'r') as f:
-		polygons=pickle.loads(f.read())
-	building_generation_main.main(polygons)
+	try:
+		with open(path+"/outputs/polygons.txt",'r') as f:
+			polygons=pickle.loads(f.read())	
+		building_generation_main.main(polygons)
+	except IOError:
+		print "Input could not be located. Try to run the previous program in the chain first."
+		return 0
+
 	
 def visualization():
 	os.system("blender --python "+path+"/visualization/blenderize.py")

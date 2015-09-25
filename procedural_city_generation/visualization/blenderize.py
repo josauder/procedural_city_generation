@@ -1,6 +1,6 @@
 
 try:	
-	import bpy, os
+	import bpy, os, sys
 except:
 	pass
 
@@ -128,7 +128,7 @@ def setupscenery():
 	bpy.data.lamps["Lamp"].type="SUN"
 
 
-def main():
+def main(points,triangles,polygons):
 	"""
 	Intended to run in Blender. This means that this script must be written
 	in Python 3 conformity. Works by reading and unpickling /outputs/buildings.txt
@@ -138,14 +138,6 @@ def main():
 	``blender --python /procedural_city_generation/visualization/blenderize.py``
 	
 	"""
-	import pickle
-	
-	path=os.getcwd()+"/procedural_city_generation"
-	
-	with open(path+"/temp/heightmap_in_use.txt",'r') as f:
-		filename=f.read()
-	with open(path+"/temp/"+filename,'r') as f:
-		points, triangles = pickle.loads(f.read().encode('utf-8'))
 	
 	setupscenery()
 	
@@ -155,14 +147,11 @@ def main():
 	me.update(calc_edges=True)
 	
 	#TODO: Not flexible code.
-	me.materials.append(createtexture("Floor01.jpeg",100,True))
+	me.materials.append(createtexture("Floor02.jpg",100,True))
 
 	bpy.context.scene.objects.link(ob)
 	
 	
-	
-	with open(path+"/outputs/buildings.txt",'r') as f:
-		polygons=pickle.loads(f.read().encode('utf-8'))
 	
 	
 	floor_has_texture=False
@@ -173,4 +162,20 @@ def main():
 		
 	
 if __name__ == '__main__':
-	main()
+	
+	import pickle
+	
+	path=os.getcwd()+"/procedural_city_generation"
+	
+	try:
+		with open(path+"/temp/heightmap_in_use.txt",'r') as f:
+			filename=f.read()
+		with open(path+"/temp/"+filename,'r') as f:
+			points, triangles = pickle.loads(f.read().encode('utf-8'))
+		with open(path+"/outputs/buildings.txt",'r') as f:
+			polygons=pickle.loads(f.read().encode('utf-8'))
+		main(points,triangles,polygons)
+	except IOError:
+		print( "Input could not be located. Try to run the previous program in the chain first.")
+
+	
