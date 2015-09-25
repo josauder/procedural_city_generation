@@ -48,6 +48,8 @@ Many of the terms used here become obvious when you see them in action. Let's st
 
 .. figure::  images/growth_rule.png
    :align:   center
+   :height: 200px
+   :width: 200 px
 
 This image describes which growth rule will be used in which area. Blue means that the radial rule will be used, Red means that the grid rule will be used, and Green means that the natural rule will be used. We will discuss the rules in detail later.
 
@@ -55,6 +57,9 @@ This image describes which growth rule will be used in which area. Blue means th
 
 .. figure::  images/population_density.png
    :align:   center
+   :height: 200px
+   :width: 200 px
+
 
 This image describes the probabilities that vertices will be connected at all. The lighter, the more probable it is, that an edge will be built. 
 
@@ -62,6 +67,9 @@ This image describes the probabilities that vertices will be connected at all. T
 
 .. figure:: images/roadmap.png
    :align:   center
+   :height: 200px
+   :width: 200 px
+
    
 This is what the finished roadmap for a relatively small city looks like. As you see there are main roads and minor roads. The correlation between the input and the output is also very clear in this example.
 
@@ -69,8 +77,14 @@ This is what the finished roadmap for a relatively small city looks like. As you
 
 .. figure:: images/result.png
    :align:   left
+   :height: 200px
+   :width: 200 px
+
 .. figure:: images/result2.png
-   :align:   right
+   :align:   right   
+   :height: 200px
+   :width: 200 px
+
 
 
 It should now have become clearer as to what the growth rules and the population density actually describe. 
