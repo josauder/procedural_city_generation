@@ -3,8 +3,8 @@
    You can adapt this file completely to your liking, but it should at least
    contain the root `toctree` directive.
 
-Procedural City Generation in Python - Documentation 
-======================================================
+**Procedural City Generation in Python - Documentation**
+========================================================
 Welcome to procedural_city_generation's documentation! In this page we will give an overview of all the things you need to know to get started  with this project. 
  
 * `Getting it to work`_
@@ -12,9 +12,12 @@ Welcome to procedural_city_generation's documentation! In this page we will give
 
 
 
-Getting it to work
+**Getting it to work**
 --------------------
+
 You can get the source code at our `Github Page <https://github.com/josauder/procedural_city_generation>`_
+
+If you have git installed, you can clone the repository
 with::
 	git clone https://github.com/josauder/procedural_city_generation.git
 
@@ -32,78 +35,81 @@ To start the program with the GUI::
 
 If everything worked so far, the GUI should open up and look like this:
 
-.. figure::  images/GUI.png
+.. image::  images/GUI.png
    :align:   center
 
-Overview of the structure
---------------------------
 
-Roadmap Creation
-++++++++++++++++
+**Roadmap Creation**
+--------------------
 We refer to "road segments" as edges and the two ends of an edge as a vertex.
 We create roadmaps by starting with an axiom (a list of Vertices) and defining a set of rules by which new Vertices are added and connected to existing one to form Edges. 
 Many of the terms used here become obvious when you see them in action. Let's start by showing the most important inputs:
 
-**The Growth-Rule Image:**
 
-.. figure:: images/growth-rule.png
-   :align:   left
+The Growth-Rule Image:
+++++++++++++++++++++++
+.. image:: images/growthrule.png
+   :align: center
    :height: 400px
    :width: 400 px
 
-This image describes which growth rule will be used in which area. Blue means that the radial rule will be used, Red means that the grid rule will be used, and Green means that the natural rule will be used. We will discuss the rules in detail later.
+This image describes which growth rule will be used in which area. Blue means that the radial rule will be used, Red means that the grid rule will be used, and Green means that the natural rule will be used. We will discuss the rules in detail later.|
 
-**The Population-Density Image:**
 
-.. figure::  images/population-density.png
-   :align: left
+The Population-Density Image:
++++++++++++++++++++++++++++++
+
+.. image:: images/populationdensity.png
+   :align:   center
    :height: 400px
    :width: 400 px
-
-
-This image describes the probabilities that vertices will be connected at all. The lighter, the more probable it is, that an edge will be built. 
-
-**The output**
-
-.. figure:: images/roadmap.png
-   :align:   left
-   :height: 400px
-   :width: 400 px
-
    
-This is what the finished roadmap for a relatively small city looks like. As you see there are main roads and minor roads. The correlation between the input and the output is also very clear in this example.
+This image describes the probabilities that vertices will be connected at all.
+The lighter, the more probable it is, that an edge will be built. 
 
-**Correlation between input and output**
 
-.. figure:: images/result.png
-   :align:   left
+The output
+++++++++++++++++++++++
+
+.. image:: images/roadmap.png
+   :align:   center
+   :height: 400px
+   :width: 400 px
+   
+This is what the finished roadmap for a relatively small city looks like. 
+As you see there are main roads and minor roads. 
+The correlation between the input and the output is also very clear in this example.
+
+
+Correlation between input and output
+++++++++++++++++++++++++++++++++++++++
+
+.. image:: images/result.png
+   :align:   center
    :height: 400px
    :width: 400 px
 
-.. figure:: images/result2.png
-   :align:   left   
+.. image:: images/result2.png
+   :align:   center 
    :height: 400px
    :width: 400 px
-
-
-
+   
 It should now have become clearer as to what the growth rules and the population density actually describe. 
 
 
 
 
 
-
-Polygon extraction and subdivision
-+++++++++++++++++++++++++++++++++++
+**Polygon extraction and subdivision**
+-------------------------------------
 This is some text describing how we extract and subdivide polygons
 
-Creation of 3D Data
-++++++++++++++++++++
+**Creation of 3D Data**
+------------------------
 This is some text describing how we create 3D Data
 
-Visualization in Blender
-++++++++++++++++++++++++++
+**Visualization in Blender**
+---------------------------
 This is some text describing how we use Blender
 
 
@@ -114,7 +120,7 @@ This is some text describing how we use Blender
 .. procedural_city_generation
 
 
-Indices and tables
+**Indices and tables**
 ==================
 
 * :ref:`modindex`

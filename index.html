@@ -45,15 +45,16 @@
           <div class="body" role="main">
             
   <div class="section" id="procedural-city-generation-in-python-documentation">
-<h1>Procedural City Generation in Python - Documentation<a class="headerlink" href="#procedural-city-generation-in-python-documentation" title="Permalink to this headline">¶</a></h1>
+<h1><strong>Procedural City Generation in Python - Documentation</strong><a class="headerlink" href="#procedural-city-generation-in-python-documentation" title="Permalink to this headline">¶</a></h1>
 <p>Welcome to procedural_city_generation&#8217;s documentation! In this page we will give an overview of all the things you need to know to get started  with this project.</p>
 <ul class="simple">
 <li><a class="reference internal" href="#getting-it-to-work">Getting it to work</a></li>
 <li><a class="reference internal" href="#indices-and-tables">Indices and tables</a></li>
 </ul>
 <div class="section" id="getting-it-to-work">
-<h2>Getting it to work<a class="headerlink" href="#getting-it-to-work" title="Permalink to this headline">¶</a></h2>
-<p>You can get the source code at our <a class="reference external" href="https://github.com/josauder/procedural_city_generation">Github Page</a>
+<h2><strong>Getting it to work</strong><a class="headerlink" href="#getting-it-to-work" title="Permalink to this headline">¶</a></h2>
+<p>You can get the source code at our <a class="reference external" href="https://github.com/josauder/procedural_city_generation">Github Page</a></p>
+<p>If you have git installed, you can clone the repository
 with:</p>
 <div class="highlight-python"><div class="highlight"><pre>git clone https://github.com/josauder/procedural_city_generation.git
 </pre></div>
@@ -71,51 +72,48 @@ python GUI
 </pre></div>
 </div>
 <p>If everything worked so far, the GUI should open up and look like this:</p>
-<div class="figure align-center">
-<img alt="_images/GUI.png" src="_images/GUI.png" />
+<img alt="_images/GUI.png" class="align-center" src="_images/GUI.png" />
 </div>
-</div>
-<div class="section" id="overview-of-the-structure">
-<h2>Overview of the structure<a class="headerlink" href="#overview-of-the-structure" title="Permalink to this headline">¶</a></h2>
 <div class="section" id="roadmap-creation">
-<h3>Roadmap Creation<a class="headerlink" href="#roadmap-creation" title="Permalink to this headline">¶</a></h3>
+<h2><strong>Roadmap Creation</strong><a class="headerlink" href="#roadmap-creation" title="Permalink to this headline">¶</a></h2>
 <p>We refer to &#8220;road segments&#8221; as edges and the two ends of an edge as a vertex.
 We create roadmaps by starting with an axiom (a list of Vertices) and defining a set of rules by which new Vertices are added and connected to existing one to form Edges.
 Many of the terms used here become obvious when you see them in action. Let&#8217;s start by showing the most important inputs:</p>
-<p><strong>The Growth-Rule Image:</strong></p>
-<div class="figure align-left">
-<a class="reference internal image-reference" href="_images/growth-rule.png"><img alt="_images/growth-rule.png" src="_images/growth-rule.png" style="width: 400px; height: 400px;" /></a>
+<div class="section" id="the-growth-rule-image">
+<h3>The Growth-Rule Image:<a class="headerlink" href="#the-growth-rule-image" title="Permalink to this headline">¶</a></h3>
+<a class="reference internal image-reference" href="_images/growthrule.png"><img alt="_images/growthrule.png" class="align-center" src="_images/growthrule.png" style="width: 400px; height: 400px;" /></a>
+<p>This image describes which growth rule will be used in which area. Blue means that the radial rule will be used, Red means that the grid rule will be used, and Green means that the natural rule will be used. We will discuss the rules in detail later.|</p>
 </div>
-<p>This image describes which growth rule will be used in which area. Blue means that the radial rule will be used, Red means that the grid rule will be used, and Green means that the natural rule will be used. We will discuss the rules in detail later.</p>
-<p><strong>The Population-Density Image:</strong></p>
-<div class="figure align-left">
-<a class="reference internal image-reference" href="_images/population-density.png"><img alt="_images/population-density.png" src="_images/population-density.png" style="width: 400px; height: 400px;" /></a>
+<div class="section" id="the-population-density-image">
+<h3>The Population-Density Image:<a class="headerlink" href="#the-population-density-image" title="Permalink to this headline">¶</a></h3>
+<a class="reference internal image-reference" href="_images/populationdensity.png"><img alt="_images/populationdensity.png" class="align-center" src="_images/populationdensity.png" style="width: 400px; height: 400px;" /></a>
+<p>This image describes the probabilities that vertices will be connected at all.
+The lighter, the more probable it is, that an edge will be built.</p>
 </div>
-<p>This image describes the probabilities that vertices will be connected at all. The lighter, the more probable it is, that an edge will be built.</p>
-<p><strong>The output</strong></p>
-<div class="figure align-left">
-<a class="reference internal image-reference" href="_images/roadmap.png"><img alt="_images/roadmap.png" src="_images/roadmap.png" style="width: 400px; height: 400px;" /></a>
+<div class="section" id="the-output">
+<h3>The output<a class="headerlink" href="#the-output" title="Permalink to this headline">¶</a></h3>
+<a class="reference internal image-reference" href="_images/roadmap.png"><img alt="_images/roadmap.png" class="align-center" src="_images/roadmap.png" style="width: 400px; height: 400px;" /></a>
+<p>This is what the finished roadmap for a relatively small city looks like.
+As you see there are main roads and minor roads.
+The correlation between the input and the output is also very clear in this example.</p>
 </div>
-<p>This is what the finished roadmap for a relatively small city looks like. As you see there are main roads and minor roads. The correlation between the input and the output is also very clear in this example.</p>
-<p><strong>Correlation between input and output</strong></p>
-<div class="figure align-left">
-<a class="reference internal image-reference" href="_images/result.png"><img alt="_images/result.png" src="_images/result.png" style="width: 400px; height: 400px;" /></a>
-</div>
-<div class="figure align-left">
-<a class="reference internal image-reference" href="_images/result2.png"><img alt="_images/result2.png" src="_images/result2.png" style="width: 400px; height: 400px;" /></a>
-</div>
+<div class="section" id="correlation-between-input-and-output">
+<h3>Correlation between input and output<a class="headerlink" href="#correlation-between-input-and-output" title="Permalink to this headline">¶</a></h3>
+<a class="reference internal image-reference" href="_images/result.png"><img alt="_images/result.png" class="align-center" src="_images/result.png" style="width: 400px; height: 400px;" /></a>
+<a class="reference internal image-reference" href="_images/result2.png"><img alt="_images/result2.png" class="align-center" src="_images/result2.png" style="width: 400px; height: 400px;" /></a>
 <p>It should now have become clearer as to what the growth rules and the population density actually describe.</p>
 </div>
+</div>
 <div class="section" id="polygon-extraction-and-subdivision">
-<h3>Polygon extraction and subdivision<a class="headerlink" href="#polygon-extraction-and-subdivision" title="Permalink to this headline">¶</a></h3>
+<h2><strong>Polygon extraction and subdivision</strong><a class="headerlink" href="#polygon-extraction-and-subdivision" title="Permalink to this headline">¶</a></h2>
 <p>This is some text describing how we extract and subdivide polygons</p>
 </div>
 <div class="section" id="creation-of-3d-data">
-<h3>Creation of 3D Data<a class="headerlink" href="#creation-of-3d-data" title="Permalink to this headline">¶</a></h3>
+<h2><strong>Creation of 3D Data</strong><a class="headerlink" href="#creation-of-3d-data" title="Permalink to this headline">¶</a></h2>
 <p>This is some text describing how we create 3D Data</p>
 </div>
 <div class="section" id="visualization-in-blender">
-<h3>Visualization in Blender<a class="headerlink" href="#visualization-in-blender" title="Permalink to this headline">¶</a></h3>
+<h2><strong>Visualization in Blender</strong><a class="headerlink" href="#visualization-in-blender" title="Permalink to this headline">¶</a></h2>
 <p>This is some text describing how we use Blender</p>
 <div class="toctree-wrapper compound">
 <ul class="simple">
@@ -123,9 +121,8 @@ Many of the terms used here become obvious when you see them in action. Let&#821
 </div>
 </div>
 </div>
-</div>
 <div class="section" id="indices-and-tables">
-<h1>Indices and tables<a class="headerlink" href="#indices-and-tables" title="Permalink to this headline">¶</a></h1>
+<h1><strong>Indices and tables</strong><a class="headerlink" href="#indices-and-tables" title="Permalink to this headline">¶</a></h1>
 <ul class="simple">
 <li><a class="reference internal" href="py-modindex.html"><span>Module Index</span></a></li>
 <li><a class="reference internal" href="search.html"><span>Search Page</span></a></li>
@@ -141,18 +138,21 @@ Many of the terms used here become obvious when you see them in action. Let&#821
         <div class="sphinxsidebarwrapper">
   <h3><a href="#">Table Of Contents</a></h3>
   <ul>
-<li><a class="reference internal" href="#">Procedural City Generation in Python - Documentation</a><ul>
-<li><a class="reference internal" href="#getting-it-to-work">Getting it to work</a></li>
-<li><a class="reference internal" href="#overview-of-the-structure">Overview of the structure</a><ul>
-<li><a class="reference internal" href="#roadmap-creation">Roadmap Creation</a></li>
-<li><a class="reference internal" href="#polygon-extraction-and-subdivision">Polygon extraction and subdivision</a></li>
-<li><a class="reference internal" href="#creation-of-3d-data">Creation of 3D Data</a></li>
-<li><a class="reference internal" href="#visualization-in-blender">Visualization in Blender</a></li>
+<li><a class="reference internal" href="#"><strong>Procedural City Generation in Python - Documentation</strong></a><ul>
+<li><a class="reference internal" href="#getting-it-to-work"><strong>Getting it to work</strong></a></li>
+<li><a class="reference internal" href="#roadmap-creation"><strong>Roadmap Creation</strong></a><ul>
+<li><a class="reference internal" href="#the-growth-rule-image">The Growth-Rule Image:</a></li>
+<li><a class="reference internal" href="#the-population-density-image">The Population-Density Image:</a></li>
+<li><a class="reference internal" href="#the-output">The output</a></li>
+<li><a class="reference internal" href="#correlation-between-input-and-output">Correlation between input and output</a></li>
 </ul>
 </li>
+<li><a class="reference internal" href="#polygon-extraction-and-subdivision"><strong>Polygon extraction and subdivision</strong></a></li>
+<li><a class="reference internal" href="#creation-of-3d-data"><strong>Creation of 3D Data</strong></a></li>
+<li><a class="reference internal" href="#visualization-in-blender"><strong>Visualization in Blender</strong></a></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#indices-and-tables">Indices and tables</a></li>
+<li><a class="reference internal" href="#indices-and-tables"><strong>Indices and tables</strong></a></li>
 </ul>
 
   <div role="note" aria-label="source link">
