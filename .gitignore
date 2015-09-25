@@ -5,6 +5,10 @@ __pycache__/
 # Geany
 *.bat
 
+# Intellij
+.idea
+.idea/*
+
 *~
 
 # C extensions
