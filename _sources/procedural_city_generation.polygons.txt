@@ -92,6 +92,14 @@ procedural_city_generation.polygons.plot_poly module
     :undoc-members:
     :show-inheritance:
 
+procedural_city_generation.polygons.polygons_params module
+-------------------------------------------------------------------------------------
+
+.. automodule:: procedural_city_generation.polygons.polygons_params
+    :members:
+    :undoc-members:
+    :show-inheritance:
+
 procedural_city_generation.polygons.split_poly module
 --------------------------------------------------------------------------------
 

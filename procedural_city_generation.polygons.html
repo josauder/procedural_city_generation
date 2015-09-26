@@ -185,14 +185,14 @@ Polygon2D representing the road-network</p>
 </dd></dl>
 
 </div>
-<div class="section" id="procedural-city-generation-polygons-findsquaresinpoly-module">
-<h2>procedural_city_generation.polygons.findsquaresinpoly module<a class="headerlink" href="#procedural-city-generation-polygons-findsquaresinpoly-module" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="module-procedural_city_generation.polygons.findsquaresinpoly">
+<span id="procedural-city-generation-polygons-findsquaresinpoly-module"></span><h2>procedural_city_generation.polygons.findsquaresinpoly module<a class="headerlink" href="#module-procedural_city_generation.polygons.findsquaresinpoly" title="Permalink to this headline">¶</a></h2>
 </div>
 <div class="section" id="module-procedural_city_generation.polygons.getBlock">
 <span id="procedural-city-generation-polygons-getblock-module"></span><h2>procedural_city_generation.polygons.getBlock module<a class="headerlink" href="#module-procedural_city_generation.polygons.getBlock" title="Permalink to this headline">¶</a></h2>
 <dl class="function">
 <dt id="procedural_city_generation.polygons.getBlock.getBlock">
-<code class="descclassname">procedural_city_generation.polygons.getBlock.</code><code class="descname">getBlock</code><span class="sig-paren">(</span><em>wedges</em>, <em>vertex_list</em>, <em>minor_factor=0.08</em>, <em>main_factor=0.17</em>, <em>max_area=12</em><span class="sig-paren">)</span><a class="headerlink" href="#procedural_city_generation.polygons.getBlock.getBlock" title="Permalink to this definition">¶</a></dt>
+<code class="descclassname">procedural_city_generation.polygons.getBlock.</code><code class="descname">getBlock</code><span class="sig-paren">(</span><em>wedges</em>, <em>vertex_list</em><span class="sig-paren">)</span><a class="headerlink" href="#procedural_city_generation.polygons.getBlock.getBlock" title="Permalink to this definition">¶</a></dt>
 <dd><p>Calculate block to be divided into lots, as well as street polygons</p>
 </dd></dl>
 
@@ -220,7 +220,7 @@ Polygon2D representing the road-network</p>
 <span id="procedural-city-generation-polygons-main-module"></span><h2>procedural_city_generation.polygons.main module<a class="headerlink" href="#module-procedural_city_generation.polygons.main" title="Permalink to this headline">¶</a></h2>
 <dl class="function">
 <dt id="procedural_city_generation.polygons.main.main">
-<code class="descclassname">procedural_city_generation.polygons.main.</code><code class="descname">main</code><span class="sig-paren">(</span><em>vertex_list=None</em>, <em>plotbool=False</em><span class="sig-paren">)</span><a class="headerlink" href="#procedural_city_generation.polygons.main.main" title="Permalink to this definition">¶</a></dt>
+<code class="descclassname">procedural_city_generation.polygons.main.</code><code class="descname">main</code><span class="sig-paren">(</span><em>vertex_list=None</em><span class="sig-paren">)</span><a class="headerlink" href="#procedural_city_generation.polygons.main.main" title="Permalink to this definition">¶</a></dt>
 <dd><p>Input: list of vertices representing the Roadmap
 Output: List of all Polygon2Ds representing Lots,
 List of all Polygon2Ds representing Blocks
@@ -252,11 +252,20 @@ levels above</p>
 <dd></dd></dl>
 
 </div>
+<div class="section" id="module-procedural_city_generation.polygons.polygons_params">
+<span id="procedural-city-generation-polygons-polygons-params-module"></span><h2>procedural_city_generation.polygons.polygons_params module<a class="headerlink" href="#module-procedural_city_generation.polygons.polygons_params" title="Permalink to this headline">¶</a></h2>
+<p>Module which contains all input parameters for this submodule, along with:
+- The default (recommmended) value from the developers
+- A short description of what the parameter changes
+- All values that the parameter accepts without causing this program to break.</p>
+<p>This information can also be viewed when calling the GUI and clicking the &#8220;options&#8221;
+button for that specific module.</p>
+</div>
 <div class="section" id="module-procedural_city_generation.polygons.split_poly">
 <span id="procedural-city-generation-polygons-split-poly-module"></span><h2>procedural_city_generation.polygons.split_poly module<a class="headerlink" href="#module-procedural_city_generation.polygons.split_poly" title="Permalink to this headline">¶</a></h2>
 <dl class="function">
 <dt id="procedural_city_generation.polygons.split_poly.split_poly">
-<code class="descclassname">procedural_city_generation.polygons.split_poly.</code><code class="descname">split_poly</code><span class="sig-paren">(</span><em>poly</em>, <em>min_area=0.3</em>, <em>min_length=0.2</em>, <em>eps=1e-05</em><span class="sig-paren">)</span><a class="headerlink" href="#procedural_city_generation.polygons.split_poly.split_poly" title="Permalink to this definition">¶</a></dt>
+<code class="descclassname">procedural_city_generation.polygons.split_poly.</code><code class="descname">split_poly</code><span class="sig-paren">(</span><em>poly</em>, <em>eps=1e-05</em><span class="sig-paren">)</span><a class="headerlink" href="#procedural_city_generation.polygons.split_poly.split_poly" title="Permalink to this definition">¶</a></dt>
 <dd><p>Split polygon into two parts</p>
 </dd></dl>
 
@@ -281,12 +290,13 @@ levels above</p>
 <li><a class="reference internal" href="#module-procedural_city_generation.polygons.Weg">procedural_city_generation.polygons.Weg module</a></li>
 <li><a class="reference internal" href="#module-procedural_city_generation.polygons.config">procedural_city_generation.polygons.config module</a></li>
 <li><a class="reference internal" href="#module-procedural_city_generation.polygons.construct_polygons">procedural_city_generation.polygons.construct_polygons module</a></li>
-<li><a class="reference internal" href="#procedural-city-generation-polygons-findsquaresinpoly-module">procedural_city_generation.polygons.findsquaresinpoly module</a></li>
+<li><a class="reference internal" href="#module-procedural_city_generation.polygons.findsquaresinpoly">procedural_city_generation.polygons.findsquaresinpoly module</a></li>
 <li><a class="reference internal" href="#module-procedural_city_generation.polygons.getBlock">procedural_city_generation.polygons.getBlock module</a></li>
 <li><a class="reference internal" href="#module-procedural_city_generation.polygons.getLots">procedural_city_generation.polygons.getLots module</a></li>
 <li><a class="reference internal" href="#module-procedural_city_generation.polygons.main">procedural_city_generation.polygons.main module</a></li>
 <li><a class="reference internal" href="#module-procedural_city_generation.polygons.parent_path">procedural_city_generation.polygons.parent_path module</a></li>
 <li><a class="reference internal" href="#module-procedural_city_generation.polygons.plot_poly">procedural_city_generation.polygons.plot_poly module</a></li>
+<li><a class="reference internal" href="#module-procedural_city_generation.polygons.polygons_params">procedural_city_generation.polygons.polygons_params module</a></li>
 <li><a class="reference internal" href="#module-procedural_city_generation.polygons.split_poly">procedural_city_generation.polygons.split_poly module</a></li>
 <li><a class="reference internal" href="#module-contents">Module contents</a></li>
 </ul>
