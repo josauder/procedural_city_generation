@@ -19,7 +19,7 @@ class Singleton:
 				for k,v in d.items():
 					setattr(self,k,v)
 			else:
-				print "Warning, Singleton instanciated without parsing a json file. Please specify the modulename parameter to avoid errors"
+				print( "Warning, Singleton instanciated without parsing a json file. Please specify the modulename parameter to avoid errors")
 	instance=None
 	def __init__(self,modulename=None):
 		"""

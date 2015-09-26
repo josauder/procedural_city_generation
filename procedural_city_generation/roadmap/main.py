@@ -5,7 +5,7 @@ from __future__ import division
 def main():
 	from procedural_city_generation.roadmap.config import config
 	from copy import copy
-	
+
 	singleton=config()
 	
 	front=copy(singleton.global_lists.vertex_list)
@@ -19,9 +19,7 @@ def main():
 	if singleton.plot==1:
 		
 		import matplotlib.pyplot as plt
-		import matplotlib
-		import matplotlib.lines
-		from matplotlib.lines import Line2D
+		plt.close()
 		fig=plt.figure()
 		ax=plt.subplot(111)
 		
@@ -55,8 +53,4 @@ if __name__ == '__main__':
 	import os, sys
 	parentpath=os.path.join(os.getcwd(),("../../"))
 	sys.path.append(parentpath)
-	import procedural_city_generation
-	
-	
 	main()
-	

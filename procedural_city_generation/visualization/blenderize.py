@@ -4,7 +4,6 @@ try:
 except:
 	pass
 
-
 def createtexture(name,scale,texturetype='REPEAT'):
 	"""
 	Creates a Blender Texture Object. Only Tested with Cycles Engine.
@@ -108,7 +107,7 @@ def createobject(verts,faces,texname,texscale,shrinkwrap):
 		wrap.use_negative_direction=True
 		wrap.use_project_z=True
 		wrap.target=bpy.context.scene.objects['Floormesh']
-		wrap.offset=0.03
+		wrap.offset=numeric_values[u'offset']
 
 	bpy.context.scene.objects.link(ob)
 
@@ -166,8 +165,14 @@ if __name__ == '__main__':
 	import pickle
 	
 	path=os.getcwd()+"/procedural_city_generation"
-	
+	import json
+	global numeric_values
+
 	try:
+
+		with open(path+"/inputs/visualization.conf",'r') as f:
+			numeric_values=json.loads(f.read())
+
 		with open(path+"/temp/heightmap_in_use.txt",'r') as f:
 			filename=f.read()
 		with open(path+"/temp/"+filename,'r') as f:
@@ -177,5 +182,3 @@ if __name__ == '__main__':
 		main(points,triangles,polygons)
 	except IOError:
 		print( "Input could not be located. Try to run the previous program in the chain first.")
-
-	
