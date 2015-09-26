@@ -1,15 +1,16 @@
-from Polygon2D import *
+from procedural_city_generation.polygons.Polygon2D import *
+from procedural_city_generation.additional_stuff.Singleton import Singleton
+singleton=Singleton("polygons")
 
-
-def split_poly(poly, min_area=0.3, min_length=0.2, eps=10**-5):
+def split_poly(poly, eps=10**-5):
 		"""Split polygon into two parts"""
 		
-		if poly.area < min_area:
+		if poly.area < singleton.split_poly_min_area:
 			#Polygon2D is too small
 			return False
 			
 		for split_edge in sorted(poly.edges, key=lambda x: -x.length):
-			if split_edge.length < min_length:
+			if split_edge.length < singleton.split_poly_min_length:
 				#Edge is too small for splitting
 				return False
 				
@@ -21,7 +22,7 @@ def split_poly(poly, min_area=0.3, min_length=0.2, eps=10**-5):
 			#connected to street, try again with different edge
 			
 			#Find point at approximate half of split edge
-			split_point = split_edge[0] + split_edge.dir_vector*np.random.uniform(0.45,0.55)
+			split_point = split_edge[0] + split_edge.dir_vector*np.random.uniform(0.5-singleton.split_poly_half_tolerance,0.5+singleton.split_poly_half_tolerance)
 			
 			#Switch variable determines which list in new edges is appended to
 			switch = True

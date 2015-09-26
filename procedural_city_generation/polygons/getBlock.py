@@ -1,6 +1,9 @@
 from __future__ import division
 import numpy as np
-from Polygon2D import Edge, Polygon2D
+from procedural_city_generation.polygons.Polygon2D import Edge, Polygon2D
+from procedural_city_generation.additional_stuff.Singleton import Singleton
+
+singleton=Singleton("polygons")
 
 def p_in_poly(poly, point):
     x,y = point
@@ -21,8 +24,10 @@ def p_in_poly(poly, point):
 
     return inside
 
-def getBlock(wedges, vertex_list, minor_factor=0.08, main_factor=0.17, max_area=12):
+def getBlock(wedges, vertex_list):
 	'''Calculate block to be divided into lots, as well as street polygons'''
+
+
 	old_vertices = [vertex_list[wedge.b] for wedge in wedges]
 	old_poly = Polygon2D([v.coords for v in old_vertices])
 
@@ -43,13 +48,13 @@ def getBlock(wedges, vertex_list, minor_factor=0.08, main_factor=0.17, max_area=
 		#Change lengths of normal vectors depending on whether each
 		#edge is a minor road or a main road
 		if b.minor_road or a.minor_road:
-			n1 *= minor_factor
+			n1 *= singleton.minor_factor
 		else:
-			n1 *= main_factor
+			n1 *= singleton.main_factor
 		if b.minor_road or c.minor_road:
-			n2 *= minor_factor
+			n2 *= singleton.minor_factor
 		else:
-			n2 *= main_factor
+			n2 *= singleton.main_factor
 		
 		#Check if current vertex is dead end
 		if not 0 - 0.001 < alpha < 0 + 0.001:
@@ -94,7 +99,7 @@ def getBlock(wedges, vertex_list, minor_factor=0.08, main_factor=0.17, max_area=
 				
 	#All new vertices are in old polygon: append block polygon
 	block_poly = Polygon2D(new_vertices)
-	if block_poly.area < max_area:
+	if block_poly.area < singleton.max_area:
 		block_poly.poly_type="lot"
 	polylist.append(block_poly)
 	return polylist

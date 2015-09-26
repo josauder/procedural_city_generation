@@ -35,20 +35,21 @@ def main():
 		front=iteration(front)
 		
 		if singleton.plot==1:
-			if i%singleton.plotabstand==0:	
+			if i%singleton.plotabstand==0:
 				plt.pause(0.001)
 				fig.canvas.blit(ax.bbox)
 				fig.canvas.flush_events()
 			singleton.iterationszaehler=0
+
 	from procedural_city_generation.additional_stuff.jsontools import save_vertexlist
 	
 	
 	print "Roadmap is complete"
+	plt.show()
 	save_vertexlist(singleton.global_lists.vertex_list,"output",singleton.savefig)
 	singleton.kill()
 	return 0
-	#return singleton.global_lists.vertex_list
-	
+
 	
 if __name__ == '__main__':
 	import os, sys

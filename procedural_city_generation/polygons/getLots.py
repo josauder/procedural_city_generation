@@ -1,5 +1,5 @@
 from __future__ import division
-from Polygon2D import Edge, Polygon2D
+from procedural_city_generation.polygons.Polygon2D import Edge, Polygon2D
 from getBlock import getBlock
 from split_poly import split_poly
 

@@ -1,7 +1,7 @@
 from __future__ import division
 import numpy as np
 import math
-
+"""
 def findsquare(poly):
 	base= max([edge for edge in poly.edges if edge.bordering_road], key=lambda edge:edge.length)
 	point1=base.vertex1
@@ -20,3 +20,4 @@ def findsquare(poly):
 			intersections=newintersections, volume=newvolume
 
 	return intersections
+"""

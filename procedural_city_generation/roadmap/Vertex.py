@@ -75,4 +75,5 @@ class Vertex(object):
 		return "Vertex"+str(self.coords)+"\n"
 
 def set_plotbool(singletonbool):
+	global plotbool
 	plotbool=singletonbool

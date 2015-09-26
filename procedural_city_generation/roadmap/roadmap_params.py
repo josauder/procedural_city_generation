@@ -1,5 +1,5 @@
 """
-Module which contains all input parameters for this sudmodule, along with:
+Module which contains all input parameters for this submodule, along with:
 - The default (recommmended) value from the developers
 - A short description of what the parameter changes
 - All values that the parameter accepts without causing this program to break.
