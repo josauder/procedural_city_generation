@@ -46,14 +46,22 @@
             
   <div class="section" id="procedural-city-generation-in-python-documentation">
 <h1><strong>Procedural City Generation in Python - Documentation</strong><a class="headerlink" href="#procedural-city-generation-in-python-documentation" title="Permalink to this headline">¶</a></h1>
-<a class="reference internal image-reference" href="_images/currentstate.png"><img alt="_images/currentstate.png" class="align-center" src="_images/currentstate.png" style="width: 1062px; height: 600px;" /></a>
+<a class="reference internal image-reference" href="#procedural-city-generation-in-python-documentation"><img alt="_images/currentstate.png" class="align-center" src="_images/currentstate.png" style="width: 1062px; height: 600px;" /></a>
 <p>Welcome to procedural_city_generation&#8217;s documentation! In this page we will give an overview of all the things you need to know to get started  with this project.</p>
+<div class="section" id="index">
+<h2>Index<a class="headerlink" href="#index" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
 <li><a class="reference internal" href="#getting-it-to-work">Getting it to work</a></li>
-<li><a class="reference internal" href="#indices-and-tables">Indices and tables</a></li>
+<li><a class="reference internal" href="#roadmap-creation">Roadmap Creation</a></li>
+<li><a class="reference internal" href="#polygon-extraction-and-subdivision">Polygon Extraction and Subdivision</a></li>
+<li><a class="reference internal" href="#creation-of-3d-data">Creation of 3D Data</a></li>
+<li><a class="reference internal" href="#visualization-in-blender">Visualization in Blender</a></li>
+<li><a class="reference internal" href="py-modindex.html"><span>Module Index</span></a></li>
+<li><a class="reference internal" href="search.html"><span>Search Page</span></a></li>
+<li><a class="reference internal" href="genindex.html"><span>Index</span></a></li>
 </ul>
 <div class="section" id="getting-it-to-work">
-<h2><strong>Getting it to work</strong><a class="headerlink" href="#getting-it-to-work" title="Permalink to this headline">¶</a></h2>
+<h3><strong>Getting it to work</strong><a class="headerlink" href="#getting-it-to-work" title="Permalink to this headline">¶</a></h3>
 <p>You can get the source code at our <a class="reference external" href="https://github.com/josauder/procedural_city_generation">Github Page</a></p>
 <p>If you have git installed, you can clone the repository
 with:</p>
@@ -73,64 +81,128 @@ python GUI
 </pre></div>
 </div>
 <p>If everything worked so far, the GUI should open up and look like this:</p>
-<img alt="_images/GUI.png" class="align-center" src="_images/GUI.png" />
+<a class="reference internal image-reference" href="#getting-it-to-work"><img alt="_images/GUI.png" class="align-center" src="_images/GUI.png" /></a>
 </div>
 <div class="section" id="roadmap-creation">
-<h2><strong>Roadmap Creation</strong><a class="headerlink" href="#roadmap-creation" title="Permalink to this headline">¶</a></h2>
+<h3><strong>Roadmap Creation</strong><a class="headerlink" href="#roadmap-creation" title="Permalink to this headline">¶</a></h3>
 <p>We refer to &#8220;road segments&#8221; as edges and the two ends of an edge as a vertex.
 We create roadmaps by starting with an axiom (a list of Vertices) and defining a set of rules by which new Vertices are added and connected to existing one to form Edges.
 Many of the terms used here become obvious when you see them in action. Let&#8217;s start by showing the most important inputs:</p>
+</div>
+</div>
 <div class="section" id="the-growth-rule-image">
-<h3>The Growth-Rule Image:<a class="headerlink" href="#the-growth-rule-image" title="Permalink to this headline">¶</a></h3>
-<a class="reference internal image-reference" href="_images/growthrule.png"><img alt="_images/growthrule.png" class="align-center" src="_images/growthrule.png" style="width: 400px; height: 400px;" /></a>
-<p>This image describes which growth rule will be used in which area. Blue means that the radial rule will be used, Red means that the grid rule will be used, and Green means that the natural rule will be used. We will discuss the rules in detail later.</p>
+<h2>The Growth-Rule Image<a class="headerlink" href="#the-growth-rule-image" title="Permalink to this headline">¶</a></h2>
+<a class="reference internal image-reference" href="#the-growth-rule-image"><img alt="_images/growthrule.png" class="align-center" src="_images/growthrule.png" style="width: 400px; height: 400px;" /></a>
+<p>This image describes which growth rule will be used in which area. Blue means that the radial rule will be used, Red means that the grid rule will be used, and Green means that the organic rule will be used. We will discuss the rules in detail later.</p>
 </div>
 <div class="section" id="the-population-density-image">
-<h3>The Population-Density Image:<a class="headerlink" href="#the-population-density-image" title="Permalink to this headline">¶</a></h3>
-<a class="reference internal image-reference" href="_images/populationdensity.png"><img alt="_images/populationdensity.png" class="align-center" src="_images/populationdensity.png" style="width: 400px; height: 400px;" /></a>
+<h2>The Population-Density Image<a class="headerlink" href="#the-population-density-image" title="Permalink to this headline">¶</a></h2>
+<a class="reference internal image-reference" href="#the-population-density-image"><img alt="_images/populationdensity.png" class="align-center" src="_images/populationdensity.png" style="width: 400px; height: 400px;" /></a>
 <p>This image describes the probabilities that vertices will be connected at all.
 The lighter, the more probable it is, that an edge will be built.</p>
 </div>
 <div class="section" id="the-output">
-<h3>The output<a class="headerlink" href="#the-output" title="Permalink to this headline">¶</a></h3>
-<a class="reference internal image-reference" href="_images/roadmap.png"><img alt="_images/roadmap.png" class="align-center" src="_images/roadmap.png" style="width: 400px; height: 400px;" /></a>
+<h2>The Output<a class="headerlink" href="#the-output" title="Permalink to this headline">¶</a></h2>
+<a class="reference internal image-reference" href="#the-output"><img alt="_images/roadmap.png" class="align-center" src="_images/roadmap.png" style="width: 400px; height: 400px;" /></a>
 <p>This is what the finished roadmap for a relatively small city looks like.
 As you see there are main roads and minor roads.
 The correlation between the input and the output is also very clear in this example.</p>
 </div>
 <div class="section" id="correlation-between-input-and-output">
-<h3>Correlation between input and output<a class="headerlink" href="#correlation-between-input-and-output" title="Permalink to this headline">¶</a></h3>
-<a class="reference internal image-reference" href="_images/result.png"><img alt="_images/result.png" class="align-center" src="_images/result.png" style="width: 400px; height: 400px;" /></a>
-<a class="reference internal image-reference" href="_images/result2.png"><img alt="_images/result2.png" class="align-center" src="_images/result2.png" style="width: 400px; height: 400px;" /></a>
+<h2>Correlation between Input and Output<a class="headerlink" href="#correlation-between-input-and-output" title="Permalink to this headline">¶</a></h2>
+<a class="reference internal image-reference" href="#correlation-between-input-and-output"><img alt="_images/result.png" class="align-center" src="_images/result.png" style="width: 400px; height: 400px;" /></a>
+<a class="reference internal image-reference" href="#correlation-between-input-and-output"><img alt="_images/result2.png" class="align-center" src="_images/result2.png" style="width: 400px; height: 400px;" /></a>
 <p>It should now have become clearer as to what the growth rules and the population density actually describe.</p>
 </div>
+<div class="section" id="how-vertices-are-managed">
+<h2>How Vertices are managed<a class="headerlink" href="#how-vertices-are-managed" title="Permalink to this headline">¶</a></h2>
+<p>As mentioned, we start with an axiom. In the beginning, every vertex of the axiom is in the &#8220;front&#8221;, the list of vertices from which new vertices well be suggested.
+For every vertex, a (possibly) empty list of new suggested vertices is then created. The position of these suggested vertices depends on the growth rule. For example,
+if we use the grid rule, the suggested vertex for the direction &#8220;forward&#8221; is simply adding the previous edge to the vertex we are making suggestions from, and &#8220;turning&#8221; means adding this vertex rotated by either 90 or 270 degrees.
+All suggested vertices are then &#8220;checked&#8221; - this means we handle the following cases:</p>
+<ol class="arabic simple">
+<li>When a new vertex is placed too close to an existing vertex, we focus on the edge to that existing vertex instead.</li>
+<li>When a new vertex is placed, so that the edge to that vertex stops shortly before an existing edge, we lengthen that edge to the intersection of the two edges.</li>
+<li>When new vertex is placed, so that the edge to that vertex intersects an existing edge, we shorten the edge to the intersection of the two edges. This also has to be checked after case 1 has been handled.</li>
+</ol>
+<p>An illustation of these cases:</p>
+<a class="reference internal image-reference" href="#how-vertices-are-managed"><img alt="_images/check.png" class="align-center" src="_images/check.png" style="width: 800px; height: 400px;" /></a>
+<p>If none of these cases apply, the new vertex is placed and is added to the front. If there is no vertex suggested that followed the &#8220;turn&#8221; part of the growth rule, the vertex will also be added to the vertex_queue. After a vertex has spent a certain amount of iterations in the vertex_queue, it is readded to the front, under the growth rule &#8220;seed&#8221;. This growth rule starts producing vertices with the &#8220;minor_road&#8221; rule.</p>
 </div>
+<div class="section" id="the-growth-rules">
+<h2>The Growth Rules<a class="headerlink" href="#the-growth-rules" title="Permalink to this headline">¶</a></h2>
+<p>Below is a table describing how we suggest new vertices from a vertex by following a rule. We always need to have the previous_vector to that vertex saved.</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="4%" />
+<col width="43%" />
+<col width="46%" />
+<col width="4%" />
+<col width="3%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head"><strong>Rule</strong></th>
+<th class="head">Forward</th>
+<th class="head">Turn</th>
+<th class="head">pForward</th>
+<th class="head">pTurn</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>grid</td>
+<td>vertex+previous_vector</td>
+<td>vertex+rotate(previous_vector,90)</td>
+<td>1</td>
+<td>0.09</td>
+</tr>
+<tr class="row-odd"><td>organic</td>
+<td>vertex+rotate(previous_vector,random(-30,30))</td>
+<td>vertex+rotate(previous_vector,random(60,120))</td>
+<td>1</td>
+<td>0.8</td>
+</tr>
+<tr class="row-even"><td>radial</td>
+<td>We check if the previous_vector is closer to radial or tangential, and adjust it to that. Then vertex+adjusted_vector</td>
+<td>We check if the previous_vector is closer to radial or tangential, and adjust it to the opposite. Then vertex+adjusted_vector</td>
+<td>1</td>
+<td>0.07</td>
+</tr>
+<tr class="row-odd"><td>seed</td>
+<td>&nbsp;</td>
+<td>vertex+rotate(previous_vector,90)</td>
+<td>&nbsp;</td>
+<td>0.4</td>
+</tr>
+<tr class="row-even"><td>minor_road</td>
+<td>vertex+previous_vector</td>
+<td>vertex+rotate(previous_vector,90)</td>
+<td>0.05</td>
+<td>0.85</td>
+</tr>
+</tbody>
+</table>
+<p>Here you can see a demonstration of what the three main growth rules look like:</p>
+<a class="reference internal image-reference" href="#the-growth-rules"><img alt="_images/rules.png" class="align-center" src="_images/rules.png" style="width: 1000px; height: 400px;" /></a>
 <div class="section" id="polygon-extraction-and-subdivision">
-<h2><strong>Polygon extraction and subdivision</strong><a class="headerlink" href="#polygon-extraction-and-subdivision" title="Permalink to this headline">¶</a></h2>
+<h3><strong>Polygon Extraction and Subdivision</strong><a class="headerlink" href="#polygon-extraction-and-subdivision" title="Permalink to this headline">¶</a></h3>
 <p>We split up each of the &#8216;blocks&#8217; additionally into &#8216;lots&#8217;. On every lot, one building can be placed. Lots that are too large will be omitted from building.</p>
-<a class="reference internal image-reference" href="images/splitup.png"><img alt="images/splitup.png" class="align-center" src="images/splitup.png" style="width: 400px; height: 400px;" /></a>
+<a class="reference internal image-reference" href="#polygon-extraction-and-subdivision"><img alt="_images/splitup.png" class="align-center" src="_images/splitup.png" style="width: 400px; height: 400px;" /></a>
 </div>
 <div class="section" id="creation-of-3d-data">
-<h2><strong>Creation of 3D Data</strong><a class="headerlink" href="#creation-of-3d-data" title="Permalink to this headline">¶</a></h2>
+<h3><strong>Creation of 3D Data</strong><a class="headerlink" href="#creation-of-3d-data" title="Permalink to this headline">¶</a></h3>
 <p>We create buildings by choosing various parameters according to the population density, such as the building height and Textures.</p>
 <p>We then start by scaling and or transforming the lot down, and possibly applying a series of operations on each of the walls.</p>
+<a class="reference internal image-reference" href="#creation-of-3d-data"><img alt="_images/buildinggeneration.png" class="align-center" src="_images/buildinggeneration.png" style="width: 750px; height: 350px;" /></a>
 </div>
 <div class="section" id="visualization-in-blender">
-<h2><strong>Visualization in Blender</strong><a class="headerlink" href="#visualization-in-blender" title="Permalink to this headline">¶</a></h2>
-<a class="reference internal image-reference" href="_images/visualized.png"><img alt="_images/visualized.png" class="align-center" src="_images/visualized.png" style="width: 400px; height: 400px;" /></a>
+<h3><strong>Visualization in Blender</strong><a class="headerlink" href="#visualization-in-blender" title="Permalink to this headline">¶</a></h3>
+<a class="reference internal image-reference" href="#visualization-in-blender"><img alt="_images/visualized.png" class="align-center" src="_images/visualized.png" style="width: 410px; height: 370px;" /></a>
 <div class="toctree-wrapper compound">
 <ul class="simple">
 </ul>
 </div>
 </div>
 </div>
-<div class="section" id="indices-and-tables">
-<h1><strong>Indices and tables</strong><a class="headerlink" href="#indices-and-tables" title="Permalink to this headline">¶</a></h1>
-<ul class="simple">
-<li><a class="reference internal" href="py-modindex.html"><span>Module Index</span></a></li>
-<li><a class="reference internal" href="search.html"><span>Search Page</span></a></li>
-<li><a class="reference internal" href="genindex.html"><span>Index</span></a></li>
-</ul>
 </div>
 
 
@@ -142,20 +214,24 @@ The correlation between the input and the output is also very clear in this exam
   <h3><a href="#">Table Of Contents</a></h3>
   <ul>
 <li><a class="reference internal" href="#"><strong>Procedural City Generation in Python - Documentation</strong></a><ul>
+<li><a class="reference internal" href="#index">Index</a><ul>
 <li><a class="reference internal" href="#getting-it-to-work"><strong>Getting it to work</strong></a></li>
-<li><a class="reference internal" href="#roadmap-creation"><strong>Roadmap Creation</strong></a><ul>
-<li><a class="reference internal" href="#the-growth-rule-image">The Growth-Rule Image:</a></li>
-<li><a class="reference internal" href="#the-population-density-image">The Population-Density Image:</a></li>
-<li><a class="reference internal" href="#the-output">The output</a></li>
-<li><a class="reference internal" href="#correlation-between-input-and-output">Correlation between input and output</a></li>
+<li><a class="reference internal" href="#roadmap-creation"><strong>Roadmap Creation</strong></a></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#polygon-extraction-and-subdivision"><strong>Polygon extraction and subdivision</strong></a></li>
+<li><a class="reference internal" href="#the-growth-rule-image">The Growth-Rule Image</a></li>
+<li><a class="reference internal" href="#the-population-density-image">The Population-Density Image</a></li>
+<li><a class="reference internal" href="#the-output">The Output</a></li>
+<li><a class="reference internal" href="#correlation-between-input-and-output">Correlation between Input and Output</a></li>
+<li><a class="reference internal" href="#how-vertices-are-managed">How Vertices are managed</a></li>
+<li><a class="reference internal" href="#the-growth-rules">The Growth Rules</a><ul>
+<li><a class="reference internal" href="#polygon-extraction-and-subdivision"><strong>Polygon Extraction and Subdivision</strong></a></li>
 <li><a class="reference internal" href="#creation-of-3d-data"><strong>Creation of 3D Data</strong></a></li>
 <li><a class="reference internal" href="#visualization-in-blender"><strong>Visualization in Blender</strong></a></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#indices-and-tables"><strong>Indices and tables</strong></a></li>
+</ul>
+</li>
 </ul>
 
   <div role="note" aria-label="source link">
