@@ -46,6 +46,7 @@
             
   <div class="section" id="procedural-city-generation-in-python-documentation">
 <h1><strong>Procedural City Generation in Python - Documentation</strong><a class="headerlink" href="#procedural-city-generation-in-python-documentation" title="Permalink to this headline">¶</a></h1>
+<a class="reference internal image-reference" href="_images/currentstate.png"><img alt="_images/currentstate.png" class="align-center" src="_images/currentstate.png" style="width: 1062px; height: 600px;" /></a>
 <p>Welcome to procedural_city_generation&#8217;s documentation! In this page we will give an overview of all the things you need to know to get started  with this project.</p>
 <ul class="simple">
 <li><a class="reference internal" href="#getting-it-to-work">Getting it to work</a></li>
@@ -82,7 +83,7 @@ Many of the terms used here become obvious when you see them in action. Let&#821
 <div class="section" id="the-growth-rule-image">
 <h3>The Growth-Rule Image:<a class="headerlink" href="#the-growth-rule-image" title="Permalink to this headline">¶</a></h3>
 <a class="reference internal image-reference" href="_images/growthrule.png"><img alt="_images/growthrule.png" class="align-center" src="_images/growthrule.png" style="width: 400px; height: 400px;" /></a>
-<p>This image describes which growth rule will be used in which area. Blue means that the radial rule will be used, Red means that the grid rule will be used, and Green means that the natural rule will be used. We will discuss the rules in detail later.|</p>
+<p>This image describes which growth rule will be used in which area. Blue means that the radial rule will be used, Red means that the grid rule will be used, and Green means that the natural rule will be used. We will discuss the rules in detail later.</p>
 </div>
 <div class="section" id="the-population-density-image">
 <h3>The Population-Density Image:<a class="headerlink" href="#the-population-density-image" title="Permalink to this headline">¶</a></h3>
@@ -106,15 +107,17 @@ The correlation between the input and the output is also very clear in this exam
 </div>
 <div class="section" id="polygon-extraction-and-subdivision">
 <h2><strong>Polygon extraction and subdivision</strong><a class="headerlink" href="#polygon-extraction-and-subdivision" title="Permalink to this headline">¶</a></h2>
-<p>This is some text describing how we extract and subdivide polygons</p>
+<p>We split up each of the &#8216;blocks&#8217; additionally into &#8216;lots&#8217;. On every lot, one building can be placed. Lots that are too large will be omitted from building.</p>
+<a class="reference internal image-reference" href="images/splitup.png"><img alt="images/splitup.png" class="align-center" src="images/splitup.png" style="width: 400px; height: 400px;" /></a>
 </div>
 <div class="section" id="creation-of-3d-data">
 <h2><strong>Creation of 3D Data</strong><a class="headerlink" href="#creation-of-3d-data" title="Permalink to this headline">¶</a></h2>
-<p>This is some text describing how we create 3D Data</p>
+<p>We create buildings by choosing various parameters according to the population density, such as the building height and Textures.</p>
+<p>We then start by scaling and or transforming the lot down, and possibly applying a series of operations on each of the walls.</p>
 </div>
 <div class="section" id="visualization-in-blender">
 <h2><strong>Visualization in Blender</strong><a class="headerlink" href="#visualization-in-blender" title="Permalink to this headline">¶</a></h2>
-<p>This is some text describing how we use Blender</p>
+<a class="reference internal image-reference" href="_images/visualized.png"><img alt="_images/visualized.png" class="align-center" src="_images/visualized.png" style="width: 400px; height: 400px;" /></a>
 <div class="toctree-wrapper compound">
 <ul class="simple">
 </ul>

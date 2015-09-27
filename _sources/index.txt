@@ -5,10 +5,17 @@
 
 **Procedural City Generation in Python - Documentation**
 ========================================================
+
+.. image:: images/currentstate.png
+   :align:   center
+   :height: 600px
+   :width: 1062 px
+
 Welcome to procedural_city_generation's documentation! In this page we will give an overview of all the things you need to know to get started  with this project. 
  
 * `Getting it to work`_
 * `Indices and tables`_
+
 
 
 
@@ -53,7 +60,7 @@ The Growth-Rule Image:
    :height: 400px
    :width: 400 px
 
-This image describes which growth rule will be used in which area. Blue means that the radial rule will be used, Red means that the grid rule will be used, and Green means that the natural rule will be used. We will discuss the rules in detail later.|
+This image describes which growth rule will be used in which area. Blue means that the radial rule will be used, Red means that the grid rule will be used, and Green means that the natural rule will be used. We will discuss the rules in detail later.
 
 
 The Population-Density Image:
@@ -102,15 +109,31 @@ It should now have become clearer as to what the growth rules and the population
 
 **Polygon extraction and subdivision**
 -------------------------------------
-This is some text describing how we extract and subdivide polygons
+
+We split up each of the 'blocks' additionally into 'lots'. On every lot, one building can be placed. Lots that are too large will be omitted from building.
+
+.. image:: images/splitup.png
+   :align:   center 
+   :height: 400px
+   :width: 400 px
+
 
 **Creation of 3D Data**
 ------------------------
-This is some text describing how we create 3D Data
+
+We create buildings by choosing various parameters according to the population density, such as the building height and Textures.
+
+We then start by scaling and or transforming the lot down, and possibly applying a series of operations on each of the walls.
 
 **Visualization in Blender**
 ---------------------------
-This is some text describing how we use Blender
+
+.. image:: images/visualized.png
+   :align:   center 
+   :height: 400px
+   :width: 400 px
+
+
 
 
 
