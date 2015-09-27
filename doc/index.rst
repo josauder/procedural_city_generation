@@ -12,7 +12,7 @@
    :height: 600px
    :width: 1062 px
 
-Welcome to procedural_city_generation's documentation! In this page we will give an overview of all the things you need to know to get started  with this project. 
+Welcome to procedural_city_generation's documentation! In this page we will give an overview of all the things you need to know to get started  with this project.
 
 Index
 ++++++++

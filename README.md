@@ -1,1 +1,1 @@
-Documentation can be found [here](josauder.github.io/procedural_city_generation) 
+Documentation can be found [here](http://josauder.github.io/procedural_city_generation) 
