@@ -21,7 +21,7 @@ def createtexture(name,scale,texturetype='REPEAT'):
 	"""
 	#TODO: sticky textures 's'
 	if scale==0:
-		scale=40
+		scale=70
 	
 	
 	mat=bpy.data.materials.new(name)

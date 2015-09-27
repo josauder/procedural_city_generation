@@ -12,6 +12,14 @@ procedural_city_generation.visualization.blenderize module
     :undoc-members:
     :show-inheritance:
 
+procedural_city_generation.visualization.visualization_params module
+-----------------------------------------------------------------------------------------------
+
+.. automodule:: procedural_city_generation.visualization.visualization_params
+    :members:
+    :undoc-members:
+    :show-inheritance:
+
 
 Module contents
 ---------------

@@ -29,6 +29,7 @@ def main():
 	"git clone https://github.com/josauder/procedural_city_generation.git --branch gh-pages",
 	"sudo rm -R ./procedural_city_generation/_static",
 	"sudo rm -R ./procedural_city_generation/_sources",
+	"sudo rm -R ./procedural_city_generation/_images",
 	"sudo rm -R ./procedural_city_generation/*.py",
 	"mv _build/html/* procedural_city_generation"]
 	for command in script:
