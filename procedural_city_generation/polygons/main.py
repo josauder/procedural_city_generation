@@ -55,7 +55,7 @@ def main(vertex_list=None):
 	with open(os.path.dirname(procedural_city_generation.__file__)+"/outputs/polygons.txt", "w") as f:
 		s = pickle.dumps(polygons)
 		f.write(s)
-
+	
 	singleton.kill()
 	return 0
 

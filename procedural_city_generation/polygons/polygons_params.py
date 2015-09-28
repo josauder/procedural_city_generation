@@ -16,5 +16,5 @@ Param("max_area", 12, "Number of road segments after which a lot is considered t
 Param("split_poly_min_area", 0.3, "TODO", "Float"),
 Param("split_poly_min_length", 0.2, "TODO", "Float"),
 Param("split_poly_half_tolerance", 0.05, "TODO", "Float"),
-Param("plotbool",True,"Decides if stuff should be plotted","boolean")
+Param("plotbool",False,"Decides if stuff should be plotted","boolean")
 ]

@@ -2,9 +2,9 @@ def save_vertexlist(vertex_list, name="output",savefig=0):
 	print "Output is being saved."
 	import json
 	import procedural_city_generation
-
-	path="/home/jonathan/procedural_city_generation/procedural_city_generation"
-	
+	import os
+	path=os.getcwd()+"/procedural_city_generation"
+		
 	Vertexwb={}	
 	for i in range(len(vertex_list)):
 		neighboursindizes=[vertex_list.index(x) for x in vertex_list[i].neighbours]

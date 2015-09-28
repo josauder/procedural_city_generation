@@ -11,6 +11,7 @@ class confGUI:
 	def call(self):
 		parammodule=__import__("procedural_city_generation."+self.modulename+"."+self.modulename+"_params",globals(),locals(),["params"])
 		params=parammodule.params
+		
 		path="./procedural_city_generation/inputs/"+self.modulename+".conf"
 		with open(path,'r') as f:
 			s=json.loads(f.read())
