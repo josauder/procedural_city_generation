@@ -7,10 +7,15 @@ sys.path.append(path)
 def roadmap():
 	from procedural_city_generation.roadmap import main as roadmap_main
 	roadmap_main.main()
+	from procedural_city_generation.additional_stuff.Singleton import Singleton
+	Singleton("roadmap").kill()
 
 def polygons():
 	from procedural_city_generation.polygons import main as polygon_main
 	polygon_main.main(None)
+	from procedural_city_generation.additional_stuff.Singleton import Singleton
+	Singleton("polygons").kill()
+
 
 def building_generation():
 	from procedural_city_generation.building_generation import main as building_generation_main
@@ -19,6 +24,9 @@ def building_generation():
 		with open(path+"/outputs/polygons.txt",'r') as f:
 			polygons=pickle.loads(f.read())	
 		building_generation_main.main(polygons)
+		from procedural_city_generation.additional_stuff.Singleton import Singleton
+		Singleton("building_generation").kill()
+
 	except IOError:
 		print "Input could not be located. Try to run the previous program in the chain first."
 		return 0
@@ -26,6 +34,9 @@ def building_generation():
 	
 def visualization():
 	os.system("blender --python "+path+"/visualization/blenderize.py")
+	from procedural_city_generation.additional_stuff.Singleton import Singleton
+	Singleton("visualization").kill()
+
 
 def main(args):
 	"""
@@ -38,6 +49,11 @@ def main(args):
 	
 	<submodule-name> is either "roadmap","polygons","building_generation,"visualization".
 	<options> is either "run" or "configure"
+	
+	If you want to configure a paremeter, go with
+		
+		python UI.py <submodule-name> --configure <new value>
+	
 	"""
 	
 	if len(args)==1:

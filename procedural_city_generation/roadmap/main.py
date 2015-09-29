@@ -46,7 +46,6 @@ def main():
 	if singleton.plot==1:
 		plt.show()
 	save_vertexlist(singleton.global_lists.vertex_list,"output",singleton.savefig)
-	singleton.kill()
 	return 0
 
 	

@@ -56,7 +56,6 @@ def main(vertex_list=None):
 		s = pickle.dumps(polygons)
 		f.write(s)
 	
-	singleton.kill()
 	return 0
 
 if __name__ == '__main__':

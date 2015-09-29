@@ -47,13 +47,23 @@ with::
 To start the program with the GUI::
 
 	cd procedural_city_generation
-	python GUI
+	python GUI.py
 
 If everything worked so far, the GUI should open up and look like this:
 
 .. image::  images/GUI.png
    :align:   center
    :target: `Getting it to work`_
+
+
+**About this Project**
+------------------------
+
+This project started as a university project at the Technische Universität Berlin.
+After the semester was over, we continued working on the project though, with the goal in mind to make it usable for as many people as possible.
+
+A lot of our initial ideas are based on a paper by Martin Petrasch, TU Dresden.
+His paper can be found [here](https://www.inf.tu-dresden.de/content/institutes/smt/cg/results/minorthesis/mpetrasch/files/Beleg_MPetrasch.pdf)
 
 
 **Roadmap Creation**

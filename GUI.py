@@ -119,7 +119,6 @@ class GUI:
 		self.out_text.config(yscrollcommand=self.out_text_scrollbar.set)
 		sys.stdout=StdoutRedirector(self.out_text)
 		self.buttons=[]
-		
 		self.window.mainloop()
 	
 	def add_executable_button(self,buttontext,modulename):
