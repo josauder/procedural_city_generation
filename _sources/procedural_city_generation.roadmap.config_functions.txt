@@ -20,6 +20,14 @@ procedural_city_generation.roadmap.config_functions.input_image_setup module
     :undoc-members:
     :show-inheritance:
 
+procedural_city_generation.roadmap.config_functions.seperate_water module
+----------------------------------------------------------------------------------------------------
+
+.. automodule:: procedural_city_generation.roadmap.config_functions.seperate_water
+    :members:
+    :undoc-members:
+    :show-inheritance:
+
 procedural_city_generation.roadmap.config_functions.setup_heightmap module
 -----------------------------------------------------------------------------------------------------
 
