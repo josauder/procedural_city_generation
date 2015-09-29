@@ -1,6 +1,7 @@
 import numpy as np
 import os
-def setup_heightmap(singleton,path):		
+def setup_heightmap(singleton,path):	
+	#TODO: Document	
 	'''Sets up the heightmap image from roadmap.conf entry heightmap_name, writes ./Heightmaps/inuse.txt so other functions know which heightmap to load
 	possible inputs:
 	random: generates a new random map with randommap.py
@@ -45,7 +46,6 @@ def setup_heightmap(singleton,path):
 	
 	
 	#TODO: set these numbers to some file where they can be edited easier
-
 	rsize = img.resize(((singleton.border[1]+20)*10,(singleton.border[0]+20)*10))
 	array = np.asarray(rsize) 
 	from copy import copy

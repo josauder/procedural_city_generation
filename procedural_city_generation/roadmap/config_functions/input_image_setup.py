@@ -2,6 +2,7 @@ def input_image_setup(img_name, img2_name):
 	'''	Nimmt ein Bild als input, erstellt eine "Regel-Karte". Bei der Bild-
 	erstellung bedenken: Rot = Gitter, Gruen = Verzweigt, Blau = Radial, wobei ein schwarzer
 	Pixel ein Zentrum definiert. '''
+	#TODO: Document
 	import matplotlib.image as mpimg
 	import matplotlib.pyplot as plt
 	import procedural_city_generation
