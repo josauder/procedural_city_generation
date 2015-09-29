@@ -39,10 +39,10 @@ with::
 
 **Dependencies:**
 
-* numpy
-* scipy
-* matplotlib
-* Blender 2.69
+* numpy (1.8.2+)
+* scipy (0.14.1+)
+* matplotlib (1.4.2+)
+* Blender 2.6x+
 
 To start the program with the GUI::
 
