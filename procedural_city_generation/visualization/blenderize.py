@@ -124,8 +124,14 @@ def setupscenery():
 	except:
 		pass
 		
-	bpy.data.lamps["Lamp"].type="SUN"
-
+	if bpy.data.objects.get("Camera") is None:
+	    bpy.ops.object.camera_add(view_align=True,location=(1.91961, -3.53902, 1.84546), rotation=(1.141, 1.56617e-08, 0.497))
+		
+	try:
+	    bpy.data.lamps["Lamp"].type="SUN"
+	except:
+	    bpy.ops.object.lamp_add(type='SUN', location=(4.076245, 4.076245, 4.076245))
+	    bpy.context.scene.objects['Sun'].name = 'Lamp'
 
 def main(points,triangles,polygons):
 	"""
