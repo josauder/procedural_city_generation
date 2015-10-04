@@ -72,9 +72,9 @@ Credits and Acknowledgements
 ++++++++++++++++++++++++++++++
 A lot of our code regarding roadmap generation shows great similarity and in part based on the following papers:
 
-Martin Petrasch (TU Dresden). "Prozedurale Städtegenerierung mit Hilfe von L-Systemen". 2008, Dresden. [https://www.inf.tu-dresden.de/content/institutes/smt/cg/results/minorthesis/mpetrasch/files/Beleg_MPetrasch.pdf](https://www.inf.tu-dresden.de/content/institutes/smt/cg/results/minorthesis/mpetrasch/files/Beleg_MPetrasch.pdf)
+* Martin Petrasch (TU Dresden). "Prozedurale Städtegenerierung mit Hilfe von L-Systemen". 2008, Dresden. https://www.inf.tu-dresden.de/content/institutes/smt/cg/results/minorthesis/mpetrasch/files/Beleg_MPetrasch.pdf
 
-Yoav I. H. Parish (ETH Zürich), Pascal Müller (Centrap Pictures, Switzerland). "Procedural modeling of cities". *Siggraph '01* 301-308 (2001). New York, NY, USA. [https://dl.acm.org/citation.cfm?id=383292](https://dl.acm.org/citation.cfm?id=383292)
+* Yoav I. H. Parish (ETH Zürich), Pascal Müller (Centrap Pictures, Switzerland). "Procedural modeling of cities". *Siggraph '01* 301-308 (2001). New York, NY, USA. https://dl.acm.org/citation.cfm?id=383292
 
 
 Introduction
