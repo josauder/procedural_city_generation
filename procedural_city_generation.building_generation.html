@@ -49,8 +49,31 @@
 <div class="section" id="submodules">
 <h2>Submodules<a class="headerlink" href="#submodules" title="Permalink to this headline">¶</a></h2>
 </div>
-<div class="section" id="procedural-city-generation-building-generation-baeume-module">
-<h2>procedural_city_generation.building_generation.Baeume module<a class="headerlink" href="#procedural-city-generation-building-generation-baeume-module" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="module-procedural_city_generation.building_generation.Baeume">
+<span id="procedural-city-generation-building-generation-baeume-module"></span><h2>procedural_city_generation.building_generation.Baeume module<a class="headerlink" href="#module-procedural_city_generation.building_generation.Baeume" title="Permalink to this headline">¶</a></h2>
+<p>import math
+import numpy as np
+from math import sin, cos, pi</p>
+<dl class="docutils">
+<dt>def baumstamm(radius, texture, koords, height):</dt>
+<dd><p class="first">L=[]
+for x in range(12):</p>
+<blockquote>
+<div>x/6.*pi
+verts=[np.array([sin(x/6.*pi), cos(x/6.*pi), 0]), np.array([sin((x+1)/6.*pi),
+cos((x+1)/6.*pi), 0]), np.array([sin((x+1)/6.*pi), cos((x+1)/6.*pi), height]),
+np.array([sin((x)/6.*pi), cos((x)/6.*pi), height]), np.array([sin((x)/6.*pi), cos((x)/6.*pi), 0])]
+verts= list(np.array(verts)+koords)
+faces=range(len(verts))
+L.append(Polygon3D(verts, faces, texture))</div></blockquote>
+<p class="last">return L</p>
+</dd>
+</dl>
+<p>r=1
+texture=&#8221;braun&#8221;
+koords=np.array([10,0,0])
+height=15
+print baumstamm(r, texture, koords, height)</p>
 </div>
 <div class="section" id="module-procedural_city_generation.building_generation.BuildingHeight">
 <span id="procedural-city-generation-building-generation-buildingheight-module"></span><h2>procedural_city_generation.building_generation.BuildingHeight module<a class="headerlink" href="#module-procedural_city_generation.building_generation.BuildingHeight" title="Permalink to this headline">¶</a></h2>
@@ -1061,7 +1084,7 @@ If not specified, will default to texture</p>
   <ul>
 <li><a class="reference internal" href="#">procedural_city_generation.building_generation package</a><ul>
 <li><a class="reference internal" href="#submodules">Submodules</a></li>
-<li><a class="reference internal" href="#procedural-city-generation-building-generation-baeume-module">procedural_city_generation.building_generation.Baeume module</a></li>
+<li><a class="reference internal" href="#module-procedural_city_generation.building_generation.Baeume">procedural_city_generation.building_generation.Baeume module</a></li>
 <li><a class="reference internal" href="#module-procedural_city_generation.building_generation.BuildingHeight">procedural_city_generation.building_generation.BuildingHeight module</a></li>
 <li><a class="reference internal" href="#module-procedural_city_generation.building_generation.Polygon3D">procedural_city_generation.building_generation.Polygon3D module</a></li>
 <li><a class="reference internal" href="#module-procedural_city_generation.building_generation.Surface">procedural_city_generation.building_generation.Surface module</a></li>

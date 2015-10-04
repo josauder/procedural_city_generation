@@ -70,6 +70,7 @@ with:</p>
 </div>
 <p><strong>Dependencies:</strong></p>
 <ul class="simple">
+<li>python 2.7+</li>
 <li>numpy (1.8.2+)</li>
 <li>scipy (0.14.1+)</li>
 <li>matplotlib (1.4.2+)</li>
@@ -87,15 +88,22 @@ python GUI.py
 <h3><strong>About this Project</strong><a class="headerlink" href="#about-this-project" title="Permalink to this headline">¶</a></h3>
 <p>This project started as a university project at the Technische Universität Berlin.
 After the semester was over, we continued working on the project though, with the goal in mind to make it usable for as many people as possible.</p>
-<p>A lot of our initial ideas are based on a paper by Martin Petrasch, TU Dresden.
-His paper can be found [here](<a class="reference external" href="https://www.inf.tu-dresden.de/content/institutes/smt/cg/results/minorthesis/mpetrasch/files/Beleg_MPetrasch.pdf">https://www.inf.tu-dresden.de/content/institutes/smt/cg/results/minorthesis/mpetrasch/files/Beleg_MPetrasch.pdf</a>)</p>
 </div>
 <div class="section" id="roadmap-creation">
 <h3><strong>Roadmap Creation</strong><a class="headerlink" href="#roadmap-creation" title="Permalink to this headline">¶</a></h3>
+</div>
+</div>
+<div class="section" id="credits-and-acknowledgements">
+<h2>Credits and Acknowledgements<a class="headerlink" href="#credits-and-acknowledgements" title="Permalink to this headline">¶</a></h2>
+<p>A lot of our code regarding roadmap generation shows great similarity and in part based on the following papers:</p>
+<p>Martin Petrasch (TU Dresden). &#8220;Prozedurale Städtegenerierung mit Hilfe von L-Systemen&#8221;. 2008, Dresden. [<a class="reference external" href="https://www.inf.tu-dresden.de/content/institutes/smt/cg/results/minorthesis/mpetrasch/files/Beleg_MPetrasch.pdf](https://www.inf.tu-dresden.de/content/institutes/smt/cg/results/minorthesis/mpetrasch/files/Beleg_MPetrasch.pdf">https://www.inf.tu-dresden.de/content/institutes/smt/cg/results/minorthesis/mpetrasch/files/Beleg_MPetrasch.pdf](https://www.inf.tu-dresden.de/content/institutes/smt/cg/results/minorthesis/mpetrasch/files/Beleg_MPetrasch.pdf</a>)</p>
+<p>Yoav I. H. Parish (ETH Zürich), Pascal Müller (Centrap Pictures, Switzerland). &#8220;Procedural modeling of cities&#8221;. <em>Siggraph &#8216;01</em> 301-308 (2001). New York, NY, USA. [<a class="reference external" href="https://dl.acm.org/citation.cfm?id=383292](https://dl.acm.org/citation.cfm">https://dl.acm.org/citation.cfm?id=383292](https://dl.acm.org/citation.cfm</a>?id=383292)</p>
+</div>
+<div class="section" id="introduction">
+<h2>Introduction<a class="headerlink" href="#introduction" title="Permalink to this headline">¶</a></h2>
 <p>We refer to &#8220;road segments&#8221; as edges and the two ends of an edge as a vertex.
 We create roadmaps by starting with an axiom (a list of Vertices) and defining a set of rules by which new Vertices are added and connected to existing one to form Edges.
 Many of the terms used here become obvious when you see them in action. Let&#8217;s start by showing the most important inputs:</p>
-</div>
 </div>
 <div class="section" id="the-growth-rule-image">
 <h2>The Growth-Rule Image<a class="headerlink" href="#the-growth-rule-image" title="Permalink to this headline">¶</a></h2>
@@ -227,6 +235,8 @@ All suggested vertices are then &#8220;checked&#8221; - this means we handle the
 <li><a class="reference internal" href="#roadmap-creation"><strong>Roadmap Creation</strong></a></li>
 </ul>
 </li>
+<li><a class="reference internal" href="#credits-and-acknowledgements">Credits and Acknowledgements</a></li>
+<li><a class="reference internal" href="#introduction">Introduction</a></li>
 <li><a class="reference internal" href="#the-growth-rule-image">The Growth-Rule Image</a></li>
 <li><a class="reference internal" href="#the-population-density-image">The Population-Density Image</a></li>
 <li><a class="reference internal" href="#the-output">The Output</a></li>

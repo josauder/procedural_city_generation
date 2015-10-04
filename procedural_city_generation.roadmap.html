@@ -52,20 +52,21 @@
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="procedural_city_generation.roadmap.config_functions.html">procedural_city_generation.roadmap.config_functions package</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="procedural_city_generation.roadmap.config_functions.html#submodules">Submodules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="procedural_city_generation.roadmap.config_functions.html#module-procedural_city_generation.roadmap.config_functions.Watertools">procedural_city_generation.roadmap.config_functions.Watertools module</a></li>
 <li class="toctree-l2"><a class="reference internal" href="procedural_city_generation.roadmap.config_functions.html#module-procedural_city_generation.roadmap.config_functions.find_radial_centers">procedural_city_generation.roadmap.config_functions.find_radial_centers module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="procedural_city_generation.roadmap.config_functions.html#module-procedural_city_generation.roadmap.config_functions.flood">procedural_city_generation.roadmap.config_functions.flood module</a></li>
 <li class="toctree-l2"><a class="reference internal" href="procedural_city_generation.roadmap.config_functions.html#module-procedural_city_generation.roadmap.config_functions.input_image_setup">procedural_city_generation.roadmap.config_functions.input_image_setup module</a></li>
-<li class="toctree-l2"><a class="reference internal" href="procedural_city_generation.roadmap.config_functions.html#procedural-city-generation-roadmap-config-functions-seperate-water-module">procedural_city_generation.roadmap.config_functions.seperate_water module</a></li>
 <li class="toctree-l2"><a class="reference internal" href="procedural_city_generation.roadmap.config_functions.html#module-procedural_city_generation.roadmap.config_functions.setup_heightmap">procedural_city_generation.roadmap.config_functions.setup_heightmap module</a></li>
 <li class="toctree-l2"><a class="reference internal" href="procedural_city_generation.roadmap.config_functions.html#module-procedural_city_generation.roadmap.config_functions">Module contents</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="procedural_city_generation.roadmap.growth_rules.html">procedural_city_generation.roadmap.growth_rules package</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="procedural_city_generation.roadmap.growth_rules.html#submodules">Submodules</a></li>
-<li class="toctree-l2"><a class="reference internal" href="procedural_city_generation.roadmap.growth_rules.html#module-procedural_city_generation.roadmap.growth_rules.grid">procedural_city_generation.roadmap.growth_rules.grid module</a></li>
-<li class="toctree-l2"><a class="reference internal" href="procedural_city_generation.roadmap.growth_rules.html#module-procedural_city_generation.roadmap.growth_rules.minor_road">procedural_city_generation.roadmap.growth_rules.minor_road module</a></li>
-<li class="toctree-l2"><a class="reference internal" href="procedural_city_generation.roadmap.growth_rules.html#module-procedural_city_generation.roadmap.growth_rules.organic">procedural_city_generation.roadmap.growth_rules.organic module</a></li>
-<li class="toctree-l2"><a class="reference internal" href="procedural_city_generation.roadmap.growth_rules.html#module-procedural_city_generation.roadmap.growth_rules.radial">procedural_city_generation.roadmap.growth_rules.radial module</a></li>
-<li class="toctree-l2"><a class="reference internal" href="procedural_city_generation.roadmap.growth_rules.html#module-procedural_city_generation.roadmap.growth_rules.seed">procedural_city_generation.roadmap.growth_rules.seed module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="procedural_city_generation.roadmap.growth_rules.html#procedural-city-generation-roadmap-growth-rules-grid-module">procedural_city_generation.roadmap.growth_rules.grid module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="procedural_city_generation.roadmap.growth_rules.html#procedural-city-generation-roadmap-growth-rules-minor-road-module">procedural_city_generation.roadmap.growth_rules.minor_road module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="procedural_city_generation.roadmap.growth_rules.html#procedural-city-generation-roadmap-growth-rules-organic-module">procedural_city_generation.roadmap.growth_rules.organic module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="procedural_city_generation.roadmap.growth_rules.html#procedural-city-generation-roadmap-growth-rules-radial-module">procedural_city_generation.roadmap.growth_rules.radial module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="procedural_city_generation.roadmap.growth_rules.html#procedural-city-generation-roadmap-growth-rules-seed-module">procedural_city_generation.roadmap.growth_rules.seed module</a></li>
 <li class="toctree-l2"><a class="reference internal" href="procedural_city_generation.roadmap.growth_rules.html#module-procedural_city_generation.roadmap.growth_rules">Module contents</a></li>
 </ul>
 </li>
@@ -75,160 +76,11 @@
 <div class="section" id="submodules">
 <h2>Submodules<a class="headerlink" href="#submodules" title="Permalink to this headline">¶</a></h2>
 </div>
-<div class="section" id="module-procedural_city_generation.roadmap.Vertex">
-<span id="procedural-city-generation-roadmap-vertex-module"></span><h2>procedural_city_generation.roadmap.Vertex module<a class="headerlink" href="#module-procedural_city_generation.roadmap.Vertex" title="Permalink to this headline">¶</a></h2>
-<dl class="class">
-<dt id="procedural_city_generation.roadmap.Vertex.Vertex">
-<em class="property">class </em><code class="descclassname">procedural_city_generation.roadmap.Vertex.</code><code class="descname">Vertex</code><span class="sig-paren">(</span><em>coords</em><span class="sig-paren">)</span><a class="headerlink" href="#procedural_city_generation.roadmap.Vertex.Vertex" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">object</span></code></p>
-<p>Vertex (name after mathematical graph-theory) object used in roadmap submodule.
-Has the following attributes:
-- coords : numpy.ndarray(2,)</p>
-<blockquote>
-<div>XY-Coordinates of this Vertex</div></blockquote>
-<ul>
-<li><dl class="first docutils">
-<dt>neighbours <span class="classifier-delimiter">:</span> <span class="classifier">list&lt;procedural_city_generation.roadmap.Vertex&gt;</span></dt>
-<dd><p class="first last">List of all Vertices that this Vertex is currectly connected to (has a road to)</p>
-</dd>
-</dl>
-</li>
-<li><dl class="first docutils">
-<dt>minor_road <span class="classifier-delimiter">:</span> <span class="classifier">boolean</span></dt>
-<dd><p class="first last">Describes whether this road is a minor road</p>
-</dd>
-</dl>
-</li>
-<li><dl class="first docutils">
-<dt>seed <span class="classifier-delimiter">:</span> <span class="classifier">boolean</span></dt>
-<dd><p class="first last">Describes whether this (major) road is a seed</p>
-</dd>
-</dl>
-</li>
-</ul>
-<p class="rubric">Methods</p>
-<dl class="method">
-<dt id="procedural_city_generation.roadmap.Vertex.Vertex.connection">
-<code class="descname">connection</code><span class="sig-paren">(</span><em>other</em><span class="sig-paren">)</span><a class="headerlink" href="#procedural_city_generation.roadmap.Vertex.Vertex.connection" title="Permalink to this definition">¶</a></dt>
-<dd><p>Manages connections so that no Vertex has two connections to 
-the same other Vertex. Also responsible for plotting this Vertex
-in matplotlib if the &#8220;plot&#8221; parameter in /inputs/roadmap.conf
-is set to True.</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>other</strong> : procedural_city_generation.roadmap.Vertex object</p>
-<blockquote class="last">
-<div><p>The vertex that this vertex is goint to be connected to.</p>
-</div></blockquote>
-</td>
-</tr>
-</tbody>
-</table>
-</dd></dl>
-
-</dd></dl>
-
-<dl class="function">
-<dt id="procedural_city_generation.roadmap.Vertex.set_plotbool">
-<code class="descclassname">procedural_city_generation.roadmap.Vertex.</code><code class="descname">set_plotbool</code><span class="sig-paren">(</span><em>singletonbool</em><span class="sig-paren">)</span><a class="headerlink" href="#procedural_city_generation.roadmap.Vertex.set_plotbool" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
+<div class="section" id="procedural-city-generation-roadmap-vertex-module">
+<h2>procedural_city_generation.roadmap.Vertex module<a class="headerlink" href="#procedural-city-generation-roadmap-vertex-module" title="Permalink to this headline">¶</a></h2>
 </div>
-<div class="section" id="module-procedural_city_generation.roadmap.check">
-<span id="procedural-city-generation-roadmap-check-module"></span><h2>procedural_city_generation.roadmap.check module<a class="headerlink" href="#module-procedural_city_generation.roadmap.check" title="Permalink to this headline">¶</a></h2>
-<dl class="function">
-<dt id="procedural_city_generation.roadmap.check.check">
-<code class="descclassname">procedural_city_generation.roadmap.check.</code><code class="descname">check</code><span class="sig-paren">(</span><em>suggested_vertex</em>, <em>neighbour</em>, <em>newfront</em><span class="sig-paren">)</span><a class="headerlink" href="#procedural_city_generation.roadmap.check.check" title="Permalink to this definition">¶</a></dt>
-<dd><p>Performs the following checks on a suggestes vertex and the suggested
-connection between this vertex and his last neighbour:</p>
-<ol class="arabic">
-<li><dl class="first docutils">
-<dt>Is the vertex out of bounds</dt>
-<dd><p class="first last">If yes, dont add this Vertex</p>
-</dd>
-</dl>
-</li>
-<li><dl class="first docutils">
-<dt>Is the vertex too close to an existing vertex</dt>
-<dd><p class="first last">If yes, change the vector that is checked in 4 and 5 from 
-[neighbor-suggested_vertex] to [neighbor-closest_existing_point]</p>
-</dd>
-</dl>
-</li>
-<li><dl class="first docutils">
-<dt>Does the the vector intersect an existing connection (road)</dt>
-<dd><p class="first last">If yes, only create the connection up until that intersection.
-Add that intersection to the Global_lists and fix the neighbor
-attribute of the existing connection that was &#8220;intersected&#8221;.</p>
-</dd>
-</dl>
-</li>
-<li><dl class="first docutils">
-<dt>Does the vector stop shortly before an existing connection</dt>
-<dd><p class="first last">If yes, extend the connection up until that intersection.
-Add that intersection to the Global_lists and fix the neighbor
-attribute of the existing connection that was &#8220;intersected&#8221;.</p>
-</dd>
-</dl>
-</li>
-</ol>
-<p>If none of the above, simply add this vertex to the global_lists 
-and the new front and return the newfront. This is the only place 
-aftert config, where Vertices get added to the Global Lists. Every Time
-A vertex is added, the cKDTree used to find the closest vertices has to
-be updated.</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>suggested_vertex</strong> : Vertex object</p>
-<p><strong>neighbour</strong> : Vertex object</p>
-<p><strong>newfront</strong> : list&lt;Vertex&gt;</p>
-</td>
-</tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last"><strong>newfront</strong> : list&lt;Vertex&gt;</p>
-</td>
-</tr>
-</tbody>
-</table>
-</dd></dl>
-
-<dl class="function">
-<dt id="procedural_city_generation.roadmap.check.get_intersection">
-<code class="descclassname">procedural_city_generation.roadmap.check.</code><code class="descname">get_intersection</code><span class="sig-paren">(</span><em>a</em>, <em>ab</em>, <em>c</em>, <em>cd</em><span class="sig-paren">)</span><a class="headerlink" href="#procedural_city_generation.roadmap.check.get_intersection" title="Permalink to this definition">¶</a></dt>
-<dd><p>Gets the intersection coordinates between two lines.
-If it does not exist (lines are parrallel), returns np.array([np.inf,np.inf])</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>a</strong> : np.ndarray(2,1)</p>
-<blockquote>
-<div><p>Starting point of first vector</p>
-</div></blockquote>
-<p><strong>ab</strong> : np.ndarray(2,1)</p>
-<blockquote>
-<div><p>First vector (b-a)</p>
-</div></blockquote>
-<p><strong>c</strong> : np.ndarray(2,1)</p>
-<blockquote>
-<div><p>Starting point of second vector</p>
-</div></blockquote>
-<p><strong>cd</strong> : np.ndarray(2,1)</p>
-<blockquote>
-<div><p>Second vector (d-c)</p>
-</div></blockquote>
-</td>
-</tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last"><strong>intersection</strong> : np.ndarray(2,1)</p>
-</td>
-</tr>
-</tbody>
-</table>
-</dd></dl>
-
+<div class="section" id="procedural-city-generation-roadmap-check-module">
+<h2>procedural_city_generation.roadmap.check module<a class="headerlink" href="#procedural-city-generation-roadmap-check-module" title="Permalink to this headline">¶</a></h2>
 </div>
 <div class="section" id="module-procedural_city_generation.roadmap.config">
 <span id="procedural-city-generation-roadmap-config-module"></span><h2>procedural_city_generation.roadmap.config module<a class="headerlink" href="#module-procedural_city_generation.roadmap.config" title="Permalink to this headline">¶</a></h2>
@@ -264,71 +116,14 @@ are now.</p>
 </dd></dl>
 
 </div>
-<div class="section" id="module-procedural_city_generation.roadmap.getRule">
-<span id="procedural-city-generation-roadmap-getrule-module"></span><h2>procedural_city_generation.roadmap.getRule module<a class="headerlink" href="#module-procedural_city_generation.roadmap.getRule" title="Permalink to this headline">¶</a></h2>
-<dl class="function">
-<dt id="procedural_city_generation.roadmap.getRule.getRule">
-<code class="descclassname">procedural_city_generation.roadmap.getRule.</code><code class="descname">getRule</code><span class="sig-paren">(</span><em>vertex</em><span class="sig-paren">)</span><a class="headerlink" href="#procedural_city_generation.roadmap.getRule.getRule" title="Permalink to this definition">¶</a></dt>
-<dd><p>Gets the correct growth_rule for a Vertex, depending on that objects&#8217;
-xy coordinates and the growth_rule_image</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>vertex</strong> : Vertex object</p>
-</td>
-</tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">tuple(int, np.ndarray(3,) , float)</p>
-<blockquote class="last">
-<div><p>(int) for choosing the correct growth rule,
-(np.ndarray) for center in case that the radial rule is chosen,
-(float) for population_density</p>
-</div></blockquote>
-</td>
-</tr>
-</tbody>
-</table>
-</dd></dl>
-
+<div class="section" id="procedural-city-generation-roadmap-getrule-module">
+<h2>procedural_city_generation.roadmap.getRule module<a class="headerlink" href="#procedural-city-generation-roadmap-getrule-module" title="Permalink to this headline">¶</a></h2>
 </div>
-<div class="section" id="module-procedural_city_generation.roadmap.getSuggestion">
-<span id="procedural-city-generation-roadmap-getsuggestion-module"></span><h2>procedural_city_generation.roadmap.getSuggestion module<a class="headerlink" href="#module-procedural_city_generation.roadmap.getSuggestion" title="Permalink to this headline">¶</a></h2>
-<dl class="function">
-<dt id="procedural_city_generation.roadmap.getSuggestion.getSuggestion">
-<code class="descclassname">procedural_city_generation.roadmap.getSuggestion.</code><code class="descname">getSuggestion</code><span class="sig-paren">(</span><em>vertex</em><span class="sig-paren">)</span><a class="headerlink" href="#procedural_city_generation.roadmap.getSuggestion.getSuggestion" title="Permalink to this definition">¶</a></dt>
-<dd><p>Calls each of the actual growth rules, and returns a list of suggested vertices</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>vertex</strong> : Vertex object</td>
-</tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">list&lt;Vertex&gt;</td>
-</tr>
-</tbody>
-</table>
-</dd></dl>
-
+<div class="section" id="procedural-city-generation-roadmap-getsuggestion-module">
+<h2>procedural_city_generation.roadmap.getSuggestion module<a class="headerlink" href="#procedural-city-generation-roadmap-getsuggestion-module" title="Permalink to this headline">¶</a></h2>
 </div>
-<div class="section" id="module-procedural_city_generation.roadmap.iteration">
-<span id="procedural-city-generation-roadmap-iteration-module"></span><h2>procedural_city_generation.roadmap.iteration module<a class="headerlink" href="#module-procedural_city_generation.roadmap.iteration" title="Permalink to this headline">¶</a></h2>
-<dl class="function">
-<dt id="procedural_city_generation.roadmap.iteration.iteration">
-<code class="descclassname">procedural_city_generation.roadmap.iteration.</code><code class="descname">iteration</code><span class="sig-paren">(</span><em>front</em><span class="sig-paren">)</span><a class="headerlink" href="#procedural_city_generation.roadmap.iteration.iteration" title="Permalink to this definition">¶</a></dt>
-<dd><p>Gets Called in the mainloop.
-Manages the front and newfront and the queue</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>front</strong> : list&lt;Vertex&gt;</td>
-</tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><strong>newfront</strong> : list&lt;Vertex&gt;</td>
-</tr>
-</tbody>
-</table>
-</dd></dl>
-
+<div class="section" id="procedural-city-generation-roadmap-iteration-module">
+<h2>procedural_city_generation.roadmap.iteration module<a class="headerlink" href="#procedural-city-generation-roadmap-iteration-module" title="Permalink to this headline">¶</a></h2>
 </div>
 <div class="section" id="module-procedural_city_generation.roadmap.main">
 <span id="procedural-city-generation-roadmap-main-module"></span><h2>procedural_city_generation.roadmap.main module<a class="headerlink" href="#module-procedural_city_generation.roadmap.main" title="Permalink to this headline">¶</a></h2>
@@ -363,12 +158,12 @@ button for that specific module.</p>
 <li><a class="reference internal" href="#">procedural_city_generation.roadmap package</a><ul>
 <li><a class="reference internal" href="#subpackages">Subpackages</a></li>
 <li><a class="reference internal" href="#submodules">Submodules</a></li>
-<li><a class="reference internal" href="#module-procedural_city_generation.roadmap.Vertex">procedural_city_generation.roadmap.Vertex module</a></li>
-<li><a class="reference internal" href="#module-procedural_city_generation.roadmap.check">procedural_city_generation.roadmap.check module</a></li>
+<li><a class="reference internal" href="#procedural-city-generation-roadmap-vertex-module">procedural_city_generation.roadmap.Vertex module</a></li>
+<li><a class="reference internal" href="#procedural-city-generation-roadmap-check-module">procedural_city_generation.roadmap.check module</a></li>
 <li><a class="reference internal" href="#module-procedural_city_generation.roadmap.config">procedural_city_generation.roadmap.config module</a></li>
-<li><a class="reference internal" href="#module-procedural_city_generation.roadmap.getRule">procedural_city_generation.roadmap.getRule module</a></li>
-<li><a class="reference internal" href="#module-procedural_city_generation.roadmap.getSuggestion">procedural_city_generation.roadmap.getSuggestion module</a></li>
-<li><a class="reference internal" href="#module-procedural_city_generation.roadmap.iteration">procedural_city_generation.roadmap.iteration module</a></li>
+<li><a class="reference internal" href="#procedural-city-generation-roadmap-getrule-module">procedural_city_generation.roadmap.getRule module</a></li>
+<li><a class="reference internal" href="#procedural-city-generation-roadmap-getsuggestion-module">procedural_city_generation.roadmap.getSuggestion module</a></li>
+<li><a class="reference internal" href="#procedural-city-generation-roadmap-iteration-module">procedural_city_generation.roadmap.iteration module</a></li>
 <li><a class="reference internal" href="#module-procedural_city_generation.roadmap.main">procedural_city_generation.roadmap.main module</a></li>
 <li><a class="reference internal" href="#module-procedural_city_generation.roadmap.roadmap_params">procedural_city_generation.roadmap.roadmap_params module</a></li>
 <li><a class="reference internal" href="#module-procedural_city_generation.roadmap">Module contents</a></li>
