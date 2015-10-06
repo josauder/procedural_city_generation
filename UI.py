@@ -1,6 +1,6 @@
 import sys,os
 import procedural_city_generation
-donemessage="\n-------------------------------------------------------------------------------\n\t\t\t  Done, waiting for command\n-------------------------------------------------------------------------------"
+donemessage="\n"+(150*"-")+"\n\t\t\t  Done, waiting for command\n"+(150*"-")+"\n"
 path=os.path.dirname(procedural_city_generation.__file__)
 sys.path.append(path)
 
@@ -9,13 +9,14 @@ def roadmap():
 	roadmap_main.main()
 	from procedural_city_generation.additional_stuff.Singleton import Singleton
 	Singleton("roadmap").kill()
+	print donemessage
 
 def polygons():
 	from procedural_city_generation.polygons import main as polygon_main
 	polygon_main.main(None)
 	from procedural_city_generation.additional_stuff.Singleton import Singleton
 	Singleton("polygons").kill()
-
+	print donemessage
 
 def building_generation():
 	from procedural_city_generation.building_generation import main as building_generation_main
@@ -30,6 +31,7 @@ def building_generation():
 	except IOError:
 		print "Input could not be located. Try to run the previous program in the chain first."
 		return 0
+	print donemessage
 
 	
 def visualization():
@@ -73,11 +75,12 @@ def main(args):
 				try:
 					
 					old=wb[args[3+i]]
-					wb[args[3+i]]=args[4+i]
+					wb[args[3+i]]=eval(args[4+i])
 					print args[3+i], " was changed from ",old," to ",args[4+i]
 					i+=2
 					if len(args)-1<i+4:
-						return 0
+						break
+		
 					
 				except:
 					print i, len(args)
@@ -86,8 +89,9 @@ def main(args):
 					
 			with open("./procedural_city_generation/inputs/"+args[1]+".conf",'w') as f:
 				f.write(json.dumps(wb))
-			print main.__doc__
+		
 			return 0
+			
 	elif "run" in args[2]:
 		eval(args[1])()
 		print donemessage

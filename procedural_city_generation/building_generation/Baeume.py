@@ -1,4 +1,4 @@
-
+"""
 import math
 import numpy as np
 from math import sin, cos, pi
@@ -21,3 +21,4 @@ texture="braun"
 koords=np.array([10,0,0])
 height=15
 print baumstamm(r, texture, koords, height)
+"""

@@ -1,0 +1,341 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>MainWindow</class>
+ <widget class="QMainWindow" name="MainWindow">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>1056</width>
+    <height>766</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Procedural City Generation</string>
+  </property>
+  <widget class="QWidget" name="Centralwidget">
+   <layout class="QGridLayout" name="gridLayout">
+    <item row="3" column="0">
+     <widget class="QGroupBox" name="console_header">
+      <property name="title">
+       <string>Console</string>
+      </property>
+     </widget>
+    </item>
+    <item row="4" column="0">
+     <widget class="QPlainTextEdit" name="console"/>
+    </item>
+    <item row="2" column="0">
+     <widget class="QTabWidget" name="tabWidget">
+      <property name="sizePolicy">
+       <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+        <horstretch>3</horstretch>
+        <verstretch>3</verstretch>
+       </sizepolicy>
+      </property>
+      <property name="minimumSize">
+       <size>
+        <width>981</width>
+        <height>0</height>
+       </size>
+      </property>
+      <property name="currentIndex">
+       <number>0</number>
+      </property>
+      <property name="iconSize">
+       <size>
+        <width>16</width>
+        <height>16</height>
+       </size>
+      </property>
+      <widget class="QWidget" name="roadmap_tab">
+       <attribute name="title">
+        <string>Roadmap Generation</string>
+       </attribute>
+       <layout class="QGridLayout" name="gridLayout_2">
+        <item row="0" column="0">
+         <widget class="QGroupBox" name="roadmap_group">
+          <property name="title">
+           <string>Commands</string>
+          </property>
+          <widget class="QPushButton" name="roadmap_Options">
+           <property name="geometry">
+            <rect>
+             <x>0</x>
+             <y>50</y>
+             <width>91</width>
+             <height>27</height>
+            </rect>
+           </property>
+           <property name="text">
+            <string>Options</string>
+           </property>
+          </widget>
+          <widget class="QPushButton" name="roadmap_Run">
+           <property name="geometry">
+            <rect>
+             <x>0</x>
+             <y>80</y>
+             <width>91</width>
+             <height>27</height>
+            </rect>
+           </property>
+           <property name="text">
+            <string>Run</string>
+           </property>
+          </widget>
+          <widget class="QFrame" name="roadmap_frame">
+           <property name="geometry">
+            <rect>
+             <x>100</x>
+             <y>10</y>
+             <width>881</width>
+             <height>431</height>
+            </rect>
+           </property>
+           <property name="frameShape">
+            <enum>QFrame::StyledPanel</enum>
+           </property>
+           <property name="frameShadow">
+            <enum>QFrame::Raised</enum>
+           </property>
+           <widget class="matplotlibWidget" name="roadmap_widget" native="true">
+            <property name="geometry">
+             <rect>
+              <x>159</x>
+              <y>99</y>
+              <width>231</width>
+              <height>181</height>
+             </rect>
+            </property>
+           </widget>
+          </widget>
+         </widget>
+        </item>
+       </layout>
+      </widget>
+      <widget class="QWidget" name="polygons_tab">
+       <attribute name="title">
+        <string>Polygon Extraction</string>
+       </attribute>
+       <layout class="QGridLayout" name="gridLayout_3">
+        <item row="0" column="0">
+         <widget class="QGroupBox" name="polygons_group">
+          <property name="title">
+           <string>Commands</string>
+          </property>
+          <widget class="QPushButton" name="polygons_Options">
+           <property name="geometry">
+            <rect>
+             <x>0</x>
+             <y>50</y>
+             <width>91</width>
+             <height>27</height>
+            </rect>
+           </property>
+           <property name="text">
+            <string>Options</string>
+           </property>
+          </widget>
+          <widget class="QPushButton" name="polygons_Run">
+           <property name="geometry">
+            <rect>
+             <x>0</x>
+             <y>80</y>
+             <width>91</width>
+             <height>27</height>
+            </rect>
+           </property>
+           <property name="text">
+            <string>Run</string>
+           </property>
+          </widget>
+          <widget class="QFrame" name="frame_2">
+           <property name="geometry">
+            <rect>
+             <x>120</x>
+             <y>10</y>
+             <width>891</width>
+             <height>431</height>
+            </rect>
+           </property>
+           <property name="frameShape">
+            <enum>QFrame::StyledPanel</enum>
+           </property>
+           <property name="frameShadow">
+            <enum>QFrame::Raised</enum>
+           </property>
+          </widget>
+         </widget>
+        </item>
+       </layout>
+      </widget>
+      <widget class="QWidget" name="building_generation_tab">
+       <attribute name="title">
+        <string>Building Generation</string>
+       </attribute>
+       <layout class="QGridLayout" name="gridLayout_4">
+        <item row="0" column="0">
+         <widget class="QGroupBox" name="building_generation_group">
+          <property name="title">
+           <string>Commands</string>
+          </property>
+          <widget class="QPushButton" name="building_generation_Options">
+           <property name="geometry">
+            <rect>
+             <x>0</x>
+             <y>50</y>
+             <width>91</width>
+             <height>27</height>
+            </rect>
+           </property>
+           <property name="text">
+            <string>Options</string>
+           </property>
+          </widget>
+          <widget class="QPushButton" name="building_generation_Run">
+           <property name="geometry">
+            <rect>
+             <x>0</x>
+             <y>80</y>
+             <width>91</width>
+             <height>27</height>
+            </rect>
+           </property>
+           <property name="text">
+            <string>Run</string>
+           </property>
+          </widget>
+          <widget class="QFrame" name="frame_3">
+           <property name="geometry">
+            <rect>
+             <x>120</x>
+             <y>10</y>
+             <width>881</width>
+             <height>431</height>
+            </rect>
+           </property>
+           <property name="frameShape">
+            <enum>QFrame::StyledPanel</enum>
+           </property>
+           <property name="frameShadow">
+            <enum>QFrame::Raised</enum>
+           </property>
+          </widget>
+         </widget>
+        </item>
+       </layout>
+      </widget>
+      <widget class="QWidget" name="visualization_tab">
+       <attribute name="title">
+        <string>Visualize in Blender</string>
+       </attribute>
+       <layout class="QGridLayout" name="gridLayout_5">
+        <item row="0" column="0">
+         <widget class="QGroupBox" name="visualization_group">
+          <property name="title">
+           <string>Commands</string>
+          </property>
+          <widget class="QPushButton" name="visualization_Options">
+           <property name="geometry">
+            <rect>
+             <x>0</x>
+             <y>50</y>
+             <width>91</width>
+             <height>27</height>
+            </rect>
+           </property>
+           <property name="text">
+            <string>Options</string>
+           </property>
+          </widget>
+          <widget class="QPushButton" name="visualization_Run">
+           <property name="geometry">
+            <rect>
+             <x>0</x>
+             <y>80</y>
+             <width>91</width>
+             <height>27</height>
+            </rect>
+           </property>
+           <property name="text">
+            <string>Run</string>
+           </property>
+          </widget>
+          <widget class="QFrame" name="frame_4">
+           <property name="geometry">
+            <rect>
+             <x>120</x>
+             <y>10</y>
+             <width>881</width>
+             <height>431</height>
+            </rect>
+           </property>
+           <property name="frameShape">
+            <enum>QFrame::StyledPanel</enum>
+           </property>
+           <property name="frameShadow">
+            <enum>QFrame::Raised</enum>
+           </property>
+          </widget>
+         </widget>
+        </item>
+       </layout>
+      </widget>
+      <widget class="QWidget" name="advanced_tab">
+       <attribute name="title">
+        <string>Advanced</string>
+       </attribute>
+       <layout class="QGridLayout" name="gridLayout_6">
+        <item row="0" column="0">
+         <widget class="QGroupBox" name="advancd_group">
+          <property name="title">
+           <string>GroupBox</string>
+          </property>
+          <widget class="QPushButton" name="clean_directories">
+           <property name="geometry">
+            <rect>
+             <x>10</x>
+             <y>30</y>
+             <width>201</width>
+             <height>27</height>
+            </rect>
+           </property>
+           <property name="text">
+            <string>Clean Directories</string>
+           </property>
+          </widget>
+          <widget class="QPushButton" name="run_tests">
+           <property name="geometry">
+            <rect>
+             <x>10</x>
+             <y>60</y>
+             <width>201</width>
+             <height>27</height>
+            </rect>
+           </property>
+           <property name="text">
+            <string>Run Tests</string>
+           </property>
+          </widget>
+         </widget>
+        </item>
+       </layout>
+      </widget>
+     </widget>
+    </item>
+   </layout>
+  </widget>
+  <widget class="QStatusBar" name="statusBar"/>
+ </widget>
+ <customwidgets>
+  <customwidget>
+   <class>matplotlibWidget</class>
+   <extends>QWidget</extends>
+   <header>matplotlibWidget</header>
+   <container>1</container>
+  </customwidget>
+ </customwidgets>
+ <resources/>
+ <connections/>
+</ui>

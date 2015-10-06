@@ -17,15 +17,14 @@ def main():
 	
 	
 	if singleton.plot==1:
+		from GUI import 
+		#	plt.close()
+	#	fig=plt.figure()
+	#	ax=plt.subplot(111)
 		
-		import matplotlib.pyplot as plt
-		plt.close()
-		fig=plt.figure()
-		ax=plt.subplot(111)
-		
-		fig.canvas.draw()
-		ax.set_xlim((-singleton.border[0],singleton.border[0]))
-		ax.set_ylim((-singleton.border[1],singleton.border[1]))
+		#fig.canvas.draw()
+		#ax.set_xlim((-singleton.border[0],singleton.border[0]))
+		#ax.set_ylim((-singleton.border[1],singleton.border[1]))
 	i=0
 	while (front!=[] or singleton.global_lists.vertex_queue	!=[]):
 		
@@ -34,17 +33,19 @@ def main():
 		
 		if singleton.plot==1:
 			if i%singleton.plotabstand==0:
-				plt.pause(0.001)
-				fig.canvas.blit(ax.bbox)
-				fig.canvas.flush_events()
+				pass
+				plt.update_figure()
+		#		plt.pause(0.001)
+		#		fig.canvas.blit(ax.bbox)
+		#		fig.canvas.flush_events()
 			singleton.iterationszaehler=0
 
 	from procedural_city_generation.additional_stuff.jsontools import save_vertexlist
 	
 	
 	print "Roadmap is complete"
-	if singleton.plot==1:
-		plt.show()
+#	if singleton.plot==1:
+#		plt.show()
 	save_vertexlist(singleton.global_lists.vertex_list,"output",singleton.savefig)
 	return 0
 

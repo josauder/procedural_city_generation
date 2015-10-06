@@ -39,10 +39,11 @@ with::
 
 **Dependencies:**
 
-* numpy
-* scipy
-* matplotlib
-* Blender 2.69
+* python 2.7+
+* numpy (1.8.2+)
+* scipy (0.14.1+)
+* matplotlib (1.4.2+)
+* Blender 2.6x+
 
 To start the program with the GUI::
 
@@ -61,13 +62,24 @@ If everything worked so far, the GUI should open up and look like this:
 
 This project started as a university project at the Technische Universität Berlin.
 After the semester was over, we continued working on the project though, with the goal in mind to make it usable for as many people as possible.
-
-A lot of our initial ideas are based on a paper by Martin Petrasch, TU Dresden.
-His paper can be found [here](https://www.inf.tu-dresden.de/content/institutes/smt/cg/results/minorthesis/mpetrasch/files/Beleg_MPetrasch.pdf)
+ 
 
 
 **Roadmap Creation**
 --------------------
+
+Credits and Acknowledgements
+++++++++++++++++++++++++++++++
+A lot of our code regarding roadmap generation shows great similarity and in part based on the following papers:
+
+* Martin Petrasch (TU Dresden). "Prozedurale Städtegenerierung mit Hilfe von L-Systemen". 2008, Dresden. https://www.inf.tu-dresden.de/content/institutes/smt/cg/results/minorthesis/mpetrasch/files/Beleg_MPetrasch.pdf
+
+* Yoav I. H. Parish (ETH Zürich), Pascal Müller (Centrap Pictures, Switzerland). "Procedural modeling of cities". *Siggraph '01* 301-308 (2001). New York, NY, USA. https://dl.acm.org/citation.cfm?id=383292
+
+
+Introduction
+++++++++++++++++
+
 We refer to "road segments" as edges and the two ends of an edge as a vertex.
 We create roadmaps by starting with an axiom (a list of Vertices) and defining a set of rules by which new Vertices are added and connected to existing one to form Edges. 
 Many of the terms used here become obvious when you see them in action. Let's start by showing the most important inputs:
