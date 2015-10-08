@@ -1,7 +1,7 @@
 import matplotlib.pyplot as plt
 
 def plot_edge(edge, color="k"):
-	plt.plot((edge[0][0], edge[1][0]),(edge[0][1], edge[1][1]), color)
+	plt.plot((edge[0][0], edge[1][0]),(edge[0][1], edge[1][1]), color=color)
 	
 	
 def plot_self(self, mode="type"):

@@ -1,7 +1,7 @@
 import numpy as np
 from procedural_city_generation.additional_stuff.Singleton import Singleton
-singleton=Singleton("polygons")
 
+gui=None
 
 def main(vertex_list=None):
 	'''Input: list of vertices representing the Roadmap
@@ -9,6 +9,7 @@ def main(vertex_list=None):
 	List of all Polygon2Ds representing Blocks
 	List of all Polygon2Ds which are too large to be Lots
 	Polygon2D representing the road-network'''
+	singleton=Singleton("polygons")
 
 	if vertex_list is None:
 		from procedural_city_generation.additional_stuff import jsontools
@@ -45,11 +46,19 @@ def main(vertex_list=None):
 	
 	if singleton.plotbool:
 		print "Plotting..."
-		import matplotlib.pyplot as plt
-		for g in polygons:
-			g.selfplot()
-		plt.show()
-		
+		if gui is None:
+			import matplotlib.pyplot as plt
+			for g in polygons:
+				g.selfplot(plt=plt)
+			plt.show()
+		else:
+			i=0
+			for g in polygons:
+				g.selfplot(plt=gui)
+				i+=1
+				if i%singleton.plot_counter==0:
+					gui.update()
+			gui.update()
 	
 	import pickle
 	with open(os.path.dirname(procedural_city_generation.__file__)+"/outputs/polygons.txt", "w") as f:
