@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file 'window.ui'
 #
-# Created: Tue Oct  6 21:04:57 2015
+# Created: Thu Oct  8 20:13:32 2015
 #      by: PyQt4 UI code generator 4.10.4
 #
 # WARNING! All changes made in this file will be lost!
@@ -64,7 +64,7 @@ class Ui_MainWindow(object):
         self.roadmap_frame.setFrameShadow(QtGui.QFrame.Raised)
         self.roadmap_frame.setObjectName(_fromUtf8("roadmap_frame"))
         self.roadmap_widget = matplotlibWidget(self.roadmap_frame)
-        self.roadmap_widget.setGeometry(QtCore.QRect(159, 99, 231, 181))
+        self.roadmap_widget.setGeometry(QtCore.QRect(140, -40, 581, 501))
         self.roadmap_widget.setObjectName(_fromUtf8("roadmap_widget"))
         self.gridLayout_2.addWidget(self.roadmap_group, 0, 0, 1, 1)
         self.tabWidget.addTab(self.roadmap_tab, _fromUtf8(""))
@@ -81,10 +81,13 @@ class Ui_MainWindow(object):
         self.polygons_Run.setGeometry(QtCore.QRect(0, 80, 91, 27))
         self.polygons_Run.setObjectName(_fromUtf8("polygons_Run"))
         self.frame_2 = QtGui.QFrame(self.polygons_group)
-        self.frame_2.setGeometry(QtCore.QRect(120, 10, 891, 431))
+        self.frame_2.setGeometry(QtCore.QRect(100, 10, 891, 431))
         self.frame_2.setFrameShape(QtGui.QFrame.StyledPanel)
         self.frame_2.setFrameShadow(QtGui.QFrame.Raised)
         self.frame_2.setObjectName(_fromUtf8("frame_2"))
+        self.polygons_widget = matplotlibWidget(self.frame_2)
+        self.polygons_widget.setGeometry(QtCore.QRect(140, -40, 581, 491))
+        self.polygons_widget.setObjectName(_fromUtf8("polygons_widget"))
         self.gridLayout_3.addWidget(self.polygons_group, 0, 0, 1, 1)
         self.tabWidget.addTab(self.polygons_tab, _fromUtf8(""))
         self.building_generation_tab = QtGui.QWidget()
@@ -146,7 +149,7 @@ class Ui_MainWindow(object):
         MainWindow.setStatusBar(self.statusBar)
 
         self.retranslateUi(MainWindow)
-        self.tabWidget.setCurrentIndex(0)
+        self.tabWidget.setCurrentIndex(1)
         QtCore.QMetaObject.connectSlotsByName(MainWindow)
 
     def retranslateUi(self, MainWindow):
@@ -173,4 +176,4 @@ class Ui_MainWindow(object):
         self.run_tests.setText(_translate("MainWindow", "Run Tests", None))
         self.tabWidget.setTabText(self.tabWidget.indexOf(self.advanced_tab), _translate("MainWindow", "Advanced", None))
 
-from matplotlibWidget import matplotlibWidget
+from GUI import matplotlibWidget

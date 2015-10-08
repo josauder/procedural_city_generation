@@ -19,7 +19,7 @@ Param("heightmap_name", "randommap.png", "Name of image in /inputs/heightmaps/ t
 Param("bildaufloesung",10, "TODO", "integer"),
 Param("border", [15,15], "Maximum x and y value for any Vertex", "List or tuple of 2 integers"),
 Param("plot",0,"If 1, the program will show the Growth of the roadmap during runtime", "1 or 0"),
-Param("plotabstand",2, "How many iterations have to pass before the plot showing growth of roadmap updates itself", "integer"),
+Param("plot_counter",2, "How many iterations have to pass before the plot showing growth of roadmap updates itself", "integer"),
 Param("savefig",1, "If 1, the program will save an image showing the roadmap to /outputs/", "1 or 0"),
 Param("pSeed",40, "Probability that a minor road starts growing from a major road", "integer between 0 and 100"),
 Param("seedlMin",1.0, "Minimum length of a seed-road", "float"),

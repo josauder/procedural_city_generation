@@ -14,9 +14,10 @@ from procedural_city_generation.building_generation.getFoundation import getFoun
 from procedural_city_generation.building_generation.merge_polygons import merge_polygons
 from procedural_city_generation.additional_stuff.Singleton import Singleton
 from copy import copy
-singleton=Singleton("building_generation")
 
 def main(polylist):
+	
+	singleton=Singleton("building_generation")
 	""" Accepts a list of procedural_city_generation.polygons.Polygon2D objects
 	and constructs buildings on top of these. The buildings consist of Polygon3D objects,
 	which are saved to /outputs/polygons.txt. See merger module for more details.

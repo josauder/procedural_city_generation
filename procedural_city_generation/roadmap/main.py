@@ -1,6 +1,8 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 from __future__ import division
+gui=None
+
 
 def main():
 	from procedural_city_generation.roadmap.config import config
@@ -17,14 +19,20 @@ def main():
 	
 	
 	if singleton.plot==1:
-		from GUI import 
-		#	plt.close()
-	#	fig=plt.figure()
-	#	ax=plt.subplot(111)
+		if gui is None:
+			import matplotlib.pyplot as plt
+			plt.close()
+			fig=plt.figure()
+			ax=plt.subplot(111)
 		
-		#fig.canvas.draw()
-		#ax.set_xlim((-singleton.border[0],singleton.border[0]))
-		#ax.set_ylim((-singleton.border[1],singleton.border[1]))
+			fig.canvas.draw()
+			ax.set_xlim((-singleton.border[0],singleton.border[0]))
+			ax.set_ylim((-singleton.border[1],singleton.border[1]))
+		else:
+			
+			gui.set_xlim((-singleton.border[0],singleton.border[0]))
+			gui.set_ylim((-singleton.border[1],singleton.border[1]))
+
 	i=0
 	while (front!=[] or singleton.global_lists.vertex_queue	!=[]):
 		
@@ -32,12 +40,14 @@ def main():
 		front=iteration(front)
 		
 		if singleton.plot==1:
-			if i%singleton.plotabstand==0:
-				pass
-				plt.update_figure()
-		#		plt.pause(0.001)
-		#		fig.canvas.blit(ax.bbox)
-		#		fig.canvas.flush_events()
+			if i%singleton.plot_counter==0:
+				if gui is None:
+					plt.pause(0.001)
+					fig.canvas.blit(ax.bbox)
+					fig.canvas.flush_events()
+				else:
+					gui.update()
+
 			singleton.iterationszaehler=0
 
 	from procedural_city_generation.additional_stuff.jsontools import save_vertexlist

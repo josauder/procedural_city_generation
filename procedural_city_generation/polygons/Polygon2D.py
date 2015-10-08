@@ -32,8 +32,8 @@ class Edge(object):
 	def __repr__(self):
 		return str([round(x, 2) for x in self[0]]) + ", " + str([round(x, 2) for x in self[1]])	
 		
-	def selfplot(self, color="k"):
-		plt.plot((self[0][0], self[1][0]),(self[0][1], self[1][1]), color)
+	def selfplot(self, color="k", plt=None):
+		plt.plot((self[0][0], self[1][0]),(self[0][1], self[1][1]), color=color)
 		
 class Polygon2D(object):
 	
@@ -58,28 +58,28 @@ class Polygon2D(object):
 		s += "\n"
 		return s
 		
-	def selfplot(self, color="type"):
+	def selfplot(self, color="type", plt=plt):
 		if color == "type":
 			t = self.poly_type
 			
 			if t == "lot":
 				for edge in self.edges:
-					edge.selfplot("g")
+					edge.selfplot(color="g",plt=plt)
 			elif t == "road":
 				for edge in self.edges:
-					edge.selfplot("k")
+					edge.selfplot(color="k",plt=plt)
 			else:
 				for edge in self.edges:
-					edge.selfplot("r")
+					edge.selfplot(color="r",plt=plt)
 		elif color == "borders":
 			for edge in self.edges:
 				if edge.bordering_road:
-					edge.selfplot("k")
+					edge.selfplot(color="k",plt=plt)
 				else:
-					edge.selfplot("r")
-		else:
-			for edge in self.edges:
-				plot_edge(edge, color)
+					edge.selfplot(color="r",plt=plt)
+#		else:
+#			for edge in self.edges:
+#				plot_edge(edge, color=color)
 		
 	
 			

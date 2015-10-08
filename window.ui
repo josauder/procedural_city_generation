@@ -40,7 +40,7 @@
        </size>
       </property>
       <property name="currentIndex">
-       <number>0</number>
+       <number>1</number>
       </property>
       <property name="iconSize">
        <size>
@@ -102,14 +102,18 @@
            <widget class="matplotlibWidget" name="roadmap_widget" native="true">
             <property name="geometry">
              <rect>
-              <x>159</x>
-              <y>99</y>
-              <width>231</width>
-              <height>181</height>
+              <x>140</x>
+              <y>-40</y>
+              <width>581</width>
+              <height>501</height>
              </rect>
             </property>
            </widget>
           </widget>
+          <zorder>roadmap_Options</zorder>
+          <zorder>roadmap_Run</zorder>
+          <zorder>roadmap_frame</zorder>
+          <zorder>console_header</zorder>
          </widget>
         </item>
        </layout>
@@ -153,7 +157,7 @@
           <widget class="QFrame" name="frame_2">
            <property name="geometry">
             <rect>
-             <x>120</x>
+             <x>100</x>
              <y>10</y>
              <width>891</width>
              <height>431</height>
@@ -165,6 +169,16 @@
            <property name="frameShadow">
             <enum>QFrame::Raised</enum>
            </property>
+           <widget class="matplotlibWidget" name="polygons_widget" native="true">
+            <property name="geometry">
+             <rect>
+              <x>140</x>
+              <y>-40</y>
+              <width>581</width>
+              <height>491</height>
+             </rect>
+            </property>
+           </widget>
           </widget>
          </widget>
         </item>
@@ -332,7 +346,7 @@
   <customwidget>
    <class>matplotlibWidget</class>
    <extends>QWidget</extends>
-   <header>matplotlibWidget</header>
+   <header>GUI</header>
    <container>1</container>
   </customwidget>
  </customwidgets>

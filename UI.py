@@ -4,22 +4,31 @@ donemessage="\n"+(150*"-")+"\n\t\t\t  Done, waiting for command\n"+(150*"-")+"\n
 path=os.path.dirname(procedural_city_generation.__file__)
 sys.path.append(path)
 
+from procedural_city_generation.roadmap import main as roadmap_main
+from procedural_city_generation.polygons import main as polygons_main
+from procedural_city_generation.building_generation import main as building_generation_main
+from procedural_city_generation.additional_stuff.Singleton import Singleton
+
+def setRoadmapGUI(gui):
+	roadmap_main.gui=gui
+	Singleton("roadmap").kill()
+
+def setPolygonsGUI(gui):
+	polygons_main.gui=gui
+	Singleton("polygons").kill()
+
+
 def roadmap():
-	from procedural_city_generation.roadmap import main as roadmap_main
 	roadmap_main.main()
-	from procedural_city_generation.additional_stuff.Singleton import Singleton
 	Singleton("roadmap").kill()
 	print donemessage
 
 def polygons():
-	from procedural_city_generation.polygons import main as polygon_main
-	polygon_main.main(None)
-	from procedural_city_generation.additional_stuff.Singleton import Singleton
+	polygons_main.main(None)
 	Singleton("polygons").kill()
 	print donemessage
 
 def building_generation():
-	from procedural_city_generation.building_generation import main as building_generation_main
 	import pickle
 	try:
 		with open(path+"/outputs/polygons.txt",'r') as f:
