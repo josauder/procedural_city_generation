@@ -51,7 +51,7 @@ def check(suggested_vertex, neighbour, newfront):
 	nearvertex=[singleton.global_lists.vertex_list[x] for x in nearvertex if x<l ]
 	
 	#Distances[0] is the distance to the nearest Vertex, nearve:
-	if distances[0]<singleton.mindestabstand:
+	if distances[0]<singleton.min_distance:
 		
 		#If the nearest Vertex is not a neighbor
 		if nearvertex[0] not in neighbour.neighbours:

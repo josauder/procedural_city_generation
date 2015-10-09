@@ -12,7 +12,7 @@ from procedural_city_generation.additional_stuff.Param import Param
 params=[
 Param("axiom", [[0,0],[1,0],[0,-2],[0,-3]], "Initial Vertices with which the program starts", "List of 2D-Coordinates"),
 Param("minor_road_delay",80, "How many iterations a seed waits until minor roads start growing from it", "integer"),
-Param("mindestabstand",0.6, "Minimal distance a suggested Vertex has to be away from all existing vertices", "float"),
+Param("min_distance",0.6, "Minimal distance a suggested Vertex has to be away from all existing vertices", "float"),
 Param("rule_image_name","nicebild.png", "Name of image in /inputs/rule_pictures to be used to decide which rules will be used", "filename-String"),
 Param("density_image_name", "abnehmend.png", "Name of image in /inputs/density_pictures to be used to determine population density", "filename-String"),
 Param("heightmap_name", "randommap.png", "Name of image in /inputs/heightmaps/ to be used to determine elevation in 3D-Model", "filename-String"),
