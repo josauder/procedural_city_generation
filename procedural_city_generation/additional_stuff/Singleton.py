@@ -17,7 +17,7 @@ class Singleton:
 				with open(path+"/inputs/"+modulename+".conf",'r') as f:
 					d=json.loads(f.read())
 				for k,v in d.items():
-					setattr(self,k,v)
+					setattr(self,k,v["value"])
 			else:
 				print( "Warning, Singleton instanciated without parsing a json file. Please specify the modulename parameter to avoid errors")
 	instance=None

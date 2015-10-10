@@ -250,7 +250,7 @@
        </size>
       </property>
       <property name="currentIndex">
-       <number>0</number>
+       <number>3</number>
       </property>
       <property name="iconSize">
        <size>
@@ -319,46 +319,7 @@
              </rect>
             </property>
            </widget>
-           <widget class="QTableWidget" name="tableWidget">
-            <property name="geometry">
-             <rect>
-              <x>20</x>
-              <y>30</y>
-              <width>831</width>
-              <height>381</height>
-             </rect>
-            </property>
-            <property name="rowCount">
-             <number>5</number>
-            </property>
-            <property name="columnCount">
-             <number>5</number>
-            </property>
-            <attribute name="horizontalHeaderVisible">
-             <bool>true</bool>
-            </attribute>
-            <attribute name="horizontalHeaderDefaultSectionSize">
-             <number>200</number>
-            </attribute>
-            <attribute name="verticalHeaderVisible">
-             <bool>false</bool>
-            </attribute>
-            <row/>
-            <row/>
-            <row/>
-            <row/>
-            <row/>
-            <column/>
-            <column/>
-            <column/>
-            <column/>
-            <column/>
-           </widget>
           </widget>
-          <zorder>roadmap_Options</zorder>
-          <zorder>roadmap_Run</zorder>
-          <zorder>roadmap_frame</zorder>
-          <zorder>console_header</zorder>
          </widget>
         </item>
        </layout>
@@ -399,7 +360,7 @@
             <string>Run</string>
            </property>
           </widget>
-          <widget class="QFrame" name="frame_2">
+          <widget class="QFrame" name="polygons_frame">
            <property name="geometry">
             <rect>
              <x>100</x>
@@ -465,7 +426,7 @@
             <string>Run</string>
            </property>
           </widget>
-          <widget class="QFrame" name="frame_3">
+          <widget class="QFrame" name="building_generation_frame">
            <property name="geometry">
             <rect>
              <x>120</x>
@@ -521,7 +482,7 @@
             <string>Run</string>
            </property>
           </widget>
-          <widget class="QFrame" name="frame_4">
+          <widget class="QFrame" name="visualization_frame">
            <property name="geometry">
             <rect>
              <x>120</x>

@@ -107,7 +107,7 @@ def createobject(verts,faces,texname,texscale,shrinkwrap):
 		wrap.use_negative_direction=True
 		wrap.use_project_z=True
 		wrap.target=bpy.context.scene.objects['Floormesh']
-		wrap.offset=numeric_values[u'offset']
+		wrap.offset=numeric_values[u'offset'][u'value']
 
 	bpy.context.scene.objects.link(ob)
 

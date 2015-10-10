@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file 'window.ui'
 #
-# Created: Thu Oct  8 22:05:56 2015
+# Created: Sat Oct 10 16:16:13 2015
 #      by: PyQt4 UI code generator 4.10.4
 #
 # WARNING! All changes made in this file will be lost!
@@ -147,12 +147,12 @@ class Ui_MainWindow(object):
         self.polygons_Run = QtGui.QPushButton(self.polygons_group)
         self.polygons_Run.setGeometry(QtCore.QRect(0, 80, 91, 27))
         self.polygons_Run.setObjectName(_fromUtf8("polygons_Run"))
-        self.frame_2 = QtGui.QFrame(self.polygons_group)
-        self.frame_2.setGeometry(QtCore.QRect(100, 10, 891, 431))
-        self.frame_2.setFrameShape(QtGui.QFrame.StyledPanel)
-        self.frame_2.setFrameShadow(QtGui.QFrame.Raised)
-        self.frame_2.setObjectName(_fromUtf8("frame_2"))
-        self.polygons_widget = matplotlibWidget(self.frame_2)
+        self.polygons_frame = QtGui.QFrame(self.polygons_group)
+        self.polygons_frame.setGeometry(QtCore.QRect(100, 10, 891, 431))
+        self.polygons_frame.setFrameShape(QtGui.QFrame.StyledPanel)
+        self.polygons_frame.setFrameShadow(QtGui.QFrame.Raised)
+        self.polygons_frame.setObjectName(_fromUtf8("polygons_frame"))
+        self.polygons_widget = matplotlibWidget(self.polygons_frame)
         self.polygons_widget.setGeometry(QtCore.QRect(140, -40, 581, 501))
         self.polygons_widget.setObjectName(_fromUtf8("polygons_widget"))
         self.gridLayout_3.addWidget(self.polygons_group, 0, 0, 1, 1)
@@ -169,11 +169,11 @@ class Ui_MainWindow(object):
         self.building_generation_Run = QtGui.QPushButton(self.building_generation_group)
         self.building_generation_Run.setGeometry(QtCore.QRect(0, 80, 91, 27))
         self.building_generation_Run.setObjectName(_fromUtf8("building_generation_Run"))
-        self.frame_3 = QtGui.QFrame(self.building_generation_group)
-        self.frame_3.setGeometry(QtCore.QRect(120, 10, 881, 431))
-        self.frame_3.setFrameShape(QtGui.QFrame.StyledPanel)
-        self.frame_3.setFrameShadow(QtGui.QFrame.Raised)
-        self.frame_3.setObjectName(_fromUtf8("frame_3"))
+        self.building_generation_frame = QtGui.QFrame(self.building_generation_group)
+        self.building_generation_frame.setGeometry(QtCore.QRect(120, 10, 881, 431))
+        self.building_generation_frame.setFrameShape(QtGui.QFrame.StyledPanel)
+        self.building_generation_frame.setFrameShadow(QtGui.QFrame.Raised)
+        self.building_generation_frame.setObjectName(_fromUtf8("building_generation_frame"))
         self.gridLayout_4.addWidget(self.building_generation_group, 0, 0, 1, 1)
         self.tabWidget.addTab(self.building_generation_tab, _fromUtf8(""))
         self.visualization_tab = QtGui.QWidget()
@@ -188,11 +188,11 @@ class Ui_MainWindow(object):
         self.visualization_Run = QtGui.QPushButton(self.visualization_group)
         self.visualization_Run.setGeometry(QtCore.QRect(0, 80, 91, 27))
         self.visualization_Run.setObjectName(_fromUtf8("visualization_Run"))
-        self.frame_4 = QtGui.QFrame(self.visualization_group)
-        self.frame_4.setGeometry(QtCore.QRect(120, 10, 881, 431))
-        self.frame_4.setFrameShape(QtGui.QFrame.StyledPanel)
-        self.frame_4.setFrameShadow(QtGui.QFrame.Raised)
-        self.frame_4.setObjectName(_fromUtf8("frame_4"))
+        self.visualization_frame = QtGui.QFrame(self.visualization_group)
+        self.visualization_frame.setGeometry(QtCore.QRect(120, 10, 881, 431))
+        self.visualization_frame.setFrameShape(QtGui.QFrame.StyledPanel)
+        self.visualization_frame.setFrameShadow(QtGui.QFrame.Raised)
+        self.visualization_frame.setObjectName(_fromUtf8("visualization_frame"))
         self.gridLayout_5.addWidget(self.visualization_group, 0, 0, 1, 1)
         self.tabWidget.addTab(self.visualization_tab, _fromUtf8(""))
         self.advanced_tab = QtGui.QWidget()
@@ -216,7 +216,7 @@ class Ui_MainWindow(object):
         MainWindow.setStatusBar(self.statusBar)
 
         self.retranslateUi(MainWindow)
-        self.tabWidget.setCurrentIndex(0)
+        self.tabWidget.setCurrentIndex(3)
         QtCore.QMetaObject.connectSlotsByName(MainWindow)
 
     def retranslateUi(self, MainWindow):
