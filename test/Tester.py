@@ -23,13 +23,17 @@ def import_submodules(package, recursive=True):
 	return results
 
 def main():
-	import os, sys
+	import os, sys, importlib
 	sys.path.append(os.path.dirname(__file__)+"..")
 	import procedural_city_generation
-	
-	a=import_submodules(procedural_city_generation).items()
-	a=[x for x in a if "test" in x[0]]
-	print a
+	import test
+	test_funcs=import_submodules(test).items()
+	test_funcs=[x[0] for x in test_funcs if (not "test.Tester" in x[0] and x[0].endswith("Test"))]
+
+	for test in test_funcs:
+		module=importlib.import_module(test)
+		getattr(module,"main")()
+
 	
 
 if __name__ == '__main__':

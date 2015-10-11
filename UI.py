@@ -17,6 +17,10 @@ def setPolygonsGUI(gui):
 	polygons_main.gui=gui
 	Singleton("polygons").kill()
 
+def setBuilding_generationGUI(gui):
+	building_generation_main.gui=gui
+	Singleton("building_generation").kill()
+
 
 def roadmap():
 	roadmap_main.main()
@@ -30,16 +34,16 @@ def polygons():
 
 def building_generation():
 	import pickle
-	try:
+#	try:
+	if 1==1:
 		with open(path+"/outputs/polygons.txt",'r') as f:
-			polygons=pickle.loads(f.read())	
+			polygons=pickle.loads(f.read())
 		building_generation_main.main(polygons)
-		from procedural_city_generation.additional_stuff.Singleton import Singleton
 		Singleton("building_generation").kill()
 
-	except IOError:
-		print "Input could not be located. Try to run the previous program in the chain first."
-		return 0
+#	except IOError:
+#		print "Input could not be located. Try to run the previous program in the chain first."
+#		return 0
 	print donemessage
 
 	

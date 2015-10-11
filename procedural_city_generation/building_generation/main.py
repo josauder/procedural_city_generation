@@ -2,22 +2,11 @@ from __future__ import division
 import sys,os
 import numpy as np
 
-import procedural_city_generation
-path=os.path.dirname(procedural_city_generation.__file__)
-from procedural_city_generation.building_generation.cuts import *
-from procedural_city_generation.building_generation.building_tools import *
-from procedural_city_generation.building_generation.roofs import roof
-from procedural_city_generation.building_generation.Surface import Surface
-from procedural_city_generation.building_generation.BuildingHeight import BuildingHeight
-from procedural_city_generation.building_generation.updateTextures import updateTextures, textureGetter
-from procedural_city_generation.building_generation.getFoundation import getFoundation
-from procedural_city_generation.building_generation.merge_polygons import merge_polygons
-from procedural_city_generation.additional_stuff.Singleton import Singleton
-from copy import copy
+
+
+gui=None
 
 def main(polylist):
-	
-	singleton=Singleton("building_generation")
 	""" Accepts a list of procedural_city_generation.polygons.Polygon2D objects
 	and constructs buildings on top of these. The buildings consist of Polygon3D objects,
 	which are saved to /outputs/polygons.txt. See merger module for more details.
@@ -25,11 +14,23 @@ def main(polylist):
 	Parameters
 	----------
 	polylist : List<procedural_city_generation.polygons.Polygon2D>
-	
-	
+
 	"""
-	
-	
+
+	import procedural_city_generation
+	path=os.path.dirname(procedural_city_generation.__file__)
+	from procedural_city_generation.building_generation.cuts import *
+	from procedural_city_generation.building_generation.building_tools import *
+	from procedural_city_generation.building_generation.roofs import roof
+	from procedural_city_generation.building_generation.Surface import Surface
+	from procedural_city_generation.building_generation.BuildingHeight import BuildingHeight
+	from procedural_city_generation.building_generation.updateTextures import updateTextures, textureGetter
+	from procedural_city_generation.building_generation.getFoundation import getFoundation
+	from procedural_city_generation.building_generation.merge_polygons import merge_polygons
+	from procedural_city_generation.additional_stuff.Singleton import Singleton
+	from copy import copy
+	singleton=Singleton("building_generation")
+
 	#TODO: Discuss with lenny how we get the largest polygon out.
 	maxl=0
 	index=0
@@ -47,6 +48,8 @@ def main(polylist):
 	roadtexture=texGetter.getTexture('Road',50)
 	
 	polygons=[]
+
+	counter=0
 	for poly in polylist:
 		
 		#Determines the floortexture. If the Polygon3D is not a building, there is obviously no need for walls/windows/roofs
@@ -110,7 +113,9 @@ def main(polylist):
 			
 			#Creates floorplan
 			walls=randomcut(walls,housebool)
-			
+			if singleton.plotbool:
+				walls.selfplot()
+
 			#Floor-height is found and the Building is vertically split.
 			#TODO: Constants in some sort of conf file
 			plan=verticalsplit(buildingheight,floorheight)
@@ -155,7 +160,10 @@ def main(polylist):
 			polygons.append(get_windows(windows,list_of_currentheights,floorheight, windowwidth,windowheight,windowdist,windowtexture))
 		else:
 			print "Polygon3D.poly_type not understood"
-			
+		if singleton.plotbool:
+			if counter%singleton.plot_counter==0:
+				gui.update()
+		counter+=1
 		#Builds the floor Polygon
 		polygons.append(Polygon3D([np.array([x[0],x[1],0]) for x in poly.vertices],
 			[range(len(poly.vertices))],

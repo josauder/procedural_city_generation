@@ -15,77 +15,6 @@
   </property>
   <widget class="QWidget" name="Centralwidget">
    <layout class="QGridLayout" name="gridLayout">
-    <item row="3" column="0">
-     <widget class="QGroupBox" name="console_header">
-      <property name="palette">
-       <palette>
-        <active>
-         <colorrole role="Light">
-          <brush brushstyle="SolidPattern">
-           <color alpha="255">
-            <red>189</red>
-            <green>189</green>
-            <blue>189</blue>
-           </color>
-          </brush>
-         </colorrole>
-         <colorrole role="Base">
-          <brush brushstyle="SolidPattern">
-           <color alpha="255">
-            <red>180</red>
-            <green>180</green>
-            <blue>180</blue>
-           </color>
-          </brush>
-         </colorrole>
-        </active>
-        <inactive>
-         <colorrole role="Light">
-          <brush brushstyle="SolidPattern">
-           <color alpha="255">
-            <red>189</red>
-            <green>189</green>
-            <blue>189</blue>
-           </color>
-          </brush>
-         </colorrole>
-         <colorrole role="Base">
-          <brush brushstyle="SolidPattern">
-           <color alpha="255">
-            <red>180</red>
-            <green>180</green>
-            <blue>180</blue>
-           </color>
-          </brush>
-         </colorrole>
-        </inactive>
-        <disabled>
-         <colorrole role="Light">
-          <brush brushstyle="SolidPattern">
-           <color alpha="255">
-            <red>189</red>
-            <green>189</green>
-            <blue>189</blue>
-           </color>
-          </brush>
-         </colorrole>
-         <colorrole role="Base">
-          <brush brushstyle="SolidPattern">
-           <color alpha="255">
-            <red>255</red>
-            <green>255</green>
-            <blue>255</blue>
-           </color>
-          </brush>
-         </colorrole>
-        </disabled>
-       </palette>
-      </property>
-      <property name="title">
-       <string>       Console</string>
-      </property>
-     </widget>
-    </item>
     <item row="4" column="0">
      <widget class="QPlainTextEdit" name="console">
       <property name="palette">
@@ -235,6 +164,78 @@
       </property>
      </widget>
     </item>
+    <item row="3" column="0">
+     <widget class="QGroupBox" name="console_header">
+      <property name="palette">
+       <palette>
+        <active>
+         <colorrole role="Light">
+          <brush brushstyle="SolidPattern">
+           <color alpha="255">
+            <red>189</red>
+            <green>189</green>
+            <blue>189</blue>
+           </color>
+          </brush>
+         </colorrole>
+         <colorrole role="Base">
+          <brush brushstyle="SolidPattern">
+           <color alpha="255">
+            <red>180</red>
+            <green>180</green>
+            <blue>180</blue>
+           </color>
+          </brush>
+         </colorrole>
+        </active>
+        <inactive>
+         <colorrole role="Light">
+          <brush brushstyle="SolidPattern">
+           <color alpha="255">
+            <red>189</red>
+            <green>189</green>
+            <blue>189</blue>
+           </color>
+          </brush>
+         </colorrole>
+         <colorrole role="Base">
+          <brush brushstyle="SolidPattern">
+           <color alpha="255">
+            <red>180</red>
+            <green>180</green>
+            <blue>180</blue>
+           </color>
+          </brush>
+         </colorrole>
+        </inactive>
+        <disabled>
+         <colorrole role="Light">
+          <brush brushstyle="SolidPattern">
+           <color alpha="255">
+            <red>189</red>
+            <green>189</green>
+            <blue>189</blue>
+           </color>
+          </brush>
+         </colorrole>
+         <colorrole role="Base">
+          <brush brushstyle="SolidPattern">
+           <color alpha="255">
+            <red>255</red>
+            <green>255</green>
+            <blue>255</blue>
+           </color>
+          </brush>
+         </colorrole>
+        </disabled>
+       </palette>
+      </property>
+      <property name="title">
+       <string>       Console</string>
+      </property>
+      <zorder>tabWidget</zorder>
+     </widget>
+    </item>
     <item row="2" column="0">
      <widget class="QTabWidget" name="tabWidget">
       <property name="sizePolicy">
@@ -250,7 +251,7 @@
        </size>
       </property>
       <property name="currentIndex">
-       <number>3</number>
+       <number>0</number>
       </property>
       <property name="iconSize">
        <size>
@@ -299,7 +300,7 @@
             <rect>
              <x>100</x>
              <y>10</y>
-             <width>881</width>
+             <width>911</width>
              <height>431</height>
             </rect>
            </property>
@@ -365,7 +366,7 @@
             <rect>
              <x>100</x>
              <y>10</y>
-             <width>891</width>
+             <width>911</width>
              <height>431</height>
             </rect>
            </property>
@@ -429,9 +430,9 @@
           <widget class="QFrame" name="building_generation_frame">
            <property name="geometry">
             <rect>
-             <x>120</x>
+             <x>100</x>
              <y>10</y>
-             <width>881</width>
+             <width>911</width>
              <height>431</height>
             </rect>
            </property>
@@ -441,6 +442,16 @@
            <property name="frameShadow">
             <enum>QFrame::Raised</enum>
            </property>
+           <widget class="matplotlibWidget" name="building_generation_widget" native="true">
+            <property name="geometry">
+             <rect>
+              <x>140</x>
+              <y>-40</y>
+              <width>581</width>
+              <height>501</height>
+             </rect>
+            </property>
+           </widget>
           </widget>
          </widget>
         </item>
@@ -485,9 +496,9 @@
           <widget class="QFrame" name="visualization_frame">
            <property name="geometry">
             <rect>
-             <x>120</x>
+             <x>100</x>
              <y>10</y>
-             <width>881</width>
+             <width>911</width>
              <height>431</height>
             </rect>
            </property>

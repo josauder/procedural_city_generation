@@ -14,6 +14,7 @@ def input_image_setup(img_name, img2_name):
 	
 	import matplotlib.pyplot as plt
 	path=os.path.dirname(procedural_city_generation.__file__)
+	print path
 	plt.imsave(path+"/temp/diffused.png",img2,cmap='gray')
 	with open(path+"/temp/isdiffused.txt",'w') as f:
 		f.write("False")

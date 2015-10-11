@@ -38,7 +38,9 @@ class GUI(QtGui.QMainWindow):
         self.createTable("polygons")
 
         #### 3: BUILDING_GENERATION ####
-        self.ui.building_generation_Run.clicked.connect(UI.building_generation)
+        UI.setBuilding_generationGUI(self)
+        self.ui.building_generation_widget.hide()
+        self.ui.building_generation_Run.clicked.connect(self.start_building_generation)
         self.createTable("building_generation")
 
         #### 4: VISUALIZATION ####
@@ -161,6 +163,13 @@ class GUI(QtGui.QMainWindow):
         self.active_widget.show()
         self.clear()
         UI.polygons()
+
+    def start_building_generation(self):
+        self.active_widget=self.ui.building_generation_widget
+        self.active_widget.show()
+        self.clear()
+        UI.building_generation()
+
         
     def set_xlim(self,tpl):
         self.active_widget.canvas.ax.set_xlim(tpl)

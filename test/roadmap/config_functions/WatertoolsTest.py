@@ -9,7 +9,7 @@ def main():
 	from procedural_city_generation.roadmap.config_functions.Watertools import Watertools
 	import Image
 	import numpy as np
-	img=np.dot(mpimg.imread("../../resources/manybodies.png")[...,:3], [0.299, 0.587, 0.144])
+	img=np.dot(mpimg.imread(os.getcwd() + "/resources/manybodies.png")[...,:3], [0.299, 0.587, 0.144])
 	
 	w=Watertools(img)
 	plt.imshow(img,cmap="gray")

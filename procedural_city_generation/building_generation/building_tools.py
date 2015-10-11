@@ -4,6 +4,13 @@ import numpy as np
 from copy import copy
 import procedural_city_generation
 from procedural_city_generation.building_generation.Polygon3D import Polygon3D
+from procedural_city_generation.building_generation.main import gui as maingui
+
+if maingui is not None:
+	plt=maingui
+else:
+	import matplotlib.pyplot as plt
+
 
 def walls_from_poly(poly2d):
 	"""
@@ -51,6 +58,17 @@ class Walls(object):
 		if self.walls  is None:
 			self.walls= np.array([self.vertices[[i,i-1]] for i in range(self.l)])
 		return self.walls
+
+	def selfplot(self):
+		"""
+		Plots itself with matplotlib
+
+		Returns
+		--------
+		None
+		"""
+		c=random.choice("rgbcmyk")
+		[plt.plot([self.vertices[i-1][0],self.vertices[i][0]],[self.vertices[i-1][1],self.vertices[i][1]],color=c) for i in range(len(self.vertices))]
 
 
 def scale(walls,factor):

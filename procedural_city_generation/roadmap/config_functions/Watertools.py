@@ -1,5 +1,6 @@
-import numpy as np
 
+import numpy as np
+import matplotlib.pyplot as plt
 class Watertools:
 	def __init__(self, heightmap):
 		self.heightmap=heightmap
@@ -21,8 +22,7 @@ class Watertools:
 		h is the corresponding height
 		"""
 		
-		flooded=np.zeros(self.heightmap.shape)
-		
+
 		stencil=np.array([
 		[-1,0],
 		[1,0],
@@ -31,21 +31,27 @@ class Watertools:
 		])
 	
 		front=[pos]
+		self.flooded_tmp=np.zeros(self.heightmap.shape)
+
 		while len(front)>0:
 			new_front=[]
 			for x in front:
 				if self.old[x[0]][x[1]]<h:
-					flooded[x[0]][x[1]]=1
+					self.flooded_tmp[x[0]][x[1]]=1
 					new_front.extend(
-					[new for new in x+stencil if not flooded[new[0]][new[1]] and not np.any(x<=0) and not x[0]>=flooded.shape[0]-2 and not x[1]>=flooded.shape[1]-2]
+					[new for new in x+stencil if not self.flooded_tmp[new[0]][new[1]]==1 and not np.any(x<=0) and not x[0]>=self.flooded_tmp.shape[0]-2 and not x[1]>=self.flooded_tmp.shape[1]-2]
 					)
-					
+
+			plt.imshow(self.flooded_tmp)
+			plt.draw()
+			plt.pause(0.01)
 			front=new_front
+			print len(front)
 			
 		self.new=self.old
-		self.new[np.argwhere(flooded)]=h
-		self.flooded[np.argwhere(flooded)]=1
-		return flooded
+		self.new[np.argwhere(self.flooded_tmp)]=h
+		self.flooded[np.argwhere(self.flooded_tmp)]=1
+		return self.flooded_tmp
 		
 	def find_land_bodies(heightmap, h):
 		"""
@@ -84,6 +90,7 @@ class Watertools:
 			body=[]
 			front=[np.argwhere(heightmap!=-np.inf)[0]]
 			while len(front)>0:
+				print len(front)
 				for x in front:
 					if x[0]>=0 and x[1]>=0 and x[0]<heightmap.shape[0] and x[1]<heightmap.shape[1]:
 						new=[g for g in [ el for el in np.array([x,x,x,x])-stencil] if done[g]==0]
