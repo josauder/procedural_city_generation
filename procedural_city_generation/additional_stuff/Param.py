@@ -17,10 +17,11 @@ class Param(object):
 		if self.value_type=="file" or self.value_type=="File":
 			if type(val)==str:
 				self.value=val
-		elif self.value_type=="float":
+		elif self.value_type=="float" or self.value_type=="integer":
 
-			val=float(val)
-			if int(val)==val:
+			if self.value_type=="float":
+				val=float(val)
+			elif self.value_type=="integer":
 				val=int(val)
 
 

@@ -134,8 +134,10 @@ class GUI(QtGui.QMainWindow):
                 param.setValue(it)
                 Singleton(submodule).kill()
             jsonFromParams(os.getcwd()+"/procedural_city_generation/inputs/"+submodule+".conf",params)
+            print "Save successful"
             save_button.hide()
             table.hide()
+            print UI.donemessage
 
         save_button.clicked.connect(save_params)
         setattr(self.ui,submodule+"_save_button",save_button)
