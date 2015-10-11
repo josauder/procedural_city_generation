@@ -170,7 +170,7 @@ if __name__ == '__main__':
 	
 	import pickle
 	
-	path=os.getcwd()+"/procedural_city_generation"
+	path=os.path.dirname(__file__)+"/.."
 	import json
 	global numeric_values
 
