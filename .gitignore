@@ -8,7 +8,6 @@ __pycache__/
 # Intellij
 .idea
 .idea/*
-
 *~
 
 # C extensions
@@ -22,6 +21,7 @@ __pycache__/
 /procedural_city_generation/temp/*.json
 /procedural_city_generation/temp/*.png
 /procedural_city_generation/inputs/heightmaps/*.txt
+.doc/_build
 
 # Distribution / packaging
 .Python

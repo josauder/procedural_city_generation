@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1056</width>
+    <width>1059</width>
     <height>766</height>
    </rect>
   </property>
@@ -233,7 +233,6 @@
       <property name="title">
        <string>       Console</string>
       </property>
-      <zorder>tabWidget</zorder>
      </widget>
     </item>
     <item row="2" column="0">
@@ -265,61 +264,63 @@
        </attribute>
        <layout class="QGridLayout" name="gridLayout_2">
         <item row="0" column="0">
-         <widget class="QGroupBox" name="roadmap_group">
-          <property name="title">
-           <string>Commands</string>
+         <widget class="QSplitter" name="roadmap_splitter">
+          <property name="orientation">
+           <enum>Qt::Horizontal</enum>
           </property>
-          <widget class="QPushButton" name="roadmap_Options">
-           <property name="geometry">
-            <rect>
-             <x>0</x>
-             <y>50</y>
-             <width>91</width>
-             <height>27</height>
-            </rect>
+          <property name="childrenCollapsible">
+           <bool>false</bool>
+          </property>
+          <widget class="QGroupBox" name="roadmap_group">
+           <property name="title">
+            <string>Commands</string>
            </property>
-           <property name="text">
-            <string>Options</string>
-           </property>
-          </widget>
-          <widget class="QPushButton" name="roadmap_Run">
-           <property name="geometry">
-            <rect>
-             <x>0</x>
-             <y>80</y>
-             <width>91</width>
-             <height>27</height>
-            </rect>
-           </property>
-           <property name="text">
-            <string>Run</string>
-           </property>
+           <widget class="QPushButton" name="roadmap_Options">
+            <property name="geometry">
+             <rect>
+              <x>10</x>
+              <y>30</y>
+              <width>91</width>
+              <height>27</height>
+             </rect>
+            </property>
+            <property name="text">
+             <string>Options</string>
+            </property>
+           </widget>
+           <widget class="QPushButton" name="roadmap_Run">
+            <property name="geometry">
+             <rect>
+              <x>10</x>
+              <y>60</y>
+              <width>91</width>
+              <height>27</height>
+             </rect>
+            </property>
+            <property name="text">
+             <string>Run</string>
+            </property>
+           </widget>
           </widget>
           <widget class="QFrame" name="roadmap_frame">
-           <property name="geometry">
-            <rect>
-             <x>100</x>
-             <y>10</y>
-             <width>911</width>
-             <height>431</height>
-            </rect>
-           </property>
            <property name="frameShape">
             <enum>QFrame::StyledPanel</enum>
            </property>
            <property name="frameShadow">
             <enum>QFrame::Raised</enum>
            </property>
-           <widget class="matplotlibWidget" name="roadmap_widget" native="true">
-            <property name="geometry">
-             <rect>
-              <x>140</x>
-              <y>-40</y>
-              <width>581</width>
-              <height>501</height>
-             </rect>
-            </property>
-           </widget>
+           <layout class="QGridLayout" name="gridLayout_7">
+            <item row="0" column="0">
+             <widget class="matplotlibWidget" name="roadmap_widget" native="true">
+              <property name="sizePolicy">
+               <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+                <horstretch>100</horstretch>
+                <verstretch>0</verstretch>
+               </sizepolicy>
+              </property>
+             </widget>
+            </item>
+           </layout>
           </widget>
          </widget>
         </item>
@@ -331,61 +332,56 @@
        </attribute>
        <layout class="QGridLayout" name="gridLayout_3">
         <item row="0" column="0">
-         <widget class="QGroupBox" name="polygons_group">
-          <property name="title">
-           <string>Commands</string>
+         <widget class="QSplitter" name="polygons_splitter">
+          <property name="orientation">
+           <enum>Qt::Horizontal</enum>
           </property>
-          <widget class="QPushButton" name="polygons_Options">
-           <property name="geometry">
-            <rect>
-             <x>0</x>
-             <y>50</y>
-             <width>91</width>
-             <height>27</height>
-            </rect>
+          <property name="childrenCollapsible">
+           <bool>false</bool>
+          </property>
+          <widget class="QGroupBox" name="polygons_group">
+           <property name="title">
+            <string>Commands</string>
            </property>
-           <property name="text">
-            <string>Options</string>
-           </property>
-          </widget>
-          <widget class="QPushButton" name="polygons_Run">
-           <property name="geometry">
-            <rect>
-             <x>0</x>
-             <y>80</y>
-             <width>91</width>
-             <height>27</height>
-            </rect>
-           </property>
-           <property name="text">
-            <string>Run</string>
-           </property>
+           <widget class="QPushButton" name="polygons_Options">
+            <property name="geometry">
+             <rect>
+              <x>10</x>
+              <y>30</y>
+              <width>91</width>
+              <height>27</height>
+             </rect>
+            </property>
+            <property name="text">
+             <string>Options</string>
+            </property>
+           </widget>
+           <widget class="QPushButton" name="polygons_Run">
+            <property name="geometry">
+             <rect>
+              <x>10</x>
+              <y>60</y>
+              <width>91</width>
+              <height>27</height>
+             </rect>
+            </property>
+            <property name="text">
+             <string>Run</string>
+            </property>
+           </widget>
           </widget>
           <widget class="QFrame" name="polygons_frame">
-           <property name="geometry">
-            <rect>
-             <x>100</x>
-             <y>10</y>
-             <width>911</width>
-             <height>431</height>
-            </rect>
-           </property>
            <property name="frameShape">
             <enum>QFrame::StyledPanel</enum>
            </property>
            <property name="frameShadow">
             <enum>QFrame::Raised</enum>
            </property>
-           <widget class="matplotlibWidget" name="polygons_widget" native="true">
-            <property name="geometry">
-             <rect>
-              <x>140</x>
-              <y>-40</y>
-              <width>581</width>
-              <height>501</height>
-             </rect>
-            </property>
-           </widget>
+           <layout class="QGridLayout" name="gridLayout_8">
+            <item row="0" column="0">
+             <widget class="matplotlibWidget" name="polygons_widget" native="true"/>
+            </item>
+           </layout>
           </widget>
          </widget>
         </item>
@@ -397,61 +393,56 @@
        </attribute>
        <layout class="QGridLayout" name="gridLayout_4">
         <item row="0" column="0">
-         <widget class="QGroupBox" name="building_generation_group">
-          <property name="title">
-           <string>Commands</string>
+         <widget class="QSplitter" name="building_generation_splitter">
+          <property name="orientation">
+           <enum>Qt::Horizontal</enum>
           </property>
-          <widget class="QPushButton" name="building_generation_Options">
-           <property name="geometry">
-            <rect>
-             <x>0</x>
-             <y>50</y>
-             <width>91</width>
-             <height>27</height>
-            </rect>
+          <property name="childrenCollapsible">
+           <bool>false</bool>
+          </property>
+          <widget class="QGroupBox" name="building_generation_group">
+           <property name="title">
+            <string>Commands</string>
            </property>
-           <property name="text">
-            <string>Options</string>
-           </property>
-          </widget>
-          <widget class="QPushButton" name="building_generation_Run">
-           <property name="geometry">
-            <rect>
-             <x>0</x>
-             <y>80</y>
-             <width>91</width>
-             <height>27</height>
-            </rect>
-           </property>
-           <property name="text">
-            <string>Run</string>
-           </property>
+           <widget class="QPushButton" name="building_generation_Options">
+            <property name="geometry">
+             <rect>
+              <x>10</x>
+              <y>30</y>
+              <width>91</width>
+              <height>27</height>
+             </rect>
+            </property>
+            <property name="text">
+             <string>Options</string>
+            </property>
+           </widget>
+           <widget class="QPushButton" name="building_generation_Run">
+            <property name="geometry">
+             <rect>
+              <x>10</x>
+              <y>60</y>
+              <width>91</width>
+              <height>27</height>
+             </rect>
+            </property>
+            <property name="text">
+             <string>Run</string>
+            </property>
+           </widget>
           </widget>
           <widget class="QFrame" name="building_generation_frame">
-           <property name="geometry">
-            <rect>
-             <x>100</x>
-             <y>10</y>
-             <width>911</width>
-             <height>431</height>
-            </rect>
-           </property>
            <property name="frameShape">
             <enum>QFrame::StyledPanel</enum>
            </property>
            <property name="frameShadow">
             <enum>QFrame::Raised</enum>
            </property>
-           <widget class="matplotlibWidget" name="building_generation_widget" native="true">
-            <property name="geometry">
-             <rect>
-              <x>140</x>
-              <y>-40</y>
-              <width>581</width>
-              <height>501</height>
-             </rect>
-            </property>
-           </widget>
+           <layout class="QGridLayout" name="gridLayout_9">
+            <item row="0" column="0">
+             <widget class="matplotlibWidget" name="building_generation_widget" native="true"/>
+            </item>
+           </layout>
           </widget>
          </widget>
         </item>
@@ -463,45 +454,45 @@
        </attribute>
        <layout class="QGridLayout" name="gridLayout_5">
         <item row="0" column="0">
-         <widget class="QGroupBox" name="visualization_group">
-          <property name="title">
-           <string>Commands</string>
+         <widget class="QSplitter" name="visualization_splitter">
+          <property name="orientation">
+           <enum>Qt::Horizontal</enum>
           </property>
-          <widget class="QPushButton" name="visualization_Options">
-           <property name="geometry">
-            <rect>
-             <x>0</x>
-             <y>50</y>
-             <width>91</width>
-             <height>27</height>
-            </rect>
+          <property name="childrenCollapsible">
+           <bool>false</bool>
+          </property>
+          <widget class="QGroupBox" name="visualization_group">
+           <property name="title">
+            <string>Commands</string>
            </property>
-           <property name="text">
-            <string>Options</string>
-           </property>
-          </widget>
-          <widget class="QPushButton" name="visualization_Run">
-           <property name="geometry">
-            <rect>
-             <x>0</x>
-             <y>80</y>
-             <width>91</width>
-             <height>27</height>
-            </rect>
-           </property>
-           <property name="text">
-            <string>Run</string>
-           </property>
+           <widget class="QPushButton" name="visualization_Options">
+            <property name="geometry">
+             <rect>
+              <x>10</x>
+              <y>30</y>
+              <width>91</width>
+              <height>27</height>
+             </rect>
+            </property>
+            <property name="text">
+             <string>Options</string>
+            </property>
+           </widget>
+           <widget class="QPushButton" name="visualization_Run">
+            <property name="geometry">
+             <rect>
+              <x>10</x>
+              <y>60</y>
+              <width>91</width>
+              <height>27</height>
+             </rect>
+            </property>
+            <property name="text">
+             <string>Run</string>
+            </property>
+           </widget>
           </widget>
           <widget class="QFrame" name="visualization_frame">
-           <property name="geometry">
-            <rect>
-             <x>100</x>
-             <y>10</y>
-             <width>911</width>
-             <height>431</height>
-            </rect>
-           </property>
            <property name="frameShape">
             <enum>QFrame::StyledPanel</enum>
            </property>

@@ -20,7 +20,6 @@ class GUI(QtGui.QMainWindow):
         QtGui.QMainWindow.__init__(self,parent)
         self.ui = Ui_MainWindow()
         self.ui.setupUi(self)
-        
         sys.stdout=StdoutRedirector(self.ui.console)
 
         #### 1: ROADMAP ####
@@ -28,6 +27,7 @@ class GUI(QtGui.QMainWindow):
         self.ui.roadmap_widget.hide()
         self.ui.roadmap_Run.clicked.connect(self.start_roadmap)
         self.createTable("roadmap")
+        self.ui.roadmap_splitter.setSizes([80,800])
 
         self.ui.roadmap_table.hide()
         #### 2: POLYGONS ####
@@ -36,16 +36,19 @@ class GUI(QtGui.QMainWindow):
         self.ui.polygons_widget.hide()
         self.ui.polygons_Run.clicked.connect(self.start_polygons)
         self.createTable("polygons")
+        self.ui.polygons_splitter.setSizes([80,800])
 
         #### 3: BUILDING_GENERATION ####
         UI.setBuilding_generationGUI(self)
         self.ui.building_generation_widget.hide()
         self.ui.building_generation_Run.clicked.connect(self.start_building_generation)
         self.createTable("building_generation")
+        self.ui.building_generation_splitter.setSizes([80,800])
 
         #### 4: VISUALIZATION ####
         self.ui.visualization_Run.clicked.connect(UI.visualization)
         self.createTable("visualization")
+        self.ui.visualization_splitter.setSizes([80,800])
 
 
     def saveOptions(self,submodule="roadmap"):
@@ -204,8 +207,10 @@ class FigureSaver:
 class MplCanvas(FigureCanvas):
 
     def __init__(self):
-        self.fig = Figure()
+        self.fig = Figure(frameon=False)
         self.ax = self.fig.add_subplot(111)
+        self.ax.get_yaxis().set_visible(False)
+        self.ax.get_xaxis().set_visible(False)
         FigureCanvas.__init__(self, self.fig)
         FigureCanvas.setSizePolicy(self, QtGui.QSizePolicy.Expanding,QtGui.QSizePolicy.Expanding)
         FigureCanvas.updateGeometry(self)
