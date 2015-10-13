@@ -60,7 +60,7 @@ def config():
 	from procedural_city_generation.roadmap.config_functions.setup_heightmap import setup_heightmap
 	setup_heightmap(singleton,path)
 	
-	with open(path+"/temp/border.txt",'w') as f:
+	with open(path+"/temp/"+singleton.rule_img_name+"_border.txt",'w') as f:
 		f.write(str(singleton.border[0])+" "+str(singleton.border[1]))
 	
 	singleton.global_lists=Global_Lists()
