@@ -43,6 +43,7 @@ with::
 * numpy (1.8.2+)
 * scipy (0.14.1+)
 * matplotlib (1.4.2+)
+* PyQt4 (4.8.6+)
 * Blender 2.6x+
 
 To start the program with the GUI::

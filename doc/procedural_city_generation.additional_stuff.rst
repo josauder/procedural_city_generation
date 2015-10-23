@@ -20,6 +20,14 @@ procedural_city_generation.additional_stuff.Singleton module
     :undoc-members:
     :show-inheritance:
 
+procedural_city_generation.additional_stuff.Wavefront module
+---------------------------------------------------------------------------------------
+
+.. automodule:: procedural_city_generation.additional_stuff.Wavefront
+    :members:
+    :undoc-members:
+    :show-inheritance:
+
 procedural_city_generation.additional_stuff.clean_tools module
 -----------------------------------------------------------------------------------------
 
