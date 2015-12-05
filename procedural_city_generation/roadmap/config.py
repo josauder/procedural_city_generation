@@ -46,7 +46,7 @@ def config():
 	
 	#Finds the longest possible length of a connection between to vertices
 	singleton.maxLength=max(singleton.radiallMax,singleton.gridlMax,singleton.organiclMax,singleton.minor_roadlMax,singleton.seedlMax)
-	
+	singleton.border=[singleton.border_x,singleton.border_y]
 	import os
 	
 	from procedural_city_generation.roadmap.config_functions.input_image_setup import input_image_setup
