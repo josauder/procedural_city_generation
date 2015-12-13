@@ -22,6 +22,7 @@ __pycache__/
 /procedural_city_generation/temp/*.json
 /procedural_city_generation/temp/*.png
 /procedural_city_generation/temp/*
+/procedural_city_generation/temp
 /procedural_city_generation/inputs/heightmaps/*.txt
 .doc/_build
 
