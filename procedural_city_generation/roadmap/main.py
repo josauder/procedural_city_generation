@@ -32,7 +32,6 @@ def main():
 			
 			gui.set_xlim((-singleton.border[0],singleton.border[0]))
 			gui.set_ylim((-singleton.border[1],singleton.border[1]))
-
 	i=0
 	while (front!=[] or singleton.global_lists.vertex_queue	!=[]):
 		

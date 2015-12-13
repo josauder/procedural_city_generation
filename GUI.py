@@ -20,7 +20,9 @@ class GUI(QtGui.QMainWindow):
         QtGui.QMainWindow.__init__(self,parent)
         self.ui = Ui_MainWindow()
         self.ui.setupUi(self)
-        sys.stdout=StdoutRedirector(self.ui.console)
+        redirector=StdoutRedirector(self.ui.console)
+        sys.stdout=redirector
+        sys.stderr=redirector
 
         #### 1: ROADMAP ####
         UI.setRoadmapGUI(self)

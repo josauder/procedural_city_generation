@@ -3,6 +3,10 @@ import procedural_city_generation
 donemessage="\n"+(150*"-")+"\n\t\t\t  Done, waiting for command\n"+(150*"-")+"\n"
 path=os.path.dirname(procedural_city_generation.__file__)
 sys.path.append(path)
+if not os.path.exists(path+"/temp/"):
+	os.system("mkdir "+path+"/temp")
+if not os.path.exists(path+"/outputs/"):
+	os.system("mkdir "+path+"/outputs")
 
 def setup_matplotlib():
 	"""
@@ -84,7 +88,6 @@ def main(args):
 		python UI.py <submodule-name> --configure <new value>
 	
 	"""
-	
 	if len(args)==1:
 		print(main.__doc__)
 		return 0

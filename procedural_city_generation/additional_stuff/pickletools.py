@@ -4,14 +4,19 @@ def save_vertexlist(vertex_list, name="output",savefig=0):
 	path=os.getcwd()+"/procedural_city_generation"
 		
 	import pickle
-	with open(path+"/temp/"+name, "wb") as f:
-		import sys
-		if sys.version[0]=="2":
-			s = pickle.dumps(vertex_list)
-			f.write(s)
-		else:
-			pickle.dump(vertex_list,f)
-	
+	try:
+		with open(path+"/temp/"+name, "wb") as f:
+			import sys
+			if sys.version[0]=="2":
+				s = pickle.dumps(vertex_list)
+				f.write(s)
+			else:
+				pickle.dump(vertex_list,f)
+	except:
+		print("Recursionlimit was not enough - Pickle trying again with sys.recusionlimit at 50000")
+		sys.setrecursionlimit(50000)
+		save_vertexlist(vertex_list,name, savefig)
+
 	if savefig==1:
 		print("Figure is being saved as" + name +".png")
 		import matplotlib.pyplot as plt
@@ -38,18 +43,21 @@ def save_vertexlist(vertex_list, name="output",savefig=0):
 
 
 def reconstruct(path):
-
-	import os
-	import procedural_city_generation
-	path=os.path.dirname(procedural_city_generation.__file__)+"/temp/"+path
+	try:
+		import os
+		import procedural_city_generation
+		fullpath=os.path.dirname(procedural_city_generation.__file__)+"/temp/"+path
 		
-	import pickle
-	#try:
-	with open(path,'rb') as f:
-		vertex_list=pickle.loads(f.read())
-		for i,v in enumerate(vertex_list):
-			v.selfindex=i
-		return vertex_list
+		import pickle
+		with open(fullpath,'rb') as f:
+			vertex_list=pickle.loads(f.read())
+			for i,v in enumerate(vertex_list):
+				v.selfindex=i
+			return vertex_list
 
-	print("Input could not be located. Try to run the previous program in the chain first.")
-	return 0
+		print("Input could not be located. Try to run the previous program in the chain first.")
+		return 0
+	except:
+		print("Recursionlimit was not enough - Pickle trying again with sys.recusionlimit at 50000")
+		sys.setrecursionlimit(50000)
+		reconstruct(path)
