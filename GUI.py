@@ -50,6 +50,8 @@ class GUI(QtGui.QMainWindow):
         self.createTable("visualization")
         self.ui.visualization_splitter.setSizes([80,800])
 
+        #### 5: ADVANCED ####
+        self.ui.clean_directories.clicked.connect(self.clean_directories)
 
     def saveOptions(self,submodule="roadmap"):
         #button=getattr(self.ui,submodule+"_save_button")
@@ -185,6 +187,15 @@ class GUI(QtGui.QMainWindow):
         self.clear()
         UI.building_generation()
 
+    def clean_directories(self):
+        from procedural_city_generation.additional_stuff.clean_tools import clean_pyc_files
+        print("removing all .pyc files")
+        clean_pyc_files(os.getcwd())
+        print("removing all items in /procedural_city_generation/temp/ directory")
+        os.system("rm " +os.getcwd()+"/procedural_city_generation/temp/*")
+        print("removing all items in /procedural_city_generation/outputs/ directory")
+        os.system("rm " +os.getcwd()+"/procedural_city_generation/outputs/*")
+        print(UI.donemessage)
         
     def set_xlim(self,tpl):
         self.active_widget.canvas.ax.set_xlim(tpl)
