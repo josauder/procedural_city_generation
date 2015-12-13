@@ -79,7 +79,7 @@ print baumstamm(r, texture, koords, height)</p>
 <span id="procedural-city-generation-building-generation-buildingheight-module"></span><h2>procedural_city_generation.building_generation.BuildingHeight module<a class="headerlink" href="#module-procedural_city_generation.building_generation.BuildingHeight" title="Permalink to this headline">¶</a></h2>
 <dl class="class">
 <dt id="procedural_city_generation.building_generation.BuildingHeight.BuildingHeight">
-<em class="property">class </em><code class="descclassname">procedural_city_generation.building_generation.BuildingHeight.</code><code class="descname">BuildingHeight</code><a class="headerlink" href="#procedural_city_generation.building_generation.BuildingHeight.BuildingHeight" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="descclassname">procedural_city_generation.building_generation.BuildingHeight.</code><code class="descname">BuildingHeight</code><span class="sig-paren">(</span><em>name</em><span class="sig-paren">)</span><a class="headerlink" href="#procedural_city_generation.building_generation.BuildingHeight.BuildingHeight" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">object</span></code></p>
 <p>Manages and distributes building-heights for buildings</p>
 <p class="rubric">Methods</p>
@@ -165,7 +165,7 @@ As of now, always takes a diffused version of the population density image</p>
 <span id="procedural-city-generation-building-generation-surface-module"></span><h2>procedural_city_generation.building_generation.Surface module<a class="headerlink" href="#module-procedural_city_generation.building_generation.Surface" title="Permalink to this headline">¶</a></h2>
 <dl class="class">
 <dt id="procedural_city_generation.building_generation.Surface.Surface">
-<em class="property">class </em><code class="descclassname">procedural_city_generation.building_generation.Surface.</code><code class="descname">Surface</code><a class="headerlink" href="#procedural_city_generation.building_generation.Surface.Surface" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="descclassname">procedural_city_generation.building_generation.Surface.</code><code class="descname">Surface</code><span class="sig-paren">(</span><em>input_name</em><span class="sig-paren">)</span><a class="headerlink" href="#procedural_city_generation.building_generation.Surface.Surface" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">object</span></code></p>
 <p class="rubric">Methods</p>
 <dl class="method">
@@ -779,18 +779,10 @@ Lcut
 <span id="procedural-city-generation-building-generation-main-module"></span><h2>procedural_city_generation.building_generation.main module<a class="headerlink" href="#module-procedural_city_generation.building_generation.main" title="Permalink to this headline">¶</a></h2>
 <dl class="function">
 <dt id="procedural_city_generation.building_generation.main.main">
-<code class="descclassname">procedural_city_generation.building_generation.main.</code><code class="descname">main</code><span class="sig-paren">(</span><em>polylist</em><span class="sig-paren">)</span><a class="headerlink" href="#procedural_city_generation.building_generation.main.main" title="Permalink to this definition">¶</a></dt>
-<dd><p>Accepts a list of procedural_city_generation.polygons.Polygon2D objects
+<code class="descclassname">procedural_city_generation.building_generation.main.</code><code class="descname">main</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#procedural_city_generation.building_generation.main.main" title="Permalink to this definition">¶</a></dt>
+<dd><p>Reads list of procedural_city_generation.polygons.Polygon2D objects from file
 and constructs buildings on top of these. The buildings consist of Polygon3D objects,
 which are saved to /outputs/polygons.txt. See merger module for more details.</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>polylist</strong> : List&lt;procedural_city_generation.polygons.Polygon2D&gt;</td>
-</tr>
-</tbody>
-</table>
 </dd></dl>
 
 </div>
@@ -817,7 +809,7 @@ poly : procedural_city_generation.building_generation.Polygon3D Object</p>
 
 <dl class="function">
 <dt id="procedural_city_generation.building_generation.merge_polygons.merge_polygons">
-<code class="descclassname">procedural_city_generation.building_generation.merge_polygons.</code><code class="descname">merge_polygons</code><span class="sig-paren">(</span><em>polygons</em>, <em>textures</em><span class="sig-paren">)</span><a class="headerlink" href="#procedural_city_generation.building_generation.merge_polygons.merge_polygons" title="Permalink to this definition">¶</a></dt>
+<code class="descclassname">procedural_city_generation.building_generation.merge_polygons.</code><code class="descname">merge_polygons</code><span class="sig-paren">(</span><em>polygons</em>, <em>textures</em>, <em>output_name</em><span class="sig-paren">)</span><a class="headerlink" href="#procedural_city_generation.building_generation.merge_polygons.merge_polygons" title="Permalink to this definition">¶</a></dt>
 <dd><p>Groups Polygon3Ds with identical Texture because Blender&#8217;s mesh.from_pydata() 
 and bpy.context.scene.objects.link take an increasing amount of time with amount 
 of existingPolygons. Saves Polygons to /outputs/buildings.txt</p>

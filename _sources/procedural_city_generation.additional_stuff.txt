@@ -36,10 +36,10 @@ procedural_city_generation.additional_stuff.clean_tools module
     :undoc-members:
     :show-inheritance:
 
-procedural_city_generation.additional_stuff.jsontools module
----------------------------------------------------------------------------------------
+procedural_city_generation.additional_stuff.pickletools module
+-----------------------------------------------------------------------------------------
 
-.. automodule:: procedural_city_generation.additional_stuff.jsontools
+.. automodule:: procedural_city_generation.additional_stuff.pickletools
     :members:
     :undoc-members:
     :show-inheritance:
