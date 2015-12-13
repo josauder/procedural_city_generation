@@ -2,8 +2,7 @@
 
 # Form implementation generated from reading ui file 'window.ui'
 #
-# Created: Sun Oct 11 20:00:49 2015
-#      by: PyQt4 UI code generator 4.10.4
+# Created by: PyQt4 UI code generator 4.11.4
 #
 # WARNING! All changes made in this file will be lost!
 
@@ -225,15 +224,15 @@ class Ui_MainWindow(object):
         self.advanced_tab.setObjectName(_fromUtf8("advanced_tab"))
         self.gridLayout_6 = QtGui.QGridLayout(self.advanced_tab)
         self.gridLayout_6.setObjectName(_fromUtf8("gridLayout_6"))
-        self.advancd_group = QtGui.QGroupBox(self.advanced_tab)
-        self.advancd_group.setObjectName(_fromUtf8("advancd_group"))
-        self.clean_directories = QtGui.QPushButton(self.advancd_group)
+        self.advanced_group = QtGui.QGroupBox(self.advanced_tab)
+        self.advanced_group.setObjectName(_fromUtf8("advanced_group"))
+        self.clean_directories = QtGui.QPushButton(self.advanced_group)
         self.clean_directories.setGeometry(QtCore.QRect(10, 30, 201, 27))
         self.clean_directories.setObjectName(_fromUtf8("clean_directories"))
-        self.run_tests = QtGui.QPushButton(self.advancd_group)
+        self.run_tests = QtGui.QPushButton(self.advanced_group)
         self.run_tests.setGeometry(QtCore.QRect(10, 60, 201, 27))
         self.run_tests.setObjectName(_fromUtf8("run_tests"))
-        self.gridLayout_6.addWidget(self.advancd_group, 0, 0, 1, 1)
+        self.gridLayout_6.addWidget(self.advanced_group, 0, 0, 1, 1)
         self.tabWidget.addTab(self.advanced_tab, _fromUtf8(""))
         self.gridLayout.addWidget(self.tabWidget, 2, 0, 1, 1)
         MainWindow.setCentralWidget(self.Centralwidget)
@@ -242,7 +241,7 @@ class Ui_MainWindow(object):
         MainWindow.setStatusBar(self.statusBar)
 
         self.retranslateUi(MainWindow)
-        self.tabWidget.setCurrentIndex(0)
+        self.tabWidget.setCurrentIndex(4)
         QtCore.QMetaObject.connectSlotsByName(MainWindow)
 
     def retranslateUi(self, MainWindow):
@@ -264,7 +263,7 @@ class Ui_MainWindow(object):
         self.visualization_Options.setText(_translate("MainWindow", "Options", None))
         self.visualization_Run.setText(_translate("MainWindow", "Run", None))
         self.tabWidget.setTabText(self.tabWidget.indexOf(self.visualization_tab), _translate("MainWindow", "Visualize in Blender", None))
-        self.advancd_group.setTitle(_translate("MainWindow", "GroupBox", None))
+        self.advanced_group.setTitle(_translate("MainWindow", "Commands", None))
         self.clean_directories.setText(_translate("MainWindow", "Clean Directories", None))
         self.run_tests.setText(_translate("MainWindow", "Run Tests", None))
         self.tabWidget.setTabText(self.tabWidget.indexOf(self.advanced_tab), _translate("MainWindow", "Advanced", None))
