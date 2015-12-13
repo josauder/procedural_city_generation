@@ -9,15 +9,16 @@ class BuildingHeight(object):
 	"""
 	Manages and distributes building-heights for buildings 
 	"""
-	def __init__(self):
-		
-		print "Population density image is being set up"
-		
-		self.path=os.path.dirname(procedural_city_generation.__file__)
-		self.img=self.setupimage(self.path)
-		with open(self.path+"/temp/border.txt",'r') as f:
-			self.border=[eval(x) for x in f.read().split(" ") if x is not '']
-		print "Population density image setup is finished"
+	def __init__(self,name):
+		self.path=os.path.dirname(procedural_city_generation.__file__)+"/temp/"
+		with open(self.path+name+"_densitymap.txt",'r') as f:
+			densityname=f.read()
+
+		print("Population density image is being set up")
+		self.img=self.setupimage(self.path+densityname)
+		with open(self.path+name+"_heightmap.txt",'r') as f:
+			self.border=[eval(x) for x in f.read().split("_")[-2:] if x is not '']
+		print("Population density image setup is finished")
 	
 	
 	def diffusion(self,arr, d):
@@ -68,8 +69,8 @@ class BuildingHeight(object):
 		
 		#TODO: make diffused an option, add constants to config file
 		#TODO: FIX. When fixed, change docstring
-		img= mpimg.imread(path+"/temp/diffused.png")
-		with open(path+"/temp/isdiffused.txt",'r') as f:
+		img= mpimg.imread(path)
+		with open(path.replace("diffused.png","isdiffused.txt"),'r') as f:
 			diffused_bool=f.read()
 			f.close()
 		
@@ -77,9 +78,9 @@ class BuildingHeight(object):
 			for i in range(72):
 				img= self.diffusion(img, 1)
 			img=img**1.80
-			plt.imsave(path+"/temp/diffused.png",img)
+			plt.imsave(path,img)
 			
-			with open(path+"/temp/isdiffused.txt",'w') as g:
+			with open(path.replace("diffused.png","isdiffused.txt"),'w') as g:
 				g.write("True")
 				g.close()
 		else:

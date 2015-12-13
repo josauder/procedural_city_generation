@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-from getRule import getRule
+from procedural_city_generation.roadmap.getRule import getRule
 from procedural_city_generation.roadmap.growth_rules.grid import grid
 from procedural_city_generation.roadmap.growth_rules.organic import organic
 from procedural_city_generation.roadmap.growth_rules.radial import radial

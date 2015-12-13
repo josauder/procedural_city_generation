@@ -47,7 +47,7 @@ class Param(object):
 							if len(val)<=self.value_upper_bound:
 								self.val=val
 		else:
-			print "Type of value for parameter: ", self.name, "Unclear! type() returns ", type(val),". The parameter was set but please update the corresponding conf file"
+			print("Type of value for parameter: ", self.name, "Unclear! type() returns ", type(val),". The parameter was set but please update the corresponding conf file")
 			self.val=val
 
 def paramsFromJson(path):

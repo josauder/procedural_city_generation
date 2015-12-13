@@ -106,8 +106,8 @@ class textureGetter(object):
 			if tex!=[]:
 				return random.choice(tex)
 			else:
-				print "Warning! There is no texture that matches the criterion: "+name+" in texturename AND minP<"+str(p)+"<maxP. \n A random Texture was used!"
+				print("Warning! There is no texture that matches the criterion: "+name+" in texturename AND minP<"+str(p)+"<maxP. \n A random Texture was used!")
 				return random.choice(self.textures)
 		else:
-			print "Warning! There is no texture that matches the criterion: "+name+" in texturename. \n A random Texture was used!"
+			print("Warning! There is no texture that matches the criterion: "+name+" in texturename. \n A random Texture was used!")
 			return random.choice(self.textures)

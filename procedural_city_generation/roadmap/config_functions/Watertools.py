@@ -46,7 +46,7 @@ class Watertools:
 			plt.draw()
 			plt.pause(0.01)
 			front=new_front
-			print len(front)
+			print(len(front))
 			
 		self.new=self.old
 		self.new[np.argwhere(self.flooded_tmp)]=h
@@ -73,10 +73,10 @@ class Watertools:
 		dims=(heightmap.shape[0]*heightmap.shape[1])
 		total=dims-len(underwater_arr)
 		if total==0:
-			print "ERROR: seperate_water.py \n The entire map is under the water level"
+			print("ERROR: seperate_water.py \n The entire map is under the water level")
 			return []
 		elif total==0:
-			print "There is no water on this map"
+			print("There is no water on this map")
 			return []
 		
 		stencil=np.array([[0,1],[0,-1],[1,0],[-1,0]])
@@ -90,7 +90,7 @@ class Watertools:
 			body=[]
 			front=[np.argwhere(heightmap!=-np.inf)[0]]
 			while len(front)>0:
-				print len(front)
+				print(len(front))
 				for x in front:
 					if x[0]>=0 and x[1]>=0 and x[0]<heightmap.shape[0] and x[1]<heightmap.shape[1]:
 						new=[g for g in [ el for el in np.array([x,x,x,x])-stencil] if done[g]==0]

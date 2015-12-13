@@ -250,7 +250,7 @@ def get_windows(walls,list_of_currentheights,floorheight, windowwidth, windowhei
 				verts.extend(np.reshape(stencilarray+(wall[0]+(0.5*v)),(nc*4,3) ))
 	
 	#Each window has 4 vertices.
-	faces=[range(4*x,4*x+4) for x in xrange(nfaces)]
+	faces=[range(4*x,4*x+4) for x in range(nfaces)]
 	return Polygon3D(verts,faces,texture)
 	
 	

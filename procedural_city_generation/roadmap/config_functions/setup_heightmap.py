@@ -12,30 +12,25 @@ def setup_heightmap(singleton,path):
 	
 	#TODO make inputs more flexible
 	name=singleton.heightmap_name
-	
-	#if conf.txt entry is "random", then /stadt/Polygone/randommap.py will be called to create a new random map in the correct size
+
+
 	if name=="random":
-		print "New random heightmap is being created with randommap.py"
+		print("New random heightmap is being created with randommap.py")
 		#Writes correct inuse.txt
 		from procedural_city_generation.additional_stuff import randommap
 		randommap.main(singleton.border,path)
 		
-		with open(path+"/temp/heightmap_in_use.txt",'w') as f:
-			f.write("randommap.txt")
+		with open(path+"/temp/"+singleton.output_name+"_heightmap.txt",'w') as f:
+			f.write("randommap_"+str(singleton.border[0])+"_"+str(singleton.border[1]))
 		return 0
 	
 	
 	#Writes correct inuse.txt
-	with open(path+"/temp/heightmap_in_use.txt",'w') as f:
-		f.write(name[0:-3]+"txt")
-	try:
-		with open(path+"/temp/border.txt",'r') as f:
-			dimensions=f.read()
-	except IOError:
-		dimensions=None
-		
+	with open(path+"/temp/"+singleton.output_name+"_heightmap.txt",'w') as f:
+		f.write(name[0:-4]+"_"+str(singleton.border[0])+"_"+str(singleton.border[1]))
+
 	#If a txt has already been written for the input in the image, OR if the input was a .txt to begin with, simply load that txt
-	if (name[0:-3]+"txt" in os.listdir(path+"/temp/")) and (dimensions==str(singleton.border[0])+" "+str(singleton.border[1])):
+	if (name[0:-4]+"_"+str(singleton.border[0])+"_"+str(singleton.border[1]) in os.listdir(path+"/temp/")):
 		return 0
 	
 	#If the given image has no .txt yet, write the corresponding.txt
@@ -55,9 +50,9 @@ def setup_heightmap(singleton,path):
 	#If image is a jpeg, all values have to be divided by 255
 	array=array[::,:,0]/255.
 	
-	print "You have selected a heightmap which has no .txt file yet, OR the given .txt file has the wrong dimensions. The parameter heightDif will be used to describe the height difference between the lowest and the highest points on the map."
+	print("You have selected a heightmap which has no .txt file yet, OR the given .txt file has the wrong dimensions. The parameter heightDif will be used to describe the height difference between the lowest and the highest points on the map.")
 	h=singleton.heightDif
-	print "Processing image"
+	print("Processing image")
 	
 	
 	#TODO: Find and Fix this Bug
@@ -72,7 +67,7 @@ def setup_heightmap(singleton,path):
 	
 	
 	triangles=np.sort(delaunay(indices).simplices)
-	print "Processed image being saved as ", name
+	print("Processed image being saved as ", name)
 	
 	#TODO: set thse numbers to some file where they can be edited easier
 	points*=[0.1,0.1,1]
@@ -80,8 +75,7 @@ def setup_heightmap(singleton,path):
 	points=points.tolist()
 	
 	import pickle
-	name=name[:-3]+"txt"
-	with open(path+"/temp/"+name,"w") as f:
+	with open(path+"/temp/"+name[0:-4]+"_"+str(singleton.border[0])+"_"+str(singleton.border[1]),"wb") as f:
 		f.write(pickle.dumps([points,triangles.tolist()]))
 	
 	return 0

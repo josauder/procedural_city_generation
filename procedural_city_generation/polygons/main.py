@@ -12,27 +12,22 @@ def main(vertex_list=None):
 	singleton=Singleton("polygons")
 
 	if vertex_list is None:
-		from procedural_city_generation.additional_stuff import jsontools
+		from procedural_city_generation.additional_stuff import pickletools
 		
-		vertex_list=jsontools.reconstruct()
-		print "Reconstructing of data structure finished"
+		vertex_list=pickletools.reconstruct(singleton.input_name)
+		print("Reconstructing of data structure finished")
 	
 	import os
 	import procedural_city_generation
 	path=os.path.dirname(procedural_city_generation.__file__)
 	
-	with open(path+"/temp/border.txt","r") as f:
-		border=f.read()
-	border=[int(x) for x in border.split(" ") if x is not '']
-	
-	print "Extracting Polygon2Ds"
+	with open(path+"/temp/"+singleton.input_name+"_heightmap.txt","r") as f:
+		border=[int(x) for x in f.read().split("_")[-2:] if x is not '']
+	print("Extracting Polygon2Ds")
 	from procedural_city_generation.polygons import construct_polygons
 	polylist=construct_polygons.getPolygon2Ds(vertex_list)	
-	
 
-	
-	
-	print "Polygon2Ds extracted"
+	print("Polygon2Ds extracted")
 	
 	
 	
@@ -42,10 +37,10 @@ def main(vertex_list=None):
 	"%s vertices" %(len(vertex_list))
 	polygons=getLots(polylist,vertex_list)
 	
-	print "Lots found"
-	
+	print("Lots found")
+
 	if singleton.plotbool:
-		print "Plotting..."
+		print("Plotting...")
 		if gui is None:
 			import matplotlib.pyplot as plt
 			for g in polygons:
@@ -59,16 +54,20 @@ def main(vertex_list=None):
 				if i%singleton.plot_counter==0:
 					gui.update()
 			gui.update()
-	
+
 	import pickle
-	with open(os.path.dirname(procedural_city_generation.__file__)+"/outputs/polygons.txt", "w") as f:
-		s = pickle.dumps(polygons)
-		f.write(s)
-	
+	with open(os.path.dirname(procedural_city_generation.__file__)+"/temp/"+singleton.input_name+"_polygons.txt", "wb") as f:
+		import sys
+		if sys.version[0]=="2":
+			s = pickle.dumps(polygons)
+			f.write(s)
+		else:
+			pickle.dump(polygons,f)
+
 	return 0
 
 if __name__ == '__main__':
-	from parent_path import parent_path
+	from procedural_city_generation.polygons.parent_path import parent_path
 	import sys
 	sys.path.append(parent_path(depth=3))
 	main(None)

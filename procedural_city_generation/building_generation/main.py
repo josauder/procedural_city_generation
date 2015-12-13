@@ -6,30 +6,28 @@ import numpy as np
 
 gui=None
 
-def main(polylist):
-	""" Accepts a list of procedural_city_generation.polygons.Polygon2D objects
+def main():
+	""" Reads list of procedural_city_generation.polygons.Polygon2D objects from file
 	and constructs buildings on top of these. The buildings consist of Polygon3D objects,
 	which are saved to /outputs/polygons.txt. See merger module for more details.
-	
-	Parameters
-	----------
-	polylist : List<procedural_city_generation.polygons.Polygon2D>
-
 	"""
 
 	import procedural_city_generation
 	path=os.path.dirname(procedural_city_generation.__file__)
-	from procedural_city_generation.building_generation.cuts import *
-	from procedural_city_generation.building_generation.building_tools import *
+	from procedural_city_generation.building_generation.cuts import scale, scaletransform, walls_from_poly, randomcut
+	from procedural_city_generation.building_generation.building_tools import Polygon3D, verticalsplit, buildledge, buildwalls, get_windows
 	from procedural_city_generation.building_generation.roofs import roof
 	from procedural_city_generation.building_generation.Surface import Surface
 	from procedural_city_generation.building_generation.BuildingHeight import BuildingHeight
 	from procedural_city_generation.building_generation.updateTextures import updateTextures, textureGetter
-	from procedural_city_generation.building_generation.getFoundation import getFoundation
 	from procedural_city_generation.building_generation.merge_polygons import merge_polygons
 	from procedural_city_generation.additional_stuff.Singleton import Singleton
 	from copy import copy
 	singleton=Singleton("building_generation")
+
+	import pickle
+	with open(path+"/temp/"+singleton.input_name+"_polygons.txt","rb") as f:
+		polylist=pickle.loads(f.read())
 
 	#TODO: Discuss with lenny how we get the largest polygon out.
 	maxl=0
@@ -41,8 +39,8 @@ def main(polylist):
 	polylist.pop(index)
 	
 	
-	gb=BuildingHeight()
-	surface=Surface()
+	gb=BuildingHeight(singleton.input_name)
+	surface=Surface(singleton.input_name)
 	textures=updateTextures()
 	texGetter=textureGetter(textures)
 	roadtexture=texGetter.getTexture('Road',50)
@@ -68,18 +66,18 @@ def main(polylist):
 			rooftexture=texGetter.getTexture('Roof',buildingheight)
 			
 			floorheight=np.random.uniform(singleton.floorheight_min,singleton.floorheight_max)
-			windowwidth=random.uniform(singleton.windowwidth_min,singleton.windowwidth_max)
+			windowwidth=np.random.uniform(singleton.windowwidth_min,singleton.windowwidth_max)
 			
 			
 			housebool=True if buildingheight<singleton.house_height else False
 			
 			if housebool:
-				windowheight=random.uniform(singleton.windowheight_min,singleton.windowheight_max_house)
-				windowdist=random.uniform(0, windowwidth+singleton.windowdist_max_house)
+				windowheight=np.random.uniform(singleton.windowheight_min,singleton.windowheight_max_house)
+				windowdist=np.random.uniform(0, windowwidth+singleton.windowdist_max_house)
 			else:
 				windowheight_max= singleton.windowheight_max_not_house if singleton.windowheight_max_not_house != 0 else floorheight
-				windowheight=random.uniform(singleton.windowheight_min, windowheight_max)
-				windowdist=random.uniform(singleton.windowdist_min_not_house, windowwidth+singleton.windowdist_max_not_house)
+				windowheight=np.random.uniform(singleton.windowheight_min, windowheight_max)
+				windowdist=np.random.uniform(singleton.windowdist_min_not_house, windowwidth+singleton.windowdist_max_not_house)
 			
 			
 			base_h_low,base_h_high= surface.getSurfaceHeight(poly.vertices)
@@ -95,14 +93,14 @@ def main(polylist):
 			
 			#TODO: make abhaengig von height
 			if housebool:
-				factor=random.uniform(singleton.scalefactor_min_house,singleton.scalefactor_max_house)
+				factor=np.random.uniform(singleton.scalefactor_min_house,singleton.scalefactor_max_house)
 				if not poly.is_convex:
 					walls=scaletransform(walls,factor)
 				
 				else:
 					walls=scale(walls, factor)
 			else:
-				factor=random.uniform(singleton.scalefactor_min_not_house,singleton.scalefactor_max_not_house)
+				factor=np.random.uniform(singleton.scalefactor_min_not_house,singleton.scalefactor_max_not_house)
 				if not poly.is_convex:
 					walls=scaletransform(walls, factor)
 				
@@ -122,8 +120,8 @@ def main(polylist):
 			
 			#Random, decides if ledges will be scaled nach aussen
 			ledgefactor=1.0
-			if random.uniform(0,1)>singleton.prob_ledge:
-				ledgefactor=random.uniform(singleton.ledgefactor_min,singleton.ledgefactor_max)
+			if np.random.uniform(0,1)>singleton.prob_ledge:
+				ledgefactor=np.random.uniform(singleton.ledgefactor_min,singleton.ledgefactor_max)
 			
 			#Scales the walls to the outside
 			ledge=scale(walls,ledgefactor)
@@ -159,7 +157,7 @@ def main(polylist):
 					
 			polygons.append(get_windows(windows,list_of_currentheights,floorheight, windowwidth,windowheight,windowdist,windowtexture))
 		else:
-			print "Polygon3D.poly_type not understood"
+			print("Polygon3D.poly_type not understood")
 		if singleton.plotbool:
 			if counter%singleton.plot_counter==0:
 				gui.update()
@@ -169,5 +167,5 @@ def main(polylist):
 			[range(len(poly.vertices))],
 			floortexture))
 	
-	mergedpolys=merge_polygons(polygons,textures)
+	mergedpolys=merge_polygons(polygons,textures,singleton.output_name)
 	return 0

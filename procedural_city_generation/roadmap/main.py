@@ -14,7 +14,7 @@ def main():
 	front.pop(0)
 	front.pop()
 	vertex_queue = copy(singleton.global_lists.vertex_queue)
-	from iteration import iteration
+	from procedural_city_generation.roadmap.iteration import iteration
 	singleton.iterationszaehler=0
 	
 	
@@ -24,7 +24,7 @@ def main():
 			plt.close()
 			fig=plt.figure()
 			ax=plt.subplot(111)
-		
+
 			fig.canvas.draw()
 			ax.set_xlim((-singleton.border[0],singleton.border[0]))
 			ax.set_ylim((-singleton.border[1],singleton.border[1]))
@@ -43,20 +43,24 @@ def main():
 			if i%singleton.plot_counter==0:
 				if gui is None:
 					plt.pause(0.001)
-					fig.canvas.blit(ax.bbox)
-					fig.canvas.flush_events()
+					try:
+						fig.canvas.blit(ax.bbox)
+						fig.canvas.flush_events()
+					except:
+						fig.canvas.draw()
 				else:
 					gui.update()
 
 			singleton.iterationszaehler=0
 
-	from procedural_city_generation.additional_stuff.jsontools import save_vertexlist
+	from procedural_city_generation.additional_stuff.pickletools import save_vertexlist
 	
 	
-	print "Roadmap is complete"
-#	if singleton.plot==1:
-#		plt.show()
-	save_vertexlist(singleton.global_lists.vertex_list,"output",singleton.savefig)
+	print("Roadmap is complete")
+	save_vertexlist(singleton.global_lists.vertex_list,singleton.output_name,singleton.savefig)
+	if gui is None and singleton.plot==1:
+		if singleton.plot==1:
+			plt.show()
 	return 0
 
 	
