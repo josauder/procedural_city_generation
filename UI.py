@@ -4,6 +4,29 @@ donemessage="\n"+(150*"-")+"\n\t\t\t  Done, waiting for command\n"+(150*"-")+"\n
 path=os.path.dirname(procedural_city_generation.__file__)
 sys.path.append(path)
 
+def setup_matplotlib():
+	"""
+	This function is used to set the matplotlib backend correctly.
+
+	Parameters
+	----------
+
+	Returns
+	--------
+	None
+
+	:return:
+	"""
+	if sys.version[0]=="3":
+		import matplotlib
+		try:
+			matplotlib.use("Qt4Agg")
+		except:
+			print("PyQt4 is not installed - outputs will only be saved as images and not be visible at runtime")
+			print("However, it is strongly recommended that you install PyQt4 in order to use the GUI")
+			matplotlib.use("agg")
+
+
 from procedural_city_generation.roadmap import main as roadmap_main
 from procedural_city_generation.polygons import main as polygons_main
 from procedural_city_generation.building_generation import main as building_generation_main
@@ -25,26 +48,17 @@ def setBuilding_generationGUI(gui):
 def roadmap():
 	roadmap_main.main()
 	Singleton("roadmap").kill()
-	print donemessage
+	print(donemessage)
 
 def polygons():
 	polygons_main.main(None)
 	Singleton("polygons").kill()
-	print donemessage
+	print(donemessage)
 
 def building_generation():
-	import pickle
-#	try:
-	if 1==1:
-		with open(path+"/outputs/polygons.txt",'r') as f:
-			polygons=pickle.loads(f.read())
-		building_generation_main.main(polygons)
-		Singleton("building_generation").kill()
-
-#	except IOError:
-#		print "Input could not be located. Try to run the previous program in the chain first."
-#		return 0
-	print donemessage
+	building_generation_main.main()
+	Singleton("building_generation").kill()
+	print(donemessage)
 
 	
 def visualization():
@@ -72,7 +86,7 @@ def main(args):
 	"""
 	
 	if len(args)==1:
-		print main.__doc__
+		print(main.__doc__)
 		return 0
 	if "configure" in args[2]:
 		if len(args)==3:
@@ -89,15 +103,15 @@ def main(args):
 					
 					old=wb[args[3+i]]
 					wb[args[3+i]]=eval(args[4+i])
-					print args[3+i], " was changed from ",old," to ",args[4+i]
+					print(args[3+i], " was changed from ",old," to ",args[4+i])
 					i+=2
 					if len(args)-1<i+4:
 						break
 		
 					
 				except:
-					print i, len(args)
-					print "Either ",args[3+i], "is not a configurable parameter for ",args[1]
+					print(i, len(args))
+					print("Either ",args[3+i], "is not a configurable parameter for ",args[1])
 					return 0
 					
 			with open("./procedural_city_generation/inputs/"+args[1]+".conf",'w') as f:
@@ -106,8 +120,8 @@ def main(args):
 			return 0
 			
 	elif "run" in args[2]:
+		setup_matplotlib()
 		eval(args[1])()
-		print donemessage
 			
 if __name__=='__main__':
 	main(sys.argv)

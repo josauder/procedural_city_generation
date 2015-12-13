@@ -1,4 +1,3 @@
-#path_to_source=procedural_city_generation.__file__
 import os
 path_to_source= os.getcwd()[0:-len("/additional_stuff")]
 
@@ -58,13 +57,13 @@ def find_in_text(path,tofind="TODO"):
 		with open(somefile,'r') as f:
 			s=f.readlines()
 		todos=[]
-		for i in xrange(len(s)):
+		for i in range(len(s)):
 			if tofind in s[i]:
 				todos.append([i,s[i].strip()])
 		if len(todos)>0:
-			print "\n"+somefile
+			print("\n"+somefile)
 			for x in todos:
-				print "Line: ",x[0]," \"",x[1],"\""
+				print( "Line: ",x[0]," \"",x[1],"\"")
 	return 0
 
 def add_license_text(files):
@@ -81,7 +80,7 @@ def add_license_text(files):
 			content= content[:lower]+licencetext[2:-1]+content[upper:]
 			
 		elif "<info>" in content or "</info>" in content:
-			print "Error, ", fi ," was ommitted from adding licensing header, check if <info> or </info> tag are falsely placed"
+			print("Error, ", fi ," was ommitted from adding licensing header, check if <info> or </info> tag are falsely placed")
 		else:
 			content=licencetext + "\n" + content
 			
@@ -102,4 +101,4 @@ def find_imports(path):
 		imp=imp.replace("import","").replace("from","").replace("\t","").replace("\n","").replace("\r","")
 		imp=".".join([x for x in imp.split(" ") if x is not ""])
 		new_all_imports.add(imp)
-	print new_all_imports
+	print(new_all_imports)

@@ -92,10 +92,10 @@ def main(vertex_list=None):
 	import sys
 	sys.path.append('/home/lenny/Documents/Stadtprojekt/procedural_city_generation')
 	if vertex_list is None:
-		from procedural_city_generation.additional_stuff import jsontools
+		from procedural_city_generation.additional_stuff import pickletools
 		
-		vertex_list=jsontools.reconstruct()
-		print "Reconstructing of data structure finished"
+		vertex_list=pickletools.reconstruct()
+		print("Reconstructing of data structure finished")
 	
 	import os
 	import procedural_city_generation
@@ -105,10 +105,10 @@ def main(vertex_list=None):
 		border=f.read()
 	border=[int(x) for x in border.split(" ") if x is not '']
 	
-	print "Extracting Polygon2Ds"
+	print("Extracting Polygon2Ds")
 	from procedural_city_generation.polygons import construct_polygons
 	polylist=construct_polygons.getPolygon2Ds(vertex_list)	
-	print "Polygon2Ds extracted"
+	print("Polygon2Ds extracted")
 	return polylist, vertex_list
 
 if __name__ =='__main__':

@@ -1,9 +1,9 @@
+import matplotlib
+matplotlib.use("QT4Agg")
 import sys
 from window import *
 from PyQt4 import QtGui
 from matplotlib.backends.backend_qt4agg import FigureCanvasQTAgg as FigureCanvas
-import matplotlib
-matplotlib.use("QT4Agg")
 from matplotlib.figure import Figure
 import UI
 import os
@@ -50,6 +50,8 @@ class GUI(QtGui.QMainWindow):
         self.createTable("visualization")
         self.ui.visualization_splitter.setSizes([80,800])
 
+        #### 5: ADVANCED ####
+        self.ui.clean_directories.clicked.connect(self.clean_directories)
 
     def saveOptions(self,submodule="roadmap"):
         #button=getattr(self.ui,submodule+"_save_button")
@@ -73,6 +75,9 @@ class GUI(QtGui.QMainWindow):
         save_button=QtGui.QPushButton(getattr(self.ui,submodule+"_frame"), text="Save")
         save_button.setGeometry(QtCore.QRect(w-100, h, 100, 31))
         save_button.hide()
+        default_button=QtGui.QPushButton(getattr(self.ui,submodule+"_frame"), text="Reset Defaults")
+        default_button.setGeometry(QtCore.QRect(w-260, h, 150, 31))
+        default_button.hide()
         table.hide()
         table.setGeometry(QtCore.QRect(0,0,w,h))        
         table.setColumnCount(6)
@@ -127,6 +132,7 @@ class GUI(QtGui.QMainWindow):
 
         getattr(self.ui,submodule+"_Options").clicked.connect(table.show)
         getattr(self.ui,submodule+"_Options").clicked.connect(save_button.show)
+        getattr(self.ui,submodule+"_Options").clicked.connect(default_button.show)
         setattr(self.ui,submodule+"_table",table)
 
         def save_params():
@@ -139,13 +145,21 @@ class GUI(QtGui.QMainWindow):
                 param.setValue(it)
                 Singleton(submodule).kill()
             jsonFromParams(os.getcwd()+"/procedural_city_generation/inputs/"+submodule+".conf",params)
-            print "Save successful"
+            print("Save successful")
             save_button.hide()
             table.hide()
-            print UI.donemessage
+            print(UI.donemessage)
 
         save_button.clicked.connect(save_params)
         setattr(self.ui,submodule+"_save_button",save_button)
+
+        def default_params():
+            for i,param in enumerate(params):
+                table.item(i,3).setText(_fromUtf8(str(param.default)))
+
+
+        default_button.clicked.connect(default_params)
+        setattr(self.ui,submodule+"_default_button",default_button)
 
 
 
@@ -173,6 +187,15 @@ class GUI(QtGui.QMainWindow):
         self.clear()
         UI.building_generation()
 
+    def clean_directories(self):
+        from procedural_city_generation.additional_stuff.clean_tools import clean_pyc_files
+        print("removing all .pyc files")
+        clean_pyc_files(os.getcwd())
+        print("removing all items in /procedural_city_generation/temp/ directory")
+        os.system("rm " +os.getcwd()+"/procedural_city_generation/temp/*")
+        print("removing all items in /procedural_city_generation/outputs/ directory")
+        os.system("rm " +os.getcwd()+"/procedural_city_generation/outputs/*")
+        print(UI.donemessage)
         
     def set_xlim(self,tpl):
         self.active_widget.canvas.ax.set_xlim(tpl)
@@ -253,7 +276,9 @@ class StdoutRedirector:
 		self.label_obj.insertPlainText(out)
 		global app
 		app.processEvents()
-		
+
+	def flush(self):
+		pass
 
 
 if __name__ == "__main__":

@@ -35,7 +35,7 @@ def getBlock(wedges, vertex_list):
 	polylist = []
 	last2 = []
 	
-	for i in xrange(len(old_vertices)):
+	for i in range(len(old_vertices)):
 		
 		#Calculate position of new vertex
 		alpha = wedges[i-1].alpha

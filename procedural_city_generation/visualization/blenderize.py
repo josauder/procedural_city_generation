@@ -107,7 +107,7 @@ def createobject(verts,faces,texname,texscale,shrinkwrap):
 		wrap.use_negative_direction=True
 		wrap.use_project_z=True
 		wrap.target=bpy.context.scene.objects['Floormesh']
-		wrap.offset=numeric_values[u'offset'][u'value']
+		wrap.offset=conf_values[u'offset'][u'value']
 
 	bpy.context.scene.objects.link(ob)
 
@@ -172,19 +172,19 @@ if __name__ == '__main__':
 	
 	path=os.path.dirname(__file__)+"/.."
 	import json
-	global numeric_values
+	global conf_values
 
-	try:
+#	try:
 
-		with open(path+"/inputs/visualization.conf",'r') as f:
-			numeric_values=json.loads(f.read())
+	with open(path+"/inputs/visualization.conf",'r') as f:
+		conf_values=json.loads(f.read())
+	with open(path+"/temp/"+conf_values[u'input_name'][u'value']+"_heightmap.txt",'r') as f:
+		filename=f.read()
+	with open(path+"/temp/"+filename,'rb') as f:
+		points, triangles = pickle.loads(f.read())
 
-		with open(path+"/temp/heightmap_in_use.txt",'r') as f:
-			filename=f.read()
-		with open(path+"/temp/"+filename,'r') as f:
-			points, triangles = pickle.loads(f.read().encode('utf-8'))
-		with open(path+"/outputs/buildings.txt",'r') as f:
-			polygons=pickle.loads(f.read().encode('utf-8'))
-		main(points,triangles,polygons)
-	except IOError:
-		print( "Input could not be located. Try to run the previous program in the chain first.")
+	with open(path+"/outputs/"+conf_values[u'input_name'][u'value']+".txt",'rb') as f:
+		polygons=pickle.loads(f.read())
+	main(points,triangles,polygons)
+#	except IOError:
+#		print( "Input could not be located. Try to run the previous program in the chain first.")

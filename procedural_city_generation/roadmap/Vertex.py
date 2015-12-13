@@ -2,6 +2,8 @@
 from procedural_city_generation.additional_stuff.Singleton import Singleton
 try:
 	from procedural_city_generation.roadmap.main import gui as plt
+	if plt is None:
+		import matplotlib.pyplot as plt
 except:
 	import matplotlib.pyplot as plt
 

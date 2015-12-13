@@ -2,7 +2,7 @@ import numpy as np
 import time
 import matplotlib.pyplot as plt
 
-def merge_polygons(polygons,textures):
+def merge_polygons(polygons,textures,output_name):
 	"""
 	Groups Polygon3Ds with identical Texture because Blender's mesh.from_pydata() 
 	and bpy.context.scene.objects.link take an increasing amount of time with amount 
@@ -15,7 +15,7 @@ def merge_polygons(polygons,textures):
 	textures : list<procedural_city_generation.building_generation.Texture>
 		List of textures in use
 	"""
-	print "Merging Polygon3Ds"
+	print("Merging Polygon3Ds")
 	
 	#List of Empty Lists is filled up with polygons with corresponding texture
 	poly_group_by_texture=[[] for x in range(len(textures))]
@@ -57,11 +57,17 @@ def merge_polygons(polygons,textures):
 			mergedpolys.append(savelist)
 		ind+=1
 	
-	print "Merging done, saving data structure"
+	print("Merging done, saving data structure")
 	import pickle,os
 	import procedural_city_generation
-	with open(os.path.dirname(procedural_city_generation.__file__)+"/outputs/buildings.txt",'w') as f:
-		f.write(pickle.dumps(mergedpolys))
+	with open(os.path.dirname(procedural_city_generation.__file__)+"/outputs/"+output_name+".txt",'wb') as f:
+		import sys
+		if sys.version[0]=="2":
+			s = pickle.dumps(mergedpolys)
+			f.write(s)
+		else:
+			pickle.dump(mergedpolys,f)
+
 	return 0
 	
 	

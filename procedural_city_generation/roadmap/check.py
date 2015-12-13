@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 from __future__ import division
-from Vertex import Vertex
+from procedural_city_generation.roadmap.Vertex import Vertex
 
 import numpy as np
 from scipy.spatial import cKDTree

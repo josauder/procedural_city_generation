@@ -1,7 +1,7 @@
 from __future__ import division
 from procedural_city_generation.polygons.Polygon2D import Edge, Polygon2D
-from getBlock import getBlock
-from split_poly import split_poly
+from procedural_city_generation.polygons.getBlock import getBlock
+from procedural_city_generation.polygons.split_poly import split_poly
 
 def divide(poly):
 	"""Divide polygon as many smaller polygons as possible"""
@@ -32,19 +32,16 @@ def getLots(wedge_poly_list, vertex_list):
 	
 	
 if __name__=="__main__":
+
 	import sys
-	from parent_path import parent_path
+	from procedural_city_generation.polygons.parent_path import parent_path
 	sys.path.append(parent_path(depth=3))
 	import matplotlib.pyplot as plt
-	import numpy as np
-	from getBlock import getBlock
-	from getFoundation import getFoundation
-	
 	import construct_polygons as cp
 	polys, vertices = cp.main()
 	
 	lots = getLots(polys, vertices)
-	print "%s lots found" %(len(lots))
+	print("%s lots found" %(len(lots)))
 	for p in lots:
 		p.selfplot()
 	plt.show()

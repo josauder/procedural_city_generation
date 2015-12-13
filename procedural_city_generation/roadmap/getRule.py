@@ -1,8 +1,6 @@
 # -*- coding: utf-8 -*-
 from __future__ import division
-from copy import copy
 import numpy as np
-from Vertex import Vertex
 from procedural_city_generation.additional_stuff.Singleton import Singleton
 
 singleton=Singleton("roadmap")

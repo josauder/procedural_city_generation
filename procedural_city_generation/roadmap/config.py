@@ -50,8 +50,10 @@ def config():
 	import os
 	
 	from procedural_city_generation.roadmap.config_functions.input_image_setup import input_image_setup
-	singleton.img,singleton.img2=input_image_setup(path+"/inputs/rule_pictures/"+singleton.rule_image_name, path+"/inputs/density_pictures/"+singleton.density_image_name)
-	
+	singleton.img,singleton.img2=input_image_setup(singleton.rule_image_name, singleton.density_image_name)
+
+	with open (path+"/temp/"+singleton.output_name+"_densitymap.txt",'w') as f:
+		f.write(singleton.density_image_name.split(".")[0]+"diffused.png")
 	
 	from procedural_city_generation.roadmap.config_functions.find_radial_centers import find_radial_centers
 	singleton.center=find_radial_centers(singleton)
@@ -59,9 +61,7 @@ def config():
 	
 	from procedural_city_generation.roadmap.config_functions.setup_heightmap import setup_heightmap
 	setup_heightmap(singleton,path)
-	
-	with open(path+"/temp/border.txt",'w') as f:
-		f.write(str(singleton.border[0])+" "+str(singleton.border[1]))
+
 	
 	singleton.global_lists=Global_Lists()
 	singleton.global_lists.vertex_list.extend(singleton.axiom)

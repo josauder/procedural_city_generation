@@ -250,7 +250,7 @@
        </size>
       </property>
       <property name="currentIndex">
-       <number>0</number>
+       <number>4</number>
       </property>
       <property name="iconSize">
        <size>
@@ -510,9 +510,9 @@
        </attribute>
        <layout class="QGridLayout" name="gridLayout_6">
         <item row="0" column="0">
-         <widget class="QGroupBox" name="advancd_group">
+         <widget class="QGroupBox" name="advanced_group">
           <property name="title">
-           <string>GroupBox</string>
+           <string>Commands</string>
           </property>
           <widget class="QPushButton" name="clean_directories">
            <property name="geometry">
