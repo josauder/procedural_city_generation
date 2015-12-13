@@ -15,7 +15,7 @@ def save_vertexlist(vertex_list, name="output",savefig=0):
 	except:
 		print("Recursionlimit was not enough - Pickle trying again with sys.recusionlimit at 50000")
 		sys.setrecursionlimit(50000)
-		save_vertexlist(vertex_list,name, savefig)
+		return save_vertexlist(vertex_list,name, savefig)
 
 	if savefig==1:
 		print("Figure is being saved as" + name +".png")
