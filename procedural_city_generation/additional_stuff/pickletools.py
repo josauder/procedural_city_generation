@@ -50,6 +50,6 @@ def reconstruct(path):
 		for i,v in enumerate(vertex_list):
 			v.selfindex=i
 		return vertex_list
-	#except:
-	#	print("Input could not be located. Try to run the previous program in the chain first.")
-	#	return 0
+
+	print("Input could not be located. Try to run the previous program in the chain first.")
+	return 0
