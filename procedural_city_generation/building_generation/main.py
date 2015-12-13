@@ -28,6 +28,8 @@ def main():
 	import pickle
 	with open(path+"/temp/"+singleton.input_name+"_polygons.txt","rb") as f:
 		polylist=pickle.loads(f.read())
+	if gui is None:
+		import matplotlib.pyplot as plt
 
 	#TODO: Discuss with lenny how we get the largest polygon out.
 	maxl=0
@@ -160,7 +162,11 @@ def main():
 			print("Polygon3D.poly_type not understood")
 		if singleton.plotbool:
 			if counter%singleton.plot_counter==0:
-				gui.update()
+				if gui is not None:
+					gui.update()
+				else:
+					plt.draw()
+
 		counter+=1
 		#Builds the floor Polygon
 		polygons.append(Polygon3D([np.array([x[0],x[1],0]) for x in poly.vertices],
