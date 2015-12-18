@@ -46,7 +46,8 @@ with::
 * PyQt4 (4.8.6+)
 * Blender 2.6x+
 
-To start the program with the GUI::
+All dependencies except Blender should be included in any scientific python distribution (e.g. Python(x,y) and Anaconda).
+To start the program with the GUI (assuming all dependencies are installed)::
 
 	cd procedural_city_generation
 	python GUI.py
@@ -56,6 +57,13 @@ If everything worked so far, the GUI should open up and look like this:
 .. image::  images/GUI.png
    :align:   center
    :target: `Getting it to work`_
+
+If not, then there is probably a missing dependency. As of now, this project runs on both Python 2 and 3.
+The last step ("Visualize in Blender") will not work on windows machines because you can not run blender by simply typing::
+
+   blender --python "procedural_city_generation/visualization/blenderize.py"
+
+from the command line. On windows you will have to run this script manually by opening blender, and replacing the path with the path to procedural_city_generation/procedural_city_generation directory.
 
 
 **About this Project**
