@@ -22,7 +22,6 @@ class GUI(QtGui.QMainWindow):
         self.ui.setupUi(self)
         redirector=StdoutRedirector(self.ui.console)
         sys.stdout=redirector
-        sys.stderr=redirector
 
         #### 1: ROADMAP ####
         UI.setRoadmapGUI(self)
@@ -54,6 +53,9 @@ class GUI(QtGui.QMainWindow):
 
         #### 5: ADVANCED ####
         self.ui.clean_directories.clicked.connect(self.clean_directories)
+
+
+        sys.stderr=redirector
 
     def saveOptions(self,submodule="roadmap"):
         #button=getattr(self.ui,submodule+"_save_button")

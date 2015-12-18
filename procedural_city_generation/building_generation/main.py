@@ -172,6 +172,12 @@ def main():
 		polygons.append(Polygon3D([np.array([x[0],x[1],0]) for x in poly.vertices],
 			[range(len(poly.vertices))],
 			floortexture))
-	
+
+	#Uncomment these lines if you are interested in working with .obj (Wavefront) format.
+	#See Github issues concerning this format
+	#from procedural_city_generation.additional_stuff.Wavefront import Wavefront
+	#Wavefront([x.name for x in textures],polygons)
+
 	mergedpolys=merge_polygons(polygons,textures,singleton.output_name)
+
 	return 0
