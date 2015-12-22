@@ -17,10 +17,9 @@ def listfiles(path):
 	
 
 def clean_pyc_files(path):
-
 	pyc_files= [x for x in listfiles(path) if x.endswith(".pyc")]
 	for pyc in pyc_files:
-		os.system("rm "+pyc)
+		os.system("rm -f "+pyc)
 	return 0
 
 def find_readable_files(path,suffixes=[".py",".conf"]):
@@ -33,7 +32,6 @@ def find_readable_files(path,suffixes=[".py",".conf"]):
 		if any([somefile.endswith(x) for x in suffixes]) and not os.path.isdir(somefile):
 			readables.append(somefile)
 	return readables
-	
 
 
 def find_in_text(path,tofind="TODO"):

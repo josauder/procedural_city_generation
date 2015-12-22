@@ -196,9 +196,9 @@ class GUI(QtGui.QMainWindow):
         print("removing all .pyc files")
         clean_pyc_files(os.getcwd())
         print("removing all items in /procedural_city_generation/temp/ directory")
-        os.system("rm " +os.getcwd()+"/procedural_city_generation/temp/*")
+        os.system("rm -f " +os.getcwd()+"/procedural_city_generation/temp/*")
         print("removing all items in /procedural_city_generation/outputs/ directory")
-        os.system("rm " +os.getcwd()+"/procedural_city_generation/outputs/*")
+        os.system("rm -f " +os.getcwd()+"/procedural_city_generation/outputs/*")
         print(UI.donemessage)
         
     def set_xlim(self,tpl):
