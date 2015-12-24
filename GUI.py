@@ -28,7 +28,7 @@ class GUI(QtGui.QMainWindow):
         self.ui.roadmap_widget.hide()
         self.ui.roadmap_Run.clicked.connect(self.start_roadmap)
         self.createTable("roadmap")
-        self.ui.roadmap_splitter.setSizes([80,800])
+        self.ui.roadmap_splitter.setSizes([90,800])
 
         self.ui.roadmap_table.hide()
         #### 2: POLYGONS ####
@@ -37,45 +37,42 @@ class GUI(QtGui.QMainWindow):
         self.ui.polygons_widget.hide()
         self.ui.polygons_Run.clicked.connect(self.start_polygons)
         self.createTable("polygons")
-        self.ui.polygons_splitter.setSizes([80,800])
+        self.ui.polygons_splitter.setSizes([90,800])
 
         #### 3: BUILDING_GENERATION ####
         UI.setBuilding_generationGUI(self)
         self.ui.building_generation_widget.hide()
         self.ui.building_generation_Run.clicked.connect(self.start_building_generation)
         self.createTable("building_generation")
-        self.ui.building_generation_splitter.setSizes([80,800])
+        self.ui.building_generation_splitter.setSizes([90,800])
 
         #### 4: VISUALIZATION ####
         self.ui.visualization_Run.clicked.connect(UI.visualization)
         self.createTable("visualization")
-        self.ui.visualization_splitter.setSizes([80,800])
+        self.ui.visualization_splitter.setSizes([90,800])
 
         #### 5: ADVANCED ####
         self.ui.clean_directories.clicked.connect(self.clean_directories)
 
 
         sys.stderr=redirector
-
+    #TODO
     def saveOptions(self,submodule="roadmap"):
-        #button=getattr(self.ui,submodule+"_save_button")
-        self.ui.roadmap_save_button.hide()        
-#        table=getattr(self.ui,submodule+"_table")
-        self.ui.roadmap_table.hide()
+        button=getattr(self.ui,submodule+"_save_button")
+        table=getattr(self.ui,submodule+"_table")
+        button.hide()
+        table.hide()
      #   return saver
             
     def createTable(self,submodule):
-        w=881
-        h=400
+        h=411
+        w=891
 
         from procedural_city_generation.additional_stuff.Param import paramsFromJson,jsonFromParams
         from procedural_city_generation.additional_stuff.Singleton import Singleton
         params=paramsFromJson(os.getcwd()+"/procedural_city_generation/inputs/"+submodule+".conf")
-
-
+        
         table=QtGui.QTableWidget(getattr(self.ui,submodule+"_frame"))
-
-
         save_button=QtGui.QPushButton(getattr(self.ui,submodule+"_frame"), text="Save")
         save_button.setGeometry(QtCore.QRect(w-100, h, 100, 31))
         save_button.hide()
@@ -151,6 +148,7 @@ class GUI(QtGui.QMainWindow):
             jsonFromParams(os.getcwd()+"/procedural_city_generation/inputs/"+submodule+".conf",params)
             print("Save successful")
             save_button.hide()
+            default_button.hide()
             table.hide()
             print(UI.donemessage)
 

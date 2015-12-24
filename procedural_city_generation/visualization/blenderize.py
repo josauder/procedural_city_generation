@@ -173,12 +173,11 @@ if __name__ == '__main__':
 	global path
 	import os
 	path=os.path.dirname(__file__)+"/.."
-	### IF ON WINDOWS, OPEN THIS FILE WITH BLENDER AND OVERWRITE FOLLOWING LINE WITH YOUR PATH AND UNCOMMENT THE FOLLOWING LINE ###
-	path = "/home/jonathan/procedural_city_generation/procedural_city_generation/"
+	### IF ON WINDOWS, OPEN THIS FILE WITH BLENDER AND OVERWRITE       ###
+    ### FOLLOWING LINE WITH YOUR PATH AND UNCOMMENT THE FOLLOWING LINE ###
+	# path = "/home/jonathan/procedural_city_generation/procedural_city_generation/"
 	import json
 	global conf_values
-
-#	try:
 
 	with open(path+"/inputs/visualization.conf",'r') as f:
 		conf_values=json.loads(f.read())
@@ -190,5 +189,3 @@ if __name__ == '__main__':
 	with open(path+"/outputs/"+conf_values[u'input_name'][u'value']+".txt",'rb') as f:
 		polygons=pickle.loads(f.read())
 	main(points,triangles,polygons)
-#	except IOError:
-#		print( "Input could not be located. Try to run the previous program in the chain first.")
