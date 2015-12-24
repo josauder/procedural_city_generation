@@ -20,6 +20,14 @@ procedural_city_generation.visualization.visualization_params module
     :undoc-members:
     :show-inheritance:
 
+procedural_city_generation.visualization.window module
+---------------------------------------------------------------------------------
+
+.. automodule:: procedural_city_generation.visualization.window
+    :members:
+    :undoc-members:
+    :show-inheritance:
+
 
 Module contents
 ---------------

@@ -4,6 +4,14 @@ procedural_city_generation.additional_stuff package
 Submodules
 ----------
 
+procedural_city_generation.additional_stuff.LinalgTools module
+-----------------------------------------------------------------------------------------
+
+.. automodule:: procedural_city_generation.additional_stuff.LinalgTools
+    :members:
+    :undoc-members:
+    :show-inheritance:
+
 procedural_city_generation.additional_stuff.Param module
 -----------------------------------------------------------------------------------
 
