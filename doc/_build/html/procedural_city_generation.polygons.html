@@ -1,0 +1,347 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>procedural_city_generation.polygons package &mdash; procedural_city_generation 0.1 documentation</title>
+    
+    <link rel="stylesheet" href="_static/classic.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    './',
+        VERSION:     '0.1',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <link rel="top" title="procedural_city_generation 0.1 documentation" href="index.html" /> 
+  </head>
+  <body role="document">
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">procedural_city_generation 0.1 documentation</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="procedural-city-generation-polygons-package">
+<h1>procedural_city_generation.polygons package<a class="headerlink" href="#procedural-city-generation-polygons-package" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="submodules">
+<h2>Submodules<a class="headerlink" href="#submodules" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="module-procedural_city_generation.polygons.Polygon2D">
+<span id="procedural-city-generation-polygons-polygon2d-module"></span><h2>procedural_city_generation.polygons.Polygon2D module<a class="headerlink" href="#module-procedural_city_generation.polygons.Polygon2D" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="procedural_city_generation.polygons.Polygon2D.Edge">
+<em class="property">class </em><code class="descclassname">procedural_city_generation.polygons.Polygon2D.</code><code class="descname">Edge</code><span class="sig-paren">(</span><em>vertex1</em>, <em>vertex2</em>, <em>bordering_road=True</em><span class="sig-paren">)</span><a class="headerlink" href="#procedural_city_generation.polygons.Polygon2D.Edge" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">object</span></code></p>
+<p class="rubric">Methods</p>
+<dl class="method">
+<dt id="procedural_city_generation.polygons.Polygon2D.Edge.selfplot">
+<code class="descname">selfplot</code><span class="sig-paren">(</span><em>color='k'</em>, <em>plt=None</em><span class="sig-paren">)</span><a class="headerlink" href="#procedural_city_generation.polygons.Polygon2D.Edge.selfplot" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="procedural_city_generation.polygons.Polygon2D.Polygon2D">
+<em class="property">class </em><code class="descclassname">procedural_city_generation.polygons.Polygon2D.</code><code class="descname">Polygon2D</code><span class="sig-paren">(</span><em>in_list</em>, <em>poly_type='vacant'</em><span class="sig-paren">)</span><a class="headerlink" href="#procedural_city_generation.polygons.Polygon2D.Polygon2D" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">object</span></code></p>
+<p class="rubric">Methods</p>
+<dl class="method">
+<dt id="procedural_city_generation.polygons.Polygon2D.Polygon2D.selfplot">
+<code class="descname">selfplot</code><span class="sig-paren">(</span><em>color='type'</em>, <em>plt=&lt;module 'matplotlib.pyplot' from '/usr/local/lib/python2.7/dist-packages/matplotlib/pyplot.pyc'&gt;</em><span class="sig-paren">)</span><a class="headerlink" href="#procedural_city_generation.polygons.Polygon2D.Polygon2D.selfplot" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="function">
+<dt id="procedural_city_generation.polygons.Polygon2D.area">
+<code class="descclassname">procedural_city_generation.polygons.Polygon2D.</code><code class="descname">area</code><span class="sig-paren">(</span><em>self</em><span class="sig-paren">)</span><a class="headerlink" href="#procedural_city_generation.polygons.Polygon2D.area" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return area of polygon</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="procedural_city_generation.polygons.Polygon2D.is_convex">
+<code class="descclassname">procedural_city_generation.polygons.Polygon2D.</code><code class="descname">is_convex</code><span class="sig-paren">(</span><em>self</em><span class="sig-paren">)</span><a class="headerlink" href="#procedural_city_generation.polygons.Polygon2D.is_convex" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</div>
+<div class="section" id="module-procedural_city_generation.polygons.Vertex">
+<span id="procedural-city-generation-polygons-vertex-module"></span><h2>procedural_city_generation.polygons.Vertex module<a class="headerlink" href="#module-procedural_city_generation.polygons.Vertex" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="procedural_city_generation.polygons.Vertex.Vertex">
+<em class="property">class </em><code class="descclassname">procedural_city_generation.polygons.Vertex.</code><code class="descname">Vertex</code><span class="sig-paren">(</span><em>coords</em><span class="sig-paren">)</span><a class="headerlink" href="#procedural_city_generation.polygons.Vertex.Vertex" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">object</span></code></p>
+<p class="rubric">Methods</p>
+<dl class="method">
+<dt id="procedural_city_generation.polygons.Vertex.Vertex.connection">
+<code class="descname">connection</code><span class="sig-paren">(</span><em>other</em><span class="sig-paren">)</span><a class="headerlink" href="#procedural_city_generation.polygons.Vertex.Vertex.connection" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-procedural_city_generation.polygons.Weg">
+<span id="procedural-city-generation-polygons-weg-module"></span><h2>procedural_city_generation.polygons.Weg module<a class="headerlink" href="#module-procedural_city_generation.polygons.Weg" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="procedural_city_generation.polygons.Weg.Weg">
+<em class="property">class </em><code class="descclassname">procedural_city_generation.polygons.Weg.</code><code class="descname">Weg</code><span class="sig-paren">(</span><em>k1</em>, <em>k2</em>, <em>strassennetz=True</em><span class="sig-paren">)</span><a class="headerlink" href="#procedural_city_generation.polygons.Weg.Weg" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">object</span></code></p>
+<p class="rubric">Methods</p>
+<dl class="method">
+<dt id="procedural_city_generation.polygons.Weg.Weg.delete">
+<code class="descname">delete</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#procedural_city_generation.polygons.Weg.Weg.delete" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="procedural_city_generation.polygons.Weg.Weg.selfplot">
+<code class="descname">selfplot</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#procedural_city_generation.polygons.Weg.Weg.selfplot" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-procedural_city_generation.polygons.config">
+<span id="procedural-city-generation-polygons-config-module"></span><h2>procedural_city_generation.polygons.config module<a class="headerlink" href="#module-procedural_city_generation.polygons.config" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="procedural_city_generation.polygons.config.Variables">
+<em class="property">class </em><code class="descclassname">procedural_city_generation.polygons.config.</code><code class="descname">Variables</code><span class="sig-paren">(</span><em>tupel=None</em><span class="sig-paren">)</span><a class="headerlink" href="#procedural_city_generation.polygons.config.Variables" title="Permalink to this definition">¶</a></dt>
+<dd><p>Singleton-Object</p>
+<p class="rubric">Attributes</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="44%" />
+<col width="56%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>instance</td>
+<td>&nbsp;</td>
+</tr>
+</tbody>
+</table>
+<dl class="attribute">
+<dt id="procedural_city_generation.polygons.config.Variables.instance">
+<code class="descname">instance</code><em class="property"> = None</em><a class="headerlink" href="#procedural_city_generation.polygons.config.Variables.instance" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="function">
+<dt id="procedural_city_generation.polygons.config.config">
+<code class="descclassname">procedural_city_generation.polygons.config.</code><code class="descname">config</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#procedural_city_generation.polygons.config.config" title="Permalink to this definition">¶</a></dt>
+<dd><p>Makes all necessary setups in order to run the polygon-generator</p>
+</dd></dl>
+
+</div>
+<div class="section" id="module-procedural_city_generation.polygons.construct_polygons">
+<span id="procedural-city-generation-polygons-construct-polygons-module"></span><h2>procedural_city_generation.polygons.construct_polygons module<a class="headerlink" href="#module-procedural_city_generation.polygons.construct_polygons" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="procedural_city_generation.polygons.construct_polygons.Wedge">
+<em class="property">class </em><code class="descclassname">procedural_city_generation.polygons.construct_polygons.</code><code class="descname">Wedge</code><span class="sig-paren">(</span><em>a</em>, <em>b</em>, <em>c</em>, <em>alpha</em><span class="sig-paren">)</span><a class="headerlink" href="#procedural_city_generation.polygons.construct_polygons.Wedge" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">object</span></code></p>
+</dd></dl>
+
+<dl class="function">
+<dt id="procedural_city_generation.polygons.construct_polygons.getPolygon2Ds">
+<code class="descclassname">procedural_city_generation.polygons.construct_polygons.</code><code class="descname">getPolygon2Ds</code><span class="sig-paren">(</span><em>vertex_list</em><span class="sig-paren">)</span><a class="headerlink" href="#procedural_city_generation.polygons.construct_polygons.getPolygon2Ds" title="Permalink to this definition">¶</a></dt>
+<dd><p>Finds all closed Polygon2Ds. The algorithm starts with Wedge A-B-C and looks for Wedge B-C-X1, C-X1-X2... A polygon is found when Xn==A</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="procedural_city_generation.polygons.construct_polygons.getWedges">
+<code class="descclassname">procedural_city_generation.polygons.construct_polygons.</code><code class="descname">getWedges</code><span class="sig-paren">(</span><em>vertex_list</em><span class="sig-paren">)</span><a class="headerlink" href="#procedural_city_generation.polygons.construct_polygons.getWedges" title="Permalink to this definition">¶</a></dt>
+<dd><p>Constructs all inner Angles as Wedges of the Vertices A-B-C so that there exists exactly one Wedge B-C-X1.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="procedural_city_generation.polygons.construct_polygons.main">
+<code class="descclassname">procedural_city_generation.polygons.construct_polygons.</code><code class="descname">main</code><span class="sig-paren">(</span><em>vertex_list=None</em><span class="sig-paren">)</span><a class="headerlink" href="#procedural_city_generation.polygons.construct_polygons.main" title="Permalink to this definition">¶</a></dt>
+<dd><p>Input: list of vertices representing the Roadmap
+Output: List of all Polygon2Ds representing Lots,
+List of all Polygon2Ds representing Blocks
+List of all Polygon2Ds which are too large to be Lots
+Polygon2D representing the road-network</p>
+</dd></dl>
+
+</div>
+<div class="section" id="module-procedural_city_generation.polygons.findsquaresinpoly">
+<span id="procedural-city-generation-polygons-findsquaresinpoly-module"></span><h2>procedural_city_generation.polygons.findsquaresinpoly module<a class="headerlink" href="#module-procedural_city_generation.polygons.findsquaresinpoly" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="module-procedural_city_generation.polygons.getBlock">
+<span id="procedural-city-generation-polygons-getblock-module"></span><h2>procedural_city_generation.polygons.getBlock module<a class="headerlink" href="#module-procedural_city_generation.polygons.getBlock" title="Permalink to this headline">¶</a></h2>
+<dl class="function">
+<dt id="procedural_city_generation.polygons.getBlock.getBlock">
+<code class="descclassname">procedural_city_generation.polygons.getBlock.</code><code class="descname">getBlock</code><span class="sig-paren">(</span><em>wedges</em>, <em>vertex_list</em><span class="sig-paren">)</span><a class="headerlink" href="#procedural_city_generation.polygons.getBlock.getBlock" title="Permalink to this definition">¶</a></dt>
+<dd><p>Calculate block to be divided into lots, as well as street polygons</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="procedural_city_generation.polygons.getBlock.p_in_poly">
+<code class="descclassname">procedural_city_generation.polygons.getBlock.</code><code class="descname">p_in_poly</code><span class="sig-paren">(</span><em>poly</em>, <em>point</em><span class="sig-paren">)</span><a class="headerlink" href="#procedural_city_generation.polygons.getBlock.p_in_poly" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</div>
+<div class="section" id="module-procedural_city_generation.polygons.getLots">
+<span id="procedural-city-generation-polygons-getlots-module"></span><h2>procedural_city_generation.polygons.getLots module<a class="headerlink" href="#module-procedural_city_generation.polygons.getLots" title="Permalink to this headline">¶</a></h2>
+<dl class="function">
+<dt id="procedural_city_generation.polygons.getLots.divide">
+<code class="descclassname">procedural_city_generation.polygons.getLots.</code><code class="descname">divide</code><span class="sig-paren">(</span><em>poly</em><span class="sig-paren">)</span><a class="headerlink" href="#procedural_city_generation.polygons.getLots.divide" title="Permalink to this definition">¶</a></dt>
+<dd><p>Divide polygon as many smaller polygons as possible</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="procedural_city_generation.polygons.getLots.getLots">
+<code class="descclassname">procedural_city_generation.polygons.getLots.</code><code class="descname">getLots</code><span class="sig-paren">(</span><em>wedge_poly_list</em>, <em>vertex_list</em><span class="sig-paren">)</span><a class="headerlink" href="#procedural_city_generation.polygons.getLots.getLots" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</div>
+<div class="section" id="module-procedural_city_generation.polygons.main">
+<span id="procedural-city-generation-polygons-main-module"></span><h2>procedural_city_generation.polygons.main module<a class="headerlink" href="#module-procedural_city_generation.polygons.main" title="Permalink to this headline">¶</a></h2>
+<dl class="function">
+<dt id="procedural_city_generation.polygons.main.main">
+<code class="descclassname">procedural_city_generation.polygons.main.</code><code class="descname">main</code><span class="sig-paren">(</span><em>vertex_list=None</em><span class="sig-paren">)</span><a class="headerlink" href="#procedural_city_generation.polygons.main.main" title="Permalink to this definition">¶</a></dt>
+<dd><p>Input: list of vertices representing the Roadmap
+Output: List of all Polygon2Ds representing Lots,
+List of all Polygon2Ds representing Blocks
+List of all Polygon2Ds which are too large to be Lots
+Polygon2D representing the road-network</p>
+</dd></dl>
+
+</div>
+<div class="section" id="module-procedural_city_generation.polygons.parent_path">
+<span id="procedural-city-generation-polygons-parent-path-module"></span><h2>procedural_city_generation.polygons.parent_path module<a class="headerlink" href="#module-procedural_city_generation.polygons.parent_path" title="Permalink to this headline">¶</a></h2>
+<dl class="function">
+<dt id="procedural_city_generation.polygons.parent_path.parent_path">
+<code class="descclassname">procedural_city_generation.polygons.parent_path.</code><code class="descname">parent_path</code><span class="sig-paren">(</span><em>depth=1</em><span class="sig-paren">)</span><a class="headerlink" href="#procedural_city_generation.polygons.parent_path.parent_path" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return path to directory which is depth
+levels above</p>
+</dd></dl>
+
+</div>
+<div class="section" id="module-procedural_city_generation.polygons.plot_poly">
+<span id="procedural-city-generation-polygons-plot-poly-module"></span><h2>procedural_city_generation.polygons.plot_poly module<a class="headerlink" href="#module-procedural_city_generation.polygons.plot_poly" title="Permalink to this headline">¶</a></h2>
+<dl class="function">
+<dt id="procedural_city_generation.polygons.plot_poly.plot_edge">
+<code class="descclassname">procedural_city_generation.polygons.plot_poly.</code><code class="descname">plot_edge</code><span class="sig-paren">(</span><em>edge</em>, <em>color='k'</em><span class="sig-paren">)</span><a class="headerlink" href="#procedural_city_generation.polygons.plot_poly.plot_edge" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="procedural_city_generation.polygons.plot_poly.plot_self">
+<code class="descclassname">procedural_city_generation.polygons.plot_poly.</code><code class="descname">plot_self</code><span class="sig-paren">(</span><em>self</em>, <em>mode='type'</em><span class="sig-paren">)</span><a class="headerlink" href="#procedural_city_generation.polygons.plot_poly.plot_self" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</div>
+<div class="section" id="module-procedural_city_generation.polygons.polygons_params">
+<span id="procedural-city-generation-polygons-polygons-params-module"></span><h2>procedural_city_generation.polygons.polygons_params module<a class="headerlink" href="#module-procedural_city_generation.polygons.polygons_params" title="Permalink to this headline">¶</a></h2>
+<p>Module which contains all input parameters for this submodule, along with:
+- The default (recommmended) value from the developers
+- A short description of what the parameter changes
+- All values that the parameter accepts without causing this program to break.</p>
+<p>This information can also be viewed when calling the GUI and clicking the &#8220;options&#8221;
+button for that specific module.</p>
+</div>
+<div class="section" id="module-procedural_city_generation.polygons.split_poly">
+<span id="procedural-city-generation-polygons-split-poly-module"></span><h2>procedural_city_generation.polygons.split_poly module<a class="headerlink" href="#module-procedural_city_generation.polygons.split_poly" title="Permalink to this headline">¶</a></h2>
+<dl class="function">
+<dt id="procedural_city_generation.polygons.split_poly.split_poly">
+<code class="descclassname">procedural_city_generation.polygons.split_poly.</code><code class="descname">split_poly</code><span class="sig-paren">(</span><em>poly</em>, <em>eps=1e-05</em><span class="sig-paren">)</span><a class="headerlink" href="#procedural_city_generation.polygons.split_poly.split_poly" title="Permalink to this definition">¶</a></dt>
+<dd><p>Split polygon into two parts</p>
+</dd></dl>
+
+</div>
+<div class="section" id="module-contents">
+<h2>Module contents<a class="headerlink" href="#module-contents" title="Permalink to this headline">¶</a></h2>
+<span class="target" id="module-procedural_city_generation.polygons"></span></div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">procedural_city_generation.polygons package</a><ul>
+<li><a class="reference internal" href="#submodules">Submodules</a></li>
+<li><a class="reference internal" href="#module-procedural_city_generation.polygons.Polygon2D">procedural_city_generation.polygons.Polygon2D module</a></li>
+<li><a class="reference internal" href="#module-procedural_city_generation.polygons.Vertex">procedural_city_generation.polygons.Vertex module</a></li>
+<li><a class="reference internal" href="#module-procedural_city_generation.polygons.Weg">procedural_city_generation.polygons.Weg module</a></li>
+<li><a class="reference internal" href="#module-procedural_city_generation.polygons.config">procedural_city_generation.polygons.config module</a></li>
+<li><a class="reference internal" href="#module-procedural_city_generation.polygons.construct_polygons">procedural_city_generation.polygons.construct_polygons module</a></li>
+<li><a class="reference internal" href="#module-procedural_city_generation.polygons.findsquaresinpoly">procedural_city_generation.polygons.findsquaresinpoly module</a></li>
+<li><a class="reference internal" href="#module-procedural_city_generation.polygons.getBlock">procedural_city_generation.polygons.getBlock module</a></li>
+<li><a class="reference internal" href="#module-procedural_city_generation.polygons.getLots">procedural_city_generation.polygons.getLots module</a></li>
+<li><a class="reference internal" href="#module-procedural_city_generation.polygons.main">procedural_city_generation.polygons.main module</a></li>
+<li><a class="reference internal" href="#module-procedural_city_generation.polygons.parent_path">procedural_city_generation.polygons.parent_path module</a></li>
+<li><a class="reference internal" href="#module-procedural_city_generation.polygons.plot_poly">procedural_city_generation.polygons.plot_poly module</a></li>
+<li><a class="reference internal" href="#module-procedural_city_generation.polygons.polygons_params">procedural_city_generation.polygons.polygons_params module</a></li>
+<li><a class="reference internal" href="#module-procedural_city_generation.polygons.split_poly">procedural_city_generation.polygons.split_poly module</a></li>
+<li><a class="reference internal" href="#module-contents">Module contents</a></li>
+</ul>
+</li>
+</ul>
+
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="_sources/procedural_city_generation.polygons.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">procedural_city_generation 0.1 documentation</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &copy; Copyright 2015, Jonathan Sauder.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.3.1.
+    </div>
+  </body>
+</html>

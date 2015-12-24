@@ -33,7 +33,7 @@ Index
 
 You can get the source code at our `Github Page <https://github.com/josauder/procedural_city_generation>`_
 
-If you have git installed, you can clone the repository
+If you have git installed, you can clone the repository instead of downloading it as a .zip archive
 with::
 	git clone https://github.com/josauder/procedural_city_generation.git
 

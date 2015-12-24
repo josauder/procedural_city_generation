@@ -1,0 +1,306 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Procedural City Generation in Python - Documentation &mdash; procedural_city_generation 0.1 documentation</title>
+    
+    <link rel="stylesheet" href="_static/classic.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    './',
+        VERSION:     '0.1',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <link rel="top" title="procedural_city_generation 0.1 documentation" href="#" /> 
+  </head>
+  <body role="document">
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="nav-item nav-item-0"><a href="#">procedural_city_generation 0.1 documentation</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="procedural-city-generation-in-python-documentation">
+<h1><strong>Procedural City Generation in Python - Documentation</strong><a class="headerlink" href="#procedural-city-generation-in-python-documentation" title="Permalink to this headline">¶</a></h1>
+<a class="reference internal image-reference" href="#procedural-city-generation-in-python-documentation"><img alt="_images/currentstate.png" class="align-center" src="_images/currentstate.png" style="width: 1062px; height: 600px;" /></a>
+<p>Welcome to procedural_city_generation&#8217;s documentation! In this page we will give an overview of all the things you need to know to get started  with this project.</p>
+<div class="section" id="index">
+<h2>Index<a class="headerlink" href="#index" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><a class="reference internal" href="#getting-it-to-work">Getting it to work</a></li>
+<li><a class="reference internal" href="#roadmap-creation">Roadmap Creation</a></li>
+<li><a class="reference internal" href="#polygon-extraction-and-subdivision">Polygon Extraction and Subdivision</a></li>
+<li><a class="reference internal" href="#creation-of-3d-data">Creation of 3D Data</a></li>
+<li><a class="reference internal" href="#visualization-in-blender">Visualization in Blender</a></li>
+<li><a class="reference internal" href="py-modindex.html"><span>Module Index</span></a></li>
+<li><a class="reference internal" href="search.html"><span>Search Page</span></a></li>
+<li><a class="reference internal" href="genindex.html"><span>Index</span></a></li>
+</ul>
+<div class="section" id="getting-it-to-work">
+<h3><strong>Getting it to work</strong><a class="headerlink" href="#getting-it-to-work" title="Permalink to this headline">¶</a></h3>
+<p>You can get the source code at our <a class="reference external" href="https://github.com/josauder/procedural_city_generation">Github Page</a></p>
+<p>If you have git installed, you can clone the repository instead of downloading it as a .zip archive
+with:</p>
+<div class="highlight-python"><div class="highlight"><pre>git clone https://github.com/josauder/procedural_city_generation.git
+</pre></div>
+</div>
+<p><strong>Dependencies:</strong></p>
+<ul class="simple">
+<li>python 2.7+</li>
+<li>numpy (1.8.2+)</li>
+<li>scipy (0.14.1+)</li>
+<li>matplotlib (1.4.2+)</li>
+<li>PyQt4 (4.8.6+)</li>
+<li>Blender 2.6x+</li>
+</ul>
+<p>All dependencies except Blender should be included in any scientific python distribution (e.g. Python(x,y) and Anaconda).
+To start the program with the GUI (assuming all dependencies are installed):</p>
+<div class="highlight-python"><div class="highlight"><pre>cd procedural_city_generation
+python GUI.py
+</pre></div>
+</div>
+<p>If everything worked so far, the GUI should open up and look like this:</p>
+<a class="reference internal image-reference" href="#getting-it-to-work"><img alt="_images/GUI.png" class="align-center" src="_images/GUI.png" /></a>
+<p>If not, then there is probably a missing dependency. As of now, this project runs on both Python 2 and 3.
+The last step (&#8220;Visualize in Blender&#8221;) will not work on windows machines because you can not run blender by simply typing:</p>
+<div class="highlight-python"><div class="highlight"><pre>blender --python &quot;procedural_city_generation/visualization/blenderize.py&quot;
+</pre></div>
+</div>
+<p>from the command line. On windows you will have to run this script manually by opening blender, and replacing the path with the path to procedural_city_generation/procedural_city_generation directory.</p>
+</div>
+<div class="section" id="about-this-project">
+<h3><strong>About this Project</strong><a class="headerlink" href="#about-this-project" title="Permalink to this headline">¶</a></h3>
+<p>This project started as a university project at the Technische Universität Berlin.
+After the semester was over, we continued working on the project though, with the goal in mind to make it usable for as many people as possible.</p>
+</div>
+<div class="section" id="roadmap-creation">
+<h3><strong>Roadmap Creation</strong><a class="headerlink" href="#roadmap-creation" title="Permalink to this headline">¶</a></h3>
+</div>
+</div>
+<div class="section" id="credits-and-acknowledgements">
+<h2>Credits and Acknowledgements<a class="headerlink" href="#credits-and-acknowledgements" title="Permalink to this headline">¶</a></h2>
+<p>A lot of our code regarding roadmap generation shows great similarity and in part based on the following papers:</p>
+<ul class="simple">
+<li>Martin Petrasch (TU Dresden). &#8220;Prozedurale Städtegenerierung mit Hilfe von L-Systemen&#8221;. 2008, Dresden. <a class="reference external" href="https://www.inf.tu-dresden.de/content/institutes/smt/cg/results/minorthesis/mpetrasch/files/Beleg_MPetrasch.pdf">https://www.inf.tu-dresden.de/content/institutes/smt/cg/results/minorthesis/mpetrasch/files/Beleg_MPetrasch.pdf</a></li>
+<li>Yoav I. H. Parish (ETH Zürich), Pascal Müller (Centrap Pictures, Switzerland). &#8220;Procedural modeling of cities&#8221;. <em>Siggraph &#8216;01</em> 301-308 (2001). New York, NY, USA. <a class="reference external" href="https://dl.acm.org/citation.cfm?id=383292">https://dl.acm.org/citation.cfm?id=383292</a></li>
+</ul>
+</div>
+<div class="section" id="introduction">
+<h2>Introduction<a class="headerlink" href="#introduction" title="Permalink to this headline">¶</a></h2>
+<p>We refer to &#8220;road segments&#8221; as edges and the two ends of an edge as a vertex.
+We create roadmaps by starting with an axiom (a list of Vertices) and defining a set of rules by which new Vertices are added and connected to existing one to form Edges.
+Many of the terms used here become obvious when you see them in action. Let&#8217;s start by showing the most important inputs:</p>
+</div>
+<div class="section" id="the-growth-rule-image">
+<h2>The Growth-Rule Image<a class="headerlink" href="#the-growth-rule-image" title="Permalink to this headline">¶</a></h2>
+<a class="reference internal image-reference" href="#the-growth-rule-image"><img alt="_images/growthrule.png" class="align-center" src="_images/growthrule.png" style="width: 400px; height: 400px;" /></a>
+<p>This image describes which growth rule will be used in which area. Blue means that the radial rule will be used, Red means that the grid rule will be used, and Green means that the organic rule will be used. We will discuss the rules in detail later.</p>
+</div>
+<div class="section" id="the-population-density-image">
+<h2>The Population-Density Image<a class="headerlink" href="#the-population-density-image" title="Permalink to this headline">¶</a></h2>
+<a class="reference internal image-reference" href="#the-population-density-image"><img alt="_images/populationdensity.png" class="align-center" src="_images/populationdensity.png" style="width: 400px; height: 400px;" /></a>
+<p>This image describes the probabilities that vertices will be connected at all.
+The lighter, the more probable it is, that an edge will be built.</p>
+</div>
+<div class="section" id="the-output">
+<h2>The Output<a class="headerlink" href="#the-output" title="Permalink to this headline">¶</a></h2>
+<a class="reference internal image-reference" href="#the-output"><img alt="_images/roadmap.png" class="align-center" src="_images/roadmap.png" style="width: 400px; height: 400px;" /></a>
+<p>This is what the finished roadmap for a relatively small city looks like.
+As you see there are main roads and minor roads.
+The correlation between the input and the output is also very clear in this example.</p>
+</div>
+<div class="section" id="correlation-between-input-and-output">
+<h2>Correlation between Input and Output<a class="headerlink" href="#correlation-between-input-and-output" title="Permalink to this headline">¶</a></h2>
+<a class="reference internal image-reference" href="#correlation-between-input-and-output"><img alt="_images/result.png" class="align-center" src="_images/result.png" style="width: 400px; height: 400px;" /></a>
+<a class="reference internal image-reference" href="#correlation-between-input-and-output"><img alt="_images/result2.png" class="align-center" src="_images/result2.png" style="width: 400px; height: 400px;" /></a>
+<p>It should now have become clearer as to what the growth rules and the population density actually describe.</p>
+</div>
+<div class="section" id="how-vertices-are-managed">
+<h2>How Vertices are managed<a class="headerlink" href="#how-vertices-are-managed" title="Permalink to this headline">¶</a></h2>
+<p>As mentioned, we start with an axiom. In the beginning, every vertex of the axiom is in the &#8220;front&#8221;, the list of vertices from which new vertices well be suggested.
+For every vertex, a (possibly) empty list of new suggested vertices is then created. The position of these suggested vertices depends on the growth rule. For example,
+if we use the grid rule, the suggested vertex for the direction &#8220;forward&#8221; is simply adding the previous edge to the vertex we are making suggestions from, and &#8220;turning&#8221; means adding this vertex rotated by either 90 or 270 degrees.
+All suggested vertices are then &#8220;checked&#8221; - this means we handle the following cases:</p>
+<ol class="arabic simple">
+<li>When a new vertex is placed too close to an existing vertex, we focus on the edge to that existing vertex instead.</li>
+<li>When a new vertex is placed, so that the edge to that vertex stops shortly before an existing edge, we lengthen that edge to the intersection of the two edges.</li>
+<li>When new vertex is placed, so that the edge to that vertex intersects an existing edge, we shorten the edge to the intersection of the two edges. This also has to be checked after case 1 has been handled.</li>
+</ol>
+<p>An illustation of these cases:</p>
+<a class="reference internal image-reference" href="#how-vertices-are-managed"><img alt="_images/check.png" class="align-center" src="_images/check.png" style="width: 800px; height: 400px;" /></a>
+<p>If none of these cases apply, the new vertex is placed and is added to the front. If there is no vertex suggested that followed the &#8220;turn&#8221; part of the growth rule, the vertex will also be added to the vertex_queue. After a vertex has spent a certain amount of iterations in the vertex_queue, it is readded to the front, under the growth rule &#8220;seed&#8221;. This growth rule starts producing vertices with the &#8220;minor_road&#8221; rule.</p>
+</div>
+<div class="section" id="the-growth-rules">
+<h2>The Growth Rules<a class="headerlink" href="#the-growth-rules" title="Permalink to this headline">¶</a></h2>
+<p>Below is a table describing how we suggest new vertices from a vertex by following a rule. We always need to have the previous_vector to that vertex saved.</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="4%" />
+<col width="43%" />
+<col width="46%" />
+<col width="4%" />
+<col width="3%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head"><strong>Rule</strong></th>
+<th class="head">Forward</th>
+<th class="head">Turn</th>
+<th class="head">pForward</th>
+<th class="head">pTurn</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>grid</td>
+<td>vertex+previous_vector</td>
+<td>vertex+rotate(previous_vector,90)</td>
+<td>1</td>
+<td>0.09</td>
+</tr>
+<tr class="row-odd"><td>organic</td>
+<td>vertex+rotate(previous_vector,random(-30,30))</td>
+<td>vertex+rotate(previous_vector,random(60,120))</td>
+<td>1</td>
+<td>0.8</td>
+</tr>
+<tr class="row-even"><td>radial</td>
+<td>We check if the previous_vector is closer to radial or tangential, and adjust it to that. Then vertex+adjusted_vector</td>
+<td>We check if the previous_vector is closer to radial or tangential, and adjust it to the opposite. Then vertex+adjusted_vector</td>
+<td>1</td>
+<td>0.07</td>
+</tr>
+<tr class="row-odd"><td>seed</td>
+<td>&nbsp;</td>
+<td>vertex+rotate(previous_vector,90)</td>
+<td>&nbsp;</td>
+<td>0.4</td>
+</tr>
+<tr class="row-even"><td>minor_road</td>
+<td>vertex+previous_vector</td>
+<td>vertex+rotate(previous_vector,90)</td>
+<td>0.05</td>
+<td>0.85</td>
+</tr>
+</tbody>
+</table>
+<p>Here you can see a demonstration of what the three main growth rules look like:</p>
+<a class="reference internal image-reference" href="#the-growth-rules"><img alt="_images/rules.png" class="align-center" src="_images/rules.png" style="width: 1000px; height: 400px;" /></a>
+<div class="section" id="polygon-extraction-and-subdivision">
+<h3><strong>Polygon Extraction and Subdivision</strong><a class="headerlink" href="#polygon-extraction-and-subdivision" title="Permalink to this headline">¶</a></h3>
+<p>We split up each of the &#8216;blocks&#8217; additionally into &#8216;lots&#8217;. On every lot, one building can be placed. Lots that are too large will be omitted from building.</p>
+<a class="reference internal image-reference" href="#polygon-extraction-and-subdivision"><img alt="_images/splitup.png" class="align-center" src="_images/splitup.png" style="width: 400px; height: 400px;" /></a>
+</div>
+<div class="section" id="creation-of-3d-data">
+<h3><strong>Creation of 3D Data</strong><a class="headerlink" href="#creation-of-3d-data" title="Permalink to this headline">¶</a></h3>
+<p>We create buildings by choosing various parameters according to the population density, such as the building height and Textures.</p>
+<p>We then start by scaling and or transforming the lot down, and possibly applying a series of operations on each of the walls.</p>
+<a class="reference internal image-reference" href="#creation-of-3d-data"><img alt="_images/buildinggeneration.png" class="align-center" src="_images/buildinggeneration.png" style="width: 750px; height: 350px;" /></a>
+</div>
+<div class="section" id="visualization-in-blender">
+<h3><strong>Visualization in Blender</strong><a class="headerlink" href="#visualization-in-blender" title="Permalink to this headline">¶</a></h3>
+<a class="reference internal image-reference" href="#visualization-in-blender"><img alt="_images/visualized.png" class="align-center" src="_images/visualized.png" style="width: 410px; height: 370px;" /></a>
+<div class="toctree-wrapper compound">
+<ul class="simple">
+</ul>
+</div>
+</div>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="#">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#"><strong>Procedural City Generation in Python - Documentation</strong></a><ul>
+<li><a class="reference internal" href="#index">Index</a><ul>
+<li><a class="reference internal" href="#getting-it-to-work"><strong>Getting it to work</strong></a></li>
+<li><a class="reference internal" href="#about-this-project"><strong>About this Project</strong></a></li>
+<li><a class="reference internal" href="#roadmap-creation"><strong>Roadmap Creation</strong></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#credits-and-acknowledgements">Credits and Acknowledgements</a></li>
+<li><a class="reference internal" href="#introduction">Introduction</a></li>
+<li><a class="reference internal" href="#the-growth-rule-image">The Growth-Rule Image</a></li>
+<li><a class="reference internal" href="#the-population-density-image">The Population-Density Image</a></li>
+<li><a class="reference internal" href="#the-output">The Output</a></li>
+<li><a class="reference internal" href="#correlation-between-input-and-output">Correlation between Input and Output</a></li>
+<li><a class="reference internal" href="#how-vertices-are-managed">How Vertices are managed</a></li>
+<li><a class="reference internal" href="#the-growth-rules">The Growth Rules</a><ul>
+<li><a class="reference internal" href="#polygon-extraction-and-subdivision"><strong>Polygon Extraction and Subdivision</strong></a></li>
+<li><a class="reference internal" href="#creation-of-3d-data"><strong>Creation of 3D Data</strong></a></li>
+<li><a class="reference internal" href="#visualization-in-blender"><strong>Visualization in Blender</strong></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="_sources/index.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="nav-item nav-item-0"><a href="#">procedural_city_generation 0.1 documentation</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &copy; Copyright 2015, Jonathan Sauder.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.3.1.
+    </div>
+  </body>
+</html>

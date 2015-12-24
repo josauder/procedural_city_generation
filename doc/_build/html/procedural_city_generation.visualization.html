@@ -1,0 +1,235 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>procedural_city_generation.visualization package &mdash; procedural_city_generation 0.1 documentation</title>
+    
+    <link rel="stylesheet" href="_static/classic.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    './',
+        VERSION:     '0.1',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <link rel="top" title="procedural_city_generation 0.1 documentation" href="index.html" /> 
+  </head>
+  <body role="document">
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">procedural_city_generation 0.1 documentation</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="procedural-city-generation-visualization-package">
+<h1>procedural_city_generation.visualization package<a class="headerlink" href="#procedural-city-generation-visualization-package" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="submodules">
+<h2>Submodules<a class="headerlink" href="#submodules" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="module-procedural_city_generation.visualization.blenderize">
+<span id="procedural-city-generation-visualization-blenderize-module"></span><h2>procedural_city_generation.visualization.blenderize module<a class="headerlink" href="#module-procedural_city_generation.visualization.blenderize" title="Permalink to this headline">¶</a></h2>
+<dl class="function">
+<dt id="procedural_city_generation.visualization.blenderize.createmesh">
+<code class="descclassname">procedural_city_generation.visualization.blenderize.</code><code class="descname">createmesh</code><span class="sig-paren">(</span><em>verts</em>, <em>faces</em>, <em>texture</em><span class="sig-paren">)</span><a class="headerlink" href="#procedural_city_generation.visualization.blenderize.createmesh" title="Permalink to this definition">¶</a></dt>
+<dd><p>Creates a Blender mesh from a list of vertices and faces while assigning a texture object</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>verts</strong> : iterable&lt;iterable&lt;float(shape(3,))&gt;&gt;</p>
+<blockquote>
+<div><p>Iterable of 3D-Coordinates of vertices</p>
+</div></blockquote>
+<p><strong>faces</strong> : iterable&lt;iterable&lt;int&gt;&gt;</p>
+<blockquote>
+<div><p>Iterable of Iterables of the indices of the verts which make up each face</p>
+</div></blockquote>
+<p class="last"><strong>texture</strong> : Blender texture object</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="procedural_city_generation.visualization.blenderize.createobject">
+<code class="descclassname">procedural_city_generation.visualization.blenderize.</code><code class="descname">createobject</code><span class="sig-paren">(</span><em>verts</em>, <em>faces</em>, <em>texname</em>, <em>texscale</em>, <em>shrinkwrap</em><span class="sig-paren">)</span><a class="headerlink" href="#procedural_city_generation.visualization.blenderize.createobject" title="Permalink to this definition">¶</a></dt>
+<dd><p>Creates a Blender object for each mesh. Each mesh is (after the
+building_generation submodule) a list of all vertices and faces which share
+the same texture (in order to make blender start up in reasonable time).
+Shrinkwrapped textures will be blender-shrinkwrapped (projected on to)
+the surface mesh.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>verts</strong> : iterable&lt;iterable&lt;float(shape(3,))&gt;&gt;</p>
+<blockquote>
+<div><p>Iterable of 3D-Coordinates of vertices</p>
+</div></blockquote>
+<p><strong>faces</strong> : iterable&lt;iterable&lt;int&gt;&gt;</p>
+<blockquote>
+<div><p>Iterable of Iterables of the indices of the verts which make up each face</p>
+</div></blockquote>
+<p><strong>texturename</strong> : String</p>
+<blockquote>
+<div><p>Must be identical with the name of the image in /visualization/Textures</p>
+</div></blockquote>
+<p><strong>shrinkwrap: boolean</strong></p>
+<blockquote class="last">
+<div><p>If true, then this mesh will be triangulated and then shrinkwrapped. 
+It makes sense to have this     attribute set as true for Roads and Floortypes.</p>
+</div></blockquote>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="procedural_city_generation.visualization.blenderize.createtexture">
+<code class="descclassname">procedural_city_generation.visualization.blenderize.</code><code class="descname">createtexture</code><span class="sig-paren">(</span><em>name</em>, <em>scale</em>, <em>texturetype='REPEAT'</em><span class="sig-paren">)</span><a class="headerlink" href="#procedural_city_generation.visualization.blenderize.createtexture" title="Permalink to this definition">¶</a></dt>
+<dd><p>Creates a Blender Texture Object. Only Tested with Cycles Engine.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>name</strong> : String</p>
+<blockquote>
+<div><p>Name of this Texture</p>
+</div></blockquote>
+<p><strong>scale</strong> : int</p>
+<blockquote>
+<div><p>How many times this Texture is to be scaled down. This Parameter still needs work.
+In the future, when 0 is passed, it is supposed to scale a Texture exactly on each polygon,
+meant to be useful e.g. when creating windows.</p>
+</div></blockquote>
+<p><strong>texturetype</strong> : String (optional)</p>
+<blockquote class="last">
+<div><p>currently unused</p>
+</div></blockquote>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="procedural_city_generation.visualization.blenderize.main">
+<code class="descclassname">procedural_city_generation.visualization.blenderize.</code><code class="descname">main</code><span class="sig-paren">(</span><em>points</em>, <em>triangles</em>, <em>polygons</em><span class="sig-paren">)</span><a class="headerlink" href="#procedural_city_generation.visualization.blenderize.main" title="Permalink to this definition">¶</a></dt>
+<dd><p>Intended to run in Blender. This means that this script must be written
+in Python 3 conformity. Works by reading and unpickling /outputs/buildings.txt
+and /outputs/&lt;correct-heightmap-name&gt;.txt and creating Blender Polygons for each of these.</p>
+<p>Run from console (from parent direcotry) with
+<code class="docutils literal"><span class="pre">blender</span> <span class="pre">--python</span> <span class="pre">/procedural_city_generation/visualization/blenderize.py</span></code></p>
+</dd></dl>
+
+<dl class="function">
+<dt id="procedural_city_generation.visualization.blenderize.setupscenery">
+<code class="descclassname">procedural_city_generation.visualization.blenderize.</code><code class="descname">setupscenery</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#procedural_city_generation.visualization.blenderize.setupscenery" title="Permalink to this definition">¶</a></dt>
+<dd><p>Sets up the lighting and render engine.
+In the future could provide options like &#8220;time of day&#8221;,&#8221;weather&#8221;,
+&#8220;renderengine&#8221;.</p>
+</dd></dl>
+
+</div>
+<div class="section" id="module-procedural_city_generation.visualization.visualization_params">
+<span id="procedural-city-generation-visualization-visualization-params-module"></span><h2>procedural_city_generation.visualization.visualization_params module<a class="headerlink" href="#module-procedural_city_generation.visualization.visualization_params" title="Permalink to this headline">¶</a></h2>
+<p>Module which contains all input parameters for this submodule, along with:
+- The default (recommmended) value from the developers
+- A short description of what the parameter changes
+- All values that the parameter accepts without causing this program to break.</p>
+<p>This information can also be viewed when calling the GUI and clicking the &#8220;options&#8221;
+button for that specific module.</p>
+</div>
+<div class="section" id="module-procedural_city_generation.visualization.window">
+<span id="procedural-city-generation-visualization-window-module"></span><h2>procedural_city_generation.visualization.window module<a class="headerlink" href="#module-procedural_city_generation.visualization.window" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="module-procedural_city_generation.visualization">
+<span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-procedural_city_generation.visualization" title="Permalink to this headline">¶</a></h2>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">procedural_city_generation.visualization package</a><ul>
+<li><a class="reference internal" href="#submodules">Submodules</a></li>
+<li><a class="reference internal" href="#module-procedural_city_generation.visualization.blenderize">procedural_city_generation.visualization.blenderize module</a></li>
+<li><a class="reference internal" href="#module-procedural_city_generation.visualization.visualization_params">procedural_city_generation.visualization.visualization_params module</a></li>
+<li><a class="reference internal" href="#module-procedural_city_generation.visualization.window">procedural_city_generation.visualization.window module</a></li>
+<li><a class="reference internal" href="#module-procedural_city_generation.visualization">Module contents</a></li>
+</ul>
+</li>
+</ul>
+
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="_sources/procedural_city_generation.visualization.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">procedural_city_generation 0.1 documentation</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &copy; Copyright 2015, Jonathan Sauder.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.3.1.
+    </div>
+  </body>
+</html>

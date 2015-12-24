@@ -15,6 +15,3 @@ class LinalgTools(object):
     def triangulate(self):
         pass
         
-
-# mkdir temp / outputs
-# make options / run 
