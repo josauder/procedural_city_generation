@@ -20,7 +20,7 @@ class Edge(object):
 	def __init__(self, vertex1, vertex2, bordering_road = True):
 		"""Input vertices are numpy-arrays"""
 		self.bordering_road = bordering_road
-		self.vertices = (vertex1, vertex2)
+		self.vertices = np.array((vertex1, vertex2))
 		self.dir_vector = vertex2 - vertex1
 		self.length = np.linalg.norm(self.dir_vector)
 		v = self.dir_vector/self.length
@@ -58,29 +58,16 @@ class Polygon2D(object):
 		s += "\n"
 		return s
 		
-	def selfplot(self, color="type", plt=plt):
-		if color == "type":
-			t = self.poly_type
-			
-			if t == "lot":
-				for edge in self.edges:
-					edge.selfplot(color="g",plt=plt)
-			elif t == "road":
-				for edge in self.edges:
-					edge.selfplot(color="k",plt=plt)
-			else:
-				for edge in self.edges:
-					edge.selfplot(color="r",plt=plt)
-		elif color == "borders":
-			for edge in self.edges:
-				if edge.bordering_road:
-					edge.selfplot(color="k",plt=plt)
-				else:
-					edge.selfplot(color="r",plt=plt)
-#		else:
-#			for edge in self.edges:
-#				plot_edge(edge, color=color)
-		
+	def selfplot(self, plt=plt):
+			color="r"
+			t=self.poly_type
+			if t=="lot" or t=="block":
+				color="g"
+			elif t=="road":
+				color="k"
+			composite=np.array([edge.vertices[0] for edge in self.edges]+[self.edges[0].vertices[0]])
+			plt.plot(composite[:,0],composite[:,1],color=color)
+
 	
 			
 

@@ -38,7 +38,7 @@ def main(vertex_list=None):
 	polygons=getLots(polylist,vertex_list)
 	
 	print("Lots found")
-
+	sorted
 	if singleton.plotbool:
 		print("Plotting...")
 		if gui is None:

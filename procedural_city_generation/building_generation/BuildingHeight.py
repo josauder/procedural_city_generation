@@ -7,18 +7,37 @@ import procedural_city_generation
 
 class BuildingHeight(object):
 	"""
-	Manages and distributes building-heights for buildings 
-	"""
-	def __init__(self,name):
-		self.path=os.path.dirname(procedural_city_generation.__file__)+"/temp/"
-		with open(self.path+name+"_densitymap.txt",'r') as f:
-			densityname=f.read()
+	Manages and distributes building-heights for buildings
 
-		print("Population density image is being set up")
-		self.img=self.setupimage(self.path+densityname)
-		with open(self.path+name+"_heightmap.txt",'r') as f:
-			self.border=[eval(x) for x in f.read().split("_")[-2:] if x is not '']
-		print("Population density image setup is finished")
+	Parameters
+	----------
+	imagename: name of image or the string "diffused". If this parameter is not "diffused", then
+		this program will look for an image of that imagename in the folder procedural_ciy_generation/inputs/buildingheight_pictures
+	"""
+	def __init__(self, savename, imagename):
+
+		self.path=os.path.dirname(procedural_city_generation.__file__)
+		try:
+			with open(self.path+"/temp/"+savename+ "_heightmap.txt", 'r') as f:
+				self.border=[eval(x) for x in f.read().split("_")[-2:] if x is not '']
+		except IOError:
+			print("Run the previous steps in procedural_city_generation first! If this message persists, run the \"clean\" command")
+			return
+		if imagename== "diffused":
+			print("Using diffused version of population density image")
+			with open(self.path+"/temp/"+savename+ "_densitymap.txt", 'r') as f:
+				densityname=f.read()
+
+			print("Population density image is being set up")
+			self.img=self.setupimage(self.path+"/temp/"+densityname)
+			print("Population density image setup is finished")
+			return
+		else:
+			print("Looking for image in procedural_city_generation/inputs/buildingheight_pictures")
+			import matplotlib.image as mpimg
+			self.img=mpimg.imread(self.path +"/inputs/buildingheight_pictures/" + imagename)
+			print("Image found")
+
 	
 	
 	def diffusion(self,arr, d):

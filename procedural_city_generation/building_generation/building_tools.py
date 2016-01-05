@@ -68,8 +68,8 @@ class Walls(object):
 		None
 		"""
 		c=random.choice("rgbcmyk")
-		[plt.plot([self.vertices[i-1][0],self.vertices[i][0]],[self.vertices[i-1][1],self.vertices[i][1]],color=c) for i in range(len(self.vertices))]
-
+		composite=np.array([x for x in self.vertices]+[self.vertices[0]])
+		plt.plot(composite[:,0],composite[:,1],color=c)
 
 def scale(walls,factor):
 	"""

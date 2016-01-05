@@ -41,7 +41,7 @@ def main():
 	polylist.pop(index)
 	
 	
-	gb=BuildingHeight(singleton.input_name)
+	gb=BuildingHeight(singleton.input_name,singleton.buildingheight_image_name)
 	surface=Surface(singleton.input_name)
 	textures=updateTextures()
 	texGetter=textureGetter(textures)
@@ -166,12 +166,18 @@ def main():
 					gui.update()
 				else:
 					plt.draw()
-
 		counter+=1
 		#Builds the floor Polygon
 		polygons.append(Polygon3D([np.array([x[0],x[1],0]) for x in poly.vertices],
 			[range(len(poly.vertices))],
 			floortexture))
+
+
+	if singleton.plotbool:
+		if gui is not None:
+			gui.update()
+		else:
+			plt.draw()
 
 	#Uncomment these lines if you are interested in working with .obj (Wavefront) format.
 	#See Github issues concerning this format
