@@ -44,7 +44,7 @@ def setup_heightmap(singleton,path):
 	rsize = img.resize(((singleton.border[1]+20)*10,(singleton.border[0]+20)*10))
 	array = np.asarray(rsize) 
 	from copy import copy
-	array=copy(array)
+	array= np.rot90(copy(array),k=3)
 	
 	
 	#If image is a jpeg, all values have to be divided by 255

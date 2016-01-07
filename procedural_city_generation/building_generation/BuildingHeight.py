@@ -11,6 +11,8 @@ class BuildingHeight(object):
 
 	Parameters
 	----------
+	savename: name of file we are reading input from (polygons-step of this program)
+
 	imagename: name of image or the string "diffused". If this parameter is not "diffused", then
 		this program will look for an image of that imagename in the folder procedural_ciy_generation/inputs/buildingheight_pictures
 	"""
