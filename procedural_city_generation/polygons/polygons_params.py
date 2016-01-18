@@ -10,12 +10,12 @@ button for that specific module.
 """
 from procedural_city_generation.additional_stuff.Param import Param
 params=[
-Param("minor_factor", 0.08,0.08, "Width of minor roads", "Float"),
-Param("main_factor", 0.17,0.17, "Width of main roads", "Float"),
-Param("max_area", 12,12, "Number of road segments after which a lot is considered too big for a building to be built on it", "Float"),
-Param("split_poly_min_area", 0.3,0.3, "TODO", "Float"),
-Param("split_poly_min_length", 0.2,0.2, "TODO", "Float"),
-Param("split_poly_half_tolerance", 0.05,0.05, "TODO", "Float"),
-Param("plotbool",False,False,"Decides if stuff should be plotted","boolean"),
-Param("plot_counter",2,2, "How many iterations have to pass before the plot showing lots updates itself", "integer")
+Param("minor_factor", 0.08, 0.08, "Width of minor roads", "Float"),
+Param("main_factor", 0.17, 0.17, "Width of main roads", "Float"),
+Param("max_area", 12, 12, "Number of road segments after which a lot is considered too big for a building to be built on it", "Float"),
+Param("split_poly_min_area", 0.3, 0.3, "TODO", "Float"),
+Param("split_poly_min_length", 0.2, 0.2, "TODO", "Float"),
+Param("split_poly_half_tolerance", 0.05, 0.05, "TODO", "Float"),
+Param("plotbool", False, False, "Decides if stuff should be plotted", "boolean"),
+Param("plot_counter", 2, 2, "How many iterations have to pass before the plot showing lots updates itself", "integer")
 ]

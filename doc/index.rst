@@ -35,7 +35,7 @@ You can get the source code at our `Github Page <https://github.com/josauder/pro
 
 If you have git installed, you can clone the repository instead of downloading it as a .zip archive
 with::
-	git clone https://github.com/josauder/procedural_city_generation.git
+    git clone https://github.com/josauder/procedural_city_generation.git
 
 **Dependencies:**
 
@@ -46,11 +46,11 @@ with::
 * PyQt4 (4.8.6+)
 * Blender 2.6x+
 
-All dependencies except Blender should be included in any scientific python distribution (e.g. Python(x,y) and Anaconda).
+All dependencies except Blender should be included in any scientific python distribution (e.g. Python(x, y) and Anaconda).
 To start the program with the GUI (assuming all dependencies are installed)::
 
-	cd procedural_city_generation
-	python GUI.py
+    cd procedural_city_generation
+    python GUI.py
 
 If everything worked so far, the GUI should open up and look like this:
 
@@ -115,7 +115,7 @@ The Population-Density Image
    :width: 400 px
    
 This image describes the probabilities that vertices will be connected at all.
-The lighter, the more probable it is, that an edge will be built. 
+The lighter, the more probable it is, that an edge will be built.
 
 
 The Output
@@ -179,15 +179,15 @@ Below is a table describing how we suggest new vertices from a vertex by followi
 +------------+-----------------------------------------------------------------------------------------------------------------------+-------------------------------------------------------------------------------------------------------------------------------+------------+-------+
 | **Rule**   | Forward                                                                                                               | Turn                                                                                                                          | pForward   | pTurn |
 +============+=======================================================================================================================+===============================================================================================================================+============+=======+
-| grid       | vertex+previous_vector                                                                                                | vertex+rotate(previous_vector,90)                                                                                             | 1          |  0.09 |
+| grid       | vertex+previous_vector                                                                                                | vertex+rotate(previous_vector, 90)                                                                                             | 1          |  0.09 |
 +------------+-----------------------------------------------------------------------------------------------------------------------+-------------------------------------------------------------------------------------------------------------------------------+------------+-------+
-| organic    | vertex+rotate(previous_vector,random(-30,30))                                                                         | vertex+rotate(previous_vector,random(60,120))                                                                                 | 1          |   0.8 |
+| organic    | vertex+rotate(previous_vector, random(-30, 30))                                                                         | vertex+rotate(previous_vector, random(60, 120))                                                                                 | 1          |   0.8 |
 +------------+-----------------------------------------------------------------------------------------------------------------------+-------------------------------------------------------------------------------------------------------------------------------+------------+-------+
 | radial     | We check if the previous_vector is closer to radial or tangential, and adjust it to that. Then vertex+adjusted_vector | We check if the previous_vector is closer to radial or tangential, and adjust it to the opposite. Then vertex+adjusted_vector | 1          |  0.07 |
 +------------+-----------------------------------------------------------------------------------------------------------------------+-------------------------------------------------------------------------------------------------------------------------------+------------+-------+
-| seed       |                                                                                                                       | vertex+rotate(previous_vector,90)                                                                                             |            |   0.4 |
+| seed       |                                                                                                                       | vertex+rotate(previous_vector, 90)                                                                                             |            |   0.4 |
 +------------+-----------------------------------------------------------------------------------------------------------------------+-------------------------------------------------------------------------------------------------------------------------------+------------+-------+
-| minor_road | vertex+previous_vector                                                                                                | vertex+rotate(previous_vector,90)                                                                                             | 0.05       |  0.85 |
+| minor_road | vertex+previous_vector                                                                                                | vertex+rotate(previous_vector, 90)                                                                                             | 0.05       |  0.85 |
 +------------+-----------------------------------------------------------------------------------------------------------------------+-------------------------------------------------------------------------------------------------------------------------------+------------+-------+
 
 Here you can see a demonstration of what the three main growth rules look like: 

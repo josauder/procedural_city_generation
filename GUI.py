@@ -17,7 +17,7 @@ except AttributeError:
 class GUI(QtGui.QMainWindow):
 
     def __init__(self, parent=None):
-        QtGui.QMainWindow.__init__(self,parent)
+        QtGui.QMainWindow.__init__(self, parent)
         self.ui = Ui_MainWindow()
         self.ui.setupUi(self)
         redirector=StdoutRedirector(self.ui.console)
@@ -28,7 +28,7 @@ class GUI(QtGui.QMainWindow):
         self.ui.roadmap_widget.hide()
         self.ui.roadmap_Run.clicked.connect(self.start_roadmap)
         self.createTable("roadmap")
-        self.ui.roadmap_splitter.setSizes([90,800])
+        self.ui.roadmap_splitter.setSizes([90, 800])
 
         self.ui.roadmap_table.hide()
         #### 2: POLYGONS ####
@@ -37,19 +37,19 @@ class GUI(QtGui.QMainWindow):
         self.ui.polygons_widget.hide()
         self.ui.polygons_Run.clicked.connect(self.start_polygons)
         self.createTable("polygons")
-        self.ui.polygons_splitter.setSizes([90,800])
+        self.ui.polygons_splitter.setSizes([90, 800])
 
         #### 3: BUILDING_GENERATION ####
         UI.setBuilding_generationGUI(self)
         self.ui.building_generation_widget.hide()
         self.ui.building_generation_Run.clicked.connect(self.start_building_generation)
         self.createTable("building_generation")
-        self.ui.building_generation_splitter.setSizes([90,800])
+        self.ui.building_generation_splitter.setSizes([90, 800])
 
         #### 4: VISUALIZATION ####
         self.ui.visualization_Run.clicked.connect(UI.visualization)
         self.createTable("visualization")
-        self.ui.visualization_splitter.setSizes([90,800])
+        self.ui.visualization_splitter.setSizes([90, 800])
 
         #### 5: ADVANCED ####
         self.ui.clean_directories.clicked.connect(self.clean_directories)
@@ -57,30 +57,30 @@ class GUI(QtGui.QMainWindow):
 
         sys.stderr=redirector
     #TODO
-    def saveOptions(self,submodule="roadmap"):
-        button=getattr(self.ui,submodule+"_save_button")
-        table=getattr(self.ui,submodule+"_table")
+    def saveOptions(self, submodule="roadmap"):
+        button=getattr(self.ui, submodule+"_save_button")
+        table=getattr(self.ui, submodule+"_table")
         button.hide()
         table.hide()
      #   return saver
             
-    def createTable(self,submodule):
+    def createTable(self, submodule):
         h=411
         w=891
 
-        from procedural_city_generation.additional_stuff.Param import paramsFromJson,jsonFromParams
+        from procedural_city_generation.additional_stuff.Param import paramsFromJson, jsonFromParams
         from procedural_city_generation.additional_stuff.Singleton import Singleton
         params=paramsFromJson(os.getcwd()+"/procedural_city_generation/inputs/"+submodule+".conf")
         
-        table=QtGui.QTableWidget(getattr(self.ui,submodule+"_frame"))
-        save_button=QtGui.QPushButton(getattr(self.ui,submodule+"_frame"), text="Save")
+        table=QtGui.QTableWidget(getattr(self.ui, submodule+"_frame"))
+        save_button=QtGui.QPushButton(getattr(self.ui, submodule+"_frame"), text="Save")
         save_button.setGeometry(QtCore.QRect(w-100, h, 100, 31))
         save_button.hide()
-        default_button=QtGui.QPushButton(getattr(self.ui,submodule+"_frame"), text="Reset Defaults")
+        default_button=QtGui.QPushButton(getattr(self.ui, submodule+"_frame"), text="Reset Defaults")
         default_button.setGeometry(QtCore.QRect(w-260, h, 150, 31))
         default_button.hide()
         table.hide()
-        table.setGeometry(QtCore.QRect(0,0,w,h))        
+        table.setGeometry(QtCore.QRect(0, 0, w, h))
         table.setColumnCount(6)
         table.setHorizontalHeaderItem(0, QtGui.QTableWidgetItem("Parameter Name"))
         table.setColumnWidth(0, int(0.2*w))
@@ -131,21 +131,21 @@ class GUI(QtGui.QMainWindow):
 
 
 
-        getattr(self.ui,submodule+"_Options").clicked.connect(table.show)
-        getattr(self.ui,submodule+"_Options").clicked.connect(save_button.show)
-        getattr(self.ui,submodule+"_Options").clicked.connect(default_button.show)
-        setattr(self.ui,submodule+"_table",table)
+        getattr(self.ui, submodule+"_Options").clicked.connect(table.show)
+        getattr(self.ui, submodule+"_Options").clicked.connect(save_button.show)
+        getattr(self.ui, submodule+"_Options").clicked.connect(default_button.show)
+        setattr(self.ui, submodule+"_table", table)
 
         def save_params():
-            for i,param in enumerate(params):
-                it=table.item(i,3).text()
+            for i, param in enumerate(params):
+                it=table.item(i, 3).text()
                 try:
                     it=eval(str(it))
                 except:
                     it=str(it)
                 param.setValue(it)
                 Singleton(submodule).kill()
-            jsonFromParams(os.getcwd()+"/procedural_city_generation/inputs/"+submodule+".conf",params)
+            jsonFromParams(os.getcwd()+"/procedural_city_generation/inputs/"+submodule+".conf", params)
             print("Save successful")
             save_button.hide()
             default_button.hide()
@@ -153,20 +153,20 @@ class GUI(QtGui.QMainWindow):
             print(UI.donemessage)
 
         save_button.clicked.connect(save_params)
-        setattr(self.ui,submodule+"_save_button",save_button)
+        setattr(self.ui, submodule+"_save_button", save_button)
 
         def default_params():
-            for i,param in enumerate(params):
-                table.item(i,3).setText(_fromUtf8(str(param.default)))
+            for i, param in enumerate(params):
+                table.item(i, 3).setText(_fromUtf8(str(param.default)))
 
 
         default_button.clicked.connect(default_params)
-        setattr(self.ui,submodule+"_default_button",default_button)
+        setattr(self.ui, submodule+"_default_button", default_button)
 
 
 
-    def plot(self,x,y,linewidth=1,color="red"):
-        self.active_widget.canvas.ax.plot(x,y,linewidth=linewidth,color=color)
+    def plot(self, x, y, linewidth=1, color="red"):
+        self.active_widget.canvas.ax.plot(x, y, linewidth=linewidth, color=color)
        
     def clear(self):
         self.active_widget.canvas.ax.clear()
@@ -199,10 +199,10 @@ class GUI(QtGui.QMainWindow):
         os.system("rm -f " +os.getcwd()+"/procedural_city_generation/outputs/*")
         print(UI.donemessage)
         
-    def set_xlim(self,tpl):
+    def set_xlim(self, tpl):
         self.active_widget.canvas.ax.set_xlim(tpl)
         
-    def set_ylim(self,tpl):
+    def set_ylim(self, tpl):
         self.active_widget.canvas.ax.set_ylim(tpl)
         
     def update(self):
@@ -212,22 +212,22 @@ class GUI(QtGui.QMainWindow):
 
 
 class FigureSaver:
-	class __FigureSaver:
-		def __init__(self, fig=None):
-			self.plot=fig.plot
-			self.show=fig.show
-	instance=None
-	
-	def __init__(self,fig=None):
-		if not FigureSaver.instance and (fig is not None):
-			FigureSaver.instance=FigureSaver.__FigureSaver(fig)
-			
+    class __FigureSaver:
+        def __init__(self, fig=None):
+            self.plot=fig.plot
+            self.show=fig.show
+    instance=None
 
-	def __getattr__(self,name):
-		return getattr(self.instance,name)
-		
-	def __setattr__(self,name,value):
-		setattr(self.instance,name,value)	
+    def __init__(self, fig=None):
+        if not FigureSaver.instance and (fig is not None):
+            FigureSaver.instance=FigureSaver.__FigureSaver(fig)
+
+
+    def __getattr__(self, name):
+        return getattr(self.instance, name)
+
+    def __setattr__(self, name, value):
+        setattr(self.instance, name, value)
 
 class MplCanvas(FigureCanvas):
 
@@ -237,7 +237,7 @@ class MplCanvas(FigureCanvas):
         self.ax.get_yaxis().set_visible(False)
         self.ax.get_xaxis().set_visible(False)
         FigureCanvas.__init__(self, self.fig)
-        FigureCanvas.setSizePolicy(self, QtGui.QSizePolicy.Expanding,QtGui.QSizePolicy.Expanding)
+        FigureCanvas.setSizePolicy(self, QtGui.QSizePolicy.Expanding, QtGui.QSizePolicy.Expanding)
         FigureCanvas.updateGeometry(self)
 
 
@@ -252,35 +252,35 @@ class matplotlibWidget(QtGui.QWidget):
 
 
 class StdoutRedirector:
-	"""
-	Redirects all "print" outputs from Terminal into the Tkinter window
-	that is given as constructor.
-	"""
-	def __init__(self,label_obj):
-		"""
-		Parameters
-		----------
-		label_obj : Tkinter-Object with config method
-			Any Tkinter Object whose text can be changed over label_obj.config(text=String)
-		"""
-		self.label_obj=label_obj
-		
-		
-	def write(self,out):
-		"""
-		Method to be called by sys.stdout when text is written by print.
-		
-		Parameters
-		----------
-		out : String
-			Text to be printed
-		"""
-		self.label_obj.insertPlainText(out)
-		global app
-		app.processEvents()
+    """
+    Redirects all "print" outputs from Terminal into the Tkinter window
+    that is given as constructor.
+    """
+    def __init__(self, label_obj):
+        """
+        Parameters
+        ----------
+        label_obj : Tkinter-Object with config method
+            Any Tkinter Object whose text can be changed over label_obj.config(text=String)
+        """
+        self.label_obj=label_obj
 
-	def flush(self):
-		pass
+
+    def write(self, out):
+        """
+        Method to be called by sys.stdout when text is written by print.
+
+        Parameters
+        ----------
+        out : String
+            Text to be printed
+        """
+        self.label_obj.insertPlainText(out)
+        global app
+        app.processEvents()
+
+    def flush(self):
+        pass
 
 
 if __name__ == "__main__":

@@ -10,5 +10,5 @@ button for that specific module.
 """
 from procedural_city_generation.additional_stuff.Param import Param
 params=[
-Param("offset", 0.03,0.03, "Offset", "float"),
+Param("offset", 0.03, 0.03, "Offset", "float"),
 ]

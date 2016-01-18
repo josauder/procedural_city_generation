@@ -17,9 +17,9 @@ camera.rotation_euler.y=0
 camera.rotation_euler.z=0
 
 def render(i):
-	bpy.context.scene.frame_set(i)
-	bpy.context.scene.render.filepath = "/home/jonathan/Desktop/Mathesis/Testfolder/" + str(i).zfill(4)
-	bpy.ops.render.render(write_still=True)    
+    bpy.context.scene.frame_set(i)
+    bpy.context.scene.render.filepath = "/home/jonathan/Desktop/Mathesis/Testfolder/" + str(i).zfill(4)
+    bpy.ops.render.render(write_still=True)
 
 
 empty=bpy.context.scene.objects['Empty']
@@ -31,8 +31,8 @@ bpy.ops.object.parent_set()
 
 
 for i in range(45):
-	empty.rotation_euler.x+=1/360*2*math.pi
-	render(i)
+    empty.rotation_euler.x+=1/360*2*math.pi
+    render(i)
 
 bpy.ops.object.parent_clear(type='CLEAR')
 empty.rotation_euler.x=0
@@ -51,10 +51,10 @@ bpy.ops.object.parent_set()
 
 
 for i in range(360):
-	empty.location.x+=1/360*start/2
-	empty.location.y+=1/360*start/2
-	empty.location.z+=-1/360*start/10
-	
-	empty.rotation_euler.z+=1/180*math.pi
-	render(i+45)
-	
+    empty.location.x+=1/360*start/2
+    empty.location.y+=1/360*start/2
+    empty.location.z+=-1/360*start/10
+
+    empty.rotation_euler.z+=1/180*math.pi
+    render(i+45)
+
