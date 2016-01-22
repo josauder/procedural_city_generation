@@ -21,7 +21,7 @@ def getLots(wedge_poly_list, vertex_list):
     properties = []
     for wedge_poly in wedge_poly_list:
         for poly in getBlock(wedge_poly, vertex_list):
-            if poly.poly_type=="lot":
+            if poly.poly_type == "lot":
                 properties += divide(poly)
             else:
                 properties.append(poly)
@@ -30,7 +30,7 @@ def getLots(wedge_poly_list, vertex_list):
 
 
 
-if __name__=="__main__":
+if __name__ == "__main__":
 
     import sys
     from procedural_city_generation.polygons.parent_path import parent_path

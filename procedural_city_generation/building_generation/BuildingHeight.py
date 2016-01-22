@@ -25,7 +25,7 @@ class BuildingHeight(object):
         except IOError:
             print("Run the previous steps in procedural_city_generation first! If this message persists, run the \"clean\" command")
             return
-        if imagename== "diffused":
+        if imagename ==  "diffused":
             print("Using diffused version of population density image")
             with open(self.path+"/temp/"+savename+ "_densitymap.txt", 'r') as f:
                 densityname=f.read()
@@ -95,7 +95,7 @@ class BuildingHeight(object):
             diffused_bool=f.read()
             f.close()
 
-        if not diffused_bool=="True":
+        if not diffused_bool == "True":
             for i in range(72):
                 img= self.diffusion(img, 1)
             img=img**1.80

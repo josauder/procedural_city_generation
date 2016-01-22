@@ -51,14 +51,14 @@ def main(vertex_list=None):
             for g in polygons:
                 g.selfplot(plt=gui)
                 i+=1
-                if i%singleton.plot_counter==0:
+                if i%singleton.plot_counter == 0:
                     gui.update()
             gui.update()
 
     import pickle
     with open(os.path.dirname(procedural_city_generation.__file__)+"/temp/"+singleton.input_name+"_polygons.txt", "wb") as f:
         import sys
-        if sys.version[0]=="2":
+        if sys.version[0] == "2":
             s = pickle.dumps(polygons)
             f.write(s)
         else:

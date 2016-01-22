@@ -14,7 +14,7 @@ def setup_heightmap(singleton, path):
     name=singleton.heightmap_name
 
 
-    if name=="random":
+    if name == "random":
         print("New random heightmap is being created with randommap.py")
         #Writes correct inuse.txt
         from procedural_city_generation.additional_stuff import randommap

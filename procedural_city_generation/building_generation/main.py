@@ -35,7 +35,7 @@ def main():
     maxl=0
     index=0
     for i in range(len(polylist)):
-        if len(polylist[i].vertices)>maxl and polylist[i].poly_type== 'vacant':
+        if len(polylist[i].vertices)>maxl and polylist[i].poly_type ==  'vacant':
             index=i
             maxl=len(polylist[i].vertices)
     polylist.pop(index)
@@ -138,21 +138,21 @@ def main():
 
             #Goes through the plan list
             for element in plan:
-                if element=='b' or element=='f':
+                if element == 'b' or element == 'f':
 
                     list_of_currentheights.append(currentheight)
 
                     currentheight+=floorheight
 
-                elif element=='l':
+                elif element == 'l':
 
                     if ledgefactor!=1:
                         polygons.append(buildledge(ledge, currentheight, currentheight+floorheight/10, rooftexture))
 
                     currentheight+=floorheight/10.
-                elif element=='r':
+                elif element == 'r':
 
-                    if ledgefactor==1:
+                    if ledgefactor == 1:
                         polygons.extend(roof(walls, roofwalls, currentheight, housebool, rooftexture, texGetter.getTexture("Roof", buildingheight)))
 
                     polygons.append(buildwalls(walls, base_h_low, currentheight, walltexture))
@@ -161,7 +161,7 @@ def main():
         else:
             print("Polygon3D.poly_type not understood")
         if singleton.plotbool:
-            if counter%singleton.plot_counter==0:
+            if counter%singleton.plot_counter == 0:
                 if gui is not None:
                     gui.update()
                 else:

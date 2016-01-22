@@ -58,7 +58,9 @@ If everything worked so far, the GUI should open up and look like this:
    :align:   center
    :target: `Getting it to work`_
 
-If not, then there is probably a missing dependency. As of now, this project runs on both Python 2 and 3.
+If not, then there is probably a missing dependency. To troubleshoot, try
+
+As of now, this project runs on both Python 2 and 3.
 The last step ("Visualize in Blender") will not work on windows machines because you can not run blender by simply typing::
 
    blender --python "procedural_city_generation/visualization/blenderize.py"
@@ -69,10 +71,11 @@ from the command line. On windows you will have to run this script manually by o
 **About this Project**
 ------------------------
 
-This project started as a university project at the Technische Universität Berlin.
+This project started as a university project at the Technische Universität Berlin. As part of the MINTGr�n Program in which students get to dedicate two semesters to enrolling in whatever courses from all STEM fields, with the goal to figure out, which of those fields they want to pursue a future in.
 After the semester was over, we continued working on the project though, with the goal in mind to make it usable for as many people as possible.
  
-
+The entire code is open source and we are open for any feedback. If you run into any issues when using this program, please feel free to open an issue on our  `Github Page <https://github.com/josauder/procedural_city_generation>`_ or even propose a fix with a pull request.
+ 
 
 **Roadmap Creation**
 --------------------
@@ -205,6 +208,7 @@ Here you can see a demonstration of what the three main growth rules look like:
 
 
 We split up each of the 'blocks' additionally into 'lots'. On every lot, one building can be placed. Lots that are too large will be omitted from building.
+The algorithm used for extracting cycles from our roadmap graph works by creating all triples of vertices which are connected, sorting these by their angle to the x-axis, making it possible to find a unique triple following each triple.
 
 .. image:: images/splitup.png
    :align:   center 
@@ -217,7 +221,6 @@ We split up each of the 'blocks' additionally into 'lots'. On every lot, one bui
 ------------------------
 
 We create buildings by choosing various parameters according to the population density, such as the building height and Textures.
-
 We then start by scaling and or transforming the lot down, and possibly applying a series of operations on each of the walls.
 
 .. image:: images/buildinggeneration.png
@@ -229,6 +232,9 @@ We then start by scaling and or transforming the lot down, and possibly applying
 
 **Visualization in Blender**
 ---------------------------
+
+We do this by using the Blender Python API. We are not happy with performance of this API and also not happy with Blender's memory usage (a 17x19 procedural city takes up to 6GB RAM, anything above causes a segmentation fault and a memory leak until the system is rebooted). Yet we still rely on Blender's shrinkwrap modifier and the possibilty to use n-gons. In the future we hope to write to an .obj file, which can be opened by a plethora of 3D-Tools.
+
 
 .. image:: images/visualized.png
    :align:   center 

@@ -4,7 +4,7 @@ plotbool=False
 try:
 
     #Try except cause otherwise jsontools wont work because it tries to initialize variables
-    if Variables().plot==1:
+    if Variables().plot == 1:
         plotbool=True
 except:
     pass

@@ -18,7 +18,7 @@ def main():
     singleton.iterationszaehler=0
 
 
-    if singleton.plot==1:
+    if singleton.plot == 1:
         if gui is None:
             import matplotlib.pyplot as plt
             plt.close()
@@ -38,8 +38,8 @@ def main():
         i+=1
         front=iteration(front)
 
-        if singleton.plot==1:
-            if i%singleton.plot_counter==0:
+        if singleton.plot == 1:
+            if i%singleton.plot_counter == 0:
                 if gui is None:
                     plt.pause(0.001)
                     try:
@@ -57,8 +57,8 @@ def main():
 
     print("Roadmap is complete")
     save_vertexlist(singleton.global_lists.vertex_list, singleton.output_name, singleton.savefig)
-    if gui is None and singleton.plot==1:
-        if singleton.plot==1:
+    if gui is None and singleton.plot == 1:
+        if singleton.plot == 1:
             plt.show()
     return 0
 

@@ -7,17 +7,18 @@ def save_vertexlist(vertex_list, name="output", savefig=0):
     try:
         with open(path+"/temp/"+name, "wb") as f:
             import sys
-            if sys.version[0]=="2":
+            if sys.version[0] == "2":
                 s = pickle.dumps(vertex_list)
                 f.write(s)
             else:
                 pickle.dump(vertex_list, f)
     except:
         print("Recursionlimit was not enough - Pickle trying again with sys.recusionlimit at 50000")
+        import sys
         sys.setrecursionlimit(50000)
         return save_vertexlist(vertex_list, name, savefig)
 
-    if savefig==1:
+    if savefig == 1:
         print("Figure is being saved as" + name +".png")
         import matplotlib.pyplot as plt
 

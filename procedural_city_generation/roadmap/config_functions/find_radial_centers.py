@@ -8,7 +8,7 @@ def find_radial_centers(singleton):
         for x2 in range( np.shape(img)[1]//Aufloesung):
             quadrate.append([x1, x2])
 
-    quadrate= [q for q in quadrate if np.argmax(img[q[0]*Aufloesung][q[1]*Aufloesung])==2] #auf blaue reduzieren
+    quadrate= [q for q in quadrate if np.argmax(img[q[0]*Aufloesung][q[1]*Aufloesung]) == 2] #auf blaue reduzieren
 
     areas=[]
 

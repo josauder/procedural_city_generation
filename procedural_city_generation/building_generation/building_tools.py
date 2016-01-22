@@ -291,7 +291,7 @@ def verticalsplit(buildingheight, floorheight):
         returnlist.append('l')
 
     #If there is 1 ledge left, create it at the very top and return returnlist.
-    if nledges==1:
+    if nledges == 1:
         nledges-=1
         for i in range(nfloors):
             returnlist.append('f')
@@ -311,7 +311,7 @@ def verticalsplit(buildingheight, floorheight):
         nfloors-=1
         i+=1
         #If index is multiple of factor, add a ledge
-        if factor>0 and i%factor==0 and factor<3:
+        if factor>0 and i%factor == 0 and factor<3:
             returnlist.append('l')
     if returnlist[-1]!='l':
         returnlist.append('l')

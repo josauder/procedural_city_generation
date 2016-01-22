@@ -40,7 +40,7 @@ def config():
     return variables
 
 
-if __name__=="__main__":
+if __name__ == "__main__":
     print(config())
 
 

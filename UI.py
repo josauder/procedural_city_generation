@@ -85,7 +85,7 @@ def main(args):
 
     If you want to configure a paremeter, go with
 
-        python UI.py <submodule-name> --configure <new value>
+        python UI.py <submodule-name> --configure <parameter-name> <new value>
 
     """
     if len(args)==1:

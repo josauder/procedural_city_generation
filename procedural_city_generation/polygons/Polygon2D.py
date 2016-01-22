@@ -61,9 +61,9 @@ class Polygon2D(object):
     def selfplot(self, plt=plt):
             color="r"
             t=self.poly_type
-            if t=="lot" or t=="block":
+            if t == "lot" or t == "block":
                 color="g"
-            elif t=="road":
+            elif t == "road":
                 color="k"
             composite=np.array([edge.vertices[0] for edge in self.edges]+[self.edges[0].vertices[0]])
             plt.plot(composite[:, 0], composite[:, 1], color=color)
@@ -72,7 +72,7 @@ class Polygon2D(object):
 
 
 
-if __name__=="__main__":
+if __name__ == "__main__":
     p = [np.array(x) for x in [[0, 0], [0, 1], [1, 0.8], [1, 0]]]
     poly = Polygon2D(p)
     poly.selfplot()

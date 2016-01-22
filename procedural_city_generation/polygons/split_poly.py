@@ -72,7 +72,7 @@ def split_poly(poly, eps=10**-5):
             #Not possible to split polygon
             return False
 
-if __name__=="__main__":
+if __name__ == "__main__":
 
     import matplotlib.pyplot as plt
     p = [np.array(x) for x in [[0, 0], [0, 1], [1, 0.8], [1, 0]]]

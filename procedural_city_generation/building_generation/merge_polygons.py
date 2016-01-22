@@ -62,7 +62,7 @@ def merge_polygons(polygons, textures, output_name):
     import procedural_city_generation
     with open(os.path.dirname(procedural_city_generation.__file__)+"/outputs/"+output_name+".txt", 'wb') as f:
         import sys
-        if sys.version[0]=="2":
+        if sys.version[0] == "2":
             s = pickle.dumps(mergedpolys)
             f.write(s)
         else:

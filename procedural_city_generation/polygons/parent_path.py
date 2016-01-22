@@ -13,7 +13,7 @@ def parent_path(depth=1):
         if n == depth:
             return path[:len(path)-i]
 
-if __name__=="__main__":
+if __name__ == "__main__":
     print("This path: /n" + os.path.abspath(__file__))
     for i in range(1, 4):
         print("Parent path, depth = %s:/n" %(i) + parent_path(depth=i))

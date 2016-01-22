@@ -31,7 +31,7 @@ def getCam(i):
         d-=0.01
 #        zT=-0.05
     zR+=rad(1)
-    if i==10:
+    if i == 10:
         camera.removeParent()
 
     if i>360:

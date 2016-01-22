@@ -64,7 +64,7 @@ def getFoundation(poly, grid_width=0.01, eps=10**-8):
 
 
 
-if __name__=="__main__":
+if __name__ == "__main__":
     import matplotlib.pyplot as plt
     from plot_poly import plot_poly
     from getBlock import getBlock

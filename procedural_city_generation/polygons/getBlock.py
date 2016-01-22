@@ -104,7 +104,7 @@ def getBlock(wedges, vertex_list):
     polylist.append(block_poly)
     return polylist
 
-if __name__=="__main__":
+if __name__ == "__main__":
     import matplotlib.pyplot as plt
     import construct_polygons as cp
     polys, vertices = cp.main()

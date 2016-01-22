@@ -19,9 +19,9 @@ def seed(vertex, b):
     l=len(vertex.neighbours)
     v1=rotate(90, vertex.neighbours[0].coords-vertex.coords)
     v2=None
-    if l==1:
+    if l == 1:
         v2=v1
-    elif l==2:
+    elif l == 2:
         v2=rotate(90, vertex.neighbours[1].coords-vertex.coords)*-1
     else:
         return []

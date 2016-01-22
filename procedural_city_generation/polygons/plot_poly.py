@@ -8,7 +8,7 @@ def plot_self(self, mode="type"):
     if mode == "type":
         t = self.self_type
 
-        if t == "lot" or t=="block":
+        if t == "lot" or t == "block":
             for edge in self.edges:
                 plot_edge(edge, "g")
         elif t == "road":
@@ -30,9 +30,9 @@ def plot_self(self, mode="type"):
 def plot_self(self):
     color="r"
     t=self.self_type
-    if t=="lot" or t=="block":
+    if t == "lot" or t == "block":
         color="g"
-    elif t=="road":
+    elif t == "road":
         color="k"
     composite=np.array([edge for edge in self.edges]+[self.edges[0]])
     plt.plot(composite[:, 0], composite[:, 1], color)

@@ -53,7 +53,7 @@ def getWedges(vertex_list):
 
 
 def getPolygon2Ds(vertex_list):
-    '''Finds all closed Polygon2Ds. The algorithm starts with Wedge A-B-C and looks for Wedge B-C-X1, C-X1-X2... A polygon is found when Xn==A'''
+    '''Finds all closed Polygon2Ds. The algorithm starts with Wedge A-B-C and looks for Wedge B-C-X1, C-X1-X2... A polygon is found when Xn == A'''
     wedgeliste=getWedges(vertex_list)
 
     from bisect import bisect_left as search
@@ -63,7 +63,7 @@ def getPolygon2Ds(vertex_list):
         s1=x.b
         s2=x.c
         for wedge in wedgeliste:
-            if wedge.a==s1 and wedge.b==s2:
+            if wedge.a == s1 and wedge.b == s2:
                 return wedge
 
     while len(wedgeliste)>0:
@@ -111,7 +111,7 @@ def main(vertex_list=None):
     print("Polygon2Ds extracted")
     return polylist, vertex_list
 
-if __name__ =='__main__':
+if __name__  == '__main__':
     main()
 
 

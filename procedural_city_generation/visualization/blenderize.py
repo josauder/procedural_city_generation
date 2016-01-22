@@ -20,7 +20,7 @@ def createtexture(name, scale, texturetype='REPEAT'):
         currently unused
     """
     #TODO: sticky textures 's'
-    if scale==0:
+    if scale == 0:
         scale=70
 
 

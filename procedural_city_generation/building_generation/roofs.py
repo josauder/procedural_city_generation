@@ -36,7 +36,7 @@ def roof(walls, roofwalls, currentheight, housebool, texture, texture2=None):
 
     roofheight=np.random.uniform(singleton.roofheight_min, singleton.roofheight_max)
 
-    if roofwalls.l==4 and housebool:
+    if roofwalls.l == 4 and housebool:
         return houseroof(roofwalls, currentheight, roofheight, texture)
     else:
         return kastenroof(walls, roofwalls, currentheight, roofheight, texture, texture2)
@@ -109,7 +109,7 @@ def kastenroof(walls, roofwalls, currentheight, roofheight, texture, texture2=No
     box=scaletransform(roofwalls, random.uniform(0.07, 0.14))
 
 
-    if not roofwalls.l==4:
+    if not roofwalls.l == 4:
         #Constructs a box with 4 sides if the box did not have 4 sides
         a, b=box.vertices[0], box.vertices[1]
         n=(b-a)

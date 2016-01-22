@@ -12,7 +12,7 @@ def rotate(angle, vector):
         Vector to be rotated
     """
     #Explicit case because it gets called very often
-    if angle==90:
+    if angle == 90:
         return np.array([-vector[1], vector[0]])
 
     angle=angle*np.pi/180

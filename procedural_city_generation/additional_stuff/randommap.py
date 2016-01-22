@@ -26,13 +26,13 @@ def randommap(rows, cols):
         if x!=0 and y!=0:
             arr[x][y]=(semirand(arr[x-1][y])+arr[x-1][y-1]+arr[x][y-1])/3
 
-        elif x==0 and y!=0:
+        elif x == 0 and y!=0:
             arr[x][y]=semirand(arr[0][y-1])
 
-        elif y==0 and x!=0:
+        elif y == 0 and x!=0:
             arr[x][y]=semirand(arr[x-1][0])
 
-        elif (x+y)==0:
+        elif (x+y) == 0:
             arr[0][0]=-0.1
 
 
@@ -58,7 +58,7 @@ def findarea(arr, start, lower, upper, done):
 
     def check(xy):
         try:
-            if done2[xy[0], xy[1]]==0:
+            if done2[xy[0], xy[1]] == 0:
 
                 return True
 
@@ -97,7 +97,7 @@ def getwatermap(arr, waterheight):
         arr[x[0], x[1]]=waterheight
         done[x[0], x[1]]=1
 
-    undone=np.argwhere(done==0)
+    undone=np.argwhere(done == 0)
     i=waterheight+1000
 
 
@@ -105,7 +105,7 @@ def getwatermap(arr, waterheight):
 
         arr, done=findarea(arr, undone[0], waterheight, i, done)
         i+=1000
-        undone=np.argwhere(done==0)
+        undone=np.argwhere(done == 0)
 
     arr+=waterheight-1
     arr//=1000

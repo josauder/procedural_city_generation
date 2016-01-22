@@ -1,8 +1,7 @@
 import matplotlib
 matplotlib.use("QT4Agg")
 import sys
-from window import *
-from PyQt4 import QtGui
+from PyQt4 import QtGui,QtCore
 from matplotlib.backends.backend_qt4agg import FigureCanvasQTAgg as FigureCanvas
 from matplotlib.figure import Figure
 import UI
@@ -12,6 +11,17 @@ try:
 except AttributeError:
     _fromUtf8 = lambda s: s
 
+class matplotlibWidget(QtGui.QWidget):
+    """
+    MUST Preceed "from window import *"
+    """
+    def __init__(self, parent = None):
+        QtGui.QWidget.__init__(self, parent)
+        self.canvas = MplCanvas()
+        self.vbl = QtGui.QVBoxLayout()
+        self.vbl.addWidget(self.canvas)
+        self.setLayout(self.vbl)
+from window import *
 
 
 class GUI(QtGui.QMainWindow):
@@ -21,7 +31,9 @@ class GUI(QtGui.QMainWindow):
         QtGui.QMainWindow.__init__(self, parent)
         self.ui = Ui_MainWindow()
         self.ui.setupUi(self)
-        redirector=StdoutRedirector(self.ui.console)
+
+        from procedural_city_generation.additional_stuff.IOHelper import StdoutRedirector
+        redirector=StdoutRedirector(self.ui.console,app)
         sys.stdout=redirector
 
         #### 1: ROADMAP ####
@@ -258,49 +270,10 @@ class MplCanvas(FigureCanvas):
         FigureCanvas.updateGeometry(self)
 
 
-class matplotlibWidget(QtGui.QWidget):
-
-    def __init__(self, parent = None):
-        QtGui.QWidget.__init__(self, parent)
-        self.canvas = MplCanvas()
-        self.vbl = QtGui.QVBoxLayout()
-        self.vbl.addWidget(self.canvas)
-        self.setLayout(self.vbl)
 
 
-class StdoutRedirector:
-    """
-    Redirects all "print" outputs from Terminal into the Tkinter window
-    that is given as constructor.
-    """
-    def __init__(self, label_obj):
-        """
-        Parameters
-        ----------
-        label_obj : Tkinter-Object with config method
-            Any Tkinter Object whose text can be changed over label_obj.config(text=String)
-        """
-        self.label_obj=label_obj
 
-
-    def write(self, out):
-        """
-        Method to be called by sys.stdout when text is written by print.
-
-        Parameters
-        ----------
-        out : String
-            Text to be printed
-        """
-        self.label_obj.insertPlainText(out)
-        global app
-        app.processEvents()
-
-    def flush(self):
-        pass
-
-
-if __name__ == "__main__":
+if __name__  ==  "__main__":
     global app
     app = QtGui.QApplication(sys.argv)
     myapp = GUI()
