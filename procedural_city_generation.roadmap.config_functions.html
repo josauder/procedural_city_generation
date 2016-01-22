@@ -32,6 +32,9 @@
         <li class="right" style="margin-right: 10px">
           <a href="genindex.html" title="General Index"
              accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
         <li class="nav-item nav-item-0"><a href="index.html">procedural_city_generation 0.9 documentation</a> &raquo;</li> 
       </ul>
     </div>  
@@ -46,23 +49,91 @@
 <div class="section" id="submodules">
 <h2>Submodules<a class="headerlink" href="#submodules" title="Permalink to this headline">¶</a></h2>
 </div>
-<div class="section" id="procedural-city-generation-roadmap-config-functions-watertools-module">
-<h2>procedural_city_generation.roadmap.config_functions.Watertools module<a class="headerlink" href="#procedural-city-generation-roadmap-config-functions-watertools-module" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="module-procedural_city_generation.roadmap.config_functions.Watertools">
+<span id="procedural-city-generation-roadmap-config-functions-watertools-module"></span><h2>procedural_city_generation.roadmap.config_functions.Watertools module<a class="headerlink" href="#module-procedural_city_generation.roadmap.config_functions.Watertools" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="procedural_city_generation.roadmap.config_functions.Watertools.Watertools">
+<em class="property">class </em><code class="descclassname">procedural_city_generation.roadmap.config_functions.Watertools.</code><code class="descname">Watertools</code><span class="sig-paren">(</span><em>heightmap</em><span class="sig-paren">)</span><a class="headerlink" href="#procedural_city_generation.roadmap.config_functions.Watertools.Watertools" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="method">
+<dt id="procedural_city_generation.roadmap.config_functions.Watertools.Watertools.find_land_bodies">
+<code class="descname">find_land_bodies</code><span class="sig-paren">(</span><em>heightmap</em>, <em>h</em><span class="sig-paren">)</span><a class="headerlink" href="#procedural_city_generation.roadmap.config_functions.Watertools.Watertools.find_land_bodies" title="Permalink to this definition">¶</a></dt>
+<dd><p>This function finds out if the land that is not covered by water is connected, and if not, then finds all bodies</p>
+<ul class="simple">
+<li>heightmap : np.ndarray(h, w) heightmap image</li>
+<li>h : Height of water</li>
+</ul>
+<ul class="simple">
+<li>list&lt;list&lt;np.ndarray&gt;&gt; : list of land-bodies, which are a list containing numpy.ndarray(2, )&#8217;s. If list is empty, there is no water or all is water.</li>
+</ul>
+</dd></dl>
+
+<dl class="method">
+<dt id="procedural_city_generation.roadmap.config_functions.Watertools.Watertools.flood">
+<code class="descname">flood</code><span class="sig-paren">(</span><em>h</em>, <em>pos</em><span class="sig-paren">)</span><a class="headerlink" href="#procedural_city_generation.roadmap.config_functions.Watertools.Watertools.flood" title="Permalink to this definition">¶</a></dt>
+<dd><p>pos is a pair of indices on heightmap (position where it gets flooded)
+h is the corresponding height</p>
+</dd></dl>
+
+</dd></dl>
+
 </div>
-<div class="section" id="procedural-city-generation-roadmap-config-functions-find-radial-centers-module">
-<h2>procedural_city_generation.roadmap.config_functions.find_radial_centers module<a class="headerlink" href="#procedural-city-generation-roadmap-config-functions-find-radial-centers-module" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="module-procedural_city_generation.roadmap.config_functions.find_radial_centers">
+<span id="procedural-city-generation-roadmap-config-functions-find-radial-centers-module"></span><h2>procedural_city_generation.roadmap.config_functions.find_radial_centers module<a class="headerlink" href="#module-procedural_city_generation.roadmap.config_functions.find_radial_centers" title="Permalink to this headline">¶</a></h2>
+<dl class="function">
+<dt id="procedural_city_generation.roadmap.config_functions.find_radial_centers.find_radial_centers">
+<code class="descclassname">procedural_city_generation.roadmap.config_functions.find_radial_centers.</code><code class="descname">find_radial_centers</code><span class="sig-paren">(</span><em>singleton</em><span class="sig-paren">)</span><a class="headerlink" href="#procedural_city_generation.roadmap.config_functions.find_radial_centers.find_radial_centers" title="Permalink to this definition">¶</a></dt>
+<dd><p>Intended to find areas where the rule-image is blue and return the center of such areas</p>
+</dd></dl>
+
 </div>
-<div class="section" id="procedural-city-generation-roadmap-config-functions-flood-module">
-<h2>procedural_city_generation.roadmap.config_functions.flood module<a class="headerlink" href="#procedural-city-generation-roadmap-config-functions-flood-module" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="module-procedural_city_generation.roadmap.config_functions.flood">
+<span id="procedural-city-generation-roadmap-config-functions-flood-module"></span><h2>procedural_city_generation.roadmap.config_functions.flood module<a class="headerlink" href="#module-procedural_city_generation.roadmap.config_functions.flood" title="Permalink to this headline">¶</a></h2>
+<dl class="function">
+<dt id="procedural_city_generation.roadmap.config_functions.flood.flood">
+<code class="descclassname">procedural_city_generation.roadmap.config_functions.flood.</code><code class="descname">flood</code><span class="sig-paren">(</span><em>heightmap</em>, <em>pos</em>, <em>h</em><span class="sig-paren">)</span><a class="headerlink" href="#procedural_city_generation.roadmap.config_functions.flood.flood" title="Permalink to this definition">¶</a></dt>
+<dd><p>pos is a pair of indices on heightmap (position where it gets flooded)
+h is the corresponding height</p>
+</dd></dl>
+
 </div>
-<div class="section" id="procedural-city-generation-roadmap-config-functions-input-image-setup-module">
-<h2>procedural_city_generation.roadmap.config_functions.input_image_setup module<a class="headerlink" href="#procedural-city-generation-roadmap-config-functions-input-image-setup-module" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="module-procedural_city_generation.roadmap.config_functions.input_image_setup">
+<span id="procedural-city-generation-roadmap-config-functions-input-image-setup-module"></span><h2>procedural_city_generation.roadmap.config_functions.input_image_setup module<a class="headerlink" href="#module-procedural_city_generation.roadmap.config_functions.input_image_setup" title="Permalink to this headline">¶</a></h2>
+<dl class="function">
+<dt id="procedural_city_generation.roadmap.config_functions.input_image_setup.input_image_setup">
+<code class="descclassname">procedural_city_generation.roadmap.config_functions.input_image_setup.</code><code class="descname">input_image_setup</code><span class="sig-paren">(</span><em>rule_image_name</em>, <em>density_image_name</em><span class="sig-paren">)</span><a class="headerlink" href="#procedural_city_generation.roadmap.config_functions.input_image_setup.input_image_setup" title="Permalink to this definition">¶</a></dt>
+<dd><p>Loads the rule-image and population-density-image from the filesystem.
+Saves the density image in /temp/ folder so that it could be ensured.</p>
+<dl class="docutils">
+<dt>rule_image_name: String</dt>
+<dd>Name of the rule_image specified in Parameters</dd>
+<dt>density_image_name: String</dt>
+<dd>Name of the density_image specified in Parameters</dd>
+</dl>
+<dl class="docutils">
+<dt>rule_img: np.ndarray</dt>
+<dd>Rule-image as numpy array</dd>
+<dt>density_img: np.ndarray</dt>
+<dd>Density-image as numpy array</dd>
+</dl>
+</dd></dl>
+
 </div>
-<div class="section" id="procedural-city-generation-roadmap-config-functions-setup-heightmap-module">
-<h2>procedural_city_generation.roadmap.config_functions.setup_heightmap module<a class="headerlink" href="#procedural-city-generation-roadmap-config-functions-setup-heightmap-module" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="module-procedural_city_generation.roadmap.config_functions.setup_heightmap">
+<span id="procedural-city-generation-roadmap-config-functions-setup-heightmap-module"></span><h2>procedural_city_generation.roadmap.config_functions.setup_heightmap module<a class="headerlink" href="#module-procedural_city_generation.roadmap.config_functions.setup_heightmap" title="Permalink to this headline">¶</a></h2>
+<dl class="function">
+<dt id="procedural_city_generation.roadmap.config_functions.setup_heightmap.setup_heightmap">
+<code class="descclassname">procedural_city_generation.roadmap.config_functions.setup_heightmap.</code><code class="descname">setup_heightmap</code><span class="sig-paren">(</span><em>singleton</em>, <em>path</em><span class="sig-paren">)</span><a class="headerlink" href="#procedural_city_generation.roadmap.config_functions.setup_heightmap.setup_heightmap" title="Permalink to this definition">¶</a></dt>
+<dd><p>Sets up the heightmap image from roadmap.conf entry heightmap_name, writes ./Heightmaps/inuse.txt so other functions know which heightmap to load
+possible inputs:
+random: generates a new random map with randommap.py
+insert_name
+insert_name.png
+insert_name.txt</p>
+</dd></dl>
+
 </div>
-<div class="section" id="module-contents">
-<h2>Module contents<a class="headerlink" href="#module-contents" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="module-procedural_city_generation.roadmap.config_functions">
+<span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-procedural_city_generation.roadmap.config_functions" title="Permalink to this headline">¶</a></h2>
 </div>
 </div>
 
@@ -76,12 +147,12 @@
   <ul>
 <li><a class="reference internal" href="#">procedural_city_generation.roadmap.config_functions package</a><ul>
 <li><a class="reference internal" href="#submodules">Submodules</a></li>
-<li><a class="reference internal" href="#procedural-city-generation-roadmap-config-functions-watertools-module">procedural_city_generation.roadmap.config_functions.Watertools module</a></li>
-<li><a class="reference internal" href="#procedural-city-generation-roadmap-config-functions-find-radial-centers-module">procedural_city_generation.roadmap.config_functions.find_radial_centers module</a></li>
-<li><a class="reference internal" href="#procedural-city-generation-roadmap-config-functions-flood-module">procedural_city_generation.roadmap.config_functions.flood module</a></li>
-<li><a class="reference internal" href="#procedural-city-generation-roadmap-config-functions-input-image-setup-module">procedural_city_generation.roadmap.config_functions.input_image_setup module</a></li>
-<li><a class="reference internal" href="#procedural-city-generation-roadmap-config-functions-setup-heightmap-module">procedural_city_generation.roadmap.config_functions.setup_heightmap module</a></li>
-<li><a class="reference internal" href="#module-contents">Module contents</a></li>
+<li><a class="reference internal" href="#module-procedural_city_generation.roadmap.config_functions.Watertools">procedural_city_generation.roadmap.config_functions.Watertools module</a></li>
+<li><a class="reference internal" href="#module-procedural_city_generation.roadmap.config_functions.find_radial_centers">procedural_city_generation.roadmap.config_functions.find_radial_centers module</a></li>
+<li><a class="reference internal" href="#module-procedural_city_generation.roadmap.config_functions.flood">procedural_city_generation.roadmap.config_functions.flood module</a></li>
+<li><a class="reference internal" href="#module-procedural_city_generation.roadmap.config_functions.input_image_setup">procedural_city_generation.roadmap.config_functions.input_image_setup module</a></li>
+<li><a class="reference internal" href="#module-procedural_city_generation.roadmap.config_functions.setup_heightmap">procedural_city_generation.roadmap.config_functions.setup_heightmap module</a></li>
+<li><a class="reference internal" href="#module-procedural_city_generation.roadmap.config_functions">Module contents</a></li>
 </ul>
 </li>
 </ul>
@@ -116,6 +187,9 @@
         <li class="right" style="margin-right: 10px">
           <a href="genindex.html" title="General Index"
              >index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
         <li class="nav-item nav-item-0"><a href="index.html">procedural_city_generation 0.9 documentation</a> &raquo;</li> 
       </ul>
     </div>

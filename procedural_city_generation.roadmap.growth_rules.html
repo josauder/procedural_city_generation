@@ -32,6 +32,9 @@
         <li class="right" style="margin-right: 10px">
           <a href="genindex.html" title="General Index"
              accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
         <li class="nav-item nav-item-0"><a href="index.html">procedural_city_generation 0.9 documentation</a> &raquo;</li> 
       </ul>
     </div>  
@@ -46,23 +49,59 @@
 <div class="section" id="submodules">
 <h2>Submodules<a class="headerlink" href="#submodules" title="Permalink to this headline">¶</a></h2>
 </div>
-<div class="section" id="procedural-city-generation-roadmap-growth-rules-grid-module">
-<h2>procedural_city_generation.roadmap.growth_rules.grid module<a class="headerlink" href="#procedural-city-generation-roadmap-growth-rules-grid-module" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="module-procedural_city_generation.roadmap.growth_rules.grid">
+<span id="procedural-city-generation-roadmap-growth-rules-grid-module"></span><h2>procedural_city_generation.roadmap.growth_rules.grid module<a class="headerlink" href="#module-procedural_city_generation.roadmap.growth_rules.grid" title="Permalink to this headline">¶</a></h2>
+<dl class="function">
+<dt id="procedural_city_generation.roadmap.growth_rules.grid.grid">
+<code class="descclassname">procedural_city_generation.roadmap.growth_rules.grid.</code><code class="descname">grid</code><span class="sig-paren">(</span><em>vertex</em>, <em>b</em><span class="sig-paren">)</span><a class="headerlink" href="#procedural_city_generation.roadmap.growth_rules.grid.grid" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
 </div>
-<div class="section" id="procedural-city-generation-roadmap-growth-rules-minor-road-module">
-<h2>procedural_city_generation.roadmap.growth_rules.minor_road module<a class="headerlink" href="#procedural-city-generation-roadmap-growth-rules-minor-road-module" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="module-procedural_city_generation.roadmap.growth_rules.minor_road">
+<span id="procedural-city-generation-roadmap-growth-rules-minor-road-module"></span><h2>procedural_city_generation.roadmap.growth_rules.minor_road module<a class="headerlink" href="#module-procedural_city_generation.roadmap.growth_rules.minor_road" title="Permalink to this headline">¶</a></h2>
+<dl class="function">
+<dt id="procedural_city_generation.roadmap.growth_rules.minor_road.minor_road">
+<code class="descclassname">procedural_city_generation.roadmap.growth_rules.minor_road.</code><code class="descname">minor_road</code><span class="sig-paren">(</span><em>vertex</em>, <em>b</em><span class="sig-paren">)</span><a class="headerlink" href="#procedural_city_generation.roadmap.growth_rules.minor_road.minor_road" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
 </div>
-<div class="section" id="procedural-city-generation-roadmap-growth-rules-organic-module">
-<h2>procedural_city_generation.roadmap.growth_rules.organic module<a class="headerlink" href="#procedural-city-generation-roadmap-growth-rules-organic-module" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="module-procedural_city_generation.roadmap.growth_rules.organic">
+<span id="procedural-city-generation-roadmap-growth-rules-organic-module"></span><h2>procedural_city_generation.roadmap.growth_rules.organic module<a class="headerlink" href="#module-procedural_city_generation.roadmap.growth_rules.organic" title="Permalink to this headline">¶</a></h2>
+<dl class="function">
+<dt id="procedural_city_generation.roadmap.growth_rules.organic.organic">
+<code class="descclassname">procedural_city_generation.roadmap.growth_rules.organic.</code><code class="descname">organic</code><span class="sig-paren">(</span><em>vertex</em>, <em>b</em><span class="sig-paren">)</span><a class="headerlink" href="#procedural_city_generation.roadmap.growth_rules.organic.organic" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
 </div>
-<div class="section" id="procedural-city-generation-roadmap-growth-rules-radial-module">
-<h2>procedural_city_generation.roadmap.growth_rules.radial module<a class="headerlink" href="#procedural-city-generation-roadmap-growth-rules-radial-module" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="module-procedural_city_generation.roadmap.growth_rules.radial">
+<span id="procedural-city-generation-roadmap-growth-rules-radial-module"></span><h2>procedural_city_generation.roadmap.growth_rules.radial module<a class="headerlink" href="#module-procedural_city_generation.roadmap.growth_rules.radial" title="Permalink to this headline">¶</a></h2>
+<dl class="function">
+<dt id="procedural_city_generation.roadmap.growth_rules.radial.case_differentiation">
+<code class="descclassname">procedural_city_generation.roadmap.growth_rules.radial.</code><code class="descname">case_differentiation</code><span class="sig-paren">(</span><em>v1</em>, <em>v2</em><span class="sig-paren">)</span><a class="headerlink" href="#procedural_city_generation.roadmap.growth_rules.radial.case_differentiation" title="Permalink to this definition">¶</a></dt>
+<dd><p>Finds out if the angle between two vectors is closest to 0, 90, 180, 270 degrees.
+Returns the angle in degrees to which the first vector has to be rotated
+in order to be either parrallel or perpendicular to the second vector.</p>
+<p>v1 : np.ndarray(2, )
+v2 : np.ndarray(2, )</p>
+<p>float</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="procedural_city_generation.roadmap.growth_rules.radial.radial">
+<code class="descclassname">procedural_city_generation.roadmap.growth_rules.radial.</code><code class="descname">radial</code><span class="sig-paren">(</span><em>center</em>, <em>vertex</em>, <em>b</em><span class="sig-paren">)</span><a class="headerlink" href="#procedural_city_generation.roadmap.growth_rules.radial.radial" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
 </div>
-<div class="section" id="procedural-city-generation-roadmap-growth-rules-seed-module">
-<h2>procedural_city_generation.roadmap.growth_rules.seed module<a class="headerlink" href="#procedural-city-generation-roadmap-growth-rules-seed-module" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="module-procedural_city_generation.roadmap.growth_rules.seed">
+<span id="procedural-city-generation-roadmap-growth-rules-seed-module"></span><h2>procedural_city_generation.roadmap.growth_rules.seed module<a class="headerlink" href="#module-procedural_city_generation.roadmap.growth_rules.seed" title="Permalink to this headline">¶</a></h2>
+<dl class="function">
+<dt id="procedural_city_generation.roadmap.growth_rules.seed.seed">
+<code class="descclassname">procedural_city_generation.roadmap.growth_rules.seed.</code><code class="descname">seed</code><span class="sig-paren">(</span><em>vertex</em>, <em>b</em><span class="sig-paren">)</span><a class="headerlink" href="#procedural_city_generation.roadmap.growth_rules.seed.seed" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
 </div>
-<div class="section" id="module-contents">
-<h2>Module contents<a class="headerlink" href="#module-contents" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="module-procedural_city_generation.roadmap.growth_rules">
+<span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-procedural_city_generation.roadmap.growth_rules" title="Permalink to this headline">¶</a></h2>
 </div>
 </div>
 
@@ -76,12 +115,12 @@
   <ul>
 <li><a class="reference internal" href="#">procedural_city_generation.roadmap.growth_rules package</a><ul>
 <li><a class="reference internal" href="#submodules">Submodules</a></li>
-<li><a class="reference internal" href="#procedural-city-generation-roadmap-growth-rules-grid-module">procedural_city_generation.roadmap.growth_rules.grid module</a></li>
-<li><a class="reference internal" href="#procedural-city-generation-roadmap-growth-rules-minor-road-module">procedural_city_generation.roadmap.growth_rules.minor_road module</a></li>
-<li><a class="reference internal" href="#procedural-city-generation-roadmap-growth-rules-organic-module">procedural_city_generation.roadmap.growth_rules.organic module</a></li>
-<li><a class="reference internal" href="#procedural-city-generation-roadmap-growth-rules-radial-module">procedural_city_generation.roadmap.growth_rules.radial module</a></li>
-<li><a class="reference internal" href="#procedural-city-generation-roadmap-growth-rules-seed-module">procedural_city_generation.roadmap.growth_rules.seed module</a></li>
-<li><a class="reference internal" href="#module-contents">Module contents</a></li>
+<li><a class="reference internal" href="#module-procedural_city_generation.roadmap.growth_rules.grid">procedural_city_generation.roadmap.growth_rules.grid module</a></li>
+<li><a class="reference internal" href="#module-procedural_city_generation.roadmap.growth_rules.minor_road">procedural_city_generation.roadmap.growth_rules.minor_road module</a></li>
+<li><a class="reference internal" href="#module-procedural_city_generation.roadmap.growth_rules.organic">procedural_city_generation.roadmap.growth_rules.organic module</a></li>
+<li><a class="reference internal" href="#module-procedural_city_generation.roadmap.growth_rules.radial">procedural_city_generation.roadmap.growth_rules.radial module</a></li>
+<li><a class="reference internal" href="#module-procedural_city_generation.roadmap.growth_rules.seed">procedural_city_generation.roadmap.growth_rules.seed module</a></li>
+<li><a class="reference internal" href="#module-procedural_city_generation.roadmap.growth_rules">Module contents</a></li>
 </ul>
 </li>
 </ul>
@@ -116,6 +155,9 @@
         <li class="right" style="margin-right: 10px">
           <a href="genindex.html" title="General Index"
              >index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
         <li class="nav-item nav-item-0"><a href="index.html">procedural_city_generation 0.9 documentation</a> &raquo;</li> 
       </ul>
     </div>

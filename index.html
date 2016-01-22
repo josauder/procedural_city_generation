@@ -32,6 +32,9 @@
         <li class="right" style="margin-right: 10px">
           <a href="genindex.html" title="General Index"
              accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
         <li class="nav-item nav-item-0"><a href="#">procedural_city_generation 0.9 documentation</a> &raquo;</li> 
       </ul>
     </div>  
@@ -74,7 +77,8 @@ with:</p>
 <li>PyQt4 (4.8.6+)</li>
 <li>Blender 2.6x+</li>
 </ul>
-<p>All dependencies except Blender should be included in any scientific python distribution (e.g. Python(x, y) and Anaconda).
+<p>As of now, this project runs on both Python 2 and 3.
+All dependencies except Blender should be included in any scientific python distribution (e.g. Python(x, y) and Anaconda).
 To start the program with the GUI (assuming all dependencies are installed):</p>
 <div class="highlight-python"><div class="highlight"><pre>cd procedural_city_generation
 python GUI.py
@@ -82,9 +86,12 @@ python GUI.py
 </div>
 <p>If everything worked so far, the GUI should open up and look like this:</p>
 <a class="reference internal image-reference" href="#getting-it-to-work"><img alt="_images/GUI.png" class="align-center" src="_images/GUI.png" /></a>
-<p>If not, then there is probably a missing dependency. To troubleshoot, try</p>
-<p>As of now, this project runs on both Python 2 and 3.
-The last step (&#8220;Visualize in Blender&#8221;) will not work on windows machines because you can not run blender by simply typing:</p>
+<p>If not, then there is probably a missing dependency. To troubleshoot, try running the python file /test/Tester.py by using the following command from the procedural_city_generation directory:</p>
+<div class="highlight-python"><div class="highlight"><pre>python test/Tester.py
+</pre></div>
+</div>
+<p>This will generate a log file in procedural_city_generation/procedural_city_generation/outputs/test.log which might contain valuable clues about why this is not working. If you can not figure it out yourself, please create an issue at our <a class="reference external" href="https://github.com/josauder/procedural_city_generation">Github Page</a>.</p>
+<p>The last step (&#8220;Visualize in Blender&#8221;) will not work on windows machines because you can not run blender by simply typing:</p>
 <div class="highlight-python"><div class="highlight"><pre>blender --python &quot;procedural_city_generation/visualization/blenderize.py&quot;
 </pre></div>
 </div>
@@ -244,6 +251,9 @@ We then start by scaling and or transforming the lot down, and possibly applying
         <li class="right" style="margin-right: 10px">
           <a href="genindex.html" title="General Index"
              >index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
         <li class="nav-item nav-item-0"><a href="#">procedural_city_generation 0.9 documentation</a> &raquo;</li> 
       </ul>
     </div>

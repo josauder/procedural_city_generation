@@ -32,6 +32,9 @@
         <li class="right" style="margin-right: 10px">
           <a href="genindex.html" title="General Index"
              accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
         <li class="nav-item nav-item-0"><a href="index.html">procedural_city_generation 0.9 documentation</a> &raquo;</li> 
       </ul>
     </div>  
@@ -46,38 +49,233 @@
 <div class="section" id="submodules">
 <h2>Submodules<a class="headerlink" href="#submodules" title="Permalink to this headline">¶</a></h2>
 </div>
-<div class="section" id="procedural-city-generation-additional-stuff-iohelper-module">
-<h2>procedural_city_generation.additional_stuff.IOHelper module<a class="headerlink" href="#procedural-city-generation-additional-stuff-iohelper-module" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="module-procedural_city_generation.additional_stuff.IOHelper">
+<span id="procedural-city-generation-additional-stuff-iohelper-module"></span><h2>procedural_city_generation.additional_stuff.IOHelper module<a class="headerlink" href="#module-procedural_city_generation.additional_stuff.IOHelper" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="procedural_city_generation.additional_stuff.IOHelper.StdoutRedirector">
+<em class="property">class </em><code class="descclassname">procedural_city_generation.additional_stuff.IOHelper.</code><code class="descname">StdoutRedirector</code><span class="sig-paren">(</span><em>label_obj</em>, <em>pyQt_app=None</em><span class="sig-paren">)</span><a class="headerlink" href="#procedural_city_generation.additional_stuff.IOHelper.StdoutRedirector" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">object</span></code></p>
+<p>Redirects all &#8220;print&#8221; outputs from Terminal into the Qt window
+that is given in constructor.</p>
+<dl class="method">
+<dt id="procedural_city_generation.additional_stuff.IOHelper.StdoutRedirector.flush">
+<code class="descname">flush</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#procedural_city_generation.additional_stuff.IOHelper.StdoutRedirector.flush" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="procedural_city_generation.additional_stuff.IOHelper.StdoutRedirector.write">
+<code class="descname">write</code><span class="sig-paren">(</span><em>out</em><span class="sig-paren">)</span><a class="headerlink" href="#procedural_city_generation.additional_stuff.IOHelper.StdoutRedirector.write" title="Permalink to this definition">¶</a></dt>
+<dd><p>Method to be called by sys.stdout when text is written by print.</p>
+<dl class="docutils">
+<dt>out <span class="classifier-delimiter">:</span> <span class="classifier">String</span></dt>
+<dd>Text to be printed</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
 </div>
-<div class="section" id="procedural-city-generation-additional-stuff-linalgtools-module">
-<h2>procedural_city_generation.additional_stuff.LinalgTools module<a class="headerlink" href="#procedural-city-generation-additional-stuff-linalgtools-module" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="module-procedural_city_generation.additional_stuff.LinalgTools">
+<span id="procedural-city-generation-additional-stuff-linalgtools-module"></span><h2>procedural_city_generation.additional_stuff.LinalgTools module<a class="headerlink" href="#module-procedural_city_generation.additional_stuff.LinalgTools" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="procedural_city_generation.additional_stuff.LinalgTools.LinalgTools">
+<em class="property">class </em><code class="descclassname">procedural_city_generation.additional_stuff.LinalgTools.</code><code class="descname">LinalgTools</code><span class="sig-paren">(</span><em>floor</em>, <em>polygons</em><span class="sig-paren">)</span><a class="headerlink" href="#procedural_city_generation.additional_stuff.LinalgTools.LinalgTools" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">object</span></code></p>
+<dl class="method">
+<dt id="procedural_city_generation.additional_stuff.LinalgTools.LinalgTools.shrinkwrap">
+<code class="descname">shrinkwrap</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#procedural_city_generation.additional_stuff.LinalgTools.LinalgTools.shrinkwrap" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="procedural_city_generation.additional_stuff.LinalgTools.LinalgTools.triangulate">
+<code class="descname">triangulate</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#procedural_city_generation.additional_stuff.LinalgTools.LinalgTools.triangulate" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
 </div>
-<div class="section" id="procedural-city-generation-additional-stuff-param-module">
-<h2>procedural_city_generation.additional_stuff.Param module<a class="headerlink" href="#procedural-city-generation-additional-stuff-param-module" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="module-procedural_city_generation.additional_stuff.Param">
+<span id="procedural-city-generation-additional-stuff-param-module"></span><h2>procedural_city_generation.additional_stuff.Param module<a class="headerlink" href="#module-procedural_city_generation.additional_stuff.Param" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="procedural_city_generation.additional_stuff.Param.Param">
+<em class="property">class </em><code class="descclassname">procedural_city_generation.additional_stuff.Param.</code><code class="descname">Param</code><span class="sig-paren">(</span><em>name</em>, <em>default</em>, <em>value</em>, <em>description</em>, <em>value_type</em>, <em>value_lower_bound=None</em>, <em>value_upper_bound=None</em><span class="sig-paren">)</span><a class="headerlink" href="#procedural_city_generation.additional_stuff.Param.Param" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">object</span></code></p>
+<p>Parameter Object used for storing input variables for each of the submodules</p>
+<dl class="method">
+<dt id="procedural_city_generation.additional_stuff.Param.Param.setValue">
+<code class="descname">setValue</code><span class="sig-paren">(</span><em>val</em><span class="sig-paren">)</span><a class="headerlink" href="#procedural_city_generation.additional_stuff.Param.Param.setValue" title="Permalink to this definition">¶</a></dt>
+<dd><p>Validates User Parameters and prints errors or warnings when not correct</p>
+<p>val: eval()&#8217;d value of parameter as input</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="function">
+<dt id="procedural_city_generation.additional_stuff.Param.jsonFromParams">
+<code class="descclassname">procedural_city_generation.additional_stuff.Param.</code><code class="descname">jsonFromParams</code><span class="sig-paren">(</span><em>path</em>, <em>params_list</em><span class="sig-paren">)</span><a class="headerlink" href="#procedural_city_generation.additional_stuff.Param.jsonFromParams" title="Permalink to this definition">¶</a></dt>
+<dd><p>Writes parameters to JSON format</p>
+<p>path String path to where the JSON should be saved
+params_list List of procedural_city_generation.additional_stuff.Param objects</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="procedural_city_generation.additional_stuff.Param.paramsFromJson">
+<code class="descclassname">procedural_city_generation.additional_stuff.Param.</code><code class="descname">paramsFromJson</code><span class="sig-paren">(</span><em>path</em><span class="sig-paren">)</span><a class="headerlink" href="#procedural_city_generation.additional_stuff.Param.paramsFromJson" title="Permalink to this definition">¶</a></dt>
+<dd><p>Reads JSON file and produces list of Param objects</p>
+<p>path : String path to JSON file</p>
+<p>parameters : List&lt;procedural_city_generation.additional_stuff.Param&gt;</p>
+</dd></dl>
+
 </div>
-<div class="section" id="procedural-city-generation-additional-stuff-singleton-module">
-<h2>procedural_city_generation.additional_stuff.Singleton module<a class="headerlink" href="#procedural-city-generation-additional-stuff-singleton-module" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="module-procedural_city_generation.additional_stuff.Singleton">
+<span id="procedural-city-generation-additional-stuff-singleton-module"></span><h2>procedural_city_generation.additional_stuff.Singleton module<a class="headerlink" href="#module-procedural_city_generation.additional_stuff.Singleton" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="procedural_city_generation.additional_stuff.Singleton.Singleton">
+<em class="property">class </em><code class="descclassname">procedural_city_generation.additional_stuff.Singleton.</code><code class="descname">Singleton</code><span class="sig-paren">(</span><em>modulename=None</em><span class="sig-paren">)</span><a class="headerlink" href="#procedural_city_generation.additional_stuff.Singleton.Singleton" title="Permalink to this definition">¶</a></dt>
+<dd><p>Singleton Object which can only have one instance.
+Is instanciated with a modulename, e.g. &#8220;roadmap&#8221;, and reads the
+corresponding &#8220;roadmap.conf&#8221; in procedural_city_generation/inputs.
+All attributes are mutable, however this class should mainly be used for
+immutable numeric values to avoid confusion/difficult-to-trace-bugs.</p>
+<dl class="attribute">
+<dt id="procedural_city_generation.additional_stuff.Singleton.Singleton.instance">
+<code class="descname">instance</code><em class="property"> = None</em><a class="headerlink" href="#procedural_city_generation.additional_stuff.Singleton.Singleton.instance" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="procedural_city_generation.additional_stuff.Singleton.Singleton.kill">
+<code class="descname">kill</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#procedural_city_generation.additional_stuff.Singleton.Singleton.kill" title="Permalink to this definition">¶</a></dt>
+<dd><p>Deletes the Singleton&#8217;s instance</p>
+</dd></dl>
+
+</dd></dl>
+
 </div>
-<div class="section" id="procedural-city-generation-additional-stuff-wavefront-module">
-<h2>procedural_city_generation.additional_stuff.Wavefront module<a class="headerlink" href="#procedural-city-generation-additional-stuff-wavefront-module" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="module-procedural_city_generation.additional_stuff.Wavefront">
+<span id="procedural-city-generation-additional-stuff-wavefront-module"></span><h2>procedural_city_generation.additional_stuff.Wavefront module<a class="headerlink" href="#module-procedural_city_generation.additional_stuff.Wavefront" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="procedural_city_generation.additional_stuff.Wavefront.Wavefront">
+<em class="property">class </em><code class="descclassname">procedural_city_generation.additional_stuff.Wavefront.</code><code class="descname">Wavefront</code><span class="sig-paren">(</span><em>textures</em>, <em>polygon3ds</em>, <em>outpath='/outputs/'</em><span class="sig-paren">)</span><a class="headerlink" href="#procedural_city_generation.additional_stuff.Wavefront.Wavefront" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">object</span></code></p>
+<dl class="method">
+<dt id="procedural_city_generation.additional_stuff.Wavefront.Wavefront.writeMtllib">
+<code class="descname">writeMtllib</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#procedural_city_generation.additional_stuff.Wavefront.Wavefront.writeMtllib" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="procedural_city_generation.additional_stuff.Wavefront.Wavefront.writeObj">
+<code class="descname">writeObj</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#procedural_city_generation.additional_stuff.Wavefront.Wavefront.writeObj" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
 </div>
-<div class="section" id="procedural-city-generation-additional-stuff-clean-tools-module">
-<h2>procedural_city_generation.additional_stuff.clean_tools module<a class="headerlink" href="#procedural-city-generation-additional-stuff-clean-tools-module" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="module-procedural_city_generation.additional_stuff.clean_tools">
+<span id="procedural-city-generation-additional-stuff-clean-tools-module"></span><h2>procedural_city_generation.additional_stuff.clean_tools module<a class="headerlink" href="#module-procedural_city_generation.additional_stuff.clean_tools" title="Permalink to this headline">¶</a></h2>
+<dl class="function">
+<dt id="procedural_city_generation.additional_stuff.clean_tools.add_license_text">
+<code class="descclassname">procedural_city_generation.additional_stuff.clean_tools.</code><code class="descname">add_license_text</code><span class="sig-paren">(</span><em>files</em><span class="sig-paren">)</span><a class="headerlink" href="#procedural_city_generation.additional_stuff.clean_tools.add_license_text" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="procedural_city_generation.additional_stuff.clean_tools.clean_pyc_files">
+<code class="descclassname">procedural_city_generation.additional_stuff.clean_tools.</code><code class="descname">clean_pyc_files</code><span class="sig-paren">(</span><em>path</em><span class="sig-paren">)</span><a class="headerlink" href="#procedural_city_generation.additional_stuff.clean_tools.clean_pyc_files" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="procedural_city_generation.additional_stuff.clean_tools.find_imports">
+<code class="descclassname">procedural_city_generation.additional_stuff.clean_tools.</code><code class="descname">find_imports</code><span class="sig-paren">(</span><em>path</em><span class="sig-paren">)</span><a class="headerlink" href="#procedural_city_generation.additional_stuff.clean_tools.find_imports" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="procedural_city_generation.additional_stuff.clean_tools.find_in_text">
+<code class="descclassname">procedural_city_generation.additional_stuff.clean_tools.</code><code class="descname">find_in_text</code><span class="sig-paren">(</span><em>path</em>, <em>tofind='TODO'</em><span class="sig-paren">)</span><a class="headerlink" href="#procedural_city_generation.additional_stuff.clean_tools.find_in_text" title="Permalink to this definition">¶</a></dt>
+<dd><p>Searches the entire source code in the path for tofind.
+Useful for finding TODOS or missing translations. Like grep,
+nobody knows why this function was built. Prints filename, line number
+and line for each occurence.</p>
+<dl class="docutils">
+<dt>path <span class="classifier-delimiter">:</span> <span class="classifier">String</span></dt>
+<dd>path in which all files are searched for tofind</dd>
+<dt>tofind <span class="classifier-delimiter">:</span> <span class="classifier">String</span></dt>
+<dd>String which is supposed to be found in source.</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="procedural_city_generation.additional_stuff.clean_tools.find_readable_files">
+<code class="descclassname">procedural_city_generation.additional_stuff.clean_tools.</code><code class="descname">find_readable_files</code><span class="sig-paren">(</span><em>path, suffixes=['.py', '.conf']</em><span class="sig-paren">)</span><a class="headerlink" href="#procedural_city_generation.additional_stuff.clean_tools.find_readable_files" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="procedural_city_generation.additional_stuff.clean_tools.listfiles">
+<code class="descclassname">procedural_city_generation.additional_stuff.clean_tools.</code><code class="descname">listfiles</code><span class="sig-paren">(</span><em>path</em><span class="sig-paren">)</span><a class="headerlink" href="#procedural_city_generation.additional_stuff.clean_tools.listfiles" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
 </div>
-<div class="section" id="procedural-city-generation-additional-stuff-pickletools-module">
-<h2>procedural_city_generation.additional_stuff.pickletools module<a class="headerlink" href="#procedural-city-generation-additional-stuff-pickletools-module" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="module-procedural_city_generation.additional_stuff.pickletools">
+<span id="procedural-city-generation-additional-stuff-pickletools-module"></span><h2>procedural_city_generation.additional_stuff.pickletools module<a class="headerlink" href="#module-procedural_city_generation.additional_stuff.pickletools" title="Permalink to this headline">¶</a></h2>
+<dl class="function">
+<dt id="procedural_city_generation.additional_stuff.pickletools.reconstruct">
+<code class="descclassname">procedural_city_generation.additional_stuff.pickletools.</code><code class="descname">reconstruct</code><span class="sig-paren">(</span><em>path</em><span class="sig-paren">)</span><a class="headerlink" href="#procedural_city_generation.additional_stuff.pickletools.reconstruct" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="procedural_city_generation.additional_stuff.pickletools.save_vertexlist">
+<code class="descclassname">procedural_city_generation.additional_stuff.pickletools.</code><code class="descname">save_vertexlist</code><span class="sig-paren">(</span><em>vertex_list</em>, <em>name='output'</em>, <em>savefig=0</em><span class="sig-paren">)</span><a class="headerlink" href="#procedural_city_generation.additional_stuff.pickletools.save_vertexlist" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
 </div>
-<div class="section" id="procedural-city-generation-additional-stuff-randommap-module">
-<h2>procedural_city_generation.additional_stuff.randommap module<a class="headerlink" href="#procedural-city-generation-additional-stuff-randommap-module" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="module-procedural_city_generation.additional_stuff.randommap">
+<span id="procedural-city-generation-additional-stuff-randommap-module"></span><h2>procedural_city_generation.additional_stuff.randommap module<a class="headerlink" href="#module-procedural_city_generation.additional_stuff.randommap" title="Permalink to this headline">¶</a></h2>
+<dl class="function">
+<dt id="procedural_city_generation.additional_stuff.randommap.findarea">
+<code class="descclassname">procedural_city_generation.additional_stuff.randommap.</code><code class="descname">findarea</code><span class="sig-paren">(</span><em>arr</em>, <em>start</em>, <em>lower</em>, <em>upper</em>, <em>done</em><span class="sig-paren">)</span><a class="headerlink" href="#procedural_city_generation.additional_stuff.randommap.findarea" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="procedural_city_generation.additional_stuff.randommap.getwatermap">
+<code class="descclassname">procedural_city_generation.additional_stuff.randommap.</code><code class="descname">getwatermap</code><span class="sig-paren">(</span><em>arr</em>, <em>waterheight</em><span class="sig-paren">)</span><a class="headerlink" href="#procedural_city_generation.additional_stuff.randommap.getwatermap" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="procedural_city_generation.additional_stuff.randommap.main">
+<code class="descclassname">procedural_city_generation.additional_stuff.randommap.</code><code class="descname">main</code><span class="sig-paren">(</span><em>border</em>, <em>path</em><span class="sig-paren">)</span><a class="headerlink" href="#procedural_city_generation.additional_stuff.randommap.main" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="procedural_city_generation.additional_stuff.randommap.randommap">
+<code class="descclassname">procedural_city_generation.additional_stuff.randommap.</code><code class="descname">randommap</code><span class="sig-paren">(</span><em>rows</em>, <em>cols</em><span class="sig-paren">)</span><a class="headerlink" href="#procedural_city_generation.additional_stuff.randommap.randommap" title="Permalink to this definition">¶</a></dt>
+<dd><p>terribly coded random-height-map generator, takes # of rows and cols as input as well as the minimum and maximum height for starting the randomization</p>
+</dd></dl>
+
 </div>
-<div class="section" id="procedural-city-generation-additional-stuff-readimages-module">
-<h2>procedural_city_generation.additional_stuff.readimages module<a class="headerlink" href="#procedural-city-generation-additional-stuff-readimages-module" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="module-procedural_city_generation.additional_stuff.readimages">
+<span id="procedural-city-generation-additional-stuff-readimages-module"></span><h2>procedural_city_generation.additional_stuff.readimages module<a class="headerlink" href="#module-procedural_city_generation.additional_stuff.readimages" title="Permalink to this headline">¶</a></h2>
+<dl class="function">
+<dt id="procedural_city_generation.additional_stuff.readimages.main">
+<code class="descclassname">procedural_city_generation.additional_stuff.readimages.</code><code class="descname">main</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#procedural_city_generation.additional_stuff.readimages.main" title="Permalink to this definition">¶</a></dt>
+<dd><p>Deprecated. Was used at lange nacht der Wissenschaften to read images and highlight the way they impact the creation of the Strassennetz</p>
+</dd></dl>
+
 </div>
-<div class="section" id="procedural-city-generation-additional-stuff-rotate-module">
-<h2>procedural_city_generation.additional_stuff.rotate module<a class="headerlink" href="#procedural-city-generation-additional-stuff-rotate-module" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="module-procedural_city_generation.additional_stuff.rotate">
+<span id="procedural-city-generation-additional-stuff-rotate-module"></span><h2>procedural_city_generation.additional_stuff.rotate module<a class="headerlink" href="#module-procedural_city_generation.additional_stuff.rotate" title="Permalink to this headline">¶</a></h2>
+<dl class="function">
+<dt id="procedural_city_generation.additional_stuff.rotate.rotate">
+<code class="descclassname">procedural_city_generation.additional_stuff.rotate.</code><code class="descname">rotate</code><span class="sig-paren">(</span><em>angle</em>, <em>vector</em><span class="sig-paren">)</span><a class="headerlink" href="#procedural_city_generation.additional_stuff.rotate.rotate" title="Permalink to this definition">¶</a></dt>
+<dd><p>Rotates a 2D Vector.</p>
+<dl class="docutils">
+<dt>angle <span class="classifier-delimiter">:</span> <span class="classifier">float</span></dt>
+<dd>Angle in which the Vector is rotated in mathematically-positive direction</dd>
+<dt>vector <span class="classifier-delimiter">:</span> <span class="classifier">np.array(2, )</span></dt>
+<dd>Vector to be rotated</dd>
+</dl>
+</dd></dl>
+
 </div>
-<div class="section" id="module-contents">
-<h2>Module contents<a class="headerlink" href="#module-contents" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="module-procedural_city_generation.additional_stuff">
+<span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-procedural_city_generation.additional_stuff" title="Permalink to this headline">¶</a></h2>
 </div>
 </div>
 
@@ -91,17 +289,17 @@
   <ul>
 <li><a class="reference internal" href="#">procedural_city_generation.additional_stuff package</a><ul>
 <li><a class="reference internal" href="#submodules">Submodules</a></li>
-<li><a class="reference internal" href="#procedural-city-generation-additional-stuff-iohelper-module">procedural_city_generation.additional_stuff.IOHelper module</a></li>
-<li><a class="reference internal" href="#procedural-city-generation-additional-stuff-linalgtools-module">procedural_city_generation.additional_stuff.LinalgTools module</a></li>
-<li><a class="reference internal" href="#procedural-city-generation-additional-stuff-param-module">procedural_city_generation.additional_stuff.Param module</a></li>
-<li><a class="reference internal" href="#procedural-city-generation-additional-stuff-singleton-module">procedural_city_generation.additional_stuff.Singleton module</a></li>
-<li><a class="reference internal" href="#procedural-city-generation-additional-stuff-wavefront-module">procedural_city_generation.additional_stuff.Wavefront module</a></li>
-<li><a class="reference internal" href="#procedural-city-generation-additional-stuff-clean-tools-module">procedural_city_generation.additional_stuff.clean_tools module</a></li>
-<li><a class="reference internal" href="#procedural-city-generation-additional-stuff-pickletools-module">procedural_city_generation.additional_stuff.pickletools module</a></li>
-<li><a class="reference internal" href="#procedural-city-generation-additional-stuff-randommap-module">procedural_city_generation.additional_stuff.randommap module</a></li>
-<li><a class="reference internal" href="#procedural-city-generation-additional-stuff-readimages-module">procedural_city_generation.additional_stuff.readimages module</a></li>
-<li><a class="reference internal" href="#procedural-city-generation-additional-stuff-rotate-module">procedural_city_generation.additional_stuff.rotate module</a></li>
-<li><a class="reference internal" href="#module-contents">Module contents</a></li>
+<li><a class="reference internal" href="#module-procedural_city_generation.additional_stuff.IOHelper">procedural_city_generation.additional_stuff.IOHelper module</a></li>
+<li><a class="reference internal" href="#module-procedural_city_generation.additional_stuff.LinalgTools">procedural_city_generation.additional_stuff.LinalgTools module</a></li>
+<li><a class="reference internal" href="#module-procedural_city_generation.additional_stuff.Param">procedural_city_generation.additional_stuff.Param module</a></li>
+<li><a class="reference internal" href="#module-procedural_city_generation.additional_stuff.Singleton">procedural_city_generation.additional_stuff.Singleton module</a></li>
+<li><a class="reference internal" href="#module-procedural_city_generation.additional_stuff.Wavefront">procedural_city_generation.additional_stuff.Wavefront module</a></li>
+<li><a class="reference internal" href="#module-procedural_city_generation.additional_stuff.clean_tools">procedural_city_generation.additional_stuff.clean_tools module</a></li>
+<li><a class="reference internal" href="#module-procedural_city_generation.additional_stuff.pickletools">procedural_city_generation.additional_stuff.pickletools module</a></li>
+<li><a class="reference internal" href="#module-procedural_city_generation.additional_stuff.randommap">procedural_city_generation.additional_stuff.randommap module</a></li>
+<li><a class="reference internal" href="#module-procedural_city_generation.additional_stuff.readimages">procedural_city_generation.additional_stuff.readimages module</a></li>
+<li><a class="reference internal" href="#module-procedural_city_generation.additional_stuff.rotate">procedural_city_generation.additional_stuff.rotate module</a></li>
+<li><a class="reference internal" href="#module-procedural_city_generation.additional_stuff">Module contents</a></li>
 </ul>
 </li>
 </ul>
@@ -136,6 +334,9 @@
         <li class="right" style="margin-right: 10px">
           <a href="genindex.html" title="General Index"
              >index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
         <li class="nav-item nav-item-0"><a href="index.html">procedural_city_generation 0.9 documentation</a> &raquo;</li> 
       </ul>
     </div>
