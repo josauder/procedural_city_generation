@@ -15,6 +15,7 @@ except AttributeError:
 
 
 class GUI(QtGui.QMainWindow):
+    """ Sets up Graphical User Interface for this Program. Requires PyQt4"""
 
     def __init__(self, parent=None):
         QtGui.QMainWindow.__init__(self, parent)
@@ -56,7 +57,10 @@ class GUI(QtGui.QMainWindow):
 
 
         sys.stderr=redirector
-    #TODO
+    
+
+
+    #TODO Finish method
     def saveOptions(self, submodule="roadmap"):
         button=getattr(self.ui, submodule+"_save_button")
         table=getattr(self.ui, submodule+"_table")
@@ -65,13 +69,23 @@ class GUI(QtGui.QMainWindow):
      #   return saver
             
     def createTable(self, submodule):
+	""" Creates the Options Table as PyQT4 Objects when called with a submodule. Very messy code, needs to be rewritten.
+	Parameters
+	----------
+	submodule: String, name of submodule
+	"""
+	
+	#Initial Pixel Width and Height of Options Table - should be replaced by getWindowSize()-like
         h=411
         w=891
 
         from procedural_city_generation.additional_stuff.Param import paramsFromJson, jsonFromParams
         from procedural_city_generation.additional_stuff.Singleton import Singleton
+	
+	#Load Parameters from .conf
         params=paramsFromJson(os.getcwd()+"/procedural_city_generation/inputs/"+submodule+".conf")
         
+	#Add Buttons and assign functions
         table=QtGui.QTableWidget(getattr(self.ui, submodule+"_frame"))
         save_button=QtGui.QPushButton(getattr(self.ui, submodule+"_frame"), text="Save")
         save_button.setGeometry(QtCore.QRect(w-100, h, 100, 31))
@@ -80,6 +94,8 @@ class GUI(QtGui.QMainWindow):
         default_button.setGeometry(QtCore.QRect(w-260, h, 150, 31))
         default_button.hide()
         table.hide()
+
+	#Set Table Geometry, code looks repetitive and should be reworked
         table.setGeometry(QtCore.QRect(0, 0, w, h))
         table.setColumnCount(6)
         table.setHorizontalHeaderItem(0, QtGui.QTableWidgetItem("Parameter Name"))
@@ -95,7 +111,8 @@ class GUI(QtGui.QMainWindow):
         table.setHorizontalHeaderItem(5, QtGui.QTableWidgetItem("max"))
         table.setColumnWidth(5, int(0.1*w))
         table.setRowCount(len(params))
-
+	
+	#Fill out Table with Parameters. Code Looks repetitive, should be reworked
         i=0
         for parameter in params:
             g=QtGui.QTableWidgetItem(str(parameter.name) )
@@ -130,7 +147,7 @@ class GUI(QtGui.QMainWindow):
             i+=1
 
 
-
+	#Connect functions to buttons
         getattr(self.ui, submodule+"_Options").clicked.connect(table.show)
         getattr(self.ui, submodule+"_Options").clicked.connect(save_button.show)
         getattr(self.ui, submodule+"_Options").clicked.connect(default_button.show)
