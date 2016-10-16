@@ -1,5 +1,5 @@
 # <info>
-# Author: Jonathan Sauder, jonathan_paul.sauder@dfki.de
+# Author: Jonathan Sauder, jonathan.sauder@student.hpi.de
 # Copyright 2015, Mathesis (Jonathan Sauder, Kemal Rose, Lenny Leass)
 # License: MPL2.0, see /procedural_city_generation/LICENCE
 # </info>
