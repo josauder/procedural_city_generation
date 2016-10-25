@@ -99,13 +99,15 @@ def main(args):
         print(main.__doc__)
         return 0
     if "configure" in args[2]:
+        config_file = os.path.join(os.path.dirname(os.path.realpath(__file__)),
+                                   "procedural_city_generation/inputs/{0}.conf".format(args[1]))
         if len(args) == 3:
-            os.system("nano ./procedural_city_generation/inputs/"+args[1]+".conf")
+            os.system("nano {0}".format(config_file))
             sys.exit(0)
 
         elif args[3] and args[4]:
             import json
-            with open("./procedural_city_generation/inputs/"+args[1]+".conf", 'r') as f:
+            with open(config_file, 'r') as f:
                 wb = json.loads(f.read())
             i = 0
             while True:
@@ -122,7 +124,7 @@ def main(args):
                     print("Either {0} is not a configurable parameter for {1}".format(args[3+i], args[1]))
                     return 0
 
-            with open("./procedural_city_generation/inputs/"+args[1]+".conf", 'w') as f:
+            with open(config_file, 'w') as f:
                 f.write(json.dumps(wb, indent=2))
 
             return 0
