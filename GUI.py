@@ -81,11 +81,11 @@ class GUI(QtGui.QMainWindow):
      #   return saver
             
     def createTable(self, submodule):
-	""" Creates the Options Table as PyQT4 Objects when called with a submodule. Very messy code, needs to be rewritten.
-	Parameters
-	----------
-	submodule: String, name of submodule
-	"""
+        """ Creates the Options Table as PyQT4 Objects when called with a submodule. Very messy code, needs to be rewritten.
+        Parameters
+        ----------
+        submodule: String, name of submodule
+        """
 	
 	#Initial Pixel Width and Height of Options Table - should be replaced by getWindowSize()-like
         h=411
