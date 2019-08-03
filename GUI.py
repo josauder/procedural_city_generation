@@ -1,7 +1,8 @@
 import matplotlib
 matplotlib.use("QT4Agg")
 import sys
-from PyQt4 import QtGui,QtCore
+from PyQt5 import QtGui,QtCore
+from PyQt5 import QtWidgets
 from matplotlib.backends.backend_qt4agg import FigureCanvasQTAgg as FigureCanvas
 from matplotlib.figure import Figure
 import UI
@@ -11,24 +12,24 @@ try:
 except AttributeError:
     _fromUtf8 = lambda s: s
 
-class matplotlibWidget(QtGui.QWidget):
+class matplotlibWidget(QtWidgets.QWidget):
     """
     MUST Preceed "from window import *"
     """
     def __init__(self, parent = None):
-        QtGui.QWidget.__init__(self, parent)
+        QtWidgets.QWidget.__init__(self, parent)
         self.canvas = MplCanvas()
-        self.vbl = QtGui.QVBoxLayout()
+        self.vbl = QtWidgets.QVBoxLayout()
         self.vbl.addWidget(self.canvas)
         self.setLayout(self.vbl)
 from window import *
 
 
-class GUI(QtGui.QMainWindow):
+class GUI(QtWidgets.QMainWindow):
     """ Sets up Graphical User Interface for this Program. Requires PyQt4"""
 
     def __init__(self, parent=None):
-        QtGui.QMainWindow.__init__(self, parent)
+        QtWidgets.QMainWindow.__init__(self, parent)
         self.ui = Ui_MainWindow()
         self.ui.setupUi(self)
 
@@ -81,11 +82,11 @@ class GUI(QtGui.QMainWindow):
      #   return saver
             
     def createTable(self, submodule):
-	""" Creates the Options Table as PyQT4 Objects when called with a submodule. Very messy code, needs to be rewritten.
-	Parameters
-	----------
-	submodule: String, name of submodule
-	"""
+        """ Creates the Options Table as PyQT4 Objects when called with a submodule. Very messy code, needs to be rewritten.
+        Parameters
+        ----------
+        submodule: String, name of submodule
+        """
 	
 	#Initial Pixel Width and Height of Options Table - should be replaced by getWindowSize()-like
         h=411
@@ -98,11 +99,11 @@ class GUI(QtGui.QMainWindow):
         params=paramsFromJson(os.getcwd()+"/procedural_city_generation/inputs/"+submodule+".conf")
         
 	#Add Buttons and assign functions
-        table=QtGui.QTableWidget(getattr(self.ui, submodule+"_frame"))
-        save_button=QtGui.QPushButton(getattr(self.ui, submodule+"_frame"), text="Save")
+        table=QtWidgets.QTableWidget(getattr(self.ui, submodule+"_frame"))
+        save_button=QtWidgets.QPushButton(getattr(self.ui, submodule+"_frame"), text="Save")
         save_button.setGeometry(QtCore.QRect(w-100, h, 100, 31))
         save_button.hide()
-        default_button=QtGui.QPushButton(getattr(self.ui, submodule+"_frame"), text="Reset Defaults")
+        default_button=QtWidgets.QPushButton(getattr(self.ui, submodule+"_frame"), text="Reset Defaults")
         default_button.setGeometry(QtCore.QRect(w-260, h, 150, 31))
         default_button.hide()
         table.hide()
@@ -110,49 +111,49 @@ class GUI(QtGui.QMainWindow):
 	#Set Table Geometry, code looks repetitive and should be reworked
         table.setGeometry(QtCore.QRect(0, 0, w, h))
         table.setColumnCount(6)
-        table.setHorizontalHeaderItem(0, QtGui.QTableWidgetItem("Parameter Name"))
+        table.setHorizontalHeaderItem(0, QtWidgets.QTableWidgetItem("Parameter Name"))
         table.setColumnWidth(0, int(0.2*w))
-        table.setHorizontalHeaderItem(1, QtGui.QTableWidgetItem("Description"))
+        table.setHorizontalHeaderItem(1, QtWidgets.QTableWidgetItem("Description"))
         table.setColumnWidth(1, int(0.5*w))
-        table.setHorizontalHeaderItem(2, QtGui.QTableWidgetItem("Default Value"))
+        table.setHorizontalHeaderItem(2, QtWidgets.QTableWidgetItem("Default Value"))
         table.setColumnWidth(2, int(0.125*w))
-        table.setHorizontalHeaderItem(3, QtGui.QTableWidgetItem("Value"))
+        table.setHorizontalHeaderItem(3, QtWidgets.QTableWidgetItem("Value"))
         table.setColumnWidth(3, int(0.125*w))
-        table.setHorizontalHeaderItem(4, QtGui.QTableWidgetItem("min"))
+        table.setHorizontalHeaderItem(4, QtWidgets.QTableWidgetItem("min"))
         table.setColumnWidth(4, int(0.1*w))
-        table.setHorizontalHeaderItem(5, QtGui.QTableWidgetItem("max"))
+        table.setHorizontalHeaderItem(5, QtWidgets.QTableWidgetItem("max"))
         table.setColumnWidth(5, int(0.1*w))
         table.setRowCount(len(params))
 	
 	#Fill out Table with Parameters. Code Looks repetitive, should be reworked
         i=0
         for parameter in params:
-            g=QtGui.QTableWidgetItem(str(parameter.name) )
+            g=QtWidgets.QTableWidgetItem(str(parameter.name) )
             g.setFlags( g.flags() & ~QtCore.Qt.ItemIsEditable )
             g.setBackground(QtGui.QBrush(QtGui.QColor(235, 235, 235)))
             table.setItem( i, 0 , g)
              
-            g=QtGui.QTableWidgetItem(str(parameter.description))
+            g=QtWidgets.QTableWidgetItem(str(parameter.description))
             g.setFlags( g.flags() & ~QtCore.Qt.ItemIsEditable)
             g.setBackground(QtGui.QBrush(QtGui.QColor(235, 235, 235)))
             table.setItem( i, 1 , g)
              
-            g=QtGui.QTableWidgetItem(str(parameter.default))
+            g=QtWidgets.QTableWidgetItem(str(parameter.default))
             g.setFlags( g.flags() & ~QtCore.Qt.ItemIsEditable)
             g.setBackground(QtGui.QBrush(QtGui.QColor(235, 235, 235)))
             table.setItem( i, 2 , g)
              
-            g=QtGui.QTableWidgetItem(str(parameter.value))
+            g=QtWidgets.QTableWidgetItem(str(parameter.value))
             table.setItem( i, 3 , g)
 
             s = "" if parameter.value_lower_bound is None else str(parameter.value_lower_bound)
-            g=QtGui.QTableWidgetItem(s)
+            g=QtWidgets.QTableWidgetItem(s)
             g.setFlags( g.flags() & ~QtCore.Qt.ItemIsEditable)
             g.setBackground(QtGui.QBrush(QtGui.QColor(235, 235, 235)))
             table.setItem( i, 4 , g)
 
             s = "" if parameter.value_upper_bound is None else str(parameter.value_upper_bound)
-            g=QtGui.QTableWidgetItem(s)
+            g=QtWidgets.QTableWidgetItem(s)
             g.setFlags( g.flags() & ~QtCore.Qt.ItemIsEditable)
             g.setBackground(QtGui.QBrush(QtGui.QColor(235, 235, 235)))
             table.setItem( i, 5 , g)
@@ -266,7 +267,7 @@ class MplCanvas(FigureCanvas):
         self.ax.get_yaxis().set_visible(False)
         self.ax.get_xaxis().set_visible(False)
         FigureCanvas.__init__(self, self.fig)
-        FigureCanvas.setSizePolicy(self, QtGui.QSizePolicy.Expanding, QtGui.QSizePolicy.Expanding)
+        FigureCanvas.setSizePolicy(self, QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Expanding)
         FigureCanvas.updateGeometry(self)
 
 
@@ -275,7 +276,7 @@ class MplCanvas(FigureCanvas):
 
 if __name__  ==  "__main__":
     global app
-    app = QtGui.QApplication(sys.argv)
+    app = QtWidgets.QApplication(sys.argv)
     myapp = GUI()
     myapp.show()
     app.exec_()

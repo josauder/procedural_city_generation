@@ -41,6 +41,7 @@ def config():
 
     from procedural_city_generation.roadmap.Vertex import Vertex, set_plotbool
     #Creates Vertex objects from coordinates
+    
     singleton.axiom=[Vertex(np.array([float(x[0]), float(x[1])])) for x in singleton.axiom]
     singleton.border=np.array([singleton.border_x, singleton.border_y])
     set_plotbool(singleton.plot)

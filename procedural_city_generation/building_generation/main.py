@@ -28,6 +28,7 @@ def main():
     import pickle
     with open(path+"/temp/"+singleton.input_name+"_polygons.txt", "rb") as f:
         polylist=pickle.loads(f.read())
+        
     if gui is None:
         import matplotlib.pyplot as plt
 
